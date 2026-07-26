@@ -152,7 +152,7 @@ T = {
         "life_more": "See lab life →",
         "photos_n": "{n} photos",
         "eyebrow": "Lu Lab · Department of Chemistry, National Chung Hsing University",
-        "claim": "Seeing the world other<br>methods cannot reach",
+        "claim": "Seeing the world other<br>methods struggle to observe",
         "hero_alt": "Custom-built mass spectrometry inlet on the optical table",
         "claim_lede": "We begin with a basic question: how are ions actually formed? "
                       "That understanding becomes measurement capability that reaches "
@@ -268,7 +268,7 @@ T = {
         "life_more": "看看實驗室生活 →",
         "photos_n": "{n} 張",
         "eyebrow": "盧臆中實驗室 · 國立中興大學化學系",
-        "claim": "用質譜看見<br>其它方法看不見的世界",
+        "claim": "用質譜看見<br>其它方法難以觀察的世界",
         "hero_alt": "光學桌上的客製化質譜進樣系統",
         "claim_lede": "我們從一個基礎問題出發：離子究竟是怎麼生成的？"
                       "再把這份理解變成能碰到真實問題的量測能力，"
