@@ -151,7 +151,8 @@ T = {
         "life_more": "See lab life →",
         "photos_n": "{n} photos",
         "eyebrow": "Lu Lab · Department of Chemistry, National Chung Hsing University",
-        "claim": "Measuring what other<br>methods cannot see",
+        "claim": "Seeing the world other<br>methods cannot reach",
+        "hero_alt": "Custom-built mass spectrometry inlet on the optical table",
         "claim_lede": "We begin with a basic question: how are ions actually formed? "
                       "That understanding becomes measurement capability that reaches "
                       "real problems, from rapid screening of carbohydrates to smart "
@@ -251,7 +252,8 @@ T = {
         "life_more": "看看實驗室生活 →",
         "photos_n": "{n} 張",
         "eyebrow": "盧臆中實驗室 · 國立中興大學化學系",
-        "claim": "用質譜看見<br>別的方法看不見的事",
+        "claim": "用質譜看見<br>別的方法看不見的世界",
+        "hero_alt": "光學桌上的客製化質譜進樣系統",
         "claim_lede": "我們從一個基礎問題出發：離子究竟是怎麼生成的？"
                       "再把這份理解變成能碰到真實問題的量測能力，"
                       "包括醣類的快速篩檢、塑膠的智慧分選，以及催化循環中一閃即逝的中間體。",
@@ -357,6 +359,9 @@ def layout(page, lang, title, description, body, jsonld=None):
 <meta property="og:image" content="{SITE}/assets/img/lu.jpg">
 <meta property="og:locale" content="{'en_US' if lang == 'en' else 'zh_TW'}">
 <meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Serif+TC:wght@500;600&display=swap">
 <link rel="stylesheet" href="{asset('assets/css/style.css', lang)}?v={CSS_V}">
 <link rel="icon" href="{asset('assets/img/favicon-32.png', lang)}" sizes="32x32">
 <link rel="icon" href="{asset('assets/img/logo-mark.svg', lang)}" type="image/svg+xml">
@@ -475,19 +480,72 @@ def theme_blocks(lang):
     return f'<div class="themes">{"".join(out)}</div>'
 
 
+# 首頁 hero 底部的質譜峰線裝飾。峰位與強度固定，不隨機。
+_PEAKS = [(18, 52), (46, 78), (74, 22), (102, 68), (130, 84), (158, 40), (186, 74),
+          (214, 8), (242, 58), (270, 86), (298, 34), (326, 72), (354, 46), (382, 88),
+          (410, 26), (438, 66), (466, 81), (494, 50), (522, 76), (550, 60), (578, 87),
+          (606, 44), (634, 79), (662, 30), (690, 70), (718, 85), (746, 55), (774, 82)]
+SPECTRUM = (
+    '<svg class="hero-spectrum" viewBox="0 0 800 100" preserveAspectRatio="none" aria-hidden="true">'
+    + "".join(f'<line x1="{x}" y1="100" x2="{x}" y2="{y}"/>' for x, y in _PEAKS)
+    + '<line class="baseline" x1="0" y1="100" x2="800" y2="100"/></svg>'
+)
+
+# 研究主軸的線條圖示（24×24，stroke 繼承 currentColor）
+ICONS = {
+    "foundations":
+        '<path d="M12 3v6"/><path d="M9 6l3 3 3-3"/><path d="M3 15h18"/>'
+        '<circle cx="7" cy="19" r="1.6"/><circle cx="12" cy="20.4" r="1.6"/>'
+        '<circle cx="17" cy="19" r="1.6"/>',
+    "health":
+        '<path d="M8 4.2l3.2 1.9v3.7L8 11.7 4.8 9.8V6.1z"/>'
+        '<path d="M11.2 6.1L14.4 4.2"/>'
+        '<circle cx="18" cy="14" r="2"/><circle cx="12.5" cy="17.5" r="2"/>'
+        '<circle cx="18.5" cy="20" r="2"/><path d="M16.4 15.3l-2.3 1.4"/>'
+        '<path d="M14.3 18.6l2.4 1"/>',
+    "sustainability":
+        '<path d="M12 3.6l3.4 5.9H8.6z"/><path d="M4.4 17.6l3.4-5.9 3.4 5.9z"/>'
+        '<path d="M19.6 17.6l-3.4-5.9-3.4 5.9z"/><path d="M4.4 17.6h15.2"/>',
+    "mechanisms":
+        '<path d="M20 12a8 8 0 1 1-3.2-6.4"/><path d="M17.2 3.4v2.6h-2.6"/>'
+        '<circle cx="12" cy="12" r="2.4"/>',
+}
+
+
 def theme_cards(lang):
     """首頁用：四張主題卡，一句話講完一條研究主軸。"""
     out = []
     for th in RESEARCH["themes"]:
         blurb = tidy(pick(th, "blurb", lang)) or tidy(pick(th, "body", lang))
+        icon = ICONS.get(th["id"], "")
+        svg = (f'<svg class="ticon" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+               f'stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" '
+               f'aria-hidden="true">{icon}</svg>') if icon else ""
         out.append(
             f"""<a class="tcard" href="{rel('research', lang)}#{th['id']}">
-  <span class="tag">{e(th['tag'])}</span>
+  <div class="tcard-head">{svg}<span class="tag">{e(th['tag'])}</span></div>
   <h3>{e(pick(th, 'title', lang))}</h3>
   <p>{e(blurb)}</p>
 </a>"""
         )
     return f'<div class="tcards">{"".join(out)}</div>'
+
+
+def pub_cards(lang, n=6):
+    """首頁的代表圖畫廊：有代表圖的最新幾篇，圖 + 標題 + 期刊年份。"""
+    picked = [p for p in main_pubs if pub_figure(p, lang)][:n]
+    cards = []
+    for p in picked:
+        fn = p["doi"].replace("/", "_") + ".jpg"
+        src = asset(f"assets/img/pubs/{fn}", lang)
+        cards.append(
+            f"""<a class="pcard" href="https://doi.org/{p['doi']}">
+  <span class="pcard-fig"><img src="{src}" alt="{e(p['title'][:80])}" loading="lazy"></span>
+  <span class="pcard-title">{e(p['title'])}</span>
+  <span class="pcard-meta"><em>{e(p['journal'])}</em> {p['year']}</span>
+</a>"""
+        )
+    return f'<div class="pcards">{"".join(cards)}</div>'
 
 
 def person_card(p, lang, subdir=""):
@@ -564,15 +622,23 @@ def page_index(lang):
         "knowsAbout": P["research_interests"],
         "description": tidy(P["bio_short_en"]),
     }
-    body = f"""<div class="hero home-hero"><div class="wrap">
-  <p class="eyebrow">{e(t['eyebrow'])}</p>
-  <h1 class="claim">{t['claim']}</h1>
-  <p class="claim-lede">{e(t['claim_lede'])}</p>
-  <div class="cta-row">
-    <a class="cta" href="{rel('research', lang)}">{e(t['cta_research'])}</a>
-    <a href="{rel('join', lang)}">{e(t['cta_join'])}</a>
-  </div>
-</div></div>
+    body = f"""<div class="hero home-hero">
+  {SPECTRUM}
+  <div class="wrap"><div class="home-grid">
+    <div>
+      <p class="eyebrow">{e(t['eyebrow'])}</p>
+      <h1 class="claim">{t['claim']}</h1>
+      <p class="claim-lede">{e(t['claim_lede'])}</p>
+      <div class="cta-row">
+        <a class="cta" href="{rel('research', lang)}">{e(t['cta_research'])}</a>
+        <a href="{rel('join', lang)}">{e(t['cta_join'])}</a>
+      </div>
+    </div>
+    <figure class="hero-shot">
+      <img src="{asset('assets/img/hero.jpg', lang)}" alt="{e(t['hero_alt'])}">
+    </figure>
+  </div></div>
+</div>
 
 <div class="wrap">
 <section>
@@ -588,8 +654,8 @@ def page_index(lang):
 
 <section>
   <h2>{e(t['selected'])}</h2>
-  <ol class="pubs">{''.join(pub_li(p, lang) for p in main_pubs[:5])}</ol>
-  <p style="margin-top:18px"><a href="{rel('publications', lang)}">{e(t['all_pubs'])}</a></p>
+  {pub_cards(lang)}
+  <p style="margin-top:22px"><a href="{rel('publications', lang)}">{e(t['all_pubs'])}</a></p>
 </section>
 
 <section>
