@@ -370,6 +370,39 @@ ul.grants .g-zh { font-size: 0.9rem; color: var(--ink-soft); }
 .lb-prev { left: 6px; }
 .lb-next { right: 6px; }
 
+/* ---------- 開課紀錄表 ---------- */
+.table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table.courses {
+  width: 100%; border-collapse: collapse; font-size: 0.93rem;
+}
+table.courses th {
+  text-align: left; font-size: 0.74rem; letter-spacing: 0.09em;
+  text-transform: uppercase; color: var(--ink-faint); font-weight: 650;
+  padding: 0 12px 9px 0; border-bottom: 1px solid var(--line);
+  white-space: nowrap;
+}
+table.courses td {
+  padding: 9px 12px 9px 0; border-bottom: 1px solid var(--line-soft);
+  vertical-align: baseline;
+}
+table.courses tr.newyear td { border-top: 1px solid var(--line); }
+table.courses tr.newyear:first-child td { border-top: none; }
+table.courses .yr {
+  font-variant-numeric: tabular-nums; font-weight: 600; width: 3.6em;
+}
+table.courses .tm { color: var(--ink-soft); width: 3.2em; }
+table.courses .code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.86rem; color: var(--ink-soft); width: 6em;
+}
+table.courses .cname { width: 100%; }
+.ctype {
+  display: inline-block; font-size: 0.75rem; padding: 1px 8px;
+  border-radius: 3px; white-space: nowrap;
+}
+.ctype.req { color: var(--accent); background: var(--accent-dim); }
+.ctype.ele { color: var(--ink-soft); background: var(--bg-soft); border: 1px solid var(--line); }
+
 /* ---------- Misc ---------- */
 .note {
   background: var(--bg-soft); border: 1px solid var(--line);
@@ -637,4 +670,13 @@ ul.news li:last-child { border-bottom: none; }
   .lb-prev, .lb-next { font-size: 2.2rem; padding: 8px; }
   #alumni-grid { grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 18px 12px; }
   #alumni-grid .ph { width: 72px; height: 72px; }
+
+  /* 開課表：手機上收窄欄位，必要時橫向捲動 */
+  table.courses { font-size: 0.87rem; }
+  table.courses th { font-size: 0.68rem; }
+  table.courses td { padding: 8px 10px 8px 0; }
+  table.courses .code { font-size: 0.8rem; width: 5.2em; }
+  table.courses .yr { width: 3.2em; }
+  table.courses .tm { width: 2.6em; }
+  .ctype { font-size: 0.7rem; padding: 1px 6px; }
 }

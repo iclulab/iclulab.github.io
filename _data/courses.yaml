@@ -1,0 +1,46 @@
+# ============================================================
+# courses.yaml — 開課紀錄（教學頁）
+#
+# 來源：中興大學校務資訊系統「教師歷年開課資料」
+# 收錄規則（依使用者指定）：
+#   · 只列最近五個學年
+#   · 排除實驗課、專題研究與專題討論（課程組成為「實習」或「台下指導」者）
+# 欄位：year 學年 / term 學期 / code 選課號碼 / name 課程名稱 / required 必選修別
+# ============================================================
+
+# 顯示最近幾個學年（build 時自動依此篩選）
+recent_years: 5
+
+courses:
+  - { year: 115, term: 1, code: "2233", name_zh: "物理化學", name_en: "Physical Chemistry", required: true }
+  - { year: 115, term: 1, code: "2938", name_zh: "以智慧型手機檢測化合物濃度實作", name_en: "Smartphone-Based Determination of Compound Concentration", required: false }
+  - { year: 115, term: 1, code: "4133", name_zh: "統計熱力學", name_en: "Statistical Thermodynamics", required: false }
+
+  - { year: 114, term: 2, code: "2909", name_zh: "結合 AI 工具與智慧型手機檢測化合物濃度實作", name_en: "AI-Assisted Smartphone-Based Determination of Compound Concentration", required: false }
+  - { year: 114, term: 2, code: "3283", name_zh: "物理化學（三）", name_en: "Physical Chemistry III", required: true }
+  - { year: 114, term: 2, code: "4129", name_zh: "量子化學", name_en: "Quantum Chemistry", required: false }
+  - { year: 114, term: 1, code: "2938", name_zh: "以智慧型手機檢測化合物濃度實作", name_en: "Smartphone-Based Determination of Compound Concentration", required: false }
+  - { year: 114, term: 1, code: "3270", name_zh: "物理化學（二）", name_en: "Physical Chemistry II", required: true }
+  - { year: 114, term: 1, code: "4133", name_zh: "統計熱力學", name_en: "Statistical Thermodynamics", required: false }
+
+  - { year: 113, term: 2, code: "1822", name_zh: "物理化學（二）", name_en: "Physical Chemistry II", required: true }
+  - { year: 113, term: 2, code: "2286", name_zh: "物理化學（一）", name_en: "Physical Chemistry I", required: true }
+  - { year: 113, term: 2, code: "4129", name_zh: "量子化學", name_en: "Quantum Chemistry", required: false }
+  - { year: 113, term: 1, code: "1171", name_zh: "普通化學", name_en: "General Chemistry", required: true }
+  - { year: 113, term: 1, code: "2248", name_zh: "化學數學", name_en: "Mathematics for Chemists", required: true }
+  - { year: 113, term: 1, code: "2929", name_zh: "以智慧型手機檢測化合物濃度實作", name_en: "Smartphone-Based Determination of Compound Concentration", required: false }
+  - { year: 113, term: 1, code: "6529", name_zh: "高等物理化學", name_en: "Advanced Physical Chemistry", required: false }
+
+  - { year: 112, term: 2, code: "2281", name_zh: "物理化學", name_en: "Physical Chemistry", required: true }
+  - { year: 112, term: 2, code: "4001", name_zh: "工業化學", name_en: "Industrial Chemistry", required: false }
+  - { year: 112, term: 2, code: "4129", name_zh: "量子化學", name_en: "Quantum Chemistry", required: false }
+  - { year: 112, term: 1, code: "2233", name_zh: "物理化學", name_en: "Physical Chemistry", required: true }
+  - { year: 112, term: 1, code: "2905", name_zh: "以行動載具輔助化學檢測分析實作專題", name_en: "Mobile-Device-Assisted Chemical Analysis Practicum", required: false }
+  - { year: 112, term: 1, code: "4120", name_zh: "統計熱力學", name_en: "Statistical Thermodynamics", required: false }
+  - { year: 112, term: 1, code: "6529", name_zh: "高等物理化學", name_en: "Advanced Physical Chemistry", required: false }
+
+  - { year: 111, term: 2, code: "3283", name_zh: "物理化學（三）", name_en: "Physical Chemistry III", required: true }
+  - { year: 111, term: 2, code: "4129", name_zh: "量子化學", name_en: "Quantum Chemistry", required: false }
+  - { year: 111, term: 1, code: "3270", name_zh: "物理化學（二）", name_en: "Physical Chemistry II", required: true }
+  - { year: 111, term: 1, code: "4120", name_zh: "統計熱力學", name_en: "Statistical Thermodynamics", required: false }
+  - { year: 111, term: 1, code: "6529", name_zh: "高等物理化學", name_en: "Advanced Physical Chemistry", required: false }

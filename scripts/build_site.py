@@ -69,6 +69,7 @@ RESEARCH = load("research")
 SECTIONS = load("sections")
 FACILITY = load("facility")
 ALBUMS = load("albums")["albums"]
+COURSES = load("courses")
 
 
 def pubs_in(section_id):
@@ -168,10 +169,17 @@ T = {
         "teaching_body": "I teach physical chemistry at both undergraduate and graduate "
                          "level at National Chung Hsing University.",
         "t_awards": "Teaching awards",
-        "courses": "Courses",
-        "courses_note": "Course listings are still to be added. This page is structured to "
-                        "accommodate a course list, lecture notes, and an eventual link to "
-                        "the YouTube teaching channel.",
+        "courses": "Courses taught",
+        "c_year": "Year",
+        "c_term": "Term",
+        "c_code": "Course no.",
+        "c_name": "Course",
+        "c_type": "Type",
+        "c_req": "Required",
+        "c_ele": "Elective",
+        "courses_note": "Academic years are given in the Republic of China calendar used by "
+                        "Taiwanese universities; year 114 corresponds to 2025–26. "
+                        "Laboratory courses and independent-study units are not listed.",
         "join": "Join Us",
         "join_body": "We are looking for students who are curious about how measurements "
                      "actually work, not just how to run them. Projects span ionization "
@@ -268,9 +276,15 @@ T = {
         "teaching": "教學",
         "teaching_body": "於國立中興大學講授大學部與研究所的物理化學課程。",
         "t_awards": "教學獲獎",
-        "courses": "課程",
-        "courses_note": "課程資訊待補。此頁面已預留架構，日後可加入課程列表、"
-                        "講義下載，以及 YouTube 教學頻道的整合。",
+        "courses": "近五年開課",
+        "c_year": "學年",
+        "c_term": "學期",
+        "c_code": "選課號碼",
+        "c_name": "課程名稱",
+        "c_type": "必選修",
+        "c_req": "必修",
+        "c_ele": "選修",
+        "courses_note": "不含實驗課與專題研究。",
         "join": "加入我們",
         "join_body": "我們歡迎對「量測背後的原理」感到好奇的同學，而不只是會操作儀器。"
                      "研究題目橫跨游離機制、儀器開發、以及光譜的機器學習分類，"
@@ -1005,6 +1019,35 @@ def page_alumni(lang):
     return layout("alumni", lang, title, desc, body)
 
 
+def course_table(lang):
+    """近五學年的開課紀錄。學年相同者以學期由大到小排，同一學年只在第一列顯示學年。"""
+    t = T[lang]
+    rows = COURSES["courses"]
+    if rows:
+        cutoff = max(c["year"] for c in rows) - COURSES.get("recent_years", 5) + 1
+        rows = [c for c in rows if c["year"] >= cutoff]
+    rows = sorted(rows, key=lambda c: (-c["year"], -c["term"], c["code"]))
+    out, last_year = [], None
+    for c in rows:
+        newy = c["year"] != last_year
+        last_year = c["year"]
+        badge = t["c_req"] if c["required"] else t["c_ele"]
+        cls = "req" if c["required"] else "ele"
+        tr = '<tr class="newyear">' if newy else "<tr>"
+        out.append(
+            tr
+            + f'<td class="yr">{c["year"] if newy else ""}</td>'
+            f'<td class="tm">{c["term"]}</td>'
+            f'<td class="code">{e(c["code"])}</td>'
+            f'<td class="cname">{e(pick(c, "name", lang))}</td>'
+            f'<td><span class="ctype {cls}">{e(badge)}</span></td></tr>'
+        )
+    head = "".join(f"<th>{e(t[k])}</th>"
+                   for k in ("c_year", "c_term", "c_code", "c_name", "c_type"))
+    return (f'<div class="table-wrap"><table class="courses">'
+            f"<thead><tr>{head}</tr></thead><tbody>{''.join(out)}</tbody></table></div>")
+
+
 def page_teaching(lang):
     t = T[lang]
     aw = "".join(
@@ -1014,8 +1057,11 @@ def page_teaching(lang):
         if "Teach" in x["name_en"] or "Mentor" in x["name_en"]
     )
     body = page_hero(t["teaching"], t["teaching_body"]) + f"""<div class="wrap">
-<section style="padding-top:34px"><h2>{e(t['t_awards'])}</h2><ul class="grants">{aw}</ul></section>
-<section><h2>{e(t['courses'])}</h2><div class="note">{e(t['courses_note'])}</div></section>
+<section style="padding-top:34px"><h2>{e(t['courses'])}</h2>
+  {course_table(lang)}
+  <p class="sec-note" style="margin-top:14px">{e(t['courses_note'])}</p>
+</section>
+<section><h2>{e(t['t_awards'])}</h2><ul class="grants">{aw}</ul></section>
 </div>"""
     title = "Teaching | I-Chung Lu | NCHU" if lang == "en" else "教學 ｜ 盧臆中 ｜ 中興大學化學系"
     desc = (
