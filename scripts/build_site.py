@@ -116,6 +116,7 @@ T = {
         "role_title": f"{P['title_en']} · {P['department_en']}",
         "inst": P["institution_en"],
         "addr": P["contact"]["address_en"],
+        "footer_org": f"{P['department_en']}, {P['institution_en']}",
         "office": P["contact"]["office_en"],
         "lab": P["contact"]["lab_en"],
         "research": "Research",
@@ -217,6 +218,7 @@ T = {
         "role_title": f"{P['title_zh']} · {P['department_zh']}",
         "inst": P["institution_zh"],
         "addr": P["contact"]["address_zh"],
+        "footer_org": f"{P['institution_zh']} {P['department_zh']}",
         "office": P["contact"]["office_zh"],
         "lab": P["contact"]["lab_zh"],
         "research": "研究",
@@ -371,7 +373,7 @@ def layout(page, lang, title, description, body, jsonld=None):
 {body}
 </main>
 <footer class="site-footer"><div class="wrap">
-  <p>{e(t['role_title'])}<br>{e(t['inst'])}<br>{e(t['addr'])}</p>
+  <p>{e(t['footer_org'])}<br>{e(t['addr'])}</p>
   <p>{e(t['office'])} · {e(t['lab'])}</p>
   <p><a href="mailto:{P['contact']['email']}">{P['contact']['email']}</a> ·
      Tel {e(P['contact']['phone'])}</p>
