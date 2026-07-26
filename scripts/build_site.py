@@ -120,7 +120,7 @@ T = {
         "lab": P["contact"]["lab_en"],
         "research": "Research",
         "selected": "Selected publications",
-        "all_pubs": "All {n} publications →",
+        "all_pubs": "All publications →",
         "read_more": "Read more about the research →",
         "news": "News",
         "group": "The group",
@@ -221,7 +221,7 @@ T = {
         "lab": P["contact"]["lab_zh"],
         "research": "研究",
         "selected": "近期著作",
-        "all_pubs": "全部 {n} 篇著作 →",
+        "all_pubs": "全部著作 →",
         "read_more": "閱讀完整研究介紹 →",
         "news": "消息",
         "group": "實驗室",
@@ -587,7 +587,7 @@ def page_index(lang):
 <section>
   <h2>{e(t['selected'])}</h2>
   <ol class="pubs">{''.join(pub_li(p, lang) for p in main_pubs[:5])}</ol>
-  <p style="margin-top:18px"><a href="{rel('publications', lang)}">{e(t['all_pubs'].format(n=len(PUBS)))}</a></p>
+  <p style="margin-top:18px"><a href="{rel('publications', lang)}">{e(t['all_pubs'])}</a></p>
 </section>
 
 <section>
