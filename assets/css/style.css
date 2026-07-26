@@ -100,6 +100,41 @@ nav.main a.lang:hover {
 .hero .role { color: var(--ink-soft); margin: 0 0 18px; font-size: 1.02rem; }
 .hero .lede { font-size: 1.06rem; color: var(--ink); margin: 0 0 22px; }
 
+/* 首頁主視覺：研究主張優先，主持人介紹移到團隊頁 */
+.home-hero { padding: 74px 0 56px; }
+.home-hero .eyebrow {
+  font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-faint); margin: 0 0 18px; font-weight: 600;
+}
+.home-hero .claim {
+  margin: 0 0 20px; font-size: 2.65rem; line-height: 1.22;
+  letter-spacing: -0.025em; font-weight: 680;
+}
+.home-hero .claim-lede {
+  font-size: 1.1rem; color: var(--ink-soft); max-width: 44em;
+  margin: 0 0 28px; text-align: justify; text-justify: inter-ideograph;
+}
+.cta-row { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+
+/* 首頁研究主題卡 */
+.tcards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.tcard {
+  display: block; color: inherit; border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 20px 22px 18px;
+  transition: border-color .2s ease, background .2s ease, transform .2s ease;
+}
+.tcard:hover {
+  text-decoration: none; border-color: var(--accent);
+  background: var(--bg-soft); transform: translateY(-2px);
+}
+.tcard h3 { font-size: 1.06rem; margin: 0 0 8px; }
+.tcard p {
+  margin: 0; font-size: 0.93rem; color: var(--ink-soft); line-height: 1.6;
+}
+
+/* 兩端對齊：中文用 inter-ideograph，避免西文式的字距拉扯 */
+.justify { text-align: justify; text-justify: inter-ideograph; }
+
 .idlinks { display: flex; flex-wrap: wrap; gap: 10px; }
 .idlinks a {
   font-size: 0.87rem; padding: 5px 13px; border: 1px solid var(--line);
@@ -489,6 +524,12 @@ ul.news li:last-child { border-bottom: none; }
   h2 { margin-bottom: 11px; font-size: 0.78rem; }
 
   .hero { padding: 30px 0 26px; }
+  .home-hero { padding: 40px 0 34px; }
+  .home-hero .claim { font-size: 1.85rem; line-height: 1.28; }
+  .home-hero .claim br { display: none; }
+  .home-hero .claim-lede { font-size: 1rem; }
+  .tcards { grid-template-columns: 1fr; gap: 12px; }
+  .tcard { padding: 16px 18px 14px; }
   .hero-photo { width: 104px; height: 104px; }
   .hero h1 { font-size: 1.55rem; }
   .hero .zh-name { font-size: 1rem; margin-left: 8px; }

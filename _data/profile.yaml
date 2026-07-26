@@ -34,7 +34,26 @@ links:
 # 來源：2026 RIKEN-NCHU Joint Symposium Speaker Biography
 # 這是目前最精準的一段自我定位，作為全站敘事主軸
 # ------------------------------------------------------------
-bio_short: >
+bio_short_zh: >
+  盧臆中為國立中興大學化學系副教授。國立清華大學化學系學士、博士，
+  曾於中央研究院原子與分子科學研究所及美國韋恩州立大學從事博士後研究。
+  研究團隊發展連結基礎物理化學與真實分析需求的質譜方法：MALDI 游離機制的機構研究、
+  結合 AI 分類的醣類質譜與臨床快篩，以及能捕捉過渡金屬催化與電化學水氧化反應中間體的
+  客製化質譜進樣系統。對他而言，分析科學是一種讓化學發現得以加速的使能技術。
+
+bio_long_zh: >
+  盧臆中，國立中興大學化學系副教授。國立清華大學化學系學士、博士，
+  先後於中央研究院原子與分子科學研究所及美國韋恩州立大學從事博士後研究，
+  並自靜宜大學應用化學系展開獨立研究生涯，其後轉任中興大學。
+
+  他的研究以質譜為主軸，橫跨基礎物理化學與分析應用。
+  在 MALDI 游離機制的研究基礎上，團隊將醣類的質譜分析與機器學習分類模型結合，
+  發展診斷與快速篩檢工具；同時以客製化的質譜進樣系統捕捉反應中的瞬態物種，
+  釐清過渡金屬催化與電化學水氧化的動力學與反應機構。
+  這些工作共同說明了一件事：先進的分析科學本身就是一種使能技術，
+  能讓化學發現走得更快。
+
+bio_short_en: >
   I-Chung Lu is an Associate Professor of Chemistry at National Chung Hsing
   University, Taiwan. He earned his B.S. and Ph.D. from National Tsing Hua
   University and was a postdoctoral researcher at the Institute of Atomic and
@@ -46,7 +65,7 @@ bio_short: >
   transition-metal catalysis and electrochemical water oxidation. His work
   treats analytical science as an enabling technology for chemical discovery.
 
-bio_long: >
+bio_long_en: >
   Dr. I-Chung Lu is an Associate Professor in the Department of Chemistry,
   National Chung Hsing University (NCHU), Taichung, Taiwan. He received his B.S.
   and Ph.D. in chemistry from National Tsing Hua University, and carried out

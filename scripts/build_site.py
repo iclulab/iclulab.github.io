@@ -27,6 +27,7 @@ build_site.py — 由 _data/*.yaml 生成整個網站（中英雙語）
 import html
 import json
 import pathlib
+import re
 import sys
 from datetime import date
 
@@ -76,8 +77,27 @@ def pubs_in(section_id):
     return [p for p in PUBS if p.get("section", default) == section_id]
 
 
+_CJK = r"　-〿㐀-䶿一-鿿＀-￯"
+
+
 def tidy(s):
-    return " ".join((s or "").split())
+    """收攏空白。YAML 折疊字串會在換行處插入空格，中文之間的空格要拿掉。"""
+    s = " ".join((s or "").split())
+    # 兩側都是中日韓字元／全形標點時，中間的空格是折行造成的，刪掉
+    prev = None
+    while prev != s:
+        prev = s
+        s = re.sub(f"([{_CJK}]) ([{_CJK}])", r"\1\2", s)
+    return s
+
+
+def paras(text, cls=""):
+    """YAML 折疊字串（>）把段落之間的空行保留成單一 \\n，據此分段。"""
+    c = f' class="{cls}"' if cls else ""
+    return "".join(
+        f"<p{c}>{e(tidy(blk))}</p>"
+        for blk in (text or "").split("\n") if blk.strip()
+    )
 
 
 def pick(obj, key, lang):
@@ -129,6 +149,16 @@ T = {
         "life_home": "Conferences, outings, and the everyday work of the lab.",
         "life_more": "See lab life →",
         "photos_n": "{n} photos",
+        "eyebrow": "Lu Lab · Department of Chemistry, National Chung Hsing University",
+        "claim": "Measuring what other<br>methods cannot see",
+        "claim_lede": "We begin with a basic question: how are ions actually formed? "
+                      "That understanding becomes measurement capability that reaches "
+                      "real problems, from rapid screening of carbohydrates to smart "
+                      "sorting of plastics and the fleeting intermediates of catalytic "
+                      "cycles.",
+        "cta_research": "What we work on →",
+        "cta_join": "Join the lab →",
+        "themes_h": "Research directions",
         "teaching": "Teaching",
         "teaching_body": "I teach physical chemistry at both undergraduate and graduate "
                          "level at National Chung Hsing University.",
@@ -218,6 +248,14 @@ T = {
         "life_home": "研討會、出遊，以及實驗室的日常。",
         "life_more": "看看實驗室生活 →",
         "photos_n": "{n} 張",
+        "eyebrow": "盧臆中實驗室 · 國立中興大學化學系",
+        "claim": "用質譜看見<br>別的方法看不見的事",
+        "claim_lede": "我們從一個基礎問題出發：離子究竟是怎麼生成的？"
+                      "再把這份理解變成能碰到真實問題的量測能力，"
+                      "包括醣類的快速篩檢、塑膠的智慧分選，以及催化循環中一閃即逝的中間體。",
+        "cta_research": "我們在做什麼 →",
+        "cta_join": "加入實驗室 →",
+        "themes_h": "研究主軸",
         "teaching": "教學",
         "teaching_body": "於國立中興大學講授大學部與研究所的物理化學課程。",
         "t_awards": "教學獲獎",
@@ -435,6 +473,21 @@ def theme_blocks(lang):
     return f'<div class="themes">{"".join(out)}</div>'
 
 
+def theme_cards(lang):
+    """首頁用：四張主題卡，一句話講完一條研究主軸。"""
+    out = []
+    for th in RESEARCH["themes"]:
+        blurb = tidy(pick(th, "blurb", lang)) or tidy(pick(th, "body", lang))
+        out.append(
+            f"""<a class="tcard" href="{rel('research', lang)}#{th['id']}">
+  <span class="tag">{e(th['tag'])}</span>
+  <h3>{e(pick(th, 'title', lang))}</h3>
+  <p>{e(blurb)}</p>
+</a>"""
+        )
+    return f'<div class="tcards">{"".join(out)}</div>'
+
+
 def person_card(p, lang, subdir=""):
     base = asset(f"assets/img/people/{subdir}", lang)
     photo = (
@@ -507,34 +560,34 @@ def page_index(lang):
             {"@type": "CollegeOrUniversity", "name": ed["institution"]} for ed in P["education"]
         ],
         "knowsAbout": P["research_interests"],
-        "description": tidy(P["bio_short"]),
+        "description": tidy(P["bio_short_en"]),
     }
-    body = f"""<div class="hero"><div class="wrap"><div class="hero-grid">
-  <img class="hero-photo" src="{asset('assets/img/lu.jpg', lang)}" alt="I-Chung Lu">
-  <div>
-    <h1>I-Chung Lu<span class="zh-name">盧臆中</span></h1>
-    <p class="role">{e(t['role_title'])}<br>{e(t['inst'])}</p>
-    <p class="lede">{e(tidy(pick(RESEARCH, 'intro', lang)))}</p>
-    {idlinks(lang)}
+    body = f"""<div class="hero home-hero"><div class="wrap">
+  <p class="eyebrow">{e(t['eyebrow'])}</p>
+  <h1 class="claim">{t['claim']}</h1>
+  <p class="claim-lede">{e(t['claim_lede'])}</p>
+  <div class="cta-row">
+    <a class="cta" href="{rel('research', lang)}">{e(t['cta_research'])}</a>
+    <a href="{rel('join', lang)}">{e(t['cta_join'])}</a>
   </div>
-</div></div></div>
+</div></div>
 
 <div class="wrap">
 <section>
-  <h2>{e(t['research'])}</h2>
-  {theme_blocks(lang)}
+  <h2>{e(t['themes_h'])}</h2>
+  {theme_cards(lang)}
   <p style="margin-top:24px"><a href="{rel('research', lang)}">{e(t['read_more'])}</a></p>
+</section>
+
+<section>
+  <h2>{e(t['news'])}</h2>
+  <div class="news-scroll"><ul class="news">{news_items(lang)}</ul></div>
 </section>
 
 <section>
   <h2>{e(t['selected'])}</h2>
   <ol class="pubs">{''.join(pub_li(p, lang) for p in main_pubs[:5])}</ol>
   <p style="margin-top:18px"><a href="{rel('publications', lang)}">{e(t['all_pubs'].format(n=len(PUBS)))}</a></p>
-</section>
-
-<section>
-  <h2>{e(t['news'])}</h2>
-  <div class="news-scroll"><ul class="news">{news_items(lang)}</ul></div>
 </section>
 
 <section>
@@ -581,7 +634,7 @@ def page_research(lang):
         for g in GRANTS
     )
     themes = "".join(
-        f"""<div class="theme">
+        f"""<div class="theme" id="{th['id']}">
   <span class="tag">{e(th['tag'])}</span>
   <h3>{e(th['title_en'])}<span class="zh"> · {e(th['title_zh'])}</span></h3>
   <p>{e(tidy(pick(th, 'body', lang)))}</p>
@@ -646,16 +699,14 @@ document.querySelectorAll('.filters button').forEach(b => b.addEventListener('cl
         items = pubs_in(s["id"])
         if not items:
             continue
-        head = f"""<h2>{e(pick(s, 'title', lang))} <span class="yrs">{e(pick(s, 'years', lang))}</span></h2>
-  <p class="sec-note">{e(tidy(pick(s, 'note', lang)))}</p>"""
+        # 分區說明與作者標示說明皆不顯示（使用者要求：清單本身就夠清楚）
+        head = f"""<h2>{e(pick(s, 'title', lang))} <span class="yrs">{e(pick(s, 'years', lang))}</span></h2>"""
         # 篩選器只放在第一區，套用到全頁
         controls = f'<div class="filters">{filters}</div>' if i == 0 else ""
-        stat = ""
-        legend = f'<div class="legend">{t["legend"]}</div>' if i == 0 else ""
         blocks.append(
             f"""<section id="{s['id']}">
   {head}
-  {legend}{controls}
+  {controls}
   <ol class="pubs">{''.join(pub_li(p, lang) for p in items)}</ol>
 </section>"""
         )
@@ -705,7 +756,7 @@ def page_people(lang):
   <div>
     <h3>I-Chung Lu <span class="zh">盧臆中</span></h3>
     <p class="zh">{e(t['role_title'])}，{e(t['inst'])}</p>
-    <p>{e(tidy(P['bio_short']))}</p>
+    {paras(pick(P, 'bio_long', lang), 'justify')}
     {idlinks(lang)}
   </div>
 </div></section>

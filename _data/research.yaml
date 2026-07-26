@@ -20,6 +20,14 @@ themes:
     title_en: "Ionization Mechanisms"
     title_zh: "游離機制"
     topics: [maldi, ionization-mechanism, ambient-ionization]
+    # blurb = 首頁主題卡用的一句話；body = 研究頁用的完整段落
+    blurb_en: >
+      Where do MALDI ions actually come from? We measured ion-to-neutral ratios
+      directly and showed that thermal proton transfer, not exotic photochemistry,
+      sets the yield.
+    blurb_zh: >
+      MALDI 的離子究竟從哪裡來？我們直接量出離子與中性分子的比例，
+      證明決定產率的是熱質子轉移，而不是特殊的光化學。
     body_en: >
       How does a laser pulse turn a solid matrix into gas-phase ions? We resolved
       this by measuring ion-to-neutral ratios directly and showing that thermal
@@ -38,6 +46,12 @@ themes:
     title_en: "Carbohydrate Mass Spectrometry with AI Classification"
     title_zh: "醣類質譜結合 AI 分類"
     topics: [carbohydrate, quantification, maldi]
+    blurb_en: >
+      Making sugars reliably measurable by mass spectrometry, then turning those
+      spectra into machine-learning models aimed at rapid clinical screening.
+    blurb_zh: >
+      先讓質譜測得準醣類，再把光譜接上機器學習模型，
+      目標是可用於臨床快篩的判讀工具。
     body_en: >
       Carbohydrates are notoriously hard to measure by mass spectrometry: they
       ionize poorly and their isomers are nearly indistinguishable. We developed
@@ -54,6 +68,12 @@ themes:
     title_en: "Smart Plastic Identification for Recycling"
     title_zh: "塑膠智慧辨識與回收"
     topics: []
+    blurb_en: >
+      Recycling fails at the sorting step. Mass-spectrometric fingerprints plus
+      classification models let mixed plastic streams be identified automatically.
+    blurb_zh: >
+      回收的瓶頸在分選。用質譜指紋加上分類模型，
+      讓混合的塑膠料流能被自動辨識。
     body_en: >
       Plastic recycling fails at the sorting step: mixed polymer streams are
       difficult to identify quickly and cheaply. We are combining mass
@@ -71,6 +91,12 @@ themes:
     title_en: "Capturing Reactive Intermediates in Catalysis"
     title_zh: "捕捉催化反應中間體"
     topics: [catalysis, water-oxidation, electrochemistry, reactive-intermediates]
+    blurb_en: >
+      Catalytic cycles are usually inferred, not seen. Customized inlets let us
+      capture fleeting intermediates straight out of the reacting solution.
+    blurb_zh: >
+      催化循環通常只能被推論，而看不見。
+      我們用客製化進樣系統，直接從反應中的溶液抓到一閃即逝的中間體。
     body_en: >
       Catalytic cycles are usually inferred, not observed. Using customized mass
       spectrometry inlet systems, we capture transient species directly from
