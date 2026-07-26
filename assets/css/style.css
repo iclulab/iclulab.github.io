@@ -128,11 +128,27 @@ nav.main a.lang:hover {
   margin: 0 0 26px; text-align: justify; text-justify: inter-ideograph;
 }
 .cta-row { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
-.hero-shot {
-  margin: 0; border-radius: var(--radius); overflow: hidden;
-  border: 1px solid var(--line); background: var(--bg-soft);
+
+/* 內頁沿用同一套主視覺語彙：標題 + 導言 + 底部峰線，但不放照片 */
+.page-hero { padding: 44px 0 38px; }
+.page-hero .claim { font-size: 2rem; margin-bottom: 14px; }
+.page-hero .claim-lede { margin-bottom: 0; max-width: 40em; }
+.page-hero .hero-spectrum { height: 104px; opacity: .13; }
+/* 主視覺目前用線稿版（白底墨線），邊緣以遮罩淡出，讓它化進頁面而不是貼上去。
+   想換回照片版：把 build_site.py 的 hero.jpg 改成 hero-photo.jpg 即可，
+   遮罩對兩者都適用。 */
+.hero-shot { margin: 0; }
+.hero-shot img {
+  display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
+  -webkit-mask-image:
+    radial-gradient(118% 118% at 50% 48%, #000 46%, rgba(0, 0, 0, .5) 76%, transparent 100%);
+  mask-image:
+    radial-gradient(118% 118% at 50% 48%, #000 46%, rgba(0, 0, 0, .5) 76%, transparent 100%);
 }
-.hero-shot img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
+@media (prefers-color-scheme: dark) {
+  /* 線稿是白底，深色模式下反相才不會變成一塊白 */
+  .hero-shot img { filter: invert(1) hue-rotate(180deg); opacity: .88; }
+}
 
 /* 首頁研究主題卡 */
 .tcards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }

@@ -161,6 +161,9 @@ T = {
         "cta_research": "What we work on →",
         "cta_join": "Join the lab →",
         "themes_h": "Research directions",
+        "pubs_lede": "From crossed molecular-beam reaction dynamics and ionization "
+                     "mechanisms, to the analytical applications the group develops "
+                     "independently today.",
         "teaching": "Teaching",
         "teaching_body": "I teach physical chemistry at both undergraduate and graduate "
                          "level at National Chung Hsing University.",
@@ -260,6 +263,8 @@ T = {
         "cta_research": "我們在做什麼 →",
         "cta_join": "加入實驗室 →",
         "themes_h": "研究主軸",
+        "pubs_lede": "從交叉分子束的反應動力學、游離機制，"
+                     "到實驗室獨立發展的分析應用。",
         "teaching": "教學",
         "teaching_body": "於國立中興大學講授大學部與研究所的物理化學課程。",
         "t_awards": "教學獲獎",
@@ -531,6 +536,18 @@ def theme_cards(lang):
     return f'<div class="tcards">{"".join(out)}</div>'
 
 
+def page_hero(title, lede=""):
+    """內頁的標題區，與首頁共用同一套視覺語彙（襯線標題 + 底部峰線）。"""
+    sub = f'<p class="claim-lede">{e(tidy(lede))}</p>' if lede else ""
+    return f"""<div class="hero page-hero">
+  {SPECTRUM}
+  <div class="wrap">
+    <h1 class="claim">{e(title)}</h1>
+    {sub}
+  </div>
+</div>"""
+
+
 def pub_cards(lang, n=6):
     """首頁的代表圖畫廊：有代表圖的最新幾篇，圖 + 標題 + 期刊年份。"""
     picked = [p for p in main_pubs if pub_figure(p, lang)][:n]
@@ -709,13 +726,8 @@ def page_research(lang):
 </div>"""
         for th in RESEARCH["themes"]
     )
-    body = f"""<div class="wrap">
-<section>
-  <h2>{e(t['research'])}</h2>
-  <p class="lede">{e(tidy(pick(RESEARCH, 'intro', lang)))}</p>
-</section>
-
-<section><div class="themes">{themes}</div></section>
+    body = page_hero(t["research"], pick(RESEARCH, "intro", lang)) + f"""<div class="wrap">
+<section style="padding-top:34px"><div class="themes">{themes}</div></section>
 
 <section>
   <h2>{e(t['earlier_h'])}</h2>
@@ -783,9 +795,8 @@ document.querySelectorAll('.filters button').forEach(b => b.addEventListener('cl
         for s in SECTIONS
         if pubs_in(s["id"])
     )
-    body = f"""<div class="wrap">
-<section style="padding-bottom:0;border:none">
-  <h2>{e(t['publications'])}</h2>
+    body = page_hero(t["publications"], t["pubs_lede"]) + f"""<div class="wrap">
+<section style="padding:22px 0 0;border:none">
   <p class="jump">{jump}</p>
 </section>
 {''.join(blocks)}
@@ -817,8 +828,8 @@ def page_people(lang):
         f'<div class="g-id">{x["year"]}</div></li>'
         for x in P["awards"]
     )
-    body = f"""<div class="wrap">
-<section><h2>{e(t['pi'])}</h2>
+    body = page_hero(t["nav"][PAGES.index("people")], t["group_body"]) + f"""<div class="wrap">
+<section style="padding-top:34px"><h2>{e(t['pi'])}</h2>
 <div class="hero-grid">
   <img class="hero-photo" src="{asset('assets/img/lu.jpg', lang)}" alt="I-Chung Lu">
   <div>
@@ -938,11 +949,7 @@ def page_life(lang):
   });
 })();
 </script>"""
-    body = f"""<div class="wrap">
-<section style="padding-bottom:0;border:none">
-  <h2>{e(t['life'])}</h2>
-  <p class="lede">{e(t['life_lede'])}</p>
-</section>
+    body = page_hero(t["life"], t["life_lede"]) + f"""<div class="wrap">
 {''.join(blocks)}
 </div>{script}"""
     title = ("Lab Life | I-Chung Lu | NCHU" if lang == "en"
@@ -957,12 +964,8 @@ def page_life(lang):
 def page_alumni(lang):
     t = T[lang]
     cards = "".join(person_card(m, lang, "alumni/") for m in ALUMNI)
-    body = f"""<div class="wrap">
-<section>
-  <h2>{e(t['alumni'])}</h2>
-  <p class="lede">{e(t['alumni_lede'])}</p>
-</section>
-<section>
+    body = page_hero(t["alumni"], t["alumni_lede"]) + f"""<div class="wrap">
+<section style="padding-top:34px">
   <div class="people" id="alumni-grid">{cards}</div>
   <p style="margin-top:26px"><a href="{rel('people', lang)}">{e(t['back_group'])}</a></p>
 </section>
@@ -984,9 +987,8 @@ def page_teaching(lang):
         for x in P["awards"]
         if "Teach" in x["name_en"] or "Mentor" in x["name_en"]
     )
-    body = f"""<div class="wrap">
-<section><h2>{e(t['teaching'])}</h2><p>{e(t['teaching_body'])}</p></section>
-<section><h2>{e(t['t_awards'])}</h2><ul class="grants">{aw}</ul></section>
+    body = page_hero(t["teaching"], t["teaching_body"]) + f"""<div class="wrap">
+<section style="padding-top:34px"><h2>{e(t['t_awards'])}</h2><ul class="grants">{aw}</ul></section>
 <section><h2>{e(t['courses'])}</h2><div class="note">{e(t['courses_note'])}</div></section>
 </div>"""
     title = "Teaching | I-Chung Lu | NCHU" if lang == "en" else "教學 ｜ 盧臆中 ｜ 中興大學化學系"
@@ -1001,9 +1003,8 @@ def page_teaching(lang):
 
 def page_join(lang):
     t = T[lang]
-    body = f"""<div class="wrap">
-<section><h2>{e(t['join'])}</h2><p>{e(t['join_body'])}</p></section>
-<section><h2>{e(t['what'])}</h2>{theme_blocks(lang)}</section>
+    body = page_hero(t["join"], t["join_body"]) + f"""<div class="wrap">
+<section style="padding-top:34px"><h2>{e(t['what'])}</h2>{theme_blocks(lang)}</section>
 <section>
   <h2>{e(t['touch'])}</h2>
   <p>{e(t['touch_body'])}</p>
@@ -1050,10 +1051,8 @@ def page_facility(lang):
     <ul class="grants">{refs}</ul></div>
 </div>"""
         )
-    body = f"""<div class="wrap">
-<section>
-  <h2>{e(t['facility'])}</h2>
-  <p class="lede">{e(pick(FACILITY, 'tagline', lang))}</p>
+    body = page_hero(t["facility"], pick(FACILITY, "tagline", lang)) + f"""<div class="wrap">
+<section style="padding-top:34px">
   <p>{e(tidy(pick(FACILITY, 'positioning', lang)))}</p>
   <p><a class="cta" href="{FACILITY['apply_url']}">{e(t['fac_apply'])}</a></p>
   <p class="sec-note">{e(t['fac_note'])}</p>
