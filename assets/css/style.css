@@ -134,9 +134,8 @@ nav.main a.lang:hover {
 .page-hero .claim { font-size: 2rem; margin-bottom: 14px; }
 .page-hero .claim-lede { margin-bottom: 0; max-width: 40em; }
 .page-hero .hero-spectrum { height: 104px; opacity: .13; }
-/* 主視覺是照片（已做提亮、降飽和、暗角）。邊緣用遮罩淡出成頁面底色，
-   而不是硬邊框，避免看起來像一張圖貼在版面上。遮罩淡的是透明度，
-   淺色與深色模式都自然。 */
+/* 主視覺是實驗室的鉛筆手繪（已把紙張黃調校回近白）。邊緣用遮罩淡出成頁面底色，
+   紙的白與頁面的白接在一起，不會像一張圖貼在版面上。 */
 .hero-shot { margin: 0; }
 .hero-shot img {
   display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
@@ -144,6 +143,10 @@ nav.main a.lang:hover {
     radial-gradient(120% 120% at 50% 48%, #000 50%, rgba(0, 0, 0, .55) 78%, transparent 100%);
   mask-image:
     radial-gradient(120% 120% at 50% 48%, #000 50%, rgba(0, 0, 0, .55) 78%, transparent 100%);
+}
+@media (prefers-color-scheme: dark) {
+  /* 手繪是白底，深色模式反相成白線黑底才不會變成一塊亮白 */
+  .hero-shot img { filter: invert(1); opacity: .85; }
 }
 
 /* 首頁研究主題卡 */

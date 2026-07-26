@@ -913,7 +913,7 @@ def page_life(lang):
         )
         blocks.append(
             f"""<section class="album" id="{a['id']}">
-  <h2>{e(title)} {yr}<span class="cnt">{e(t['photos_n'].format(n=len(photos)))}</span></h2>
+  <h2>{e(title)} {yr}</h2>
   <div class="shots">{thumbs}</div>
 </section>"""
         )
