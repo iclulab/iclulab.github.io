@@ -370,11 +370,6 @@ ul.grants .g-zh { font-size: 0.9rem; color: var(--ink-soft); }
 #alumni-grid .nm-zh { font-size: 0.82rem; }
 
 /* ---------- 相簿 ---------- */
-.album h2 { display: flex; align-items: baseline; gap: 10px; }
-.album h2 .cnt {
-  margin-left: auto; font-size: 0.76rem; font-weight: 400;
-  color: var(--ink-faint); letter-spacing: .02em;
-}
 /* ---------- 相簿封面牆 ----------
    一本相簿一張封面，點開才在燈箱裡逐張看。整頁只有 20 張封面，
    不必無止盡往下捲，初始載入量也從 5.8 MB 降到 1.4 MB。 */
@@ -790,8 +785,7 @@ ul.grants li { padding: 7px 0; }
   .acard-cap { font-size: 0.86rem; margin-top: 7px; }
   .acard-year { font-size: 0.72rem; margin-left: 6px; }
   .shots.strip { grid-template-columns: repeat(3, 1fr); }
-  .album h2 .cnt { font-size: 0.72rem; }
-  .lightbox { padding: 16px; }
+    .lightbox { padding: 16px; }
   .lb-prev, .lb-next { font-size: 2.2rem; padding: 8px; }
   #alumni-grid { grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 18px 12px; }
   #alumni-grid .ph { width: 72px; height: 72px; }
