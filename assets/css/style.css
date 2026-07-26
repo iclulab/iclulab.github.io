@@ -363,3 +363,29 @@ ol.pubs li.has-fig {
   ol.pubs li.has-fig { grid-template-columns: 1fr; gap: 14px; }
   .pub-fig { max-width: 190px; }
 }
+
+/* ============================================================
+   精緻化調整：縮小視覺重量，讓版面回到以文字為主
+   ============================================================ */
+
+/* logo：頁首標誌收小，維持識別但不搶戲 */
+.brand .logo { height: 27px; }
+@media (max-width: 760px) { .brand .logo { height: 23px; } }
+.site-header .wrap { min-height: 56px; }
+
+/* 著作代表圖：縮小、去掉外框與陰影，改以極細線分隔 */
+ol.pubs li.has-fig { grid-template-columns: 1fr 128px; gap: 28px; }
+.pub-fig {
+  border: none; background: none; padding: 0;
+  opacity: .92; transition: opacity .18s;
+}
+.pub-fig img {
+  border-radius: 3px;
+  border: 1px solid var(--line-soft);
+}
+.pub-fig:hover { opacity: 1; box-shadow: none; transform: none; }
+.pub-fig:hover img { border-color: var(--line); }
+@media (max-width: 760px) {
+  ol.pubs li.has-fig { grid-template-columns: 1fr; gap: 12px; }
+  .pub-fig { max-width: 150px; }
+}

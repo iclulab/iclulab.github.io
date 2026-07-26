@@ -45,6 +45,13 @@ PAGES = ["index", "research", "facility", "publications", "people", "teaching", 
 e = html.escape
 
 
+def asset_hash(rel):
+    """以檔案內容雜湊做為版本號，避免 CDN／瀏覽器沿用舊版樣式。"""
+    import hashlib
+    f = ROOT / rel
+    return hashlib.md5(f.read_bytes()).hexdigest()[:8] if f.exists() else "0"
+
+
 def load(name):
     return yaml.safe_load((DATA / f"{name}.yaml").read_text(encoding="utf-8"))
 
@@ -251,6 +258,9 @@ def asset(path, lang):
     return path if lang == "en" else f"../{path}"
 
 
+CSS_V = asset_hash("assets/css/style.css")
+
+
 def layout(page, lang, title, description, body, jsonld=None):
     t = T[lang]
     ACTIVE = ' class="active"'
@@ -283,7 +293,7 @@ def layout(page, lang, title, description, body, jsonld=None):
 <meta property="og:image" content="{SITE}/assets/img/lu.jpg">
 <meta property="og:locale" content="{'en_US' if lang == 'en' else 'zh_TW'}">
 <meta name="twitter:card" content="summary">
-<link rel="stylesheet" href="{asset('assets/css/style.css', lang)}">
+<link rel="stylesheet" href="{asset('assets/css/style.css', lang)}?v={CSS_V}">
 <link rel="icon" href="{asset('assets/img/favicon-32.png', lang)}" sizes="32x32">
 <link rel="icon" href="{asset('assets/img/logo-mark.svg', lang)}" type="image/svg+xml">
 <link rel="apple-touch-icon" href="{asset('assets/img/favicon-180.png', lang)}">{ld}
