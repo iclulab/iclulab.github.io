@@ -1,0 +1,150 @@
+# ============================================================
+# news.yaml — 動態消息
+# 最新的放最上面。日期格式 YYYY-MM-DD
+# category: milestone（個人里程碑）/ award（學生獲獎）/ publication / lab
+# ============================================================
+#
+# ⚠️ 舊網站的 News 停在 2024-05-31，但 Photos 已更新到 2026，
+#    造成「這實驗室兩年沒動靜」的錯誤印象。
+#    以下 2024-06 之後的項目為待補清單，請 I-Chung 補上日期與細節。
+#
+# 待補建議項目：
+#   - 2024 升等副教授
+#   - 2025 IJMS 邀稿綜論發表
+#   - 2026 Inorganic Chemistry 論文發表
+#   - 2026 RIKEN-NCHU Joint Symposium 受邀演講
+#   - 近年國科會計畫獲補助
+#   - 專利獲證
+#   - 2025、2026 學生獲獎
+#
+# ------------------------------------------------------------
+
+- date: "2026-08-01"
+  category: milestone
+  text_zh: "恭喜實驗室主持人盧臆中老師榮獲中興大學 115 學年度優聘教師"
+  text_en: "I-Chung Lu received the NCHU Distinguished Professorship (AY 115)"
+
+- date: "2026-07-01"
+  category: award
+  text_zh: "恭喜曾真薏同學榮獲 115 年度國科會大專生計畫補助"
+  text_en: "Congratulations to Chen-Yi Tseng for receiving an NSTC Undergraduate Research Grant"
+
+- date: "2026-06-05"
+  category: award
+  text_zh: "恭喜曾真薏同學榮獲 2026 科技論文競賽化學與永續能源科技（大學組）第二名"
+  text_en: "Congratulations to Chen-Yi Tseng for 2nd place in the 2026 Science and Technology Paper Competition (Chemistry & Sustainable Energy, Undergraduate Division)"
+
+- date: "2026-04-25"
+  category: award
+  text_zh: "恭喜曾真薏同學榮獲 2026 年分析技術交流研討會論文獎"
+  text_en: "Congratulations to Chen-Yi Tseng for the Paper Award at the 2026 Analytical Technology Symposium"
+
+- date: "2025-07-01"
+  category: award
+  text_zh: "恭喜何紹熏同學榮獲 114 年度國科會大專生計畫補助"
+  text_en: "Congratulations to Shao-Hsun Ho for receiving an NSTC Undergraduate Research Grant"
+
+- date: "2025-06-06"
+  category: award
+  text_zh: "恭喜何紹熏同學榮獲 2025 科技論文競賽化學與永續能源科技（大學組）第二名"
+  text_en: "Congratulations to Shao-Hsun Ho for 2nd place in the 2025 Science and Technology Paper Competition (Chemistry & Sustainable Energy, Undergraduate Division)"
+
+- date: "2025-05-03"
+  category: award
+  text_zh: "恭喜藍律涵同學榮獲美國化學會台灣分會（ACS Taiwan Chapter）優秀海報獎"
+  text_en: "Congratulations to Lyu-Han Lan for the Outstanding Poster Award, ACS Taiwan Chapter"
+
+- date: "2024-08-01"
+  category: milestone
+  text_zh: "實驗室主持人盧臆中老師升等副教授"
+  text_en: "I-Chung Lu was promoted to Associate Professor"
+
+- date: "2024-05-31"
+  category: award
+  text_zh: "恭喜劉怡君同學榮獲 2024 科技論文競賽化學與永續能源科技（大學組）第一名"
+  text_en: "Congratulations to Yi-Chun Liu for winning 1st place in the 2024 Science and Technology Paper Competition (Chemistry & Sustainable Energy, Undergraduate Division)"
+
+- date: "2023-06-27"
+  category: award
+  text_zh: "恭喜曾品睿同學榮獲 111 年度國科會大專學生研究創作獎"
+  text_en: "Congratulations to Pin-Rui Tseng for receiving the NSTC Undergraduate Research Creativity Award"
+
+- date: "2023-06-20"
+  category: award
+  text_zh: "恭喜和定謙同學榮獲 112 年度國科會大專生計劃補助"
+  text_en: "Congratulations to Ding-Chien He for receiving an NSTC Undergraduate Research Grant"
+
+- date: "2023-06-09"
+  category: award
+  text_zh: "恭喜和定謙同學獲得 2023 科技論文競賽化學與永續能源科技（大學組）第一名"
+  text_en: "Congratulations to Ding-Chien He for winning 1st place in the 2023 Science and Technology Paper Competition (Undergraduate Division)"
+
+- date: "2023-06-09"
+  category: award
+  text_zh: "恭喜曾宛沁同學獲得 2023 科技論文競賽化學與永續能源科技（碩博組）佳作"
+  text_en: "Congratulations to Wan-Qin Zeng for receiving an Honorable Mention in the 2023 Science and Technology Paper Competition (Graduate Division)"
+
+- date: "2023-05-13"
+  category: award
+  text_zh: "恭喜張馨文同學獲得第 28 屆分析技術交流研討會學生口頭報告優等"
+  text_en: "Congratulations to Xin-Wen Zhang for the Outstanding Oral Presentation Award at the 28th Analytical Technology Symposium"
+
+- date: "2022-08-18"
+  category: award
+  text_zh: "恭喜張馨文同學獲得台灣質譜學年會（18th TSMS）海報論文競賽優等"
+  text_en: "Congratulations to Xin-Wen Zhang for the Outstanding Poster Award at the 18th TSMS Annual Meeting"
+
+- date: "2022-06-30"
+  category: award
+  text_zh: "恭喜王嘉筠、曾品睿同學分獲中興大學研究生及大學部科技論文競賽第三名"
+  text_en: "Congratulations to Chia-Yun Wang and Pin-Rui Tseng for 3rd place in the NCHU Paper Competition"
+
+- date: "2022-06-25"
+  category: award
+  text_zh: "恭喜曾品睿同學榮獲 111 年度科技部大專生計劃補助"
+  text_en: "Congratulations to Pin-Rui Tseng for receiving an MOST Undergraduate Research Grant"
+
+- date: "2021-12-16"
+  category: award
+  text_zh: "恭喜王嘉筠同學獲得 2021 年度中華扶輪獎學金"
+  text_en: "Congratulations to Chia-Yun Wang for receiving the 2021 Rotary Scholarship"
+
+- date: "2021-11-15"
+  category: milestone
+  text_zh: "實驗室主持人盧臆中老師榮獲中興大學 110 學年度教學特優獎"
+  text_en: "I-Chung Lu received the NCHU Distinguished Teaching Award"
+
+- date: "2020-11-20"
+  category: award
+  text_zh: "恭喜李婉菁同學榮獲中興大學理學院論文競賽佳作"
+  text_en: "Congratulations to Wan-Ching Lee for an Honorable Mention in the NCHU College of Science Paper Competition"
+
+- date: "2020-09-03"
+  category: award
+  text_zh: "恭喜陳怡歆同學獲得台灣質譜學年會（17th TSMS）海報論文競賽佳作"
+  text_en: "Congratulations to Yi-Hsin Chen for an Honorable Mention at the 17th TSMS Annual Meeting"
+
+- date: "2020-06-30"
+  category: award
+  text_zh: "恭喜林智皓同學榮獲中興大學理學院論文競賽第二名"
+  text_en: "Congratulations to Chih-Hao Lin for 2nd place in the NCHU College of Science Paper Competition"
+
+- date: "2020-06-30"
+  category: award
+  text_zh: "恭喜楊曜毓同學榮獲中興大學理學院論文競賽佳作"
+  text_en: "Congratulations to Yao-Yu Yang for an Honorable Mention in the NCHU College of Science Paper Competition"
+
+- date: "2020-01-07"
+  category: award
+  text_zh: "恭喜陳怡歆同學獲得亞洲質譜學年會（8th AOMSC）最佳論文獎"
+  text_en: "Congratulations to Yi-Hsin Chen for the Best Paper Award at the 8th AOMSC"
+
+- date: "2019-06-24"
+  category: award
+  text_zh: "恭喜陳怡歆同學榮獲中興大學理學院論文競賽第二名"
+  text_en: "Congratulations to Yi-Hsin Chen for 2nd place in the NCHU College of Science Paper Competition"
+
+- date: "2019-01-21"
+  category: lab
+  text_zh: "102 實驗室落成啟用"
+  text_en: "Laboratory 102 officially opened"

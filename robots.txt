@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://iclulab.github.io/sitemap.xml

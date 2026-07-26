@@ -1,0 +1,96 @@
+# ============================================================
+# research.yaml — 研究主軸敘事
+# 來源：RIKEN-NCHU biography + 國科會計畫方向（2026-07-26）
+# 網站 Home 與 Research 頁都讀這個檔
+# ============================================================
+
+intro_en: >
+  My group works at the boundary between fundamental physical chemistry and
+  practical analytical measurement. The through-line is mass spectrometry: we
+  first ask how ions are actually formed, then use that understanding to build
+  measurements that answer questions other methods cannot reach.
+
+intro_zh: >
+  本團隊的研究橫跨基礎物理化學與實用分析量測。貫穿其中的主軸是質譜：
+  我們先追問離子究竟是如何生成的，再用這份理解去打造其他方法碰不到的量測能力。
+
+themes:
+  - id: foundations
+    tag: "Foundations"
+    title_en: "Ionization Mechanisms"
+    title_zh: "游離機制"
+    topics: [maldi, ionization-mechanism, ambient-ionization]
+    body_en: >
+      How does a laser pulse turn a solid matrix into gas-phase ions? We resolved
+      this by measuring ion-to-neutral ratios directly and showing that thermal
+      proton transfer, not exotic photochemistry, governs MALDI ion yields. The
+      same line of work extends to inlet and vacuum ionization, where
+      evaporation and sublimation alone can generate ions without any applied
+      voltage or laser.
+    body_zh: >
+      一道雷射脈衝如何把固態基質變成氣相離子？我們直接量測離子與中性分子的比例，
+      證明主導 MALDI 離子產率的是熱質子轉移，而非特殊的光化學機制。
+      同一條線延伸到 inlet 與真空游離，在完全不施加電壓或雷射的情況下，
+      單靠蒸發與昇華就能產生離子。
+
+  - id: health
+    tag: "Health"
+    title_en: "Carbohydrate Mass Spectrometry with AI Classification"
+    title_zh: "醣類質譜結合 AI 分類"
+    topics: [carbohydrate, quantification, maldi]
+    body_en: >
+      Carbohydrates are notoriously hard to measure by mass spectrometry: they
+      ionize poorly and their isomers are nearly indistinguishable. We developed
+      the rapidly freeze-drying droplet method to make MALDI quantification of
+      sugars reliable, and now couple those spectra to machine-learning
+      classifiers aimed at diagnostic and rapid-screening applications.
+    body_zh: >
+      醣類是質譜出了名難測的分子：游離效率低，異構物又幾乎無法區分。
+      我們發展了快速冷凍乾燥液滴法，讓 MALDI 對醣類的定量變得可靠，
+      並進一步把光譜資料接上機器學習分類模型，目標是診斷與快速篩檢應用。
+
+  - id: sustainability
+    tag: "Sustainability"
+    title_en: "Smart Plastic Identification for Recycling"
+    title_zh: "塑膠智慧辨識與回收"
+    topics: []
+    body_en: >
+      Plastic recycling fails at the sorting step: mixed polymer streams are
+      difficult to identify quickly and cheaply. We are combining mass
+      spectrometric fingerprinting with machine-learning models to classify
+      polymer types automatically, with the goal of making high-quality sorting
+      practical at scale.
+    body_zh: >
+      塑膠回收的瓶頸在分選：混合的高分子料流難以快速且低成本地辨識。
+      我們結合質譜指紋與機器學習模型，讓高分子種類能被自動分類，
+      目標是讓高品質分選在實際規模下變得可行。
+    grant_ids: ["114-2113-M-005-013-"]
+
+  - id: mechanisms
+    tag: "Reaction Mechanisms"
+    title_en: "Capturing Reactive Intermediates in Catalysis"
+    title_zh: "捕捉催化反應中間體"
+    topics: [catalysis, water-oxidation, electrochemistry, reactive-intermediates]
+    body_en: >
+      Catalytic cycles are usually inferred, not observed. Using customized mass
+      spectrometry inlet systems, we capture transient species directly from
+      reacting solutions, which lets us pin down kinetics and mechanism in
+      transition-metal catalysis and electrochemical water oxidation. This work
+      is done with synthetic and computational groups: we supply the evidence
+      that distinguishes competing mechanistic proposals.
+    body_zh: >
+      催化循環通常是被推論出來的，而不是被看見的。
+      我們以客製化的質譜進樣系統，直接從反應中的溶液捕捉瞬態物種，
+      藉此釐清過渡金屬催化與電化學水氧化的動力學與機構。
+      這條線與合成及計算團隊合作進行，我們提供的是足以區辨競爭機構假說的關鍵證據。
+
+# 早期研究（僅在 Research 頁末尾以一小段帶過）
+earlier_en: >
+  Before turning to mass spectrometry, I worked on crossed molecular-beam
+  reaction dynamics and photodissociation, studying how bonds break and form in
+  isolated collisions. That training in physical chemistry still shapes how this
+  group approaches analytical problems.
+earlier_zh: >
+  在轉向質譜之前，我的研究是交叉分子束反應動力學與光解離，
+  探討化學鍵在孤立碰撞中如何斷裂與生成。
+  那段物理化學的訓練，至今仍影響本團隊面對分析問題的方式。

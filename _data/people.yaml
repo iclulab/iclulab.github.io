@@ -1,0 +1,82 @@
+# ============================================================
+# people.yaml — 實驗室成員
+# 建議每位成員補上 topic（一句話研究主題），說服力遠勝只有姓名
+# photo 欄位填 assets/img/people/ 底下的檔名
+# ============================================================
+
+assistant:
+  - name_en: "Chen, Yu-Chen"
+    name_zh: "陳玉蓁"
+    photo: "chen-yu-chen.jpg"
+    topic: ""
+
+master_students:
+  - name_en: "Chan, Zong-Chi"
+    name_zh: "詹宗錡"
+    photo: "chan-zong-chi.jpg"
+    topic: ""
+  - name_en: "Lin, Hsin-Jung"
+    name_zh: "林欣蓉"
+    photo: "lin-hsin-jung.jpg"
+    topic: ""
+  - name_en: "Lan, Lyu-Han"
+    name_zh: "藍律涵"
+    photo: "lan-lyu-han.jpg"
+    topic: ""
+  - name_en: "Wu, Chung-Chieh"
+    name_zh: "吳仲杰"
+    photo: "wu-chung-chieh.jpg"
+    topic: ""
+  - name_en: "Hsu, Chia-Cheng"
+    name_zh: "許家誠"
+    photo: "hsu-chia-cheng.jpg"
+    topic: ""
+  - name_en: "Liu, Jung-Ting"
+    name_zh: "劉俊廷"
+    photo: "liu-jung-ting.jpg"
+    topic: ""
+  - name_en: "Hung, Yu-Chun"
+    name_zh: "洪鈺准"
+    photo: "hung-yu-chun.jpg"
+    topic: ""
+  - name_en: "Hung, Shih-Yang"
+    name_zh: "洪士洋"
+    photo: "hung-shih-yang.jpg"
+    topic: ""
+  - name_en: "Huang, Cong-Min"
+    name_zh: "黃琮閔"
+    photo: "huang-cong-min.jpg"
+    topic: ""
+  - name_en: "Chu, Ting-Yi"
+    name_zh: "朱庭儀"
+    photo: "chu-ting-yi.jpg"
+    topic: ""
+
+undergraduate_students:
+  - name_en: "Tseng, Chen-Yi"
+    name_zh: "曾真薏"
+    photo: "tseng-chen-yi.jpg"
+    topic: ""
+  - name_en: "Chou, Yun-Hsuan"
+    name_zh: "周昀萱"
+    photo: "chou-yun-hsuan.jpg"
+    topic: ""
+  - name_en: "Chen, Zong-You"
+    name_zh: "陳宗祐"
+    photo: "chen-zong-you.jpg"
+    topic: ""
+
+# 待補：畢業生去向（對招生極有說服力）
+# 格式範例：
+# alumni:
+#   - name_en: "Chen, Yi-Hsin"
+#     name_zh: "陳怡歆"
+#     degree: "M.S. 2020"
+#     current: "現職 / 進修單位"
+alumni:
+  - name_en: "Ho, Shao-Hsun"
+    name_zh: "何紹熏"
+    degree: "Undergraduate researcher"
+    photo: "ho-shao-hsun.jpg"
+    note_zh: "114 年度國科會大專生計畫補助"
+    note_en: "NSTC Undergraduate Research Grant, 2025"

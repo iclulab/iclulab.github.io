@@ -1,0 +1,211 @@
+# ============================================================
+# profile.yaml — 個人基本資料、學經歷、獲獎、計畫、專利
+# 網站各頁與 CV 皆由此生成
+# ============================================================
+
+name_en: "I-Chung Lu"
+name_zh: "盧臆中"
+title_en: "Associate Professor"
+title_zh: "副教授"
+department_en: "Department of Chemistry"
+department_zh: "化學系"
+institution_en: "National Chung Hsing University"
+institution_zh: "國立中興大學"
+
+contact:
+  email: "iclu@nchu.edu.tw"
+  phone: "+886-4-2284-0411 ext. 508"
+  # 辦公室與實驗室分開列。找老師談 → 508；儀器與實驗 → 102。
+  office_en: "Office: Room 508, Chemistry Building"
+  office_zh: "辦公室：化學館 508 室"
+  lab_en: "Laboratory: Room 102, Chemistry Building"
+  lab_zh: "實驗室：化學館 102 室"
+  address_en: "145 Xingda Rd., South Dist., Taichung City 40227, Taiwan"
+  address_zh: "402 台中市南區興大路 145 號"
+
+links:
+  google_scholar: "https://scholar.google.com/citations?user=og6_O_oAAAAJ"
+  orcid: "https://orcid.org/0000-0002-3125-6397"
+  github: "https://github.com/iclulab"
+  # youtube: ""   # 「狐獴老師的物化課」— 本次改版暫不啟用
+
+# ------------------------------------------------------------
+# 研究定位敘事
+# 來源：2026 RIKEN-NCHU Joint Symposium Speaker Biography
+# 這是目前最精準的一段自我定位，作為全站敘事主軸
+# ------------------------------------------------------------
+bio_short: >
+  I-Chung Lu is an Associate Professor of Chemistry at National Chung Hsing
+  University, Taiwan. He earned his B.S. and Ph.D. from National Tsing Hua
+  University and was a postdoctoral researcher at the Institute of Atomic and
+  Molecular Sciences, Academia Sinica, and at Wayne State University. His group
+  develops mass spectrometric methods that connect fundamental physical
+  chemistry with real-world analysis: mechanistic studies of MALDI ionization,
+  AI-assisted carbohydrate profiling for clinical rapid screening, and
+  customized MS inlet systems that capture reactive intermediates in
+  transition-metal catalysis and electrochemical water oxidation. His work
+  treats analytical science as an enabling technology for chemical discovery.
+
+bio_long: >
+  Dr. I-Chung Lu is an Associate Professor in the Department of Chemistry,
+  National Chung Hsing University (NCHU), Taichung, Taiwan. He received his B.S.
+  and Ph.D. in chemistry from National Tsing Hua University, and carried out
+  postdoctoral research at the Institute of Atomic and Molecular Sciences,
+  Academia Sinica, and at Wayne State University, USA. He began his independent
+  career at Providence University before joining NCHU.
+
+  His research bridges fundamental physical chemistry with analytical
+  applications, centred on mass spectrometry. Building on his mechanistic
+  studies of MALDI ionization, his group now couples mass spectrometric analysis
+  of carbohydrates with AI-based classification models to develop diagnostic and
+  rapid-screening tools. In parallel, he uses customized MS inlet systems to
+  capture reactive intermediates and transient species, revealing the kinetics
+  and mechanisms of transition-metal-catalyzed reactions and electrochemical
+  water oxidation. His work demonstrates how advanced analytical science serves
+  as an enabling technology that accelerates chemical discovery.
+
+research_interests:
+  - "Mass Spectrometry"
+  - "Ionization Mechanisms"
+  - "Chemical Kinetics"
+  - "Analytical Chemistry"
+  - "Ambient Ionization"
+  - "Organometallic Chemistry"
+
+# ------------------------------------------------------------
+education:
+  - degree: "Ph.D. in Chemistry"
+    institution: "National Tsing Hua University, Taiwan"
+    years: "2000–2007"
+  - degree: "B.S. in Chemistry"
+    institution: "National Tsing Hua University, Taiwan"
+    years: "1993–1997"
+
+appointments:
+  - years: "2024–present"
+    position: "Associate Professor"
+    org: "Department of Chemistry, National Chung Hsing University"
+  - years: "2018–2024"
+    position: "Assistant Professor"
+    org: "Department of Chemistry, National Chung Hsing University"
+  - years: "2017–2018"
+    position: "Assistant Professor"
+    org: "Department of Applied Chemistry, Providence University"
+  - years: "2015–2016"
+    position: "Postdoctoral Fellow"
+    org: "Department of Chemistry, Wayne State University, USA"
+  - years: "2012–2015"
+    position: "Postdoctoral Fellow"
+    org: "Institute of Atomic and Molecular Sciences, Academia Sinica, Taiwan"
+  - years: "2011–2012"
+    position: "R&D Chief Engineer"
+    org: "Analytical Instrument Division, CVC Technologies, Inc."
+  - years: "2008–2011"
+    position: "Postdoctoral Fellow"
+    org: "Genomics Research Center, Academia Sinica, Taiwan"
+
+service:
+  - "Consulting Professor, Instrument Center, National Chung Hsing University"
+
+awards:
+  - year: 2026
+    name_en: "Distinguished Professorship, NCHU"
+    name_zh: "國立中興大學優聘教師（115 學年度）"
+  - year: 2024
+    name_en: "Outstanding Mentor Award, NCHU"
+    name_zh: "國立中興大學特優導師（112 學年度）"
+  - year: 2021
+    name_en: "Distinguished Teaching Award, NCHU"
+    name_zh: "國立中興大學教學特優獎（110 學年度）"
+  - year: 2012
+    name_en: "Assistant Research Scholarship, National Science Council"
+    name_zh: "國科會（原國科會）獎助博士後研究人員"
+
+# ------------------------------------------------------------
+# 待補：需要 I-Chung 提供
+# ------------------------------------------------------------
+# 國科會計畫（來源：使用者 Notion「國科會計劃編號」頁面，2026-07-26 匯入）
+# role: PI = 主持人 / co-PI = 共同主持人
+# ⚠️ 本倉庫為 Public，經費金額刻意不收錄，避免公開。
+# status: ongoing = 執行中 / completed = 已結案
+grants:
+  - id: "114-2113-M-005-013-"
+    title_zh: "整合質譜法與機器學習模型應用於塑膠的智慧分類與回收"
+    title_en: "Integrating Mass Spectrometry and Machine Learning for Smart Classification and Recycling of Plastics"
+    agency: "National Science and Technology Council (NSTC)"
+    period: "2025/08–2026/07"
+    role: PI
+    status: ongoing
+
+  - id: "114-2113-M-126-002-"
+    title_zh: "利用新型高效鈀金屬預催化劑提升有機場效電晶體材料開發效率 (2/3)"
+    title_en: "Enhancing Development Efficiency of Organic Field-Effect Transistor Materials Using Novel High-Performance Palladium Precatalysts (2/3)"
+    agency: "National Science and Technology Council (NSTC)"
+    period: "2025/08–2026/07"
+    role: co-PI
+    status: ongoing
+
+  - id: "113-2113-M-005-010-"
+    title_zh: "建構以研究有機金屬催化反應機構為目的質譜平台 (二) (2/2)"
+    title_en: "Construction of a Mass Spectrometry Platform for Studying Organometallic Catalytic Reaction Mechanisms II (2/2)"
+    agency: "National Science and Technology Council (NSTC)"
+    period: "2024/08–2025/07"
+    role: PI
+    status: ongoing
+
+  - id: "113-2113-M-126-003-"
+    title_zh: "利用新型高效鈀金屬預催化劑提升有機場效電晶體材料開發效率－新世代鈀金屬預催化劑的設計與應用 (1/3)"
+    title_en: "Enhancing Development Efficiency of Organic Field-Effect Transistor Materials Using Novel High-Performance Palladium Precatalysts: Design and Application of Next-Generation Palladium Precatalysts (1/3)"
+    agency: "National Science and Technology Council (NSTC)"
+    period: "2024/08–2025/07"
+    role: co-PI
+    status: ongoing
+
+  - id: "113-2740-M-002-010-"
+    title_zh: "國科會尖端核心設施技術服務維運平台 (1/3)"
+    title_en: "NSTC Advanced Core Facility Technical Service and Operation Platform (1/3)"
+    agency: "National Science and Technology Council (NSTC)"
+    period: "2024/06–2026/05"
+    role: co-PI
+    status: ongoing
+
+  - id: "112-2113-M-005-018-"
+    title_zh: "建構以研究有機金屬催化反應機構為目的質譜平台 (二) (1/2)"
+    title_en: "Construction of a Mass Spectrometry Platform for Studying Organometallic Catalytic Reaction Mechanisms II (1/2)"
+    agency: "National Science and Technology Council (NSTC)"
+    period: "2023/08–2024/07"
+    role: PI
+    status: completed
+
+  - id: "111-2113-M-005-017-"
+    title_zh: "建構以研究有機金屬催化反應機構為目的質譜平台"
+    title_en: "Construction of a Mass Spectrometry Platform for Studying Organometallic Catalytic Reaction Mechanisms"
+    agency: "National Science and Technology Council (NSTC)"
+    period: "2022/08–2024/01"
+    role: PI
+    status: completed
+
+  - id: "110-2113-M-005-004-"
+    title_zh: "結合新型離子阱與軟性游離法於蛋白質非共價鍵之研究與應用"
+    title_en: "Combining Novel Ion Traps with Soft Ionization for the Study of Non-Covalent Protein Interactions"
+    agency: "National Science and Technology Council (NSTC)"
+    period: "2021/08–2022/07"
+    role: PI
+    status: completed
+
+patents: []
+  # 格式範例：
+  # - year: 2023
+  #   title: "專利名稱"
+  #   number: "中華民國專利 I XXXXXX"
+  #   inventors: "盧臆中、OOO"
+
+invited_talks: []
+  # 格式範例：
+  # - year: 2026
+  #   title: "演講題目"
+  #   event: "RIKEN-NCHU Joint Symposium"
+  #   location: "Taichung, Taiwan"
+
+instruments: []
+  # 實驗室主要儀器，供合作者與招生參考

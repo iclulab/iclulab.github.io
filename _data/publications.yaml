@@ -1,0 +1,604 @@
+# ============================================================
+# publications.yaml  —  單一真相檔 (single source of truth)
+# 網站的 Publications 頁與 CV 的著作目錄都由這個檔案生成。
+# 新增論文時只改這裡，然後執行 scripts/build_site.py 與 build_cv.py
+# ============================================================
+#
+# 欄位說明
+#   year        西元年（數字）
+#   authors     完整作者列，通訊作者後面加 *
+#   title       論文標題
+#   journal        期刊official abbreviation（ISO 4 / CASSI 標準縮寫）→ 網頁與 CV 顯示用
+#   journal_full   期刊全名 → 僅供 Schema.org 結構化資料與 Google Scholar 索引用，不顯示
+#   volume      卷、期、頁碼（自由文字）
+#   doi         純 DOI，不含 https://doi.org/ 前綴
+#   role        corresponding / co-corresponding / first / co-author
+#   topics      主題標籤，供網站篩選用
+#   verified    DOI 與書目資訊是否已對照 Crossref 核實
+#
+# ------------------------------------------------------------
+
+- year: 2026
+  authors: "Chang-Quan Wu, Po-Chun Yang, Tzu-Hsien Tseng, Wan-Qin Zeng, Hui-Ling Cheng, Tao-Hsien Liu, Chung-Wei Li, I-Chung Lu*, Peter Ping-Yu Chen*"
+  title: "para-Donor Effects in PyNO Push Ligands Control O–O Bond Cleavage of TPAFe(III)-Acylperoxo to High-Valent Fe(IV)=O or Fe(IV)=O Radical Cation Species"
+  journal: "Inorg. Chem."
+  journal_full: "Inorganic Chemistry"
+  volume: "65 (10), 5560–5568"
+  doi: "10.1021/acs.inorgchem.5c05784"
+  role: co-corresponding
+  topics: [catalysis, reactive-intermediates]
+  verified: false
+
+- year: 2025
+  authors: "I-Chung Lu*"
+  title: "A thermal perspective on MALDI ionization: A long journey from fundamental mechanisms to a practical solution for carbohydrate analysis"
+  journal: "Int. J. Mass Spectrom."
+  journal_full: "International Journal of Mass Spectrometry"
+  volume: "518, 117516"
+  doi: "10.1016/j.ijms.2025.117516"
+  role: corresponding
+  topics: [maldi, carbohydrate, review]
+  invited_review: true
+  verified: false
+
+- year: 2025
+  authors: "Yu-Wei Chuang, Kuan-Yu Lu, Chien-Wen Lin, Yung-Ching Yang, Yun-Jou Tseng, Hao-Ting Chang, Ting-Yee Chuang, Tzuhsiung Yang, I-Chung Lu, Yu-Heng Wang*"
+  title: "Exploring Electrochemical C(sp3)–H Oxidation over Fe Complexes: Ligand Effect on the Rate–Bond Dissociation Energy Relationship and Reaction Mechanism"
+  journal: "ACS Catal."
+  journal_full: "ACS Catalysis"
+  volume: "15 (11), 9106–9116"
+  doi: "10.1021/acscatal.5c01183"
+  role: co-author
+  topics: [catalysis, electrochemistry]
+  verified: true
+
+- year: 2025
+  authors: "Yu-Han Wang, Yun-Jou Tseng, Sharad V. Kumbhar, Hao-Ting Chang, Tzuhsiung Yang*, I-Chung Lu*, Yu-Heng Wang*"
+  title: "Overcoming the Tradeoff Between Reaction Rate and Overpotential in Dinuclear Cobalt Complex Catalyzed Electrochemical Water Oxidation"
+  journal: "Chem. Eur. J."
+  journal_full: "Chemistry — A European Journal"
+  volume: "31 (10), e202403583"
+  doi: "10.1002/chem.202403583"
+  role: co-corresponding
+  topics: [water-oxidation, electrochemistry, catalysis]
+  verified: false
+
+- year: 2025
+  authors: "Pei-Zhen Xie, Wan-Qin Zeng, Yu-Hsiang Liu, Yingjie Guo, Hsuan-Hao Kang, Yung-De Tsai, Yi-Jie Tsai, Li-Hui Hong, Yun-Rou Zeng, Yen-Hsien Li, Wei-Chih Chen*, I-Chung Lu*, Yu-Chang Chang*"
+  title: "Advanced Pd-NAPA Precatalysts for Broad-Scope Kumada–Tamao–Corriu Couplings of Challenging Aryl Chlorides"
+  journal: "Asian J. Org. Chem."
+  journal_full: "Asian Journal of Organic Chemistry"
+  volume: "14 (10), e00332"
+  doi: "10.1002/ajoc.202500332"
+  role: co-corresponding
+  topics: [catalysis, organic-synthesis]
+  verified: false
+
+- year: 2024
+  authors: "Yu-Cheng Wu, Xin-Wen Zhang, Yi-Ching Huang, I-Chung Lu*"
+  title: "Advancing Carbohydrate Quantification in MALDI Mass Spectrometry by Rapidly Freeze-Drying Droplet (RFDD) Method"
+  journal: "Analyst"
+  journal_full: "Analyst"
+  volume: "149, 1766–1773"
+  doi: "10.1039/D3AN02201C"
+  role: corresponding
+  topics: [maldi, carbohydrate, quantification]
+  verified: false
+
+- year: 2024
+  authors: "Yu-Ting Wu, Sharad V. Kumbhar, Ruei-Feng Tsai, Yung-Ching Yang, Wan-Qin Zeng, Yu-Han Wang, Wan-Chi Hsu, Yun-Wei Chiang*, Tzuhsiung Yang*, I-Chung Lu*, Yu-Heng Wang*"
+  title: "Manipulating the Rate and Overpotential for Electrochemical Water Oxidation: Mechanistic Insights for Cobalt Catalysts Bearing Noninnocent Bis(benzimidazole)pyrazolide Ligands"
+  journal: "ACS Org. Inorg. Au"
+  journal_full: "ACS Organic & Inorganic Au"
+  volume: "4 (3), 306–318"
+  doi: "10.1021/acsorginorgau.3c00061"
+  role: co-corresponding
+  topics: [water-oxidation, electrochemistry, catalysis]
+  verified: false
+
+- year: 2024
+  # 63 位作者。YAML 保留完整名單以維持資料完整性，顯示時由 build 腳本自動截斷。
+  authors: "Sarah Trimpin*, Frank S. Yenchick, Chuping Lee, Khoa Hoang, Milan Pophristic, Santosh Karki, Darrell D. Marshall, I-Chung Lu, Corinne A. Lutomski, Tarick J. El-Baba, Beixi Wang, Vincent S. Pagnotti, Anil K. Meher, Shubhashis Chakrabarty, Lorelei F. Imperial, Sara Madarshahian, Alicia L. Richards, Christopher B. Lietz, Abigail Moreno-Pedraza, Samantha M. Leach, Stephen C. Gibson, Efstathios A. Elia, Shameemah M. Thawoos, Daniel W. Woodall, Dean R. Jarois, Eric T. J. Davis, Guochao Liao, Nisansala S. Muthunayake, McKenna J. Redding, Christian A. Reynolds, Thilani M. Anthony, Sashiprabha M. Vithanarachchi, Paul DeMent, Adeleye O. Adewale, Lu Yan, James Wager-Miller, Young-Hoon Ahn, Thomas H. Sanderson, Karin Przyklenk, Miriam L. Greenberg, Arthur G. Suits, Matthew J. Allen, Srinivas B. Narayan, Joseph A. Caruso, Paul M. Stemmer, Hien M. Nguyen, Steffen M. Weidner, Kevin J. Rackers, Ana Djuric, Vladimir Shulaev, Tamara L. Hendrickson, Christine S. Chow, Mary Kay H. Pflum, Scott M. Grayson, Vladislav V. Lobodin, Zhongwu Guo, Chi-Kung Ni, J. Michael Walker, Ken Mackie, Ellen D. Inutan, Charles N. McEwen"
+  title: "New Processes for Ionizing Nonvolatile Compounds in Mass Spectrometry: The Road of Discovery to Current State-of-the-Art"
+  journal: "J. Am. Soc. Mass Spectrom."
+  journal_full: "Journal of the American Society for Mass Spectrometry"
+  volume: "35 (12), 2753–2784"
+  doi: "10.1021/jasms.3c00122"
+  role: co-author
+  topics: [ambient-ionization, review]
+  verified: false
+
+- year: 2024
+  authors: "Fang-Hsu Chen, Chun-Yen Cheng, Szu-Wei Chou, Cheng-Han Yang, I-Chung Lu, Ming-Long Yeh*"
+  title: "High-Resolution Intact Protein Analysis via Phase-Modulated, Stepwise Frequency Scan Ion Trap Mass Spectrometry"
+  journal: "Anal. Chem."
+  journal_full: "Analytical Chemistry"
+  volume: "96 (37), 14867–14876"
+  doi: "10.1021/acs.analchem.4c02775"
+  role: co-author
+  topics: [instrumentation, proteomics]
+  verified: false
+
+- year: 2022
+  authors: "Wan-Chi Hsu, Wan-Qin Zeng, I-Chung Lu*, Tzuhsiung Yang*, Yu-Heng Wang*"
+  title: "Dinuclear Cobalt Complexes for Homogeneous Water Oxidation: Tuning Rate and Overpotential through the Non-Innocent Ligand"
+  journal: "ChemSusChem"
+  journal_full: "ChemSusChem"
+  volume: "15, e202201317"
+  doi: "10.1002/cssc.202201317"
+  role: co-corresponding
+  topics: [water-oxidation, electrochemistry, catalysis]
+  verified: false   # 舊網站寫 "2022, 15, 2, e202201317"，卷期格式有疑義，待核實
+
+- year: 2022
+  authors: "Yu-Chen Chou, Wei-Han Lin, Xiu-Yi Lin, Chin-Ling Kuo, Wan-Qin Zeng, I-Chung Lu, Chien-Fu Liang*"
+  title: "Hexamethyldisilazane-Mediated Amidination of Sulfonamides and Amines with Formamides"
+  journal: "J. Org. Chem."
+  journal_full: "The Journal of Organic Chemistry"
+  volume: "87 (22), 15327–15332"
+  doi: "10.1021/acs.joc.2c01902"
+  role: co-author
+  topics: [organic-synthesis]
+  verified: false
+
+- year: 2022
+  authors: "Min-Yu Wu, Jing-Xiang Xu, Yi-Hsin Chen, I-Chung Lu, Jeng-Liang Han, Po-Heng Lin*"
+  title: "Self-assembled lanthanide-based helixes: synthetic control of the helical handedness by chirality of the ligand"
+  journal: "Dalton Trans."
+  journal_full: "Dalton Transactions"
+  volume: "51, 69–73"
+  doi: "10.1039/D1DT03833H"
+  role: co-author
+  topics: [coordination-chemistry]
+  verified: false
+
+- year: 2022
+  authors: "Shuo Wang, Kang-Yu Liu, Han-Jung Li, Wan-Ching Lee, Shuo-Ling Huang, Wen-Chun Wu, Fong-Ku Shi, You-Song Cheng, I-Chung Lu, Hsueh-Ju Liu*"
+  title: "Access to Monomeric Lead(II) Hydrides with Remarkable Thermostability and Their Use in Catalytic Hydroboration of Carbonyl Derivatives"
+  journal: "Inorg. Chem."
+  journal_full: "Inorganic Chemistry"
+  volume: "61 (33), 13096–13103"
+  doi: "10.1021/acs.inorgchem.2c01658"
+  role: co-author
+  topics: [coordination-chemistry, catalysis]
+  verified: false
+
+- year: 2022
+  authors: "Siou-Wei Liang, Yingjie Guo, Wan-Ching Lee, Pin-Rui Zeng, Tzu-Hao Lin, Pei-Zhen Xie, Hsuan-Hao Kang, I-Chung Lu*, Yu-Chang Chang*"
+  title: "Reactivity-Tunable Palladium Precatalysts with Favorable Catalytic Properties in Suzuki–Miyaura Cross-Coupling Reactions"
+  journal: "ChemCatChem"
+  journal_full: "ChemCatChem"
+  volume: "14, e202200736"
+  doi: "10.1002/cctc.202200736"
+  role: co-corresponding
+  topics: [catalysis, organic-synthesis]
+  verified: false
+
+- year: 2022
+  authors: "Yi-Hsin Chen, Chia-Yu Liu, Zachary J. Devereaux, Chia-Yun Wang, Sarah Trimpin, I-Chung Lu*"
+  title: "Applications of vacuum MAI on a portable mass spectrometer"
+  journal: "Int. J. Mass Spectrom."
+  journal_full: "International Journal of Mass Spectrometry"
+  volume: "474, 116798"
+  doi: "10.1016/j.ijms.2022.116798"
+  role: corresponding
+  topics: [ambient-ionization, instrumentation, portable-ms]
+  verified: false
+
+- year: 2021
+  authors: "He-Xin Xiao, Wan-Yun Hsu, Siou-Wei Liang, Yingjie Guo, Wan-Ching Lee, I-Chung Lu, Yu-Chang Chang*"
+  title: "Bulky Di(1-adamantyl)phosphinous Acid-Ligated Pd(II) Precatalysts for Suzuki Reactions of Unreactive Aryl Chlorides"
+  journal: "ACS Omega"
+  journal_full: "ACS Omega"
+  volume: "6 (50), 35134–35143"
+  doi: "10.1021/acsomega.1c06430"
+  role: co-author
+  topics: [catalysis, organic-synthesis]
+  verified: false
+
+- year: 2021
+  authors: "Yi-Hsin Chen, I-Chung Lu*"
+  title: "Novel ion source for a portable mass spectrometer"
+  journal: "Rapid Commun. Mass Spectrom."
+  journal_full: "Rapid Communications in Mass Spectrometry"
+  volume: "35 (S1), e8503"
+  doi: "10.1002/rcm.8503"
+  role: corresponding
+  topics: [instrumentation, portable-ms, ambient-ionization]
+  verified: false
+
+- year: 2021
+  authors: "Charles N. McEwen*, Ellen D. Inutan, Abigail Moreno-Pedraza, I-Chung Lu, Khoa Hoang, Milan Pophristic, Sarah Trimpin*"
+  title: "Sublimation Driven Ionization for Use in Mass Spectrometry: Mechanistic Implications"
+  journal: "J. Am. Soc. Mass Spectrom."
+  journal_full: "Journal of the American Society for Mass Spectrometry"
+  volume: "32 (1), 114–123"
+  doi: "10.1021/jasms.0c00297"
+  role: co-author
+  topics: [ambient-ionization, ionization-mechanism]
+  verified: false
+
+- year: 2020
+  authors: "Chih-Hao Lin, Chuping Lee, Yu-Cheng Wu, I-Chung Lu*"
+  title: "New Strategy to Preserve Phosphate by Ionic Liquid Matrices in Matrix-Assisted Laser Desorption/Ionization: A Case of Adenosine Nucleotides"
+  journal: "Molecules"
+  journal_full: "Molecules"
+  volume: "25 (5), 1217"
+  doi: "10.3390/molecules25051217"
+  role: corresponding
+  topics: [maldi, ionic-liquid]
+  verified: false
+
+- year: 2018
+  section: ionization-techniques
+  authors: "Sarah Trimpin*, I-Chung Lu, Stephan Rauschenbach, Khoa Hoang, Beixi Wang, Nicholas D. Chubatyi, Wen-Jing Zhang, Ellen D. Inutan, Milan Pophristic, Alexander Sidorenko, Charles N. McEwen"
+  title: "Spontaneous Charge Separation and Sublimation Processes Are Ubiquitous in Nature and in Ionization Processes in Mass Spectrometry"
+  journal: "J. Am. Soc. Mass Spectrom."
+  journal_full: "Journal of the American Society for Mass Spectrometry"
+  volume: "29 (2), 304–315"
+  doi: "10.1007/s13361-017-1788-7"
+  role: co-author
+  topics: [ambient-ionization, ionization-mechanism]
+  verified: false
+
+- year: 2017
+  section: ionization-techniques
+  authors: "I-Chung Lu, Efstathios A. Elia, Wen-Jing Zhang, Milan Pophristic, Ellen D. Inutan, Charles N. McEwen, Sarah Trimpin*"
+  title: "Development of an Easily Adaptable, High Sensitivity Source for Inlet Ionization"
+  journal: "Anal. Methods"
+  journal_full: "Analytical Methods"
+  volume: "9 (34), 4971–4978"
+  doi: "10.1039/C7AY00995J"
+  role: first
+  topics: [ambient-ionization, instrumentation]
+  verified: true    # Crossref 核實：9 (34), 4971-4978, 2017
+
+- year: 2017
+  section: ionization-techniques
+  authors: "Sheng-Ping Liang, I-Chung Lu, Shang-Ting Tsai, Jien-Lian Chen, Yuan-Tseh Lee, Chi-Kung Ni*"
+  title: "Laser Pulse Width Dependence and Ionization Mechanism of Matrix-Assisted Laser Desorption/Ionization"
+  journal: "J. Am. Soc. Mass Spectrom."
+  journal_full: "Journal of the American Society for Mass Spectrometry"
+  volume: "28 (10), 2235–2245"
+  doi: "10.1007/s13361-017-1734-8"
+  role: co-author
+  topics: [maldi, ionization-mechanism]
+  verified: true    # Crossref 核實：28 (10), 2235-2245, 2017
+
+- year: 2016
+  section: ionization-techniques
+  authors: "I-Chung Lu, Milan Pophristic, Ellen D. Inutan, Richard G. McKay, Charles N. McEwen*, Sarah Trimpin*"
+  title: "Simplifying the Ion Source for Mass Spectrometry"
+  journal: "Rapid Commun. Mass Spectrom."
+  journal_full: "Rapid Communications in Mass Spectrometry"
+  volume: "30 (23), 2568–2572"
+  doi: "10.1002/rcm.7718"
+  role: first
+  topics: [ambient-ionization, instrumentation]
+  verified: true    # Crossref 核實：30 (23), 2568-2572, 2016
+
+- year: 2016
+  section: ionization-techniques
+  authors: "Chuping Lee, I-Chung Lu, Hsu Chen Hsu, Hou-Yu Lin, Sheng-Ping Liang, Yuan-Tseh Lee, Chi-Kung Ni*"
+  title: "Formation of Metal-Related Ions in Matrix-Assisted Laser Desorption Ionization"
+  journal: "J. Am. Soc. Mass Spectrom."
+  journal_full: "Journal of the American Society for Mass Spectrometry"
+  volume: "27 (9), 1491–1498"
+  doi: "10.1007/s13361-016-1424-y"
+  role: co-author
+  topics: [maldi, ionization-mechanism]
+  verified: true    # ORCID/Scopus 核實。我原先推定的 -1427-8 是錯的
+
+- year: 2015
+  section: ionization-techniques
+  authors: "I-Chung Lu, Chuping Lee, Yuan-Tseh Lee, Chi-Kung Ni*"
+  title: "Ionization Mechanism of Matrix-Assisted Laser Desorption/Ionization"
+  journal: "Annu. Rev. Anal. Chem."
+  journal_full: "Annual Review of Analytical Chemistry"
+  volume: "8 (1), 21–39"
+  doi: "10.1146/annurev-anchem-071114-040315"
+  role: first
+  topics: [maldi, ionization-mechanism, review]
+  verified: true    # Crossref 核實：8 (1), 21-39, 2015
+
+- year: 2015
+  section: ionization-techniques
+  authors: "I-Chung Lu, Kuan-Yu Chu, Chih-Yuan Lin, Shang-Yun Wu, Yuri A. Dyakov, Jien-Lian Chen, Angus Gray-Weale, Yuan-Tseh Lee, Chi-Kung Ni*"
+  title: "Ion-to-Neutral Ratios and Thermal Proton Transfer in Matrix-Assisted Laser Desorption/Ionization"
+  journal: "J. Am. Soc. Mass Spectrom."
+  journal_full: "Journal of the American Society for Mass Spectrometry"
+  volume: "26 (7), 1242–1251"
+  doi: "10.1007/s13361-015-1112-3"
+  role: first
+  topics: [maldi, ionization-mechanism]
+  verified: partial # DOI 已由 Annu. Rev. 該文參考文獻交叉確認；卷期頁碼待核
+
+- year: 2014
+  section: ionization-techniques
+  authors: "I-Chung Lu, Chuping Lee, Hui-Yuan Chen, Hou-Yu Lin, Sheng-Wei Hung, Yuri A. Dyakov, Kuo-Tung Hsu, Chih-Yu Liao, Yin-Yu Lee, Chien-Ming Tseng, Yuan-Tseh Lee, Chi-Kung Ni*"
+  title: "Ion Intensity and Thermal Proton Transfer in Ultraviolet Matrix-Assisted Laser Desorption/Ionization"
+  journal: "J. Phys. Chem. B"
+  journal_full: "The Journal of Physical Chemistry B"
+  volume: "118 (15), 4132–4139"
+  doi: "10.1021/jp5008076"
+  role: first
+  topics: [maldi, ionization-mechanism]
+  verified: partial # DOI 已由 Annu. Rev. 該文參考文獻交叉確認；卷期頁碼待核
+
+# ============================================================
+# 以下 20 筆為 2026-07-25 自 ORCID (0000-0002-3125-6397) 補入，
+# 舊 Google Sites 完全未收錄。DOI 來源為 Scopus / Web of Science / Crossref，可信。
+#
+# ⚠️ 待完成：作者姓名目前為 Scopus 縮寫格式（Lu, I.-C.），
+#    需再跑一次 Crossref 取回全名並統一為 "I-Chung Lu" 格式；
+#    部分條目的卷期頁碼亦待補。故標記 verified: partial。
+# ============================================================
+
+# ---------- 質譜 / MALDI 時期（中研院，2011–2019）----------
+
+- year: 2019
+  authors: "Chih-Hao Lin, Chu-Ping Lee, I-Chung Lu*"
+  title: "基質輔助雷射脫附游離法之研究與展望"
+  journal: "化學"
+  journal_full: "化學"
+  volume: "77 (2), 153–163"
+  doi: "10.6623/chem.201906_77(2).006"
+  role: corresponding
+  topics: [maldi, ionization-mechanism, review]
+  language: zh
+  verified: partial
+
+- year: 2016
+  section: ionization-techniques
+  authors: "Jien-Lian Chen, Chuping Lee, I-Chung Lu, Chia-Lin Chien, Yuan-Tseh Lee, Wei-Ping Hu, Chi-Kung Ni*"
+  title: "Theoretical investigation of low detection sensitivity for underivatized carbohydrates in ESI and MALDI"
+  journal: "J. Mass Spectrom."
+  journal_full: "Journal of Mass Spectrometry"
+  volume: ""
+  doi: "10.1002/jms.3889"
+  role: co-author
+  topics: [maldi, carbohydrate, ionization-mechanism]
+  verified: partial
+
+- year: 2014
+  section: ionization-techniques
+  authors: "Hsu Chen Hsu, I-Chung Lu, Po-Hsun Lin, Yuri A. Dyakov, Angshuman Bagchi, Chih-Yuan Lin, Sheng-Wei Hung, Yuan-Tseh Lee, Chi-Kung Ni*"
+  title: "Does decarboxylation make 2,5-dihydroxybenzoic acid special in matrix-assisted laser desorption/ionization?"
+  journal: "Rapid Commun. Mass Spectrom."
+  journal_full: "Rapid Communications in Mass Spectrometry"
+  volume: ""
+  doi: "10.1002/rcm.6885"
+  role: co-author
+  topics: [maldi, ionization-mechanism]
+  verified: partial
+
+- year: 2014
+  section: ionization-techniques
+  authors: "Hou-Yu Lin, Hsu Chen Hsu, I-Chung Lu, Kuo-Tung Hsu, Chih-Yu Liao, Yin-Yu Lee, Chien-Ming Tseng, Yuan-Tseh Lee, Chi-Kung Ni*"
+  title: "Fluorescence spectroscopy of UV-MALDI matrices and implications of ionization mechanisms"
+  journal: "J. Chem. Phys."
+  journal_full: "The Journal of Chemical Physics"
+  volume: ""
+  doi: "10.1063/1.4898372"
+  role: co-author
+  topics: [maldi, ionization-mechanism]
+  verified: partial
+
+- year: 2014
+  section: ionization-techniques
+  authors: "Hou-Yu Lin, Bo Song, I-Chung Lu, Kuo-Tung Hsu, Chih-Yu Liao, Yin-Yu Lee, Chien-Ming Tseng, Yuan-Tseh Lee, Chi-Kung Ni*"
+  title: "Is energy pooling necessary in ultraviolet matrix-assisted laser desorption/ionization?"
+  journal: "Rapid Commun. Mass Spectrom."
+  journal_full: "Rapid Communications in Mass Spectrometry"
+  volume: ""
+  doi: "10.1002/rcm.6765"
+  role: co-author
+  topics: [maldi, ionization-mechanism]
+  verified: partial
+
+- year: 2014
+  section: ionization-techniques
+  authors: "Kuan Yu Chu, Sheng Lee, Ming-Tsang Tsai, I-Chung Lu, Yuri A. Dyakov, Yin Hsun Lai, Yuan-Tseh Lee, Chi-Kung Ni*"
+  title: "Thermal proton transfer reactions in ultraviolet matrix-assisted laser desorption/ionization"
+  journal: "J. Am. Soc. Mass Spectrom."
+  journal_full: "Journal of the American Society for Mass Spectrometry"
+  volume: ""
+  doi: "10.1007/s13361-013-0792-9"
+  role: co-author
+  topics: [maldi, ionization-mechanism]
+  verified: partial
+
+- year: 2013
+  section: ionization-techniques
+  authors: "Ming-Tsang Tsai, Sheng Lee, I-Chung Lu, Kuan Yu Chu, Chi-Wei Liang, Chuin Hui Lee, Yuan-Tseh Lee, Chi-Kung Ni*"
+  title: "Ion-to-neutral ratio of 2,5-dihydroxybenzoic acid in matrix-assisted laser desorption/ionization"
+  journal: "Rapid Commun. Mass Spectrom."
+  journal_full: "Rapid Communications in Mass Spectrometry"
+  volume: ""
+  doi: "10.1002/rcm.6534"
+  role: co-author
+  topics: [maldi, ionization-mechanism]
+  verified: partial
+
+- year: 2011
+  section: ionization-techniques
+  authors: "I-Chung Lu, Jung Lee Lin, Szu-Hsueh Lai, Chung-Hsuan Chen*"
+  title: "Frequency-Scanning MALDI Linear Ion Trap Mass Spectrometer for Large Biomolecular Ion Detection"
+  journal: "Anal. Chem."
+  journal_full: "Analytical Chemistry"
+  volume: "83 (21), 8273–8277"
+  doi: "10.1021/ac202083c"
+  role: first
+  topics: [maldi, instrumentation]
+  verified: true
+
+# ---------- 早期：反應動力學（博士班與早期博後，2003–2008）----------
+# section: reaction-dynamics → 網站上獨立列為 "Earlier Work: Reaction Dynamics"
+
+- year: 2008
+  section: reaction-dynamics
+  authors: "I-Chung Lu, Wen-Kai Chen, Wei-Jan Huang, Shih-Huang Lee*"
+  title: "Dynamics of the reaction C(³P) + SiH₄: Experiments and calculations"
+  journal: "J. Chem. Phys."
+  journal_full: "The Journal of Chemical Physics"
+  volume: "129 (16)"
+  doi: "10.1063/1.3000005"
+  role: first
+  topics: [reaction-dynamics, molecular-beam]
+  verified: partial
+
+- year: 2008
+  section: reaction-dynamics
+  authors: "I-Chung Lu, Wen-Kai Chen, Chanchal Chaudhuri, Wei-Jan Huang, Jim J. Lin, Shih-Huang Lee*"
+  title: "Exploring the dynamics of reaction N + SiH₄ with crossed molecular-beam experiments and quantum-chemical calculations"
+  journal: "J. Chem. Phys."
+  journal_full: "The Journal of Chemical Physics"
+  volume: "129 (17)"
+  doi: "10.1063/1.3005652"
+  role: first
+  topics: [reaction-dynamics, molecular-beam]
+  verified: partial
+
+- year: 2008
+  section: reaction-dynamics
+  authors: "Wen-Kai Chen, I-Chung Lu, Chanchal Chaudhuri, Wei-Jan Huang, Shih-Huang Lee*"
+  title: "Investigations of silicon–nitrogen hydrides from reaction of nitrogen atoms with silane: Experiments and calculations"
+  journal: "J. Phys. Chem. A"
+  journal_full: "The Journal of Physical Chemistry A"
+  volume: ""
+  doi: "10.1021/jp804435y"
+  role: co-author
+  topics: [reaction-dynamics, molecular-beam]
+  verified: partial
+
+- year: 2008
+  section: reaction-dynamics
+  authors: "I-Chung Lu, Fengyan Wang, Kaijun Yuan, Yang Cheng, Xueming Yang*"
+  title: "Nonstatistical spin dynamics in photodissociation of H₂O at 157 nm"
+  journal: "J. Chem. Phys."
+  journal_full: "The Journal of Chemical Physics"
+  volume: ""
+  doi: "10.1063/1.2830710"
+  role: first
+  topics: [reaction-dynamics, photodissociation]
+  verified: partial
+
+- year: 2007
+  section: reaction-dynamics
+  authors: "I-Chung Lu, Wei-Jan Huang, Chanchal Chaudhuri, Wen-Kai Chen, Shih-Huang Lee*"
+  title: "Development of a stable source of atomic oxygen with a pulsed high-voltage discharge and its application to crossed-beam reactions"
+  journal: "Rev. Sci. Instrum."
+  journal_full: "Review of Scientific Instruments"
+  volume: ""
+  doi: "10.1063/1.2772090"
+  role: first
+  topics: [reaction-dynamics, instrumentation, molecular-beam]
+  verified: partial
+
+- year: 2007
+  section: reaction-dynamics
+  authors: "Chanchal Chaudhuri, I-Chung Lu, Jim J. Lin, Shih-Huang Lee*"
+  title: "Investigations of oxysilanes from the crossed-beam reaction of atomic oxygen with silane using tunable vacuum-ultraviolet ionization"
+  journal: "Chem. Phys. Lett."
+  journal_full: "Chemical Physics Letters"
+  volume: ""
+  doi: "10.1016/j.cplett.2007.07.048"
+  role: co-author
+  topics: [reaction-dynamics, molecular-beam]
+  verified: partial
+
+- year: 2007
+  section: reaction-dynamics
+  authors: "Fengyan Wang, I-Chung Lu, Kaijun Yuan, Yang Cheng, Ming Wu, David H. Parker, Xueming Yang*"
+  title: "Photodissociation dynamics of HI and DI at 157 nm"
+  journal: "Chem. Phys. Lett."
+  journal_full: "Chemical Physics Letters"
+  volume: ""
+  doi: "10.1016/j.cplett.2007.10.017"
+  role: co-author
+  topics: [reaction-dynamics, photodissociation]
+  verified: partial
+
+- year: 2006
+  section: reaction-dynamics
+  authors: "I-Chung Lu, Shih-Huang Lee, Yuan-Tseh Lee, Xueming Yang*"
+  title: "Photodissociation dynamics of ketene at 157.6 nm"
+  journal: "J. Chem. Phys."
+  journal_full: "The Journal of Chemical Physics"
+  volume: ""
+  doi: "10.1063/1.2147221"
+  role: first
+  topics: [reaction-dynamics, photodissociation]
+  verified: partial
+
+- year: 2005
+  section: reaction-dynamics
+  authors: "Qin Ran, Chia-Hua Yang, Yuan-Tseh Lee, I-Chung Lu, Guorong Shen, Lei Wang, Xueming Yang*"
+  title: "Molecular beam studies of the F atom reaction with propyne: Site specific reactivity"
+  journal: "J. Chem. Phys."
+  journal_full: "The Journal of Chemical Physics"
+  volume: ""
+  doi: "10.1063/1.1839865"
+  role: co-author
+  topics: [reaction-dynamics, molecular-beam]
+  verified: partial
+
+- year: 2004
+  section: reaction-dynamics
+  authors: "Xiaoguo Mu, I-Chung Lu, Shih-Huang Lee, Xiuyan Wang, Xueming Yang*"
+  title: "Photodissociation dynamics of 1,2-butadiene at 157 nm"
+  journal: "J. Chem. Phys."
+  journal_full: "The Journal of Chemical Physics"
+  volume: ""
+  doi: "10.1063/1.1782791"
+  role: co-author
+  topics: [reaction-dynamics, photodissociation]
+  verified: partial
+
+- year: 2004
+  section: reaction-dynamics
+  authors: "Xiaoguo Mu, I-Chung Lu, Shih-Huang Lee, Xiuyan Wang, Xueming Yang*"
+  title: "Photodissociation dynamics of 1,3-butadiene at 157 nm"
+  journal: "J. Phys. Chem. A"
+  journal_full: "The Journal of Physical Chemistry A"
+  volume: ""
+  doi: "10.1021/jp047239c"
+  role: co-author
+  topics: [reaction-dynamics, photodissociation]
+  verified: partial
+
+- year: 2003
+  section: reaction-dynamics
+  authors: "I-Chung Lu, Jim J. Lin, Shih-Huang Lee, Yuan-Tseh Lee, Xueming Yang*"
+  title: "Product angular anisotropy in CO₂ photodissociation at 157 nm"
+  journal: "Chem. Phys. Lett."
+  journal_full: "Chemical Physics Letters"
+  volume: "382 (5–6), 665–670"
+  doi: "10.1016/j.cplett.2003.07.035"
+  role: first
+  topics: [reaction-dynamics, photodissociation]
+  verified: true
+
+# ---------- 2026-07-26 自 ORCID/Web of Science 再補入 2 筆 ----------
+
+- year: 2024
+  authors: "Sarah Trimpin*, Ellen D. Inutan, Vincent S. Pagnotti, Santosh Karki, Darrell D. Marshall, Khoa Hoang, Beixi Wang, Christopher B. Lietz, Alicia L. Richards, Frank S. Yenchick, Chuping Lee, I-Chung Lu, Madeleine Fenner, Sara Madarshahian, Sarah Saylor, Nicolas D. Chubatyi, Teresa Zimmerman, Abigail Moreno-Pedraza, Tongwen Wang, Adetoun Adeniji-Adele, Anil K. Meher, Hasini Madagedara, Zachary Owczarzak, Ahmed Musavi, Tamara L. Hendrickson, Patricia M. Peacock, John W. Tomsho, Barbara S. Larsen, Laszlo Prokai, Vladimir Shulaev, Milan Pophristic, Charles N. McEwen"
+  title: "Direct sub-atmospheric pressure ionization mass spectrometry: Evaporation/sublimation-driven ionization is amazing, fundamentally, and practically"
+  journal: "J. Mass Spectrom."
+  journal_full: "Journal of Mass Spectrometry"
+  volume: "59 (6), e5018"
+  doi: "10.1002/jms.5018"
+  role: co-author
+  topics: [ambient-ionization, ionization-mechanism, review]
+  verified: true    # Crossref 核實：59 (6)，32 位作者
+
+- year: 2021
+  authors: "Sarah Trimpin*, Darrell D. Marshall, Santosh Karki, Sara Madarshahian, Khoa Hoang, Anil K. Meher, Milan Pophristic, Alicia L. Richards, Christopher B. Lietz, Joshua L. Fischer, Efstathios A. Elia, Beixi Wang, Vincent S. Pagnotti, Corinne A. Lutomski, Tarick J. El-Baba, I-Chung Lu, James Wager-Miller, Ken Mackie, Charles N. McEwen, Ellen D. Inutan"
+  title: "An overview of biological applications and fundamentals of new inlet and vacuum ionization technologies"
+  journal: "Rapid Commun. Mass Spectrom."
+  journal_full: "Rapid Communications in Mass Spectrometry"
+  volume: "35 (S1), e8829"
+  doi: "10.1002/rcm.8829"
+  role: co-author
+  topics: [ambient-ionization, ionization-mechanism, review]
+  verified: true    # Crossref 核實：35 (S1)，20 位作者

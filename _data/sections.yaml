@@ -1,0 +1,53 @@
+# ============================================================
+# sections.yaml — Publications 頁的分區定義
+#
+# publications.yaml 裡每筆的 section 欄位對應到這裡的 id。
+# 沒有 section 欄位者歸入第一區（independent）。
+#
+# 分區用「做了什麼」而非「多久以前」命名，讀者掃過去看到的是
+# 一條研究軌跡：分子束動力學 → 游離機制 → 獨立發展應用。
+# 要改順序、標題或說明文字，改這個檔即可，不必動腳本。
+# ============================================================
+
+- id: independent
+  years_en: "2019–present"
+  years_zh: "2019 至今"
+  title_en: "Independent Research"
+  title_zh: "獨立研究"
+  note_en: >
+    Work from my own group at National Chung Hsing University and Providence
+    University: carbohydrate quantification and AI-assisted classification,
+    portable mass spectrometry, and mechanistic studies of catalysis carried out
+    with synthetic and computational collaborators.
+  note_zh: >
+    於中興大學與靜宜大學主持研究團隊期間的成果：醣類定量與 AI 輔助分類、
+    可攜式質譜，以及與合成及計算團隊合作的催化反應機構研究。
+
+- id: ionization-techniques
+  years_en: "2009–2018"
+  years_zh: "2009–2018"
+  title_en: "Ionization Techniques in Mass Spectrometry"
+  title_zh: "質譜游離技術"
+  note_en: >
+    Postdoctoral work at the Institute of Atomic and Molecular Sciences,
+    Academia Sinica, and at Wayne State University. This period established the
+    thermal proton transfer picture of MALDI ionization and extended it to
+    inlet and vacuum ionization, which remains the foundation of the group's
+    current research.
+  note_zh: >
+    於中央研究院原子與分子科學研究所與美國 Wayne State University 的博士後研究。
+    這段期間確立了 MALDI 游離的熱質子轉移圖像，並延伸至 inlet 與真空游離，
+    至今仍是本團隊研究的基礎。
+
+- id: reaction-dynamics
+  years_en: "2003–2008"
+  years_zh: "2003–2008"
+  title_en: "Reaction Dynamics"
+  title_zh: "反應動力學"
+  note_en: >
+    Doctoral and early postdoctoral work on crossed molecular-beam reaction
+    dynamics and photodissociation, studying how bonds break and form in
+    isolated collisions.
+  note_zh: >
+    博士班與早期博後時期的交叉分子束反應動力學與光解離研究，
+    探討化學鍵在孤立碰撞中如何斷裂與生成。

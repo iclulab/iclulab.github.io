@@ -1,0 +1,832 @@
+#!/usr/bin/env python3
+"""
+build_site.py — 由 _data/*.yaml 生成整個網站（中英雙語）
+
+用法：
+    python3 scripts/build_site.py
+
+需求：
+    pip3 install pyyaml
+
+輸出：
+    英文版 → /index.html, /research.html, ...
+    中文版 → /zh/index.html, /zh/research.html, ...
+    另有 sitemap.xml, robots.txt, 404.html
+
+雙語設計說明
+------------
+英文與中文各有獨立網址，而不是用 JavaScript 切換顯示。
+理由是搜尋引擎會把兩種語言各自建立索引，中文使用者搜「盧臆中 質譜」
+與英文使用者搜 "I-Chung Lu mass spectrometry" 都能命中對應版本。
+兩邊以 <link rel="alternate" hreflang> 互指，Google 就知道它們是同一內容的不同語言版。
+
+改內容請改 _data/ 底下的 YAML，不要直接改生成出來的 HTML，
+下次執行本腳本會被覆蓋。
+"""
+
+import html
+import json
+import pathlib
+import sys
+from datetime import date
+
+import yaml
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+from pubfmt import format_authors  # noqa: E402
+
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+DATA = ROOT / "_data"
+SITE = "https://iclulab.github.io"
+LANGS = ("en", "zh")
+
+PAGES = ["index", "research", "facility", "publications", "people", "teaching", "join"]
+
+e = html.escape
+
+
+def load(name):
+    return yaml.safe_load((DATA / f"{name}.yaml").read_text(encoding="utf-8"))
+
+
+P = load("profile")
+PUBS = load("publications")
+PEOPLE = load("people")
+NEWS = load("news")
+RESEARCH = load("research")
+SECTIONS = load("sections")
+FACILITY = load("facility")
+
+
+def pubs_in(section_id):
+    """取某分區的著作；無 section 欄位者歸入第一區。"""
+    default = SECTIONS[0]["id"]
+    return [p for p in PUBS if p.get("section", default) == section_id]
+
+
+def tidy(s):
+    return " ".join((s or "").split())
+
+
+def pick(obj, key, lang):
+    """取 key_en / key_zh，缺中文時退回英文。"""
+    return obj.get(f"{key}_{lang}") or obj.get(f"{key}_en") or ""
+
+
+# ------------------------------------------------------------------
+# UI 字串
+# ------------------------------------------------------------------
+T = {
+    "en": {
+        "nav": ["Home", "Research", "Facility", "Publications", "Group", "Teaching", "Join Us"],
+        "switch": "中文",
+        "role_title": f"{P['title_en']} · {P['department_en']}",
+        "inst": P["institution_en"],
+        "addr": P["contact"]["address_en"],
+        "office": P["contact"]["office_en"],
+        "lab": P["contact"]["lab_en"],
+        "research": "Research",
+        "selected": "Selected publications",
+        "all_pubs": "All {n} publications →",
+        "read_more": "Read more about the research →",
+        "news": "News",
+        "group": "The group",
+        "group_body": "The lab brings together students working on ionization fundamentals, "
+                      "instrument development, and applied classification problems.",
+        "meet": "Meet the group →",
+        "publications": "Publications",
+        "earlier": "Earlier work — reaction dynamics (2003–2008)",
+        "earlier_h": "Earlier work",
+        "grants": "Research grants",
+        "education": "Education",
+        "appointments": "Appointments",
+        "awards": "Awards",
+        "pi": "Principal Investigator",
+        "assistant": "Research Assistant",
+        "master": "Master's Students",
+        "undergrad": "Undergraduate Students",
+        "alumni": "Alumni",
+        "teaching": "Teaching",
+        "teaching_body": "I teach physical chemistry at both undergraduate and graduate "
+                         "level at National Chung Hsing University.",
+        "t_awards": "Teaching awards",
+        "courses": "Courses",
+        "courses_note": "Course listings are still to be added. This page is structured to "
+                        "accommodate a course list, lecture notes, and an eventual link to "
+                        "the YouTube teaching channel.",
+        "join": "Join Us",
+        "join_body": "We are looking for students who are curious about how measurements "
+                     "actually work, not just how to run them. Projects span ionization "
+                     "fundamentals, instrument building, and machine-learning classification "
+                     "of spectra, so there is room for people with quite different strengths.",
+        "what": "What you can work on",
+        "touch": "Get in touch",
+        "touch_body": "Email me with a short note about what interests you and, if you have "
+                      "one, a CV. NCHU undergraduates are welcome to drop by my office "
+                      "(Room 508) or come and see the lab (Room 102).",
+        "legend": "<b>*</b> marks the corresponding author. Names in <b>bold</b> indicate "
+                  "I-Chung Lu. For the large multi-author community reviews co-authored with "
+                  "S. Trimpin the author list is abbreviated; all other papers list every "
+                  "author in full.",
+        "facility": "Customized Mass Spectrometry Platform",
+        "fac_short": "Technical Platform",
+        "fac_why": "Why customization",
+        "fac_cap": "What we do",
+        "fac_svc": "Services",
+        "fac_case": "Collaboration cases",
+        "fac_apply": "Apply for technical service →",
+        "fac_note": "Operated as a sub-project of the NSTC A-Core Plus advanced core facility programme.",
+        "fac_home": "We run a customized mass spectrometry platform open to other research groups, "
+                    "for measurements that standard instrument centres cannot make.",
+        "fac_more": "About the platform →",
+        "refs": "Related publications",
+        "f_all": "All",
+        "f_lead": "First / corresponding",
+        "s_pubs": "Publications",
+        "s_lead": "First / corresponding",
+        "s_grants": "NSTC grants",
+        "s_ongoing": "Ongoing",
+        "b_corr": "Corresponding author",
+        "b_cocorr": "Co-corresponding author",
+        "b_first": "First author",
+        "b_inv": "Invited review",
+        "dyn_note": "Crossed molecular-beam and photodissociation dynamics from the PhD and "
+                    "early postdoctoral years.",
+        "updated": "Last updated",
+        "source": "Source",
+        "notfound": "That page does not exist.",
+        "home_link": "Back to the homepage →",
+        "see_dyn": "See the reaction dynamics publications →",
+    },
+    "zh": {
+        "nav": ["首頁", "研究", "技術平台", "著作", "團隊", "教學", "加入我們"],
+        "switch": "EN",
+        "role_title": f"{P['title_zh']} · {P['department_zh']}",
+        "inst": P["institution_zh"],
+        "addr": P["contact"]["address_zh"],
+        "office": P["contact"]["office_zh"],
+        "lab": P["contact"]["lab_zh"],
+        "research": "研究",
+        "selected": "近期著作",
+        "all_pubs": "全部 {n} 篇著作 →",
+        "read_more": "閱讀完整研究介紹 →",
+        "news": "消息",
+        "group": "實驗室",
+        "group_body": "實驗室的研究橫跨游離機制、儀器開發與分類應用，"
+                      "不同專長的同學都能找到位置。",
+        "meet": "認識團隊成員 →",
+        "publications": "著作",
+        "earlier": "早期研究 — 反應動力學（2003–2008）",
+        "earlier_h": "早期研究",
+        "grants": "研究計畫",
+        "education": "學歷",
+        "appointments": "經歷",
+        "awards": "獲獎",
+        "pi": "實驗室主持人",
+        "assistant": "研究助理",
+        "master": "碩士班學生",
+        "undergrad": "大學部學生",
+        "alumni": "畢業校友",
+        "teaching": "教學",
+        "teaching_body": "於國立中興大學講授大學部與研究所的物理化學課程。",
+        "t_awards": "教學獲獎",
+        "courses": "課程",
+        "courses_note": "課程資訊待補。此頁面已預留架構，日後可加入課程列表、"
+                        "講義下載，以及 YouTube 教學頻道的整合。",
+        "join": "加入我們",
+        "join_body": "我們歡迎對「量測背後的原理」感到好奇的同學，而不只是會操作儀器。"
+                     "研究題目橫跨游離機制、儀器開發、以及光譜的機器學習分類，"
+                     "不同專長的人都能找到位置。",
+        "what": "你可以做的題目",
+        "touch": "聯絡方式",
+        "touch_body": "來信簡述你感興趣的方向，有履歷的話一併附上。"
+                      "中興大學部同學也歡迎直接到化學館 508 室找我聊聊，"
+                      "或到 102 實驗室看看我們在做什麼。",
+        "legend": "星號 <b>*</b> 標示通訊作者，<b>粗體</b>為本人。"
+                  "與 S. Trimpin 合著的大型社群綜論因作者眾多而省略中間作者，"
+                  "其餘論文一律完整列出所有作者。",
+        "facility": "客製化質譜探測服務平台",
+        "fac_short": "技術平台",
+        "fac_why": "為什麼質譜需要客製化",
+        "fac_cap": "我們提供什麼",
+        "fac_svc": "服務項目",
+        "fac_case": "合作案例",
+        "fac_apply": "前往申請技術服務 →",
+        "fac_note": "本平台為國科會 A-Core Plus 尖端核心設施技術服務計畫子項目。",
+        "fac_home": "我們經營一個對外開放的客製化質譜平台，"
+                    "承接常設儀器中心做不到的量測需求。",
+        "fac_more": "了解平台 →",
+        "refs": "相關著作",
+        "f_all": "全部",
+        "f_lead": "第一/通訊作者",
+        "s_pubs": "篇著作",
+        "s_lead": "第一/通訊作者",
+        "s_grants": "國科會計畫",
+        "s_ongoing": "執行中",
+        "b_corr": "通訊作者",
+        "b_cocorr": "共同通訊作者",
+        "b_first": "第一作者",
+        "b_inv": "邀稿綜論",
+        "dyn_note": "博士班與早期博後時期的交叉分子束與光解離動力學研究。",
+        "updated": "最後更新",
+        "source": "原始碼",
+        "notfound": "找不到這個頁面。",
+        "home_link": "回到首頁 →",
+        "see_dyn": "查看反應動力學時期的著作 →",
+    },
+}
+
+
+# ------------------------------------------------------------------
+def url(page, lang):
+    return f"{page}.html" if lang == "en" else f"zh/{page}.html"
+
+
+def rel(page, lang):
+    """同語言內的頁面連結（相對路徑）。"""
+    return f"{page}.html"
+
+
+def asset(path, lang):
+    return path if lang == "en" else f"../{path}"
+
+
+def layout(page, lang, title, description, body, jsonld=None):
+    t = T[lang]
+    ACTIVE = ' class="active"'
+    nav = "".join(
+        '<a href="{}"{}>{}</a>'.format(rel(p, lang), ACTIVE if p == page else "", label)
+        for p, label in zip(PAGES, t["nav"])
+    )
+    other = "zh" if lang == "en" else "en"
+    switch = f'<a href="{"zh/" if other == "zh" else "../"}{page}.html" class="lang">{T[lang]["switch"]}</a>'
+    ld = (
+        f'\n<script type="application/ld+json">{json.dumps(jsonld, ensure_ascii=False)}</script>'
+        if jsonld
+        else ""
+    )
+    return f"""<!DOCTYPE html>
+<html lang="{'en' if lang == 'en' else 'zh-Hant'}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{e(title)}</title>
+<meta name="description" content="{e(description)}">
+<link rel="canonical" href="{SITE}/{url(page, lang)}">
+<link rel="alternate" hreflang="en" href="{SITE}/{url(page, 'en')}">
+<link rel="alternate" hreflang="zh-Hant" href="{SITE}/{url(page, 'zh')}">
+<link rel="alternate" hreflang="x-default" href="{SITE}/{url(page, 'en')}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{e(title)}">
+<meta property="og:description" content="{e(description)}">
+<meta property="og:url" content="{SITE}/{url(page, lang)}">
+<meta property="og:image" content="{SITE}/assets/img/lu.jpg">
+<meta property="og:locale" content="{'en_US' if lang == 'en' else 'zh_TW'}">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="{asset('assets/css/style.css', lang)}">{ld}
+</head>
+<body>
+<header class="site-header"><div class="wrap">
+  <a class="brand" href="{rel('index', lang)}">I-Chung Lu<span>盧臆中</span></a>
+  <nav class="main">{nav}{switch}</nav>
+</div></header>
+<main>
+{body}
+</main>
+<footer class="site-footer"><div class="wrap">
+  <p>{e(t['role_title'])}<br>{e(t['inst'])}<br>{e(t['addr'])}</p>
+  <p>{e(t['office'])} · {e(t['lab'])}</p>
+  <p><a href="mailto:{P['contact']['email']}">{P['contact']['email']}</a> ·
+     Tel {e(P['contact']['phone'])}</p>
+  <p>{e(t['updated'])} {date.today().isoformat()} ·
+     <a href="https://github.com/iclulab/iclulab.github.io">{e(t['source'])}</a></p>
+</div></footer>
+</body>
+</html>
+"""
+
+
+# ------------------------------------------------------------------
+# Fragments
+# ------------------------------------------------------------------
+def badges(p, lang):
+    t = T[lang]
+    m = {
+        "corresponding": f'<span class="badge corr">{t["b_corr"]}</span>',
+        "co-corresponding": f'<span class="badge corr">{t["b_cocorr"]}</span>',
+        "first": f'<span class="badge first">{t["b_first"]}</span>',
+        "co-author": "",
+    }
+    out = m[p["role"]]
+    if p.get("invited_review"):
+        out += f'<span class="badge inv">{t["b_inv"]}</span>'
+    return out
+
+
+ROLE_KEY = {"corresponding": "corr", "co-corresponding": "corr", "first": "first", "co-author": "co"}
+
+
+def pub_li(p, lang):
+    doi = (
+        f'<a class="doi" href="https://doi.org/{p["doi"]}">doi:{e(p["doi"])}</a>'
+        if p.get("doi")
+        else ""
+    )
+    vol = f", {e(p['volume'])}" if p.get("volume") else ""
+    topics = " ".join(p.get("topics") or [])
+    return f"""<li data-role="{ROLE_KEY[p['role']]}" data-topics="{e(topics)}">
+  <span class="pub-authors">{format_authors(p['authors'], highlight=True)}</span>
+  <span class="pub-title">{e(p['title'])}</span>
+  <span class="pub-meta"><em>{e(p['journal'])}</em> <b>{p['year']}</b>{vol}</span>
+  <span class="pub-badges">{badges(p, lang)}{doi}</span>
+</li>"""
+
+
+def news_items(lang, limit=None):
+    items = NEWS[:limit] if limit else NEWS
+    key = "text_zh" if lang == "zh" else "text_en"
+    return "".join(
+        f'<li><time>{e(n["date"])}</time><span>{e(n.get(key) or n["text_zh"])}</span></li>'
+        for n in items
+    )
+
+
+def idlinks(lang):
+    L = P["links"]
+    return (
+        '<div class="idlinks">'
+        f'<a href="{L["google_scholar"]}">Google Scholar</a>'
+        f'<a href="{L["orcid"]}">ORCID</a>'
+        f'<a href="{rel("publications", lang)}">{T[lang]["publications"]}</a>'
+        f'<a href="mailto:{P["contact"]["email"]}">Email</a>'
+        "</div>"
+    )
+
+
+def theme_blocks(lang):
+    out = []
+    for th in RESEARCH["themes"]:
+        out.append(
+            f"""<div class="theme">
+  <span class="tag">{e(th['tag'])}</span>
+  <h3>{e(pick(th, 'title', lang))}</h3>
+  <p>{e(tidy(pick(th, 'body', lang)))}</p>
+</div>"""
+        )
+    return f'<div class="themes">{"".join(out)}</div>'
+
+
+def person_card(p, lang):
+    photo = (
+        f'<img class="ph" src="{asset("assets/img/people/", lang)}{e(p["photo"])}" alt="{e(p["name_en"])}">'
+        if p.get("photo")
+        else f'<div class="ph">{e(p["name_zh"][0]) if p.get("name_zh") else "·"}</div>'
+    )
+    primary = p["name_zh"] if lang == "zh" and p.get("name_zh") else p["name_en"]
+    secondary = p["name_en"] if lang == "zh" and p.get("name_zh") else p.get("name_zh", "")
+    topic = f'<div class="topic">{e(p["topic"])}</div>' if p.get("topic") else ""
+    return (
+        f'<div class="person">{photo}<div class="nm">{e(primary)}</div>'
+        f'<div class="nm-zh">{e(secondary)}</div>{topic}</div>'
+    )
+
+
+def people_group(heading, members, lang):
+    if not members:
+        return ""
+    cards = "".join(person_card(m, lang) for m in members)
+    return f'<section><h2>{e(heading)}</h2><div class="people">{cards}</div></section>'
+
+
+# ------------------------------------------------------------------
+main_pubs = pubs_in(SECTIONS[0]["id"])
+n_lead = sum(1 for p in PUBS if p["role"] in ("first", "corresponding", "co-corresponding"))
+n_ongoing = sum(1 for g in P["grants"] if g["status"] == "ongoing")
+
+
+def stats(lang):
+    t = T[lang]
+    return f"""<div class="stats">
+  <div class="stat"><div class="n">{len(PUBS)}</div><div class="k">{t['s_pubs']}</div></div>
+  <div class="stat"><div class="n">{n_lead}</div><div class="k">{t['s_lead']}</div></div>
+  <div class="stat"><div class="n">{len(P['grants'])}</div><div class="k">{t['s_grants']}</div></div>
+  <div class="stat"><div class="n">{n_ongoing}</div><div class="k">{t['s_ongoing']}</div></div>
+</div>"""
+
+
+# ------------------------------------------------------------------
+# Pages
+# ------------------------------------------------------------------
+def page_index(lang):
+    t = T[lang]
+    jsonld = {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "I-Chung Lu",
+        "alternateName": ["盧臆中", "Lu, I-Chung"],
+        "jobTitle": P["title_en"],
+        "email": f"mailto:{P['contact']['email']}",
+        "url": SITE,
+        "image": f"{SITE}/assets/img/lu.jpg",
+        "identifier": P["links"]["orcid"],
+        "sameAs": [P["links"]["orcid"], P["links"]["google_scholar"], P["links"]["github"]],
+        "affiliation": {
+            "@type": "CollegeOrUniversity",
+            "name": P["institution_en"],
+            "department": P["department_en"],
+            "address": P["contact"]["address_en"],
+        },
+        "alumniOf": [
+            {"@type": "CollegeOrUniversity", "name": ed["institution"]} for ed in P["education"]
+        ],
+        "knowsAbout": P["research_interests"],
+        "description": tidy(P["bio_short"]),
+    }
+    body = f"""<div class="hero"><div class="wrap"><div class="hero-grid">
+  <img class="hero-photo" src="{asset('assets/img/lu.jpg', lang)}" alt="I-Chung Lu">
+  <div>
+    <h1>I-Chung Lu<span class="zh-name">盧臆中</span></h1>
+    <p class="role">{e(t['role_title'])}<br>{e(t['inst'])}</p>
+    <p class="lede">{e(tidy(pick(RESEARCH, 'intro', lang)))}</p>
+    {idlinks(lang)}
+  </div>
+</div></div></div>
+
+<div class="wrap">
+<section>{stats(lang)}</section>
+
+<section>
+  <h2>{e(t['research'])}</h2>
+  {theme_blocks(lang)}
+  <p style="margin-top:24px"><a href="{rel('research', lang)}">{e(t['read_more'])}</a></p>
+</section>
+
+<section>
+  <h2>{e(t['selected'])}</h2>
+  <ol class="pubs">{''.join(pub_li(p, lang) for p in main_pubs[:5])}</ol>
+  <p style="margin-top:18px"><a href="{rel('publications', lang)}">{e(t['all_pubs'].format(n=len(PUBS)))}</a></p>
+</section>
+
+<section>
+  <h2>{e(t['news'])}</h2>
+  <ul class="news">{news_items(lang, 8)}</ul>
+</section>
+
+<section>
+  <h2>{e(t['fac_short'])}</h2>
+  <p>{e(t['fac_home'])} <a href="{rel('facility', lang)}">{e(t['fac_more'])}</a></p>
+</section>
+
+<section>
+  <h2>{e(t['group'])}</h2>
+  <p>{e(t['group_body'])} <a href="{rel('people', lang)}">{e(t['meet'])}</a></p>
+</section>
+</div>"""
+    title = (
+        "I-Chung Lu | Mass Spectrometry & Physical Chemistry | NCHU"
+        if lang == "en"
+        else "盧臆中 I-Chung Lu ｜ 質譜與物理化學 ｜ 國立中興大學化學系"
+    )
+    desc = (
+        "I-Chung Lu, Associate Professor of Chemistry at National Chung Hsing University. "
+        "Research on MALDI ionization mechanisms, carbohydrate mass spectrometry with AI "
+        "classification, smart plastic identification, and reactive intermediates in catalysis."
+        if lang == "en"
+        else "盧臆中，國立中興大學化學系副教授。研究領域涵蓋 MALDI 游離機制、"
+        "醣類質譜結合 AI 分類、塑膠智慧辨識與回收，以及催化反應中間體的捕捉。"
+    )
+    return layout("index", lang, title, desc, body, jsonld)
+
+
+def page_research(lang):
+    t = T[lang]
+    grants = "".join(
+        f"""<li><div class="g-head">
+      <span class="g-title">{e(pick(g, 'title', lang))}</span>
+      <span class="g-id">{e(g['id'])}</span>
+    </div>
+    <div class="g-id">{e(g['agency'])} · {e(g['period'])} ·
+      {'PI' if g['role'] == 'PI' else 'Co-PI'} · {e(g['status'])}</div></li>"""
+        for g in P["grants"]
+    )
+    themes = "".join(
+        f"""<div class="theme">
+  <span class="tag">{e(th['tag'])}</span>
+  <h3>{e(th['title_en'])}<span class="zh"> · {e(th['title_zh'])}</span></h3>
+  <p>{e(tidy(pick(th, 'body', lang)))}</p>
+</div>"""
+        for th in RESEARCH["themes"]
+    )
+    body = f"""<div class="wrap">
+<section>
+  <h2>{e(t['research'])}</h2>
+  <p class="lede">{e(tidy(pick(RESEARCH, 'intro', lang)))}</p>
+</section>
+
+<section><div class="themes">{themes}</div></section>
+
+<section>
+  <h2>{e(t['earlier_h'])}</h2>
+  <p>{e(tidy(pick(RESEARCH, 'earlier', lang)))}</p>
+  <p><a href="{rel('publications', lang)}#ionization-techniques">{e(t['see_dyn'])}</a></p>
+</section>
+
+<section>
+  <h2>{e(t['grants'])}</h2>
+  <ul class="grants">{grants}</ul>
+</section>
+</div>"""
+    title = "Research | I-Chung Lu | NCHU" if lang == "en" else "研究 ｜ 盧臆中 ｜ 中興大學化學系"
+    desc = (
+        "Ionization mechanisms, carbohydrate mass spectrometry with AI classification, "
+        "smart plastic identification, and reactive intermediates in catalysis."
+        if lang == "en"
+        else "游離機制、醣類質譜結合 AI 分類、塑膠智慧辨識與回收、催化反應中間體捕捉。"
+    )
+    return layout("research", lang, title, desc, body)
+
+
+def page_publications(lang):
+    t = T[lang]
+    topics = sorted({x for p in PUBS for x in (p.get("topics") or [])})
+    filters = (
+        f'<button aria-pressed="true" data-f="all">{e(t["f_all"])}</button>'
+        f'<button data-f="lead">{e(t["f_lead"])}</button>'
+        + "".join(
+            f'<button data-f="t:{e(x)}">{e(x.replace("-", " "))}</button>' for x in topics
+        )
+    )
+    script = """
+<script>
+document.querySelectorAll('.filters button').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('.filters button').forEach(x => x.setAttribute('aria-pressed','false'));
+  b.setAttribute('aria-pressed','true');
+  const f = b.dataset.f;
+  document.querySelectorAll('ol.pubs li').forEach(li => {
+    let show = true;
+    if (f === 'lead') show = li.dataset.role !== 'co';
+    else if (f.startsWith('t:')) show = li.dataset.topics.split(' ').includes(f.slice(2));
+    li.style.display = show ? '' : 'none';
+  });
+}));
+</script>"""
+    blocks = []
+    for i, s in enumerate(SECTIONS):
+        items = pubs_in(s["id"])
+        if not items:
+            continue
+        head = f"""<h2>{e(pick(s, 'title', lang))} <span class="yrs">{e(pick(s, 'years', lang))}</span></h2>
+  <p class="sec-note">{e(tidy(pick(s, 'note', lang)))}</p>"""
+        # 篩選器只放在第一區，套用到全頁
+        controls = f'<div class="filters">{filters}</div>' if i == 0 else ""
+        stat = stats(lang) if i == 0 else ""
+        legend = f'<div class="legend">{t["legend"]}</div>' if i == 0 else ""
+        blocks.append(
+            f"""<section id="{s['id']}">
+  {head}
+  {stat}{legend}{controls}
+  <ol class="pubs">{''.join(pub_li(p, lang) for p in items)}</ol>
+</section>"""
+        )
+    jump = " · ".join(
+        f'<a href="#{s["id"]}">{e(pick(s, "title", lang))}</a>'
+        for s in SECTIONS
+        if pubs_in(s["id"])
+    )
+    body = f"""<div class="wrap">
+<section style="padding-bottom:0;border:none">
+  <h2>{e(t['publications'])}</h2>
+  <p class="jump">{jump}</p>
+</section>
+{''.join(blocks)}
+</div>{script}"""
+    title = "Publications | I-Chung Lu | NCHU" if lang == "en" else "著作 ｜ 盧臆中 ｜ 中興大學化學系"
+    desc = (
+        f"{len(PUBS)} peer-reviewed publications by I-Chung Lu in mass spectrometry, "
+        "ionization mechanisms, catalysis, and reaction dynamics."
+        if lang == "en"
+        else f"盧臆中的 {len(PUBS)} 篇學術著作，涵蓋質譜、游離機制、催化與反應動力學。"
+    )
+    return layout("publications", lang, title, desc, body)
+
+
+def page_people(lang):
+    t = T[lang]
+    ed = "".join(
+        f'<li><span class="g-title">{e(x["degree"])}</span>'
+        f'<div class="g-id">{e(x["institution"])} · {e(x["years"])}</div></li>'
+        for x in P["education"]
+    )
+    ap = "".join(
+        f'<li><span class="g-title">{e(x["position"])}</span>'
+        f'<div class="g-id">{e(x["org"])} · {e(x["years"])}</div></li>'
+        for x in P["appointments"]
+    )
+    aw = "".join(
+        f'<li><span class="g-title">{e(pick(x, "name", lang))}</span>'
+        f'<div class="g-id">{x["year"]}</div></li>'
+        for x in P["awards"]
+    )
+    body = f"""<div class="wrap">
+<section><h2>{e(t['pi'])}</h2>
+<div class="hero-grid">
+  <img class="hero-photo" src="{asset('assets/img/lu.jpg', lang)}" alt="I-Chung Lu">
+  <div>
+    <h3>I-Chung Lu <span class="zh">盧臆中</span></h3>
+    <p class="zh">{e(t['role_title'])}，{e(t['inst'])}</p>
+    <p>{e(tidy(P['bio_short']))}</p>
+    {idlinks(lang)}
+  </div>
+</div></section>
+
+<section><h2>{e(t['education'])}</h2><ul class="grants">{ed}</ul></section>
+<section><h2>{e(t['appointments'])}</h2><ul class="grants">{ap}</ul></section>
+<section><h2>{e(t['awards'])}</h2><ul class="grants">{aw}</ul></section>
+""" + people_group(t["assistant"], PEOPLE.get("assistant") or [], lang) \
+    + people_group(t["master"], PEOPLE.get("master_students") or [], lang) \
+    + people_group(t["undergrad"], PEOPLE.get("undergraduate_students") or [], lang) \
+    + people_group(t["alumni"], PEOPLE.get("alumni") or [], lang) \
+    + "</div>"
+    title = "Group | I-Chung Lu | NCHU" if lang == "en" else "團隊 ｜ 盧臆中 ｜ 中興大學化學系"
+    desc = (
+        "Members of the Lu group at the Department of Chemistry, National Chung Hsing University."
+        if lang == "en"
+        else "國立中興大學化學系盧臆中實驗室成員。"
+    )
+    return layout("people", lang, title, desc, body)
+
+
+def page_teaching(lang):
+    t = T[lang]
+    aw = "".join(
+        f'<li><span class="g-title">{e(pick(x, "name", lang))}</span>'
+        f'<div class="g-id">{x["year"]}</div></li>'
+        for x in P["awards"]
+        if "Teach" in x["name_en"] or "Mentor" in x["name_en"]
+    )
+    body = f"""<div class="wrap">
+<section><h2>{e(t['teaching'])}</h2><p>{e(t['teaching_body'])}</p></section>
+<section><h2>{e(t['t_awards'])}</h2><ul class="grants">{aw}</ul></section>
+<section><h2>{e(t['courses'])}</h2><div class="note">{e(t['courses_note'])}</div></section>
+</div>"""
+    title = "Teaching | I-Chung Lu | NCHU" if lang == "en" else "教學 ｜ 盧臆中 ｜ 中興大學化學系"
+    desc = (
+        "Physical chemistry teaching at NCHU by I-Chung Lu, recipient of the "
+        "NCHU Distinguished Teaching Award."
+        if lang == "en"
+        else "盧臆中於中興大學講授物理化學，曾獲中興大學教學特優獎與特優導師。"
+    )
+    return layout("teaching", lang, title, desc, body)
+
+
+def page_join(lang):
+    t = T[lang]
+    body = f"""<div class="wrap">
+<section><h2>{e(t['join'])}</h2><p>{e(t['join_body'])}</p></section>
+<section><h2>{e(t['what'])}</h2>{theme_blocks(lang)}</section>
+<section>
+  <h2>{e(t['touch'])}</h2>
+  <p>{e(t['touch_body'])}</p>
+  <p><a class="cta" href="mailto:{P['contact']['email']}">{P['contact']['email']}</a></p>
+</section>
+</div>"""
+    title = "Join Us | I-Chung Lu | NCHU" if lang == "en" else "加入我們 ｜ 盧臆中 ｜ 中興大學化學系"
+    desc = (
+        "Openings for graduate and undergraduate students in the Lu group, NCHU."
+        if lang == "en"
+        else "盧臆中實驗室歡迎碩士班與大學部同學加入，研究題目涵蓋質譜、儀器開發與機器學習。"
+    )
+    return layout("join", lang, title, desc, body)
+
+
+def page_facility(lang):
+    t = T[lang]
+    caps = "".join(
+        f"""<div class="theme">
+  <h3>{e(pick(c, 'title', lang))}</h3>
+  <p>{e(tidy(pick(c, 'body', lang)))}</p>
+</div>"""
+        for c in FACILITY["capabilities"]
+    )
+    svcs = "".join(
+        f'<li><span class="g-title">{e(pick(sv, "name", lang))}</span></li>'
+        for sv in FACILITY["services"]
+    )
+    by_doi = {p["doi"]: p for p in PUBS if p.get("doi")}
+    cases = []
+    for c in FACILITY["cases"]:
+        refs = "".join(
+            f'<li><span class="g-title">{e(by_doi[d]["title"])}</span>'
+            f'<div class="g-id"><em>{e(by_doi[d]["journal"])}</em> {by_doi[d]["year"]}, '
+            f'{e(by_doi[d].get("volume",""))} · '
+            f'<a href="https://doi.org/{d}">doi:{e(d)}</a></div></li>'
+            for d in c["dois"] if d in by_doi
+        )
+        cases.append(
+            f"""<div class="case">
+  <h3>{e(pick(c, 'title', lang))}</h3>
+  <p>{e(tidy(pick(c, 'body', lang)))}</p>
+  <div class="case-refs"><span class="k">{e(t['refs'])}</span>
+    <ul class="grants">{refs}</ul></div>
+</div>"""
+        )
+    body = f"""<div class="wrap">
+<section>
+  <h2>{e(t['facility'])}</h2>
+  <p class="lede">{e(pick(FACILITY, 'tagline', lang))}</p>
+  <p>{e(tidy(pick(FACILITY, 'positioning', lang)))}</p>
+  <p><a class="cta" href="{FACILITY['apply_url']}">{e(t['fac_apply'])}</a></p>
+  <p class="sec-note">{e(t['fac_note'])}</p>
+</section>
+
+<section>
+  <h2>{e(t['fac_why'])}</h2>
+  <p>{e(tidy(pick(FACILITY, 'intro', lang)))}</p>
+</section>
+
+<section>
+  <h2>{e(t['fac_cap'])}</h2>
+  <div class="themes">{caps}</div>
+</section>
+
+<section>
+  <h2>{e(t['fac_svc'])}</h2>
+  <ul class="grants">{svcs}</ul>
+</section>
+
+<section>
+  <h2>{e(t['fac_case'])}</h2>
+  {''.join(cases)}
+</section>
+</div>"""
+    title = ("Customized Mass Spectrometry Platform | I-Chung Lu | NCHU" if lang == "en"
+             else "客製化質譜探測服務平台 ｜ 盧臆中 ｜ 中興大學化學系")
+    desc = ("A customized mass spectrometry service platform for reaction intermediates, "
+            "cold-spray ionization, and bespoke measurement design. NSTC A-Core Plus."
+            if lang == "en" else
+            "客製化質譜探測服務平台：液相反應中間體觀測、低溫噴灑游離質譜、"
+            "客製化量測設計。國科會 A-Core Plus 尖端核心設施。")
+    return layout("facility", lang, title, desc, body)
+
+
+BUILDERS = {
+    "index": page_index,
+    "facility": page_facility,
+    "research": page_research,
+    "publications": page_publications,
+    "people": page_people,
+    "teaching": page_teaching,
+    "join": page_join,
+}
+
+
+# ------------------------------------------------------------------
+def main():
+    (ROOT / "zh").mkdir(exist_ok=True)
+    written = []
+    for lang in LANGS:
+        outdir = ROOT if lang == "en" else ROOT / "zh"
+        for page in PAGES:
+            (outdir / f"{page}.html").write_text(BUILDERS[page](lang), encoding="utf-8")
+            written.append(url(page, lang))
+
+    today = date.today().isoformat()
+    urls = "".join(
+        f"<url><loc>{SITE}/{u}</loc><lastmod>{today}</lastmod></url>" for u in written
+    )
+    (ROOT / "sitemap.xml").write_text(
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        f'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{urls}</urlset>\n',
+        encoding="utf-8",
+    )
+    (ROOT / "robots.txt").write_text(
+        f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n", encoding="utf-8"
+    )
+    (ROOT / "404.html").write_text(
+        layout(
+            "index",
+            "en",
+            "Page not found | I-Chung Lu",
+            "Page not found.",
+            '<div class="wrap"><section><h2>404</h2>'
+            '<p>That page does not exist. <a href="index.html">Back to the homepage →</a></p>'
+            "</section></div>",
+        ),
+        encoding="utf-8",
+    )
+    (ROOT / ".nojekyll").write_text("", encoding="utf-8")
+
+    print(f"✓ {len(written)} pages ({len(PAGES)} × {len(LANGS)} languages)")
+    print(f"  en → /            zh → /zh/")
+    print(f"  publications: {len(PUBS)}")
+    for s in SECTIONS:
+        items = pubs_in(s["id"])
+        if items:
+            yrs = [p["year"] for p in items]
+            print(f"    · {s['title_en']:<42} {len(items):>2} ({min(yrs)}–{max(yrs)})")
+    print(f"  grants: {len(P['grants'])}   news: {len(NEWS)}")
+    print("  + sitemap.xml, robots.txt, 404.html, .nojekyll")
+
+
+if __name__ == "__main__":
+    main()
