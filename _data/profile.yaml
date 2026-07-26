@@ -165,6 +165,8 @@ grants:
     period: "2024/06–2026/05"
     role: co-PI
     status: ongoing
+    # 平台維運類計畫不對外顯示（設 false 即從網頁隱藏，資料仍保留供 CV 使用）
+    public: false
 
   - id: "112-2113-M-005-018-"
     title_zh: "建構以研究有機金屬催化反應機構為目的質譜平台 (二) (1/2)"

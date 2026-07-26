@@ -41,7 +41,7 @@ SITE = "https://iclulab.github.io"
 LANGS = ("en", "zh")
 
 # 主導覽列的頁面
-PAGES = ["index", "research", "facility", "publications", "people", "teaching", "join"]
+PAGES = ["index", "research", "facility", "publications", "people", "life", "teaching", "join"]
 # 不進導覽列、但要生成的子頁（由其他頁面連入）
 SUBPAGES = ["alumni"]
 ALL_PAGES = PAGES + SUBPAGES
@@ -67,6 +67,7 @@ NEWS = load("news")
 RESEARCH = load("research")
 SECTIONS = load("sections")
 FACILITY = load("facility")
+ALBUMS = load("albums")["albums"]
 
 
 def pubs_in(section_id):
@@ -89,7 +90,8 @@ def pick(obj, key, lang):
 # ------------------------------------------------------------------
 T = {
     "en": {
-        "nav": ["Home", "Research", "Facility", "Publications", "Group", "Teaching", "Join Us"],
+        "nav": ["Home", "Research", "Facility", "Publications", "Group", "Life",
+                "Teaching", "Join Us"],
         "switch": "中文",
         "role_title": f"{P['title_en']} · {P['department_en']}",
         "inst": P["institution_en"],
@@ -119,9 +121,14 @@ T = {
         "alumni": "Lab Alumni",
         "alumni_lede": "Students who trained in the lab and have since moved on to "
                        "graduate school, industry, and research positions elsewhere.",
-        "alumni_link": "See all {n} lab alumni →",
-        "alumni_teaser": "{n} students have passed through the lab since it opened.",
+        "alumni_link": "See all lab alumni →",
         "back_group": "← Back to the group",
+        "life": "Lab Life",
+        "life_lede": "Conferences, hiking trips, moving the instruments in, and a great "
+                     "many meals. A research group is also the people in it.",
+        "life_home": "Conferences, outings, and the everyday work of the lab.",
+        "life_more": "See lab life →",
+        "photos_n": "{n} photos",
         "teaching": "Teaching",
         "teaching_body": "I teach physical chemistry at both undergraduate and graduate "
                          "level at National Chung Hsing University.",
@@ -175,7 +182,7 @@ T = {
         "see_dyn": "See the reaction dynamics publications →",
     },
     "zh": {
-        "nav": ["首頁", "研究", "技術平台", "著作", "團隊", "教學", "加入我們"],
+        "nav": ["首頁", "研究", "技術平台", "著作", "團隊", "生活", "教學", "加入我們"],
         "switch": "EN",
         "role_title": f"{P['title_zh']} · {P['department_zh']}",
         "inst": P["institution_zh"],
@@ -204,9 +211,13 @@ T = {
         "undergrad": "大學部學生",
         "alumni": "歷屆成員",
         "alumni_lede": "曾在實驗室受訓的同學，如今分布在各研究所、產業界與研究單位。",
-        "alumni_link": "查看全部 {n} 位歷屆成員 →",
-        "alumni_teaser": "實驗室成立至今，已有 {n} 位同學在這裡完成訓練。",
+        "alumni_link": "查看全部歷屆成員 →",
         "back_group": "← 回到團隊",
+        "life": "實驗室生活",
+        "life_lede": "研討會、爬山、搬儀器，還有很多頓飯。實驗室除了研究，也是一群人。",
+        "life_home": "研討會、出遊，以及實驗室的日常。",
+        "life_more": "看看實驗室生活 →",
+        "photos_n": "{n} 張",
         "teaching": "教學",
         "teaching_body": "於國立中興大學講授大學部與研究所的物理化學課程。",
         "t_awards": "教學獲獎",
@@ -455,7 +466,9 @@ ALUMNI_RECENT = ALUMNI[::-1][:6]
 
 main_pubs = pubs_in(SECTIONS[0]["id"])
 n_lead = sum(1 for p in PUBS if p["role"] in ("first", "corresponding", "co-corresponding"))
-n_ongoing = sum(1 for g in P["grants"] if g["status"] == "ongoing")
+# public: false 的計畫不上網頁（例如平台維運類），資料仍留在 YAML 供 CV 用
+GRANTS = [g for g in P["grants"] if g.get("public", True)]
+n_ongoing = sum(1 for g in GRANTS if g["status"] == "ongoing")
 
 
 def stats(lang):
@@ -463,7 +476,7 @@ def stats(lang):
     return f"""<div class="stats">
   <div class="stat"><div class="n">{len(PUBS)}</div><div class="k">{t['s_pubs']}</div></div>
   <div class="stat"><div class="n">{n_lead}</div><div class="k">{t['s_lead']}</div></div>
-  <div class="stat"><div class="n">{len(P['grants'])}</div><div class="k">{t['s_grants']}</div></div>
+  <div class="stat"><div class="n">{len(GRANTS)}</div><div class="k">{t['s_grants']}</div></div>
   <div class="stat"><div class="n">{n_ongoing}</div><div class="k">{t['s_ongoing']}</div></div>
 </div>"""
 
@@ -533,6 +546,12 @@ def page_index(lang):
   <h2>{e(t['group'])}</h2>
   <p>{e(t['group_body'])} <a href="{rel('people', lang)}">{e(t['meet'])}</a></p>
 </section>
+
+<section>
+  <h2>{e(t['life'])}</h2>
+  <p>{e(t['life_home'])} <a href="{rel('life', lang)}">{e(t['life_more'])}</a></p>
+  <div class="shots strip">{LIFE_STRIP(lang)}</div>
+</section>
 </div>"""
     title = (
         "I-Chung Lu | Mass Spectrometry & Physical Chemistry | NCHU"
@@ -559,7 +578,7 @@ def page_research(lang):
     </div>
     <div class="g-id">{e(g['agency'])} · {e(g['period'])} ·
       {'PI' if g['role'] == 'PI' else 'Co-PI'} · {e(g['status'])}</div></li>"""
-        for g in P["grants"]
+        for g in GRANTS
     )
     themes = "".join(
         f"""<div class="theme">
@@ -699,9 +718,8 @@ def page_people(lang):
     + people_group(t["undergrad"], PEOPLE.get("undergraduate_students") or [], lang) \
     + f"""<section>
   <h2>{e(t['alumni'])}</h2>
-  <p>{e(t['alumni_teaser'].format(n=len(ALUMNI)))}</p>
   <div class="people alumni-preview">{''.join(person_card(m, lang, 'alumni/') for m in ALUMNI_RECENT)}</div>
-  <p style="margin-top:18px"><a href="{rel('alumni', lang)}">{e(t['alumni_link'].format(n=len(ALUMNI)))}</a></p>
+  <p style="margin-top:18px"><a href="{rel('alumni', lang)}">{e(t['alumni_link'])}</a></p>
 </section>""" \
     + "</div>"
     title = "Group | I-Chung Lu | NCHU" if lang == "en" else "團隊 ｜ 盧臆中 ｜ 中興大學化學系"
@@ -711,6 +729,110 @@ def page_people(lang):
         else "國立中興大學化學系盧臆中實驗室成員。"
     )
     return layout("people", lang, title, desc, body)
+
+
+ALBUM_DIR = ROOT / "assets" / "img" / "album"
+
+
+def album_photos(aid):
+    """掃描 assets/img/album/{id}-N.jpg，序號連續，從 0 開始。"""
+    out = []
+    i = 0
+    while (ALBUM_DIR / f"{aid}-{i}.jpg").exists():
+        out.append(f"{aid}-{i}.jpg")
+        i += 1
+    return out
+
+
+def LIFE_STRIP(lang, n=6):
+    """首頁的一排縮圖：各相簿的封面，取最新的幾本。"""
+    out = []
+    for a in ALBUMS:
+        if a.get("pinned"):
+            continue
+        photos = album_photos(a["id"])
+        if not photos:
+            continue
+        cover = photos[a.get("cover", 0)] if a.get("cover", 0) < len(photos) else photos[0]
+        out.append((pick(a, "title", lang), cover))
+        if len(out) == n:
+            break
+    base = asset("assets/img/album/", lang)
+    return "".join(
+        f'<a class="shot" href="{rel("life", lang)}">'
+        f'<img src="{base}{fn}" alt="{e(title)}" loading="lazy"></a>'
+        for title, fn in out
+    )
+
+
+def page_life(lang):
+    t = T[lang]
+    blocks = []
+    for a in ALBUMS:
+        photos = album_photos(a["id"])
+        if not photos:
+            continue
+        base = asset("assets/img/album/", lang)
+        title = pick(a, "title", lang)
+        yr = f'<span class="yrs">{a["year"]}</span>' if a.get("year") else ""
+        thumbs = "".join(
+            f'<button class="shot" data-src="{base}{fn}" '
+            f'aria-label="{e(title)} {i + 1}">'
+            f'<img src="{base}{fn}" alt="{e(title)}" loading="lazy"></button>'
+            for i, fn in enumerate(photos)
+        )
+        blocks.append(
+            f"""<section class="album" id="{a['id']}">
+  <h2>{e(title)} {yr}<span class="cnt">{e(t['photos_n'].format(n=len(photos)))}</span></h2>
+  <div class="shots">{thumbs}</div>
+</section>"""
+        )
+    script = """
+<script>
+(function () {
+  const box = document.createElement('div');
+  box.className = 'lightbox'; box.hidden = true;
+  box.innerHTML = '<button class="lb-close" aria-label="Close">&times;</button>'
+    + '<button class="lb-prev" aria-label="Previous">&#8249;</button>'
+    + '<img alt=""><button class="lb-next" aria-label="Next">&#8250;</button>';
+  document.body.appendChild(box);
+  const img = box.querySelector('img');
+  let list = [], at = 0;
+  function show(i) { at = (i + list.length) % list.length; img.src = list[at]; }
+  function open(btn) {
+    list = [...btn.closest('.shots').querySelectorAll('.shot')].map(b => b.dataset.src);
+    show(list.indexOf(btn.dataset.src)); box.hidden = false;
+    document.body.style.overflow = 'hidden';
+  }
+  function close() { box.hidden = true; img.src = ''; document.body.style.overflow = ''; }
+  document.querySelectorAll('.shot').forEach(b =>
+    b.addEventListener('click', () => open(b)));
+  box.querySelector('.lb-close').addEventListener('click', close);
+  box.querySelector('.lb-prev').addEventListener('click', e => { e.stopPropagation(); show(at - 1); });
+  box.querySelector('.lb-next').addEventListener('click', e => { e.stopPropagation(); show(at + 1); });
+  box.addEventListener('click', e => { if (e.target === box || e.target === img) close(); });
+  document.addEventListener('keydown', e => {
+    if (box.hidden) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') show(at - 1);
+    if (e.key === 'ArrowRight') show(at + 1);
+  });
+})();
+</script>"""
+    body = f"""<div class="wrap">
+<section style="padding-bottom:0;border:none">
+  <h2>{e(t['life'])}</h2>
+  <p class="lede">{e(t['life_lede'])}</p>
+</section>
+{''.join(blocks)}
+</div>{script}"""
+    title = ("Lab Life | I-Chung Lu | NCHU" if lang == "en"
+             else "實驗室生活 ｜ 盧臆中 ｜ 中興大學化學系")
+    desc = ("Photos from conferences, group outings, and everyday work in the Lu group "
+            "at National Chung Hsing University."
+            if lang == "en"
+            else "盧臆中實驗室的研討會、出遊與日常照片。")
+    return layout("life", lang, title, desc, body)
 
 
 def page_alumni(lang):
@@ -854,6 +976,7 @@ BUILDERS = {
     "research": page_research,
     "publications": page_publications,
     "people": page_people,
+    "life": page_life,
     "alumni": page_alumni,
     "teaching": page_teaching,
     "join": page_join,
@@ -904,7 +1027,7 @@ def main():
         if items:
             yrs = [p["year"] for p in items]
             print(f"    · {s['title_en']:<42} {len(items):>2} ({min(yrs)}–{max(yrs)})")
-    print(f"  grants: {len(P['grants'])}   news: {len(NEWS)}")
+    print(f"  grants: {len(GRANTS)}   news: {len(NEWS)}")
     print("  + sitemap.xml, robots.txt, 404.html, .nojekyll")
 
 

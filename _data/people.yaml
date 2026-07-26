@@ -99,8 +99,4 @@ alumni:
   - { name_en: "Zeng, Yun-Rou",   name_zh: "曾允柔",      photo: "zeng-yun-rou.jpg" }
   - { name_en: "Jhang, Jhih-Lin", name_zh: "張芷菱",      photo: "jhang-jhih-lin.jpg" }
   - { name_en: "Liu, Yi-Jun",     name_zh: "劉怡君",      photo: "liu-yi-jun.jpg" }
-  - name_en: "Ho, Shao-Hsun"
-    name_zh: "何紹熏"
-    photo: "ho-shao-hsun.jpg"
-    note_zh: "114 年度國科會大專生計畫補助"
-    note_en: "NSTC Undergraduate Research Grant, 2025"
+  - { name_en: "Ho, Shao-Hsun",   name_zh: "何紹熏",      photo: "ho-shao-hsun.jpg" }

@@ -1,0 +1,110 @@
+# ============================================================
+# albums.yaml — 實驗室生活相簿
+#
+# 照片檔案放在 assets/img/album/，檔名格式：{id}-{序號}.jpg
+# 序號從 0 開始，build 腳本會自動掃描檔案，不必在此列出每張照片。
+# 新增相簿：在最上方加一筆，把照片依 {id}-0.jpg、{id}-1.jpg… 命名丟進資料夾即可。
+#
+# cover：封面用第幾張（省略則用第 0 張）
+# ============================================================
+
+albums:
+  - id: lab-daily
+    title_zh: "實驗室日常"
+    title_en: "Everyday in the Lab"
+    pinned: true          # 釘選在最前面，不依年份排序
+
+  - id: 2026-yearend-dinner
+    year: 2026
+    title_zh: "尾牙聚餐"
+    title_en: "Year-End Dinner"
+
+  - id: 2026-museum-trip
+    year: 2026
+    title_zh: "科博館出遊"
+    title_en: "Science Museum Outing"
+
+  - id: 2025-yearend-dinner
+    year: 2025
+    title_zh: "尾牙聚餐"
+    title_en: "Year-End Dinner"
+
+  - id: 2024-summer-dinner
+    year: 2024
+    title_zh: "暑假聚餐"
+    title_en: "Summer Dinner"
+
+  - id: 2024-dinner
+    year: 2024
+    title_zh: "實驗室聚餐"
+    title_en: "Group Dinner"
+
+  - id: 2024-tsms
+    year: 2024
+    title_zh: "台灣質譜學會年會"
+    title_en: "TSMS Annual Conference"
+
+  - id: 530-new-lab
+    # 舊站標題未標年份，這裡也不臆測；排序沿用舊站順序
+    title_zh: "530 新居落成"
+    title_en: "Moving into Room 530"
+
+  - id: 2023-tsms
+    year: 2023
+    title_zh: "台灣質譜學會年會"
+    title_en: "TSMS Annual Conference"
+
+  - id: 2023-analytical-workshop
+    year: 2023
+    title_zh: "分析技術研討交流會"
+    title_en: "Symposium on Analytical Technologies"
+
+  - id: 2023-chunghsing-village
+    year: 2023
+    title_zh: "中興新村出遊"
+    title_en: "Chunghsing Village Outing"
+
+  - id: 2023-yearend-dinner
+    year: 2023
+    title_zh: "尾牙聚餐"
+    title_en: "Year-End Dinner"
+
+  - id: 2022-jiufen
+    year: 2022
+    title_zh: "九份與茶壺山"
+    title_en: "Jiufen & Teapot Mountain"
+
+  - id: 2022-tsms
+    year: 2022
+    title_zh: "台灣質譜學會年會"
+    title_en: "TSMS Annual Conference"
+
+  - id: 2021-dine-in
+    year: 2021
+    title_zh: "終於可以內用了"
+    title_en: "Dining In Again"
+
+  - id: 2021-endterm-dinner
+    year: 2021
+    title_zh: "期末聚餐"
+    title_en: "End-of-Term Dinner"
+
+  - id: 2020-houfeng-bikeway
+    year: 2020
+    title_zh: "后豐鐵馬道"
+    title_en: "Houfeng Bikeway"
+
+  - id: 2019-yearend-dinner
+    year: 2019
+    title_zh: "年終聚餐"
+    title_en: "Year-End Dinner"
+
+  - id: 2019-hehuan
+    year: 2019
+    title_zh: "夏日合歡北峰"
+    title_en: "Hehuan North Peak"
+
+  - id: 2018-nsysu-chem
+    year: 2018
+    title_zh: "中山大學化學年會"
+    title_en: "Chemical Society Annual Meeting, NSYSU"

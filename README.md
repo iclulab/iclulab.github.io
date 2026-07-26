@@ -18,8 +18,23 @@ Department of Chemistry, National Chung Hsing University
 | `_data/research.yaml` | 四條研究主軸的敘事 |
 | `_data/sections.yaml` | 著作頁的分區定義 |
 | `_data/facility.yaml` | 客製化質譜平台 |
-| `_data/people.yaml` | 實驗室成員 |
+| `_data/people.yaml` | 實驗室成員（含歷屆成員 → `alumni.html`） |
+| `_data/albums.yaml` | 實驗室生活相簿 |
 | `_data/news.yaml` | 動態消息 |
+
+### 新增一本相簿
+
+照片放進 `assets/img/album/`，命名為 `{相簿id}-0.jpg`、`{相簿id}-1.jpg`……（從 0 開始、連號），
+再到 `_data/albums.yaml` 最上方加一筆：
+
+```yaml
+- id: 2026-summer-trip
+  year: 2026
+  title_zh: "暑期出遊"
+  title_en: "Summer Outing"
+```
+
+build 腳本會自動掃描資料夾，不必逐張列出檔名。
 
 ### 更新流程
 
@@ -58,6 +73,9 @@ python3 scripts/build_site.py  # 重新生成全站
 **期刊名顯示 CASSI／ISO 4 標準縮寫**（`journal`），另存全名（`journal_full`）供 Schema.org 後設資料使用。縮寫給人看，全名給機器看。
 
 **作者列只在含 Sarah Trimpin 的大型社群綜論才截斷。** 規則寫在 `scripts/pubfmt.py` 開頭的常數。其他論文完整列出所有作者 — 那些是實驗室學生與合作者，名字被列出來本身就是一種肯定。
+
+**國科會計畫可用 `public: false` 從網頁隱藏**，資料仍留在 `profile.yaml` 供 CV 使用。
+平台維運類計畫已如此處理。
 
 **著作分三區，用「做了什麼」而非「多久以前」命名**，讀者掃過去看到的是一條研究軌跡：反應動力學 → 游離機制 → 獨立發展應用。
 
