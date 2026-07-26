@@ -129,11 +129,12 @@ nav.main a.lang:hover {
 }
 .cta-row { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
 
-/* 內頁沿用同一套主視覺語彙：標題 + 導言 + 底部峰線，但不放照片 */
-.page-hero { padding: 44px 0 38px; }
-.page-hero .claim { font-size: 2rem; margin-bottom: 14px; }
-.page-hero .claim-lede { margin-bottom: 0; max-width: 40em; }
-.page-hero .hero-spectrum { height: 104px; opacity: .13; }
+/* 內頁沿用同一套主視覺語彙：標題 + 導言 + 底部峰線，但不放照片。
+   position: relative 一定要有，否則絕對定位的峰線會跑去跟著整頁定位。 */
+.page-hero { position: relative; overflow: hidden; padding: 44px 0 46px; }
+.page-hero .claim { font-size: 2rem; margin-bottom: 14px; position: relative; }
+.page-hero .claim-lede { margin-bottom: 0; max-width: 40em; position: relative; }
+.page-hero .hero-spectrum { height: 84px; opacity: .13; }
 /* 主視覺是實驗室的鉛筆手繪（已把紙張黃調校回近白）。邊緣用遮罩淡出成頁面底色，
    紙的白與頁面的白接在一起，不會像一張圖貼在版面上。 */
 .hero-shot { margin: 0; }
