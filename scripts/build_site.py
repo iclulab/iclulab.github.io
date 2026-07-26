@@ -995,27 +995,31 @@ def LIFE_STRIP(lang, n=6):
 
 
 def page_life(lang):
+    """相簿改成封面牆：一本一張封面，點開才在燈箱裡逐張看。
+    這樣整頁只載入 20 張封面，也不必一直往下捲。"""
     t = T[lang]
-    blocks = []
+    base = asset("assets/img/album/", lang)
+    cards = []
     for a in ALBUMS:
         photos = album_photos(a["id"])
         if not photos:
             continue
-        base = asset("assets/img/album/", lang)
+        ci = a.get("cover", 0)
+        cover = photos[ci] if isinstance(ci, int) and ci < len(photos) else photos[0]
         title = pick(a, "title", lang)
-        yr = f'<span class="yrs">{a["year"]}</span>' if a.get("year") else ""
-        thumbs = "".join(
-            f'<button class="shot" data-src="{base}{fn}" '
-            f'aria-label="{e(title)} {i + 1}">'
-            f'<img src="{base}{fn}" alt="{e(title)}" loading="lazy"></button>'
-            for i, fn in enumerate(photos)
+        yr = f'<span class="acard-year">{a["year"]}</span>' if a.get("year") else ""
+        srcs = json.dumps([base + fn for fn in photos], ensure_ascii=False)
+        cards.append(
+            f"""<button class="acard" data-photos='{e(srcs, quote=True)}'
+        data-title="{e(title)}" aria-label="{e(title)}（{len(photos)}）">
+  <span class="acard-fig">
+    <img src="{base}{cover}" alt="{e(title)}" loading="lazy">
+    <span class="acard-count">{len(photos)}</span>
+  </span>
+  <span class="acard-cap">{e(title)}{yr}</span>
+</button>"""
         )
-        blocks.append(
-            f"""<section class="album" id="{a['id']}">
-  <h2>{e(title)} {yr}</h2>
-  <div class="shots">{thumbs}</div>
-</section>"""
-        )
+    blocks = [f'<section style="padding-top:32px"><div class="acards">{"".join(cards)}</div></section>']
     script = """
 <script>
 (function () {
@@ -1025,20 +1029,29 @@ def page_life(lang):
   box.setAttribute('aria-modal', 'true');
   box.innerHTML = '<button class="lb-close" aria-label="Close">&times;</button>'
     + '<button class="lb-prev" aria-label="Previous">&#8249;</button>'
-    + '<img alt=""><button class="lb-next" aria-label="Next">&#8250;</button>';
+    + '<figure><img alt=""><figcaption></figcaption></figure>'
+    + '<button class="lb-next" aria-label="Next">&#8250;</button>';
   document.body.appendChild(box);
   const img = box.querySelector('img');
-  let list = [], alts = [], at = 0, opener = null;
+  const cap = box.querySelector('figcaption');
+  let list = [], title = '', at = 0, opener = null;
+
   function show(i) {
     at = (i + list.length) % list.length;
-    img.src = list[at]; img.alt = alts[at] || '';
+    img.src = list[at];
+    img.alt = title + ' ' + (at + 1);
+    cap.textContent = title + '　' + (at + 1) + ' / ' + list.length;
+    // 預先載入前後各一張，翻頁不用等
+    [at + 1, at - 1].forEach(function (j) {
+      const k = (j + list.length) % list.length;
+      const pre = new Image(); pre.src = list[k];
+    });
   }
-  function open(btn) {
-    const shots = [...btn.closest('.shots').querySelectorAll('.shot')];
-    list = shots.map(b => b.dataset.src);
-    alts = shots.map(b => (b.querySelector('img') || {}).alt || '');
-    opener = btn;
-    show(list.indexOf(btn.dataset.src)); box.hidden = false;
+  function open(card) {
+    list = JSON.parse(card.dataset.photos);
+    title = card.dataset.title;
+    opener = card; show(0);
+    box.hidden = false;
     document.body.style.overflow = 'hidden';
     box.querySelector('.lb-close').focus();
   }
@@ -1046,18 +1059,28 @@ def page_life(lang):
     box.hidden = true; img.src = ''; document.body.style.overflow = '';
     if (opener) opener.focus();
   }
-  document.querySelectorAll('.shot').forEach(b =>
-    b.addEventListener('click', () => open(b)));
+  document.querySelectorAll('.acard').forEach(function (c) {
+    c.addEventListener('click', function () { open(c); });
+  });
   box.querySelector('.lb-close').addEventListener('click', close);
-  box.querySelector('.lb-prev').addEventListener('click', e => { e.stopPropagation(); show(at - 1); });
-  box.querySelector('.lb-next').addEventListener('click', e => { e.stopPropagation(); show(at + 1); });
-  box.addEventListener('click', e => { if (e.target === box || e.target === img) close(); });
-  document.addEventListener('keydown', e => {
+  box.querySelector('.lb-prev').addEventListener('click', function (e) { e.stopPropagation(); show(at - 1); });
+  box.querySelector('.lb-next').addEventListener('click', function (e) { e.stopPropagation(); show(at + 1); });
+  box.addEventListener('click', function (e) { if (e.target === box || e.target === img) close(); });
+  document.addEventListener('keydown', function (e) {
     if (box.hidden) return;
     if (e.key === 'Escape') close();
     if (e.key === 'ArrowLeft') show(at - 1);
     if (e.key === 'ArrowRight') show(at + 1);
   });
+  // 手機滑動翻頁
+  let x0 = null;
+  box.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; }, { passive: true });
+  box.addEventListener('touchend', function (e) {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 45) show(at + (dx < 0 ? 1 : -1));
+    x0 = null;
+  }, { passive: true });
 })();
 </script>"""
     body = page_hero(t["life"], t["life_lede"]) + f"""<div class="wrap">
@@ -1146,7 +1169,6 @@ def page_teaching(lang):
     </div>
   </div>
 </section>
-<section><h2>{e(t['t_awards'])}</h2><ul class="grants">{aw}</ul></section>
 </div>"""
     title = "Teaching | I-Chung Lu | NCHU" if lang == "en" else "教學 ｜ 盧臆中 ｜ 中興大學化學系"
     desc = (

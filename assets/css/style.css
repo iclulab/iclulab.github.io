@@ -375,11 +375,47 @@ ul.grants .g-zh { font-size: 0.9rem; color: var(--ink-soft); }
   margin-left: auto; font-size: 0.76rem; font-weight: 400;
   color: var(--ink-faint); letter-spacing: .02em;
 }
-/* 相簿：固定四欄的正方形接觸印樣。照片直橫混雜時，統一裁成正方形
-   比保留原長寬比整齊得多；缺角的最後一列也不會顯得零亂。 */
-.shots {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
+/* ---------- 相簿封面牆 ----------
+   一本相簿一張封面，點開才在燈箱裡逐張看。整頁只有 20 張封面，
+   不必無止盡往下捲，初始載入量也從 5.8 MB 降到 1.4 MB。 */
+.acards {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px 20px;
 }
+.acard {
+  display: block; padding: 0; border: 0; background: none;
+  text-align: left; cursor: pointer; color: inherit; font: inherit;
+}
+.acard-fig {
+  display: block; position: relative; overflow: hidden;
+  border-radius: var(--radius); border: 1px solid var(--line);
+  aspect-ratio: 4 / 3; background: var(--bg-soft);
+}
+.acard-fig img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform .4s ease;
+}
+.acard:hover .acard-fig img { transform: scale(1.045); }
+.acard:hover .acard-fig { border-color: var(--accent); }
+.acard:focus-visible .acard-fig { outline: 2px solid var(--accent); outline-offset: 2px; }
+.acard-count {
+  position: absolute; right: 8px; bottom: 8px;
+  background: rgba(14, 22, 30, .62); color: #fff;
+  font-size: 0.72rem; line-height: 1; padding: 4px 8px; border-radius: 100px;
+  backdrop-filter: blur(2px);
+}
+.acard-cap {
+  display: block; margin-top: 9px; font-size: 0.93rem;
+  font-family: var(--serif); font-weight: 600; color: var(--ink);
+}
+.acard:hover .acard-cap { color: var(--accent); }
+.acard-year {
+  font-family: -apple-system, "PingFang TC", sans-serif;
+  font-size: 0.78rem; font-weight: 400; color: var(--ink-faint); margin-left: 8px;
+}
+
+/* 首頁那一排縮圖 */
+.shots { display: grid; gap: 8px; }
+.shots.strip { grid-template-columns: repeat(6, 1fr); margin-top: 16px; }
 .shot {
   display: block; padding: 0; border: 0; background: var(--bg-soft);
   border-radius: 3px; overflow: hidden; cursor: pointer;
@@ -392,26 +428,6 @@ ul.grants .g-zh { font-size: 0.9rem; color: var(--ink-soft); }
 .shot:hover img { transform: scale(1.04); opacity: .9; }
 .shot:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
-/* 首頁那一排 */
-.shots.strip {
-  grid-template-columns: repeat(6, 1fr); gap: 8px; margin-top: 16px;
-}
-.shots.strip .shot { aspect-ratio: 1 / 1; }
-
-/* 相簿標題與間距：每本之間拉開，標題左側一道細線當錨點 */
-section.album { padding: 30px 0; }
-.album h2 {
-  border-left: 3px solid var(--accent); padding-left: 12px;
-  text-transform: none; font-size: 1.02rem; letter-spacing: 0;
-  color: var(--ink); font-family: var(--serif); font-weight: 600;
-  margin-bottom: 16px;
-}
-.album h2 .yrs {
-  font-family: -apple-system, "PingFang TC", sans-serif;
-  font-size: 0.8rem; color: var(--ink-faint); font-weight: 400;
-  letter-spacing: 0.04em;
-}
-
 /* 燈箱 */
 .lightbox {
   position: fixed; inset: 0; z-index: 100; display: flex;
@@ -419,9 +435,17 @@ section.album { padding: 30px 0; }
   background: rgba(14, 17, 22, 0.94); padding: 40px;
 }
 .lightbox[hidden] { display: none; }
+.lightbox figure {
+  margin: 0; max-width: 100%; max-height: 100%;
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+}
 .lightbox img {
-  max-width: 100%; max-height: 100%; object-fit: contain;
+  max-width: 100%; max-height: calc(100vh - 130px); object-fit: contain;
   box-shadow: 0 18px 60px rgba(0, 0, 0, .5);
+}
+.lightbox figcaption {
+  color: rgba(255, 255, 255, .78); font-size: 0.88rem;
+  font-variant-numeric: tabular-nums;
 }
 .lightbox button {
   position: absolute; background: none; border: 0; color: rgba(255, 255, 255, .72);
@@ -762,10 +786,10 @@ ul.grants li { padding: 7px 0; }
   .legend { font-size: 0.83rem; padding: 10px 13px; }
 
   /* 相簿 */
-  .shots { grid-template-columns: repeat(3, 1fr); gap: 5px; }
+  .acards { grid-template-columns: repeat(2, 1fr); gap: 16px 12px; }
+  .acard-cap { font-size: 0.86rem; margin-top: 7px; }
+  .acard-year { font-size: 0.72rem; margin-left: 6px; }
   .shots.strip { grid-template-columns: repeat(3, 1fr); }
-  section.album { padding: 22px 0; }
-  .album h2 { font-size: 0.96rem; padding-left: 10px; }
   .album h2 .cnt { font-size: 0.72rem; }
   .lightbox { padding: 16px; }
   .lb-prev, .lb-next { font-size: 2.2rem; padding: 8px; }
