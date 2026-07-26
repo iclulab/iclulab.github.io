@@ -364,6 +364,13 @@ def av(path, lang):
 
 CSS_V = asset_hash("assets/css/style.css")
 
+_GC = (P.get("analytics") or {}).get("goatcounter") or ""
+# 沒填代碼就一行程式碼都不放，網站保持零追蹤
+ANALYTICS = (
+    f'\n<script data-goatcounter="https://{_GC}.goatcounter.com/count"'
+    f'\n        async src="//gc.zgo.at/count.js"></script>'
+) if _GC else ""
+
 
 def layout(page, lang, title, description, body, jsonld=None):
     t = T[lang]
@@ -438,7 +445,7 @@ def layout(page, lang, title, description, body, jsonld=None):
      Tel {e(P['contact']['phone'])}</p>
   <p>{e(t['updated'])} {date.today().isoformat()} ·
      <a href="https://github.com/iclulab/iclulab.github.io">{e(t['source'])}</a></p>
-</div></footer>
+</div></footer>{ANALYTICS}
 </body>
 </html>
 """

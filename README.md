@@ -81,6 +81,13 @@ python3 scripts/build_site.py  # 重新生成全站
 
 ---
 
+## 流量統計
+
+用 GoatCounter（不使用 cookie，因此不需要 cookie 同意橫幅）。
+
+在 `_data/profile.yaml` 的 `analytics.goatcounter` 填入代碼即可啟用，
+留空則整站不載入任何統計程式碼。後台網址：`https://<代碼>.goatcounter.com`。
+
 ## 注意事項
 
 **`google6797991aa0f7b2bc.html` 不要刪**。那是 Google Search Console 的所有權驗證檔，

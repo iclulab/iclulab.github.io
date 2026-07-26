@@ -23,6 +23,16 @@ contact:
   address_en: "145 Xingda Rd., South Dist., Taichung City 40227, Taiwan"
   address_zh: "402 台中市南區興大路 145 號"
 
+# ------------------------------------------------------------
+# 流量統計（GoatCounter）
+# 到 https://www.goatcounter.com/signup 註冊後會拿到一個代碼，
+# 例如網址是 https://iclulab.goatcounter.com，代碼就是 iclulab。
+# 填進來 build 之後全站就會開始計數；留空則完全不載入任何統計程式碼。
+# 不使用 cookie、不追蹤個人，因此不需要 cookie 同意橫幅。
+# ------------------------------------------------------------
+analytics:
+  goatcounter: ""
+
 links:
   google_scholar: "https://scholar.google.com/citations?user=og6_O_oAAAAJ"
   orcid: "https://orcid.org/0000-0002-3125-6397"
