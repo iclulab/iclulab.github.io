@@ -40,7 +40,11 @@ DATA = ROOT / "_data"
 SITE = "https://iclulab.github.io"
 LANGS = ("en", "zh")
 
+# 主導覽列的頁面
 PAGES = ["index", "research", "facility", "publications", "people", "teaching", "join"]
+# 不進導覽列、但要生成的子頁（由其他頁面連入）
+SUBPAGES = ["alumni"]
+ALL_PAGES = PAGES + SUBPAGES
 
 e = html.escape
 
@@ -112,7 +116,12 @@ T = {
         "assistant": "Research Assistant",
         "master": "Master's Students",
         "undergrad": "Undergraduate Students",
-        "alumni": "Alumni",
+        "alumni": "Lab Alumni",
+        "alumni_lede": "Students who trained in the lab and have since moved on to "
+                       "graduate school, industry, and research positions elsewhere.",
+        "alumni_link": "See all {n} lab alumni →",
+        "alumni_teaser": "{n} students have passed through the lab since it opened.",
+        "back_group": "← Back to the group",
         "teaching": "Teaching",
         "teaching_body": "I teach physical chemistry at both undergraduate and graduate "
                          "level at National Chung Hsing University.",
@@ -193,7 +202,11 @@ T = {
         "assistant": "研究助理",
         "master": "碩士班學生",
         "undergrad": "大學部學生",
-        "alumni": "畢業校友",
+        "alumni": "歷屆成員",
+        "alumni_lede": "曾在實驗室受訓的同學，如今分布在各研究所、產業界與研究單位。",
+        "alumni_link": "查看全部 {n} 位歷屆成員 →",
+        "alumni_teaser": "實驗室成立至今，已有 {n} 位同學在這裡完成訓練。",
+        "back_group": "← 回到團隊",
         "teaching": "教學",
         "teaching_body": "於國立中興大學講授大學部與研究所的物理化學課程。",
         "t_awards": "教學獲獎",
@@ -411,29 +424,35 @@ def theme_blocks(lang):
     return f'<div class="themes">{"".join(out)}</div>'
 
 
-def person_card(p, lang):
+def person_card(p, lang, subdir=""):
+    base = asset(f"assets/img/people/{subdir}", lang)
     photo = (
-        f'<img class="ph" src="{asset("assets/img/people/", lang)}{e(p["photo"])}" alt="{e(p["name_en"])}">'
+        f'<img class="ph" src="{base}{e(p["photo"])}" alt="{e(p["name_en"])}" loading="lazy">'
         if p.get("photo")
         else f'<div class="ph">{e(p["name_zh"][0]) if p.get("name_zh") else "·"}</div>'
     )
     primary = p["name_zh"] if lang == "zh" and p.get("name_zh") else p["name_en"]
     secondary = p["name_en"] if lang == "zh" and p.get("name_zh") else p.get("name_zh", "")
-    topic = f'<div class="topic">{e(p["topic"])}</div>' if p.get("topic") else ""
+    extra = pick(p, "note", lang) or p.get("degree", "") or p.get("topic", "")
+    topic = f'<div class="topic">{e(extra)}</div>' if extra else ""
     return (
         f'<div class="person">{photo}<div class="nm">{e(primary)}</div>'
         f'<div class="nm-zh">{e(secondary)}</div>{topic}</div>'
     )
 
 
-def people_group(heading, members, lang):
+def people_group(heading, members, lang, subdir=""):
     if not members:
         return ""
-    cards = "".join(person_card(m, lang) for m in members)
+    cards = "".join(person_card(m, lang, subdir) for m in members)
     return f'<section><h2>{e(heading)}</h2><div class="people">{cards}</div></section>'
 
 
 # ------------------------------------------------------------------
+ALUMNI = PEOPLE.get("alumni") or []
+# 團隊頁只放最近幾位當引子，完整名單在 alumni.html
+ALUMNI_RECENT = ALUMNI[::-1][:6]
+
 main_pubs = pubs_in(SECTIONS[0]["id"])
 n_lead = sum(1 for p in PUBS if p["role"] in ("first", "corresponding", "co-corresponding"))
 n_ongoing = sum(1 for g in P["grants"] if g["status"] == "ongoing")
@@ -678,7 +697,12 @@ def page_people(lang):
 """ + people_group(t["assistant"], PEOPLE.get("assistant") or [], lang) \
     + people_group(t["master"], PEOPLE.get("master_students") or [], lang) \
     + people_group(t["undergrad"], PEOPLE.get("undergraduate_students") or [], lang) \
-    + people_group(t["alumni"], PEOPLE.get("alumni") or [], lang) \
+    + f"""<section>
+  <h2>{e(t['alumni'])}</h2>
+  <p>{e(t['alumni_teaser'].format(n=len(ALUMNI)))}</p>
+  <div class="people alumni-preview">{''.join(person_card(m, lang, 'alumni/') for m in ALUMNI_RECENT)}</div>
+  <p style="margin-top:18px"><a href="{rel('alumni', lang)}">{e(t['alumni_link'].format(n=len(ALUMNI)))}</a></p>
+</section>""" \
     + "</div>"
     title = "Group | I-Chung Lu | NCHU" if lang == "en" else "團隊 ｜ 盧臆中 ｜ 中興大學化學系"
     desc = (
@@ -687,6 +711,28 @@ def page_people(lang):
         else "國立中興大學化學系盧臆中實驗室成員。"
     )
     return layout("people", lang, title, desc, body)
+
+
+def page_alumni(lang):
+    t = T[lang]
+    cards = "".join(person_card(m, lang, "alumni/") for m in ALUMNI)
+    body = f"""<div class="wrap">
+<section>
+  <h2>{e(t['alumni'])}</h2>
+  <p class="lede">{e(t['alumni_lede'])}</p>
+</section>
+<section>
+  <div class="people" id="alumni-grid">{cards}</div>
+  <p style="margin-top:26px"><a href="{rel('people', lang)}">{e(t['back_group'])}</a></p>
+</section>
+</div>"""
+    title = ("Lab Alumni | I-Chung Lu | NCHU" if lang == "en"
+             else "歷屆成員 ｜ 盧臆中 ｜ 中興大學化學系")
+    desc = (f"{len(ALUMNI)} former members of the Lu group, Department of Chemistry, "
+            "National Chung Hsing University."
+            if lang == "en"
+            else f"國立中興大學化學系盧臆中實驗室的 {len(ALUMNI)} 位歷屆成員。")
+    return layout("alumni", lang, title, desc, body)
 
 
 def page_teaching(lang):
@@ -808,6 +854,7 @@ BUILDERS = {
     "research": page_research,
     "publications": page_publications,
     "people": page_people,
+    "alumni": page_alumni,
     "teaching": page_teaching,
     "join": page_join,
 }
@@ -819,7 +866,7 @@ def main():
     written = []
     for lang in LANGS:
         outdir = ROOT if lang == "en" else ROOT / "zh"
-        for page in PAGES:
+        for page in ALL_PAGES:
             (outdir / f"{page}.html").write_text(BUILDERS[page](lang), encoding="utf-8")
             written.append(url(page, lang))
 
@@ -849,7 +896,7 @@ def main():
     )
     (ROOT / ".nojekyll").write_text("", encoding="utf-8")
 
-    print(f"✓ {len(written)} pages ({len(PAGES)} × {len(LANGS)} languages)")
+    print(f"✓ {len(written)} pages ({len(ALL_PAGES)} × {len(LANGS)} languages)")
     print(f"  en → /            zh → /zh/")
     print(f"  publications: {len(PUBS)}")
     for s in SECTIONS:

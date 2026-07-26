@@ -216,6 +216,14 @@ ul.grants .g-zh { font-size: 0.9rem; color: var(--ink-soft); }
 .person .nm-zh { font-size: 0.86rem; color: var(--ink-soft); }
 .person .topic { font-size: 0.8rem; color: var(--ink-faint); margin-top: 4px; }
 
+/* 歷屆成員：卡片略小，讓 27 位排起來仍然清爽 */
+.alumni-preview { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+.alumni-preview .ph { width: 76px; height: 76px; }
+#alumni-grid { grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: 26px 20px; }
+#alumni-grid .ph { width: 84px; height: 84px; margin-bottom: 9px; }
+#alumni-grid .nm { font-size: 0.9rem; }
+#alumni-grid .nm-zh { font-size: 0.82rem; }
+
 /* ---------- Misc ---------- */
 .note {
   background: var(--bg-soft); border: 1px solid var(--line);
@@ -388,4 +396,79 @@ ol.pubs li.has-fig { grid-template-columns: 1fr 128px; gap: 28px; }
 @media (max-width: 760px) {
   ol.pubs li.has-fig { grid-template-columns: 1fr; gap: 12px; }
   .pub-fig { max-width: 150px; }
+}
+
+/* ---------- 代表圖：撐滿條目高度（上下分隔線之間）---------- */
+ol.pubs li.has-fig {
+  grid-template-columns: 1fr auto;
+  align-items: stretch;
+  min-height: 136px;
+  gap: 30px;
+}
+.pub-fig {
+  align-self: stretch;
+  margin: -15px 0;                 /* 抵銷 li 的上下 padding，貼齊分隔線 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.pub-fig img {
+  height: 100%;
+  width: auto;
+  max-width: 300px;
+  object-fit: contain;
+  border: 1px solid var(--line-soft);
+  border-radius: 3px;
+}
+@media (max-width: 760px) {
+  ol.pubs li.has-fig { grid-template-columns: 1fr; gap: 12px; min-height: 0; }
+  .pub-fig { margin: 0; justify-content: flex-start; }
+  .pub-fig img { height: auto; width: 100%; max-width: 220px; }
+}
+
+/* ---------- 收緊區塊間距：學歷／經歷／獲獎等短清單 ---------- */
+section { padding: 26px 0; }
+h2 { margin-bottom: 13px; }
+ul.grants li:last-child { border-bottom: none; }   /* 末筆不畫線，避免與區塊分隔線疊成雙線 */
+ul.grants li { padding: 7px 0; }
+ul.news li:last-child { border-bottom: none; }
+
+/* ---------- 手機版整體調校 ---------- */
+@media (max-width: 760px) {
+  body { font-size: 16px; line-height: 1.6; }
+  .wrap { padding: 0 18px; }
+  section { padding: 22px 0; }
+  h2 { margin-bottom: 11px; font-size: 0.78rem; }
+
+  .hero { padding: 30px 0 26px; }
+  .hero-photo { width: 104px; height: 104px; }
+  .hero h1 { font-size: 1.55rem; }
+  .hero .zh-name { font-size: 1rem; margin-left: 8px; }
+  .hero .lede { font-size: 1rem; }
+
+  /* 導覽列：橫向捲動，不再折成兩三行擠壓版面 */
+  .site-header .wrap { flex-wrap: nowrap; gap: 12px; min-height: 52px; }
+  nav.main {
+    display: flex; align-items: center; gap: 0;
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; margin-right: -18px; padding-right: 18px;
+  }
+  nav.main::-webkit-scrollbar { display: none; }
+  nav.main a { margin: 0 14px 0 0; white-space: nowrap; font-size: 0.88rem; }
+  nav.main a.lang { margin-left: 4px; }
+
+  /* 著作條目 */
+  ol.pubs li { padding: 12px 0 12px 30px; }
+  ol.pubs li::before { width: 20px; top: 14px; font-size: 0.74rem; }
+  .pub-title { font-size: 0.97rem; }
+  .pub-authors, .pub-meta { font-size: 0.87rem; }
+
+  /* 成員頭像 */
+  .people { grid-template-columns: repeat(auto-fill, minmax(104px, 1fr)); gap: 16px; }
+  .person .ph { width: 76px; height: 76px; }
+  .person .nm { font-size: 0.88rem; }
+  .person .nm-zh { font-size: 0.8rem; }
+
+  .filters button { font-size: 0.8rem; padding: 4px 11px; }
+  .legend { font-size: 0.83rem; padding: 10px 13px; }
 }

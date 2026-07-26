@@ -66,17 +66,41 @@ undergraduate_students:
     photo: "chen-zong-you.jpg"
     topic: ""
 
-# 待補：畢業生去向（對招生極有說服力）
-# 格式範例：
-# alumni:
-#   - name_en: "Chen, Yi-Hsin"
-#     name_zh: "陳怡歆"
-#     degree: "M.S. 2020"
-#     current: "現職 / 進修單位"
+# ------------------------------------------------------------
+# 歷屆成員（Lab Alumni）→ 獨立分頁 alumni.html
+# photo 檔名相對於 assets/img/people/alumni/
+# 順序沿用舊站（資深在前）。日後若補上學位年份與去向，
+# 加 degree / current 欄位即可自動顯示。
+# ------------------------------------------------------------
 alumni:
+  - { name_en: "Lin, Chih-Hao",   name_zh: "林智皓",      photo: "lin-chih-hao.jpg" }
+  - { name_en: "Yang, Yao-Yu",    name_zh: "楊矅毓",      photo: "yang-yao-yu.jpg" }
+  - { name_en: "Chen, Yi-Hsin",   name_zh: "陳怡歆",      photo: "chen-yi-hsin.jpg" }
+  - { name_en: "Jian, Yu-Shin",   name_zh: "簡瑀鋅",      photo: "jian-yu-shin.jpg" }
+  - { name_en: "Tsia, Yen-Fu",    name_zh: "蔡沅甫",      photo: "tsai-yen-fu.jpg" }
+  - { name_en: "Lin, Jen-Kai",    name_zh: "林仁凱",      photo: "lin-jen-kai.jpg" }
+  - { name_en: "Lee, Wan-Ching",  name_zh: "李婉菁",      photo: "lee-wan-ching.jpg" }
+  - { name_en: "Chang, Hsiang-Yun", name_zh: "張湘雲",    photo: "chang-hsiang-yun.jpg" }
+  - { name_en: "Zhan, Kai-En",    name_zh: "張凱恩",      photo: "zhan-kai-en.jpg" }
+  - { name_en: "Wu, Yu-Cheng",    name_zh: "吳御誠",      photo: "wu-yu-cheng.jpg" }
+  - { name_en: "Liu, Chia-Yu",    name_zh: "劉家余",      photo: "liu-chia-yu.jpg" }
+  - { name_en: "Yang, Cheng-Han", name_zh: "楊政翰",      photo: "yang-cheng-han.jpg" }
+  - { name_en: "Zeng, Pin-Rui",   name_zh: "曾品睿",      photo: "zeng-pin-rui.jpg" }
+  - { name_en: "Zhang, Xin-Wen",  name_zh: "張馨文",      photo: "zhang-xin-wen.jpg" }
+  - { name_en: "Zeng, Wan-Qin",   name_zh: "曾宛沁",      photo: "zeng-wan-qin.jpg" }
+  - { name_en: "Chen, Yung-Chun", name_zh: "陳詠鈞",      photo: "chen-yung-chun.jpg" }
+  - { name_en: "Lin, Yi-Cheng",   name_zh: "林奕丞",      photo: "lin-yi-cheng.jpg" }
+  - { name_en: "Ho, Ting-Chien",  name_zh: "和定謙",      photo: "ho-ting-chien.jpg" }
+  - { name_en: "Chen, Pei-Jun",   name_zh: "陳姵君",      photo: "chen-pei-jun.jpg" }
+  - { name_en: "Huang, Yi-Ching", name_zh: "黃苡晴",      photo: "huang-yi-ching.jpg" }
+  - { name_en: "Wang, Chia-Yun",  name_zh: "王嘉筠",      photo: "wang-chia-yun.jpg" }
+  - { name_en: "Yang, Yung-Ching", name_zh: "楊詠晴",     photo: "yang-yung-ching.jpg" }
+  - { name_en: "Lin, Chun-Yi",    name_zh: "林峻毅",      photo: "lin-chun-yi.jpg" }
+  - { name_en: "Zeng, Yun-Rou",   name_zh: "曾允柔",      photo: "zeng-yun-rou.jpg" }
+  - { name_en: "Jhang, Jhih-Lin", name_zh: "張芷菱",      photo: "jhang-jhih-lin.jpg" }
+  - { name_en: "Liu, Yi-Jun",     name_zh: "劉怡君",      photo: "liu-yi-jun.jpg" }
   - name_en: "Ho, Shao-Hsun"
     name_zh: "何紹熏"
-    degree: "Undergraduate researcher"
     photo: "ho-shao-hsun.jpg"
     note_zh: "114 年度國科會大專生計畫補助"
     note_en: "NSTC Undergraduate Research Grant, 2025"
