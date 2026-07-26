@@ -162,6 +162,8 @@ T = {
         "cta_research": "What we work on →",
         "cta_join": "Join the lab →",
         "themes_h": "Research directions",
+        "skip": "Skip to main content",
+        "top": "Back to top",
         "pubs_lede": "From crossed molecular-beam reaction dynamics and ionization "
                      "mechanisms, to the analytical applications the group develops "
                      "independently today.",
@@ -173,6 +175,7 @@ T = {
         "c_year": "Year",
         "c_term": "Term",
         "c_code": "Course no.",
+        "c_dept": "Offered to",
         "c_name": "Course",
         "c_type": "Type",
         "c_req": "Required",
@@ -276,6 +279,8 @@ T = {
         "cta_research": "我們在做什麼 →",
         "cta_join": "加入實驗室 →",
         "themes_h": "研究主軸",
+        "skip": "跳至主要內容",
+        "top": "回到頂端",
         "pubs_lede": "從交叉分子束的反應動力學、游離機制，"
                      "到實驗室獨立發展的分析應用。",
         "teaching": "教學",
@@ -285,6 +290,7 @@ T = {
         "c_year": "學年",
         "c_term": "學期",
         "c_code": "選課號碼",
+        "c_dept": "選課系所",
         "c_name": "課程名稱",
         "c_type": "必選修",
         "c_req": "必修",
@@ -395,22 +401,38 @@ def layout(page, lang, title, description, body, jsonld=None):
 <meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=Noto+Serif+TC:wght@500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
 <link rel="stylesheet" href="{asset('assets/css/style.css', lang)}?v={CSS_V}">
 <link rel="icon" href="{asset('assets/img/favicon-32.png', lang)}" sizes="32x32">
 <link rel="icon" href="{asset('assets/img/logo-mark.svg', lang)}" type="image/svg+xml">
 <link rel="apple-touch-icon" href="{asset('assets/img/favicon-180.png', lang)}">{ld}
 </head>
 <body>
+<a class="skip" href="#main">{e(t['skip'])}</a>
 <header class="site-header"><div class="wrap">
   <a class="brand" href="{rel('index', lang)}">
     <img src="{av('assets/img/logo.svg', lang)}" alt="Lu Lab — I-Chung Lu 盧臆中" class="logo">
   </a>
   <nav class="main">{nav}{switch}</nav>
 </div></header>
-<main>
+<main id="main">
 {body}
 </main>
+<button class="to-top" type="button" aria-label="{e(t['top'])}" title="{e(t['top'])}">
+  <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor"
+       stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 19V5"/><path d="M5.5 11.5 12 5l6.5 6.5"/></svg>
+</button>
+<script>
+(function () {{
+  var b = document.querySelector('.to-top');
+  if (!b) return;
+  var show = function () {{ b.classList.toggle('on', window.scrollY > 700); }};
+  window.addEventListener('scroll', show, {{ passive: true }});
+  b.addEventListener('click', function () {{ window.scrollTo({{ top: 0, behavior: 'smooth' }}); }});
+  show();
+}})();
+</script>
 <footer class="site-footer"><div class="wrap">
   <p>{e(t['footer_org'])}<br>{e(t['addr'])}</p>
   <p>{e(t['office'])} · {e(t['lab'])}</p>
@@ -481,12 +503,25 @@ def pub_li(p, lang):
 
 
 def news_items(lang, limit=None):
+    """消息依年份分組成時間軸，年份標在左欄，事件排右欄。"""
     items = NEWS[:limit] if limit else NEWS
     key = "text_zh" if lang == "zh" else "text_en"
-    return "".join(
-        f'<li><time>{e(n["date"])}</time><span>{e(n.get(key) or n["text_zh"])}</span></li>'
-        for n in items
-    )
+    groups = []
+    for n in items:
+        y = str(n["date"])[:4]
+        if not groups or groups[-1][0] != y:
+            groups.append((y, []))
+        groups[-1][1].append(n)
+    out = []
+    for y, ns in groups:
+        rows = "".join(
+            f'<li><time datetime="{e(str(n["date"]))}">{e(str(n["date"])[5:])}</time>'
+            f'<span>{e(n.get(key) or n["text_zh"])}</span></li>'
+            for n in ns
+        )
+        out.append(f'<div class="tl-group"><div class="tl-year">{e(y)}</div>'
+                   f'<ul class="tl-items">{rows}</ul></div>')
+    return f'<div class="timeline">{"".join(out)}</div>'
 
 
 def idlinks(lang):
@@ -715,7 +750,7 @@ def page_index(lang):
 
 <section>
   <h2>{e(t['news'])}</h2>
-  <div class="news-scroll"><ul class="news">{news_items(lang)}</ul></div>
+  <div class="news-scroll">{news_items(lang)}</div>
 </section>
 
 <section>
@@ -839,15 +874,30 @@ document.querySelectorAll('.filters button').forEach(b => b.addEventListener('cl
   <ol class="pubs">{''.join(pub_li(p, lang) for p in items)}</ol>
 </section>"""
         )
-    jump = " · ".join(
+    jump = "".join(
         f'<a href="#{s["id"]}">{e(pick(s, "title", lang))}</a>'
         for s in SECTIONS
         if pubs_in(s["id"])
     )
-    body = page_hero(t["publications"], t["pubs_lede"]) + f"""<div class="wrap">
-<section style="padding:22px 0 0;border:none">
-  <p class="jump">{jump}</p>
-</section>
+    script += """
+<script>
+(function () {
+  var links = [...document.querySelectorAll('.jump a')];
+  var secs = links.map(a => document.querySelector(a.getAttribute('href')));
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (!en.isIntersecting) return;
+      var i = secs.indexOf(en.target);
+      links.forEach(function (a, j) { a.classList.toggle('on', i === j); });
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  secs.forEach(function (s) { if (s) io.observe(s); });
+})();
+</script>"""
+    body = page_hero(t["publications"], t["pubs_lede"]) + f"""<nav class="jump" aria-label="{e(t['publications'])}">
+  <div class="wrap">{jump}</div>
+</nav>
+<div class="wrap">
 {''.join(blocks)}
 </div>{script}"""
     title = "Publications | I-Chung Lu | NCHU" if lang == "en" else "著作 ｜ 盧臆中 ｜ 中興大學化學系"
@@ -971,19 +1021,31 @@ def page_life(lang):
 (function () {
   const box = document.createElement('div');
   box.className = 'lightbox'; box.hidden = true;
+  box.setAttribute('role', 'dialog');
+  box.setAttribute('aria-modal', 'true');
   box.innerHTML = '<button class="lb-close" aria-label="Close">&times;</button>'
     + '<button class="lb-prev" aria-label="Previous">&#8249;</button>'
     + '<img alt=""><button class="lb-next" aria-label="Next">&#8250;</button>';
   document.body.appendChild(box);
   const img = box.querySelector('img');
-  let list = [], at = 0;
-  function show(i) { at = (i + list.length) % list.length; img.src = list[at]; }
+  let list = [], alts = [], at = 0, opener = null;
+  function show(i) {
+    at = (i + list.length) % list.length;
+    img.src = list[at]; img.alt = alts[at] || '';
+  }
   function open(btn) {
-    list = [...btn.closest('.shots').querySelectorAll('.shot')].map(b => b.dataset.src);
+    const shots = [...btn.closest('.shots').querySelectorAll('.shot')];
+    list = shots.map(b => b.dataset.src);
+    alts = shots.map(b => (b.querySelector('img') || {}).alt || '');
+    opener = btn;
     show(list.indexOf(btn.dataset.src)); box.hidden = false;
     document.body.style.overflow = 'hidden';
+    box.querySelector('.lb-close').focus();
   }
-  function close() { box.hidden = true; img.src = ''; document.body.style.overflow = ''; }
+  function close() {
+    box.hidden = true; img.src = ''; document.body.style.overflow = '';
+    if (opener) opener.focus();
+  }
   document.querySelectorAll('.shot').forEach(b =>
     b.addEventListener('click', () => open(b)));
   box.querySelector('.lb-close').addEventListener('click', close);
@@ -1048,11 +1110,12 @@ def course_table(lang):
             + f'<td class="yr">{c["year"] if newy else ""}</td>'
             f'<td class="tm">{c["term"]}</td>'
             f'<td class="code">{e(c["code"])}</td>'
+            f'<td class="dept">{e(pick(c, "dept", lang))}</td>'
             f'<td class="cname">{e(pick(c, "name", lang))}</td>'
             f'<td><span class="ctype {cls}">{e(badge)}</span></td></tr>'
         )
     head = "".join(f"<th>{e(t[k])}</th>"
-                   for k in ("c_year", "c_term", "c_code", "c_name", "c_type"))
+                   for k in ("c_year", "c_term", "c_code", "c_dept", "c_name", "c_type"))
     return (f'<div class="table-wrap"><table class="courses">'
             f"<thead><tr>{head}</tr></thead><tbody>{''.join(out)}</tbody></table></div>")
 
