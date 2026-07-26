@@ -182,10 +182,8 @@ T = {
                         "Laboratory courses and independent-study units are not listed.",
         "yt_h": "Physical chemistry on YouTube",
         "yt_name": "狐獴老師的物化課 (Meerkat Teacher's Physical Chemistry)",
-        "yt_body": "A Mandarin-language channel where I work through physical chemistry: "
-                   "thermodynamics, kinetics, quantum chemistry, and the mathematics behind "
-                   "them. The aim is to make the subject feel less like scripture and more "
-                   "like a way of moving between the abstract and the real.",
+        "yt_body": "Physical chemistry should not read like scripture. It is a splendid "
+                   "adventure between the abstract and the real.",
         "yt_cta": "Visit the channel →",
         "join": "Join Us",
         "join_body": "We are looking for students who are curious about how measurements "
@@ -294,9 +292,7 @@ T = {
         "courses_note": "不含實驗課與專題研究。",
         "yt_h": "YouTube 教學頻道",
         "yt_name": "狐獴老師的物化課",
-        "yt_body": "物化不該是天書，而是我們穿梭在抽象與現實間的華麗冒險。"
-                   "頻道內容涵蓋熱力學、動力學、量子化學與化學數學，"
-                   "把課堂上講不完的推導與直觀，用影片重新講一次。",
+        "yt_body": "物化不該是天書，而是我們穿梭在抽象與現實間的華麗冒險。",
         "yt_cta": "前往頻道 →",
         "join": "加入我們",
         "join_body": "我們歡迎對「量測背後的原理」感到好奇的同學，而不只是會操作儀器。"
@@ -1078,11 +1074,11 @@ def page_teaching(lang):
   <h2>{e(t['yt_h'])}</h2>
   <div class="yt">
     <a class="yt-logo" href="{P['links']['youtube']}" aria-label="{e(t['yt_name'])}">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23 12s0-3.6-.5-5.3a2.8 2.8 0 0 0-2-2C18.8 4.2 12 4.2 12 4.2s-6.8 0-8.5.5a2.8 2.8 0 0 0-2 2C1 8.4 1 12 1 12s0 3.6.5 5.3a2.8 2.8 0 0 0 2 2c1.7.5 8.5.5 8.5.5s6.8 0 8.5-.5a2.8 2.8 0 0 0 2-2C23 15.6 23 12 23 12z"/><path d="M9.8 15.4V8.6l5.9 3.4z" fill="#fff"/></svg>
+      <img src="{av('assets/img/pchem-logo.png', lang)}" alt="{e(t['yt_name'])}">
     </a>
     <div>
       <h3>{e(t['yt_name'])}</h3>
-      <p>{e(t['yt_body'])}</p>
+      <p class="yt-tag">{e(t['yt_body'])}</p>
       <p><a class="cta" href="{P['links']['youtube']}">{e(t['yt_cta'])}</a></p>
     </div>
   </div>
