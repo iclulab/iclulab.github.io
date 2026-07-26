@@ -329,6 +329,12 @@ def asset(path, lang):
     return path if lang == "en" else f"../{path}"
 
 
+def av(path, lang):
+    """圖片加上內容雜湊當版本號。換圖但沿用同一個檔名時，
+    瀏覽器與 GitHub Pages 的 CDN 才不會繼續拿舊的快取。"""
+    return f"{asset(path, lang)}?v={asset_hash(path)}"
+
+
 CSS_V = asset_hash("assets/css/style.css")
 
 
@@ -361,7 +367,7 @@ def layout(page, lang, title, description, body, jsonld=None):
 <meta property="og:title" content="{e(title)}">
 <meta property="og:description" content="{e(description)}">
 <meta property="og:url" content="{SITE}/{url(page, lang)}">
-<meta property="og:image" content="{SITE}/assets/img/lu.jpg">
+<meta property="og:image" content="{SITE}/assets/img/lu.jpg?v={asset_hash('assets/img/lu.jpg')}">
 <meta property="og:locale" content="{'en_US' if lang == 'en' else 'zh_TW'}">
 <meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -375,7 +381,7 @@ def layout(page, lang, title, description, body, jsonld=None):
 <body>
 <header class="site-header"><div class="wrap">
   <a class="brand" href="{rel('index', lang)}">
-    <img src="{asset('assets/img/logo.svg', lang)}" alt="Lu Lab — I-Chung Lu 盧臆中" class="logo">
+    <img src="{av('assets/img/logo.svg', lang)}" alt="Lu Lab — I-Chung Lu 盧臆中" class="logo">
   </a>
   <nav class="main">{nav}{switch}</nav>
 </div></header>
@@ -485,14 +491,34 @@ def theme_blocks(lang):
     return f'<div class="themes">{"".join(out)}</div>'
 
 
-# 首頁 hero 底部的質譜峰線裝飾。峰位與強度固定，不隨機。
-_PEAKS = [(18, 52), (46, 78), (74, 22), (102, 68), (130, 84), (158, 40), (186, 74),
-          (214, 8), (242, 58), (270, 86), (298, 34), (326, 72), (354, 46), (382, 88),
-          (410, 26), (438, 66), (466, 81), (494, 50), (522, 76), (550, 60), (578, 87),
-          (606, 44), (634, 79), (662, 30), (690, 70), (718, 85), (746, 55), (774, 82)]
+def _build_peaks(seed=20260726):
+    """畫一段像真實質譜的峰線：峰位不等距、強度落差大，並帶同位素叢集。
+    用固定亂數種子產生，所以每次 build 出來的圖案都一樣。"""
+    import random
+    rng = random.Random(seed)
+    peaks, x = [], 6.0
+    while x < 794:
+        # 主峰：強度取對數分布，少數很高、多數偏低
+        h = 6 + 88 * (rng.random() ** 2.1)
+        peaks.append((round(x, 1), round(100 - h, 1)))
+        # 同位素叢集：高峰後面常跟著兩三根遞減的小峰
+        if h > 45 and rng.random() < 0.75:
+            k = rng.choice((1, 2, 2, 3))
+            hh, xx = h, x
+            for _ in range(k):
+                xx += rng.uniform(4.5, 7.5)
+                hh *= rng.uniform(0.28, 0.62)
+                if xx < 794 and hh > 3:
+                    peaks.append((round(xx, 1), round(100 - hh, 1)))
+            x = xx
+        # 峰間距不規則，偶爾留一段空白基線
+        x += rng.uniform(6, 20) if rng.random() > 0.12 else rng.uniform(26, 52)
+    return peaks
+
+
 SPECTRUM = (
     '<svg class="hero-spectrum" viewBox="0 0 800 100" preserveAspectRatio="none" aria-hidden="true">'
-    + "".join(f'<line x1="{x}" y1="100" x2="{x}" y2="{y}"/>' for x, y in _PEAKS)
+    + "".join(f'<line x1="{x}" y1="100" x2="{x}" y2="{y}"/>' for x, y in _build_peaks())
     + '<line class="baseline" x1="0" y1="100" x2="800" y2="100"/></svg>'
 )
 
@@ -652,7 +678,7 @@ def page_index(lang):
       </div>
     </div>
     <figure class="hero-shot">
-      <img src="{asset('assets/img/hero.jpg', lang)}" alt="{e(t['hero_alt'])}">
+      <img src="{av('assets/img/hero.jpg', lang)}" alt="{e(t['hero_alt'])}">
     </figure>
   </div></div>
 </div>
@@ -831,7 +857,7 @@ def page_people(lang):
     body = page_hero(t["nav"][PAGES.index("people")], t["group_body"]) + f"""<div class="wrap">
 <section style="padding-top:34px"><h2>{e(t['pi'])}</h2>
 <div class="hero-grid">
-  <img class="hero-photo" src="{asset('assets/img/lu.jpg', lang)}" alt="I-Chung Lu">
+  <img class="hero-photo" src="{av('assets/img/lu.jpg', lang)}" alt="I-Chung Lu">
   <div>
     <h3>I-Chung Lu <span class="zh">盧臆中</span></h3>
     <p class="zh">{e(t['role_title'])}，{e(t['inst'])}</p>
