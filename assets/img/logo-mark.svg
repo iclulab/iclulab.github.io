@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128" role="img" aria-label="Lu Lab">
+  <title>Lu Lab</title>
+  <defs>
+    <linearGradient id="lq" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#3FB6E8"/>
+      <stop offset="1" stop-color="#1E86C4"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="26" fill="#1F5FA8"/>
+  <!-- ions -->
+  <g fill="#9BD8F2">
+    <g><rect x="80" y="20" width="5" height="19" rx="2.5"/><rect x="73" y="27" width="19" height="5" rx="2.5"/></g>
+    <g opacity=".75"><rect x="47" y="26" width="4" height="15" rx="2"/><rect x="41.5" y="31.5" width="15" height="4" rx="2"/></g>
+    <circle cx="63" cy="16" r="5" fill="none" stroke="#9BD8F2" stroke-width="4"/>
+  </g>
+  <!-- flask -->
+  <g transform="translate(28,44)">
+    <path d="M25.9,44 H46.1 L63.0,66.0 a4,4 0 0 1 -4,4 H13.0 a4,4 0 0 1 -4,-4 Z" fill="url(#lq)"/>
+    <path d="M25.9,44 q5.0,-5 10.1,0 t10.1,0 v5 q-5.0,5 -10.1,0 t-10.1,0 Z" fill="#0E4E86"/>
+    <path d="M22,6 v30 L2,62 a10,10 0 0 0 8,16 h52 a10,10 0 0 0 8,-16 L50,36 V6"
+          fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M16,6 h40" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round"/>
+  </g>
+</svg>

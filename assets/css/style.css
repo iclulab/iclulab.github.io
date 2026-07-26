@@ -276,3 +276,90 @@ section[id] { scroll-margin-top: 78px; }
   color: var(--ink-faint); font-weight: 650;
 }
 .case-refs ul.grants li { padding: 8px 0; }
+
+/* ---------- 學經歷等清單：收緊行距 ---------- */
+ul.grants li { padding: 8px 0; }
+ul.grants .g-title { font-size: 0.97rem; line-height: 1.4; }
+ul.grants .g-id { font-size: 0.83rem; line-height: 1.45; margin-top: 1px; }
+ul.grants .g-zh { margin-top: 1px; line-height: 1.45; }
+section { padding: 34px 0; }
+h2 { margin-bottom: 16px; }
+
+/* ---------- Logo ---------- */
+.brand { display: flex; align-items: center; gap: 13px; }
+.brand .logo { height: 32px; width: auto; display: block; flex: none; }
+.brand-txt {
+  display: flex; align-items: baseline; gap: 8px;
+  font-weight: 650; letter-spacing: -0.01em; color: var(--ink); font-size: 1.02rem;
+}
+.brand-txt em {
+  font-style: normal; color: var(--ink-faint); font-weight: 400; font-size: 0.9rem;
+}
+@media (max-width: 760px) {
+  .brand .logo { height: 26px; }
+  .brand-txt { font-size: 0.95rem; }
+  .brand-txt em { display: none; }
+}
+
+/* logo 單獨作為品牌標誌（頁首不再有文字） */
+.brand { gap: 0; }
+.brand .logo { height: 36px; }
+@media (max-width: 760px) { .brand .logo { height: 30px; } }
+
+/* ---------- 首頁消息：可向下捲動看歷史 ---------- */
+.news-scroll {
+  max-height: 340px;
+  overflow-y: auto;
+  padding-right: 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 4px 16px;
+  background: var(--bg-soft);
+  /* 底部漸層提示：下面還有內容 */
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 28px), transparent 100%);
+          mask-image: linear-gradient(to bottom, #000 calc(100% - 28px), transparent 100%);
+  overscroll-behavior: contain;
+}
+.news-scroll:hover { -webkit-mask-image: none; mask-image: none; }
+.news-scroll ul.news li:last-child { border-bottom: none; }
+.news-scroll::-webkit-scrollbar { width: 8px; }
+.news-scroll::-webkit-scrollbar-thumb {
+  background: var(--line); border-radius: 4px;
+}
+.news-scroll::-webkit-scrollbar-thumb:hover { background: var(--ink-faint); }
+.news-scroll::-webkit-scrollbar-track { background: transparent; }
+@media (max-width: 760px) { .news-scroll { max-height: 300px; } }
+
+/* ---------- 著作代表圖 ----------
+   圖置於右側，文字左緣與其他條目完全對齊，
+   49 筆的編號／作者／標題維持同一條垂直線。 */
+ol.pubs li.has-fig {
+  display: grid;
+  grid-template-columns: 1fr 168px;
+  gap: 26px;
+  align-items: start;
+}
+.pub-fig {
+  display: block;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  padding: 7px;
+  transition: border-color .15s, box-shadow .15s, transform .15s;
+}
+.pub-fig img {
+  display: block; width: 100%; height: auto; border-radius: 2px;
+}
+.pub-fig:hover {
+  border-color: var(--accent);
+  box-shadow: 0 4px 14px rgba(0,0,0,.10);
+  transform: translateY(-2px);
+  text-decoration: none;
+}
+@media (prefers-color-scheme: dark) {
+  .pub-fig:hover { box-shadow: 0 4px 16px rgba(0,0,0,.5); }
+}
+@media (max-width: 760px) {
+  ol.pubs li.has-fig { grid-template-columns: 1fr; gap: 14px; }
+  .pub-fig { max-width: 190px; }
+}

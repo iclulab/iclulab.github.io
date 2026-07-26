@@ -283,11 +283,16 @@ def layout(page, lang, title, description, body, jsonld=None):
 <meta property="og:image" content="{SITE}/assets/img/lu.jpg">
 <meta property="og:locale" content="{'en_US' if lang == 'en' else 'zh_TW'}">
 <meta name="twitter:card" content="summary">
-<link rel="stylesheet" href="{asset('assets/css/style.css', lang)}">{ld}
+<link rel="stylesheet" href="{asset('assets/css/style.css', lang)}">
+<link rel="icon" href="{asset('assets/img/favicon-32.png', lang)}" sizes="32x32">
+<link rel="icon" href="{asset('assets/img/logo-mark.svg', lang)}" type="image/svg+xml">
+<link rel="apple-touch-icon" href="{asset('assets/img/favicon-180.png', lang)}">{ld}
 </head>
 <body>
 <header class="site-header"><div class="wrap">
-  <a class="brand" href="{rel('index', lang)}">I-Chung Lu<span>盧臆中</span></a>
+  <a class="brand" href="{rel('index', lang)}">
+    <img src="{asset('assets/img/logo.svg', lang)}" alt="Lu Lab — I-Chung Lu 盧臆中" class="logo">
+  </a>
   <nav class="main">{nav}{switch}</nav>
 </div></header>
 <main>
@@ -326,6 +331,22 @@ def badges(p, lang):
 ROLE_KEY = {"corresponding": "corr", "co-corresponding": "corr", "first": "first", "co-author": "co"}
 
 
+PUBFIG_DIR = ROOT / "assets" / "img" / "pubs"
+
+
+def pub_figure(p, lang):
+    """代表圖：檔名取自 DOI（/ 換成 _）。檔案存在才輸出。"""
+    if not p.get("doi"):
+        return ""
+    fn = p["doi"].replace("/", "_") + ".jpg"
+    if not (PUBFIG_DIR / fn).exists():
+        return ""
+    src = asset(f"assets/img/pubs/{fn}", lang)
+    alt = f'Graphical abstract: {p["title"][:80]}'
+    return (f'<a class="pub-fig" href="https://doi.org/{p["doi"]}" '
+            f'aria-label="{e(alt)}"><img src="{src}" alt="{e(alt)}" loading="lazy"></a>')
+
+
 def pub_li(p, lang):
     doi = (
         f'<a class="doi" href="https://doi.org/{p["doi"]}">doi:{e(p["doi"])}</a>'
@@ -334,11 +355,15 @@ def pub_li(p, lang):
     )
     vol = f", {e(p['volume'])}" if p.get("volume") else ""
     topics = " ".join(p.get("topics") or [])
-    return f"""<li data-role="{ROLE_KEY[p['role']]}" data-topics="{e(topics)}">
-  <span class="pub-authors">{format_authors(p['authors'], highlight=True)}</span>
-  <span class="pub-title">{e(p['title'])}</span>
-  <span class="pub-meta"><em>{e(p['journal'])}</em> <b>{p['year']}</b>{vol}</span>
-  <span class="pub-badges">{badges(p, lang)}{doi}</span>
+    fig = pub_figure(p, lang)
+    cls = "has-fig" if fig else ""
+    return f"""<li class="{cls}" data-role="{ROLE_KEY[p['role']]}" data-topics="{e(topics)}">
+  <div class="pub-body">
+    <span class="pub-authors">{format_authors(p['authors'], highlight=True)}</span>
+    <span class="pub-title">{e(p['title'])}</span>
+    <span class="pub-meta"><em>{e(p['journal'])}</em> <b>{p['year']}</b>{vol}</span>
+    <span class="pub-badges">{badges(p, lang)}{doi}</span>
+  </div>{fig}
 </li>"""
 
 
@@ -453,8 +478,6 @@ def page_index(lang):
 </div></div></div>
 
 <div class="wrap">
-<section>{stats(lang)}</section>
-
 <section>
   <h2>{e(t['research'])}</h2>
   {theme_blocks(lang)}
@@ -469,7 +492,7 @@ def page_index(lang):
 
 <section>
   <h2>{e(t['news'])}</h2>
-  <ul class="news">{news_items(lang, 8)}</ul>
+  <div class="news-scroll"><ul class="news">{news_items(lang)}</ul></div>
 </section>
 
 <section>
@@ -579,12 +602,12 @@ document.querySelectorAll('.filters button').forEach(b => b.addEventListener('cl
   <p class="sec-note">{e(tidy(pick(s, 'note', lang)))}</p>"""
         # 篩選器只放在第一區，套用到全頁
         controls = f'<div class="filters">{filters}</div>' if i == 0 else ""
-        stat = stats(lang) if i == 0 else ""
+        stat = ""
         legend = f'<div class="legend">{t["legend"]}</div>' if i == 0 else ""
         blocks.append(
             f"""<section id="{s['id']}">
   {head}
-  {stat}{legend}{controls}
+  {legend}{controls}
   <ol class="pubs">{''.join(pub_li(p, lang) for p in items)}</ol>
 </section>"""
         )
