@@ -137,13 +137,15 @@ nav.main a.lang:hover {
 .page-hero .hero-spectrum { height: 84px; opacity: .13; }
 /* 主視覺是實驗室的鉛筆手繪（已把紙張黃調校回近白）。邊緣用遮罩淡出成頁面底色，
    紙的白與頁面的白接在一起，不會像一張圖貼在版面上。 */
+/* 圖檔本身已把四邊烘成純白羽化，所以這裡不再加遮罩，
+   只留一層很淡的收邊，避免縮放時邊界重新浮現。 */
 .hero-shot { margin: 0; }
 .hero-shot img {
   display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
   -webkit-mask-image:
-    radial-gradient(120% 120% at 50% 48%, #000 50%, rgba(0, 0, 0, .55) 78%, transparent 100%);
+    radial-gradient(135% 135% at 50% 50%, #000 72%, transparent 100%);
   mask-image:
-    radial-gradient(120% 120% at 50% 48%, #000 50%, rgba(0, 0, 0, .55) 78%, transparent 100%);
+    radial-gradient(135% 135% at 50% 50%, #000 72%, transparent 100%);
 }
 @media (prefers-color-scheme: dark) {
   /* 手繪是白底，深色模式反相成白線黑底才不會變成一塊亮白 */
@@ -369,6 +371,14 @@ ul.grants .g-zh { font-size: 0.9rem; color: var(--ink-soft); }
 .lb-prev, .lb-next { top: 50%; transform: translateY(-50%); font-size: 3rem; }
 .lb-prev { left: 6px; }
 .lb-next { right: 6px; }
+
+/* ---------- YouTube 頻道 ---------- */
+.yt { display: grid; grid-template-columns: 56px 1fr; gap: 20px; align-items: start; }
+.yt-logo { display: block; line-height: 0; }
+.yt-logo svg { width: 56px; height: 56px; fill: #ff0033; }
+.yt-logo:hover svg { fill: #d4002a; }
+.yt h3 { margin-bottom: 6px; }
+.yt p { margin-bottom: 12px; }
 
 /* ---------- 開課紀錄表 ---------- */
 .table-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }

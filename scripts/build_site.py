@@ -180,6 +180,13 @@ T = {
         "courses_note": "Academic years are given in the Republic of China calendar used by "
                         "Taiwanese universities; year 114 corresponds to 2025–26. "
                         "Laboratory courses and independent-study units are not listed.",
+        "yt_h": "Physical chemistry on YouTube",
+        "yt_name": "狐獴老師的物化課 (Meerkat Teacher's Physical Chemistry)",
+        "yt_body": "A Mandarin-language channel where I work through physical chemistry: "
+                   "thermodynamics, kinetics, quantum chemistry, and the mathematics behind "
+                   "them. The aim is to make the subject feel less like scripture and more "
+                   "like a way of moving between the abstract and the real.",
+        "yt_cta": "Visit the channel →",
         "join": "Join Us",
         "join_body": "We are looking for students who are curious about how measurements "
                      "actually work, not just how to run them. Projects span ionization "
@@ -263,7 +270,7 @@ T = {
         "life_more": "看看實驗室生活 →",
         "photos_n": "{n} 張",
         "eyebrow": "盧臆中實驗室 · 國立中興大學化學系",
-        "claim": "用質譜看見<br>別的方法看不見的世界",
+        "claim": "用質譜看見<br>其它方法看不見的世界",
         "hero_alt": "光學桌上的客製化質譜進樣系統",
         "claim_lede": "我們從一個基礎問題出發：離子究竟是怎麼生成的？"
                       "再把這份理解變成能碰到真實問題的量測能力，"
@@ -285,6 +292,12 @@ T = {
         "c_req": "必修",
         "c_ele": "選修",
         "courses_note": "不含實驗課與專題研究。",
+        "yt_h": "YouTube 教學頻道",
+        "yt_name": "狐獴老師的物化課",
+        "yt_body": "物化不該是天書，而是我們穿梭在抽象與現實間的華麗冒險。"
+                   "頻道內容涵蓋熱力學、動力學、量子化學與化學數學，"
+                   "把課堂上講不完的推導與直觀，用影片重新講一次。",
+        "yt_cta": "前往頻道 →",
         "join": "加入我們",
         "join_body": "我們歡迎對「量測背後的原理」感到好奇的同學，而不只是會操作儀器。"
                      "研究題目橫跨游離機制、儀器開發、以及光譜的機器學習分類，"
@@ -1060,6 +1073,19 @@ def page_teaching(lang):
 <section style="padding-top:34px"><h2>{e(t['courses'])}</h2>
   {course_table(lang)}
   <p class="sec-note" style="margin-top:14px">{e(t['courses_note'])}</p>
+</section>
+<section>
+  <h2>{e(t['yt_h'])}</h2>
+  <div class="yt">
+    <a class="yt-logo" href="{P['links']['youtube']}" aria-label="{e(t['yt_name'])}">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23 12s0-3.6-.5-5.3a2.8 2.8 0 0 0-2-2C18.8 4.2 12 4.2 12 4.2s-6.8 0-8.5.5a2.8 2.8 0 0 0-2 2C1 8.4 1 12 1 12s0 3.6.5 5.3a2.8 2.8 0 0 0 2 2c1.7.5 8.5.5 8.5.5s6.8 0 8.5-.5a2.8 2.8 0 0 0 2-2C23 15.6 23 12 23 12z"/><path d="M9.8 15.4V8.6l5.9 3.4z" fill="#fff"/></svg>
+    </a>
+    <div>
+      <h3>{e(t['yt_name'])}</h3>
+      <p>{e(t['yt_body'])}</p>
+      <p><a class="cta" href="{P['links']['youtube']}">{e(t['yt_cta'])}</a></p>
+    </div>
+  </div>
 </section>
 <section><h2>{e(t['t_awards'])}</h2><ul class="grants">{aw}</ul></section>
 </div>"""
