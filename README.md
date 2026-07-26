@@ -83,6 +83,9 @@ python3 scripts/build_site.py  # 重新生成全站
 
 ## 注意事項
 
+**`google6797991aa0f7b2bc.html` 不要刪**。那是 Google Search Console 的所有權驗證檔，
+必須留在根目錄且內容不能改，刪掉會導致驗證失效。
+
 **本倉庫是 Public。** 不要放進：
 
 - 未發表的論文與原始數據
