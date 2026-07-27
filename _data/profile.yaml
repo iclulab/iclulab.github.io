@@ -31,7 +31,7 @@ contact:
 # 不使用 cookie、不追蹤個人，因此不需要 cookie 同意橫幅。
 # ------------------------------------------------------------
 analytics:
-  goatcounter: ""
+  goatcounter: "iclulab"
 
 links:
   google_scholar: "https://scholar.google.com/citations?user=og6_O_oAAAAJ"
