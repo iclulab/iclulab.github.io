@@ -11,6 +11,10 @@ assistant:
     topic: ""
 
 master_students:
+  - name_en: "Hsieh, Hsiang-Jung"
+    name_zh: "謝向榮"
+    photo: "hsieh-hsiang-jung.jpg"
+    topic: ""
   - name_en: "Chan, Zong-Chi"
     name_zh: "詹宗錡"
     photo: "chan-zong-chi.jpg"
