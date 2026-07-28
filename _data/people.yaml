@@ -2,6 +2,7 @@
 # people.yaml — 實驗室成員
 # 建議每位成員補上 topic（一句話研究主題），說服力遠勝只有姓名
 # photo 欄位填 assets/img/people/ 底下的檔名
+# 各組成員依加入實驗室的先後排列，新成員接在該組最後面
 # ============================================================
 
 assistant:
@@ -11,18 +12,6 @@ assistant:
     topic: ""
 
 master_students:
-  - name_en: "Hsieh, Hsiang-Jung"
-    name_zh: "謝向榮"
-    photo: "hsieh-hsiang-jung.jpg"
-    topic: ""
-  - name_en: "Ku, Jia-Yu"
-    name_zh: "古佳妤"
-    photo: "ku-jia-yu.jpg"
-    topic: ""
-  - name_en: "Hou, Wan-Ting"
-    name_zh: "侯皖庭"
-    photo: "hou-wan-ting.jpg"
-    topic: ""
   - name_en: "Chan, Zong-Chi"
     name_zh: "詹宗錡"
     photo: "chan-zong-chi.jpg"
@@ -63,12 +52,20 @@ master_students:
     name_zh: "朱庭儀"
     photo: "chu-ting-yi.jpg"
     topic: ""
+  - name_en: "Hsieh, Hsiang-Jung"
+    name_zh: "謝向榮"
+    photo: "hsieh-hsiang-jung.jpg"
+    topic: ""
+  - name_en: "Ku, Jia-Yu"
+    name_zh: "古佳妤"
+    photo: "ku-jia-yu.jpg"
+    topic: ""
+  - name_en: "Hou, Wan-Ting"
+    name_zh: "侯皖庭"
+    photo: "hou-wan-ting.jpg"
+    topic: ""
 
 undergraduate_students:
-  - name_en: "Chang, Hung-Yeh"
-    name_zh: "張弘曄"
-    photo: "chang-hung-yeh.jpg"
-    topic: ""
   - name_en: "Tseng, Chen-Yi"
     name_zh: "曾真薏"
     photo: "tseng-chen-yi.jpg"
@@ -80,6 +77,10 @@ undergraduate_students:
   - name_en: "Chen, Zong-You"
     name_zh: "陳宗祐"
     photo: "chen-zong-you.jpg"
+    topic: ""
+  - name_en: "Chang, Hung-Yeh"
+    name_zh: "張弘曄"
+    photo: "chang-hung-yeh.jpg"
     topic: ""
 
 # ------------------------------------------------------------
