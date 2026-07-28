@@ -65,6 +65,10 @@ master_students:
     topic: ""
 
 undergraduate_students:
+  - name_en: "Chang, Hung-Yeh"
+    name_zh: "張弘曄"
+    photo: "chang-hung-yeh.jpg"
+    topic: ""
   - name_en: "Tseng, Chen-Yi"
     name_zh: "曾真薏"
     photo: "tseng-chen-yi.jpg"

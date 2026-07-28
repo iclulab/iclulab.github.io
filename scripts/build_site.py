@@ -126,8 +126,9 @@ T = {
         "read_more": "Read more about the research →",
         "news": "News",
         "group": "The group",
-        "group_body": "The lab brings together students working on ionization fundamentals, "
-                      "instrument development, and applied classification problems.",
+        "group_body": "The group's work spans ionization mechanisms, analytical method "
+                      "development, and reaction dynamics, so members with quite different "
+                      "interests and strengths can each find a project that suits them.",
         "meet": "Meet the group →",
         "publications": "Publications",
         "earlier": "Earlier work — reaction dynamics (2003–2008)",
@@ -246,8 +247,8 @@ T = {
         "read_more": "閱讀完整研究介紹 →",
         "news": "消息",
         "group": "實驗室",
-        "group_body": "實驗室的研究橫跨游離機制、儀器開發與分類應用，"
-                      "不同專長的同學都能找到位置。",
+        "group_body": "實驗室的研究橫跨游離機制、分析方法開發與反應動力學研究，"
+                      "不同興趣與專長的成員都能找到適合自己的研究主題。",
         "meet": "認識團隊成員 →",
         "publications": "著作",
         "earlier": "早期研究 — 反應動力學（2003–2008）",
