@@ -64,6 +64,10 @@ master_students:
     name_zh: "侯皖庭"
     photo: "hou-wan-ting.jpg"
     topic: ""
+  - name_en: "Yu, Bo-Xiang"
+    name_zh: "尤柏翔"
+    photo: "yu-bo-xiang.jpg"
+    topic: ""
 
 undergraduate_students:
   - name_en: "Tseng, Chen-Yi"
