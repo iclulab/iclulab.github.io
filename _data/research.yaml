@@ -6,21 +6,24 @@
 #   body_*     一段式摘要（保留，供其他頁面引用）
 #   problem_*  問題在哪：為什麼這件事到現在還沒解決
 #   approach_* 我們的做法：方法與關鍵突破
-#   result_*   目前成果
-#   key_dois   代表著作的 DOI，研究頁會自動帶出標題、期刊與代表圖
+#   result_*   目前進展
+#
+# 文字以學術書面語撰寫：陳述句為主，不使用設問、對仗與誇張修辭。
 # 來源：RIKEN-NCHU biography + 國科會計畫方向（2026-07-26）
 # 網站 Home 與 Research 頁都讀這個檔
 # ============================================================
 
 intro_en: >
-  My group works at the boundary between fundamental physical chemistry and
-  practical analytical measurement. The through-line is mass spectrometry: we
-  first ask how ions are actually formed, then use that understanding to build
-  measurements that answer questions other methods cannot reach.
+  The group works at the boundary between fundamental physical chemistry and
+  analytical measurement, with mass spectrometry as the common thread. The work
+  begins with the mechanisms of ion formation and applies that understanding to
+  the development of measurements for problems that existing techniques do not
+  address well.
 
 intro_zh: >
-  本團隊的研究橫跨基礎物理化學與實用分析量測。貫穿其中的主軸是質譜：
-  我們先追問離子究竟是如何生成的，再用這份理解去打造其他方法碰不到的量測能力。
+  本實驗室的研究橫跨基礎物理化學與分析量測，主軸為質譜。
+  研究工作由離子生成機制的探討出發，並將所得認識用於發展新的量測方法，
+  以處理既有技術難以觸及的分析問題。
 
 themes:
   - id: foundations
@@ -28,248 +31,238 @@ themes:
     title_en: "Ionization Mechanisms: MALDI and MAI"
     title_zh: "游離機制：MALDI 與 MAI"
     topics: [maldi, ionization-mechanism, ambient-ionization]
-    # blurb = 首頁主題卡用的一句話；body = 一段式摘要
-    blurb_en: >
-      How does a solid give up gas-phase ions? We measure absolute ionization
-      efficiency to show that thermodynamics and phase change, not exotic
-      photochemistry, govern both MALDI and matrix-assisted ionization.
     blurb_zh: >
-      固體如何交出氣相離子？我們用絕對游離效率的量測指出，
-      主導 MALDI 與 MAI 的是熱力學與相變，而不是特殊的光化學。
-    body_en: >
-      Two routes turn a solid matrix into gas-phase ions: MALDI, driven by a laser
-      pulse, and matrix-assisted ionization (MAI), which needs neither laser nor
-      voltage. We study both by measuring absolute ionization efficiency, and find
-      that thermodynamics and phase change, rather than exotic photochemistry,
-      set what comes out.
+      以絕對游離效率的量測，釐清 MALDI 與 MAI 中固態基質產生氣相離子的機制。
+    blurb_en: >
+      Absolute ionization efficiency measurements used to establish how solid
+      matrices generate gas-phase ions in MALDI and MAI.
     body_zh: >
-      把固態基質變成氣相離子有兩條路：由雷射驅動的 MALDI，
-      以及不需雷射也不需電壓的基質輔助游離（MAI）。
-      我們以絕對游離效率的量測研究這兩者，發現決定產物的是熱力學與相變，
-      而非特殊的光化學機制。
+      固態基質產生氣相離子有兩條途徑：由雷射脈衝驅動的 MALDI，
+      以及僅需基質昇華即可進行的基質輔助游離（MAI）。
+      本實驗室以絕對游離效率為觀測量研究兩者的離子生成過程。
+    body_en: >
+      Two routes convert a solid matrix into gas-phase ions: MALDI, driven by a
+      laser pulse, and matrix-assisted ionization (MAI), which proceeds through
+      sublimation alone. Both are studied here through absolute ionization
+      efficiency.
     problem_zh: >
-      質譜要量到分子，前提是先讓它帶電。MALDI 用一道雷射打在基質晶體上，
-      MAI 連雷射都不用，只要基質昇華就能產生高電荷態離子。兩者都已廣泛使用，
-      卻有同一個難題：機制始終沒有定論。MALDI 這邊，多光子游離、能量匯集、
-      預形成離子、熱游離等模型並存於文獻，各自能解釋一部分現象卻互相矛盾；
-      MAI 這邊更違反直覺，一個看似單純的相變竟能造成電荷分離，
-      而且電荷態分布接近電噴灑。機制不明的代價很實際：基質只能靠試誤挑選、
-      靈敏度無法事先預測，新的游離方法也缺乏設計依據。
+      基質輔助雷射脫附游離（MALDI）與基質輔助游離（MAI）皆以固態基質為媒介產生氣相離子，
+      前者由雷射脈衝驅動，後者僅需基質昇華即可進行。兩者在生物分子分析中應用廣泛，
+      但離子生成機制迄今仍缺乏共識。就 MALDI 而言，多光子游離、能量匯集、預形成離子
+      與熱游離等模型並存於文獻，各模型的預測在部分實驗條件下互相牴觸。
+      MAI 的情形另有特殊之處：相變過程本身即造成電荷分離，所得電荷態分布與電噴灑游離相近，
+      其成因尚未獲得充分解釋。機制認識不足的後果是基質篩選多仰賴經驗、
+      靈敏度難以事先估計，新游離方法的設計亦缺乏依據。
     problem_en: >
-      Mass spectrometry can only weigh what it can charge. MALDI does this with a
-      laser pulse on a matrix crystal; matrix-assisted ionization (MAI) needs no
-      laser at all, producing multiply charged ions as the matrix simply sublimes.
-      Both are in wide use, and both share the same difficulty: the mechanism has
-      never been settled. For MALDI, multiphoton ionization, energy pooling,
-      preformed ions and thermal ionization coexist in the literature, each
-      explaining part of the picture while contradicting the others. MAI is stranger
-      still, since an apparently simple phase change separates charge and yields a
-      charge-state distribution close to electrospray. The cost is practical:
-      matrices are chosen by trial and error, sensitivity cannot be predicted, and
-      new ionization methods have little to be designed from.
+      Matrix-assisted laser desorption/ionization (MALDI) and matrix-assisted
+      ionization (MAI) both generate gas-phase ions from a solid matrix, the former
+      driven by a laser pulse and the latter by sublimation alone. Both are widely
+      applied to biological molecules, yet neither mechanism is settled.
+      For MALDI, multiphoton ionization, energy pooling, preformed ions and thermal
+      ionization coexist in the literature, and their predictions conflict under
+      certain conditions. MAI presents a further difficulty: the phase transition
+      itself separates charge, and the resulting charge-state distribution resembles
+      that of electrospray, which remains inadequately explained. In consequence,
+      matrix selection relies largely on experience, sensitivity cannot be estimated
+      in advance, and the design of new ionization methods lacks a firm basis.
     approach_zh: >
-      我們不讀訊號強度，而是直接量測離子與中性分子的比例，也就是絕對游離效率，
-      再系統性地改變雷射脈寬、雷射能量、基質種類與溫度壓力條件，
-      逐一檢驗各模型自己的預測。MALDI 這條線由此收斂到熱致質子轉移（TIPT）：
-      以基質的熱力學性質與雷射誘導溫度推算離子產率。
-      MAI 這條線則把焦點放在昇華過程中的自發電荷分離，
-      追蹤壓力、溫度與基質性質如何決定離子的生成與電荷態。
+      本實驗室以絕對游離效率為主要觀測量，直接量測離子與中性物種的數量比，
+      而非僅比較訊號強度。在此基礎上系統性改變雷射脈寬與能量、基質種類，
+      以及進樣端的溫度與壓力條件，逐一檢驗各機制模型的預測。
+      MALDI 方面據此建立熱致質子轉移（TIPT）的定量描述，
+      由基質的熱力學性質與雷射誘導溫度推算離子產率。
+      MAI 方面則聚焦於昇華過程中的自發電荷分離，
+      釐清壓力、溫度與基質性質對離子生成與電荷態分布的影響。
     approach_en: >
-      Instead of reading signal intensity, we measure the ion-to-neutral ratio
-      directly, that is, the absolute ionization efficiency, then vary laser pulse
-      width, fluence, matrix and the temperature and pressure of the inlet to test
-      each model against its own predictions. For MALDI this converges on thermally
-      induced proton transfer (TIPT), where the ion yield follows from the
-      thermodynamics of the matrix and the laser-induced temperature. For MAI the
-      focus is the spontaneous charge separation that accompanies sublimation, and
-      how pressure, temperature and matrix properties decide whether ions form and
-      how highly they are charged.
+      The primary observable is the absolute ionization efficiency, that is, the
+      ratio of ions to neutrals, rather than signal intensity alone. Laser pulse
+      width and fluence, matrix identity, and the temperature and pressure of the
+      inlet are varied systematically so that each mechanistic model can be tested
+      against its own predictions. For MALDI this yields a quantitative description
+      based on thermally induced proton transfer (TIPT), in which the ion yield
+      follows from the thermodynamic properties of the matrix and the laser-induced
+      temperature. For MAI the focus is the spontaneous charge separation that
+      accompanies sublimation, and how pressure, temperature and matrix properties
+      determine ion formation and charge-state distribution.
     result_zh: >
-      TIPT 在多組獨立實驗中重現了觀測到的離子產率。MAI 方面，
-      我們確認昇華驅動的電荷分離是普遍現象而非特定基質的特例，
-      並且在常壓、次常壓與真空條件下都能運作；據此發展出不需高壓電、
-      不需雷射的離子源，也讓可攜式質譜的實作變得可行。
-      兩條線指向同一個結論：固體交出離子這件事，主導的是熱力學與相變。
+      TIPT 模型在多組獨立實驗中可重現量測所得的離子產率。
+      MAI 方面確認昇華驅動的電荷分離具普遍性，不限於特定基質，
+      且在常壓、次常壓與真空條件下均可運作。相關認識已應用於離子源設計，
+      發展出不需高電壓與雷射的游離方式，並適用於可攜式質譜儀。
+      綜合結果顯示，固態樣品的離子生成主要由熱力學與相變過程決定。
     result_en: >
-      TIPT reproduces measured ion yields across independent experiments. On the MAI
-      side, sublimation-driven charge separation turns out to be general rather than
-      a quirk of one matrix, and it works at atmospheric, sub-atmospheric and vacuum
-      conditions alike. That understanding produced ion sources requiring neither
-      high voltage nor a laser, and made portable instruments practical. Both lines
-      point the same way: when a solid gives up ions, thermodynamics and phase
-      change are in charge.
+      TIPT reproduces measured ion yields across independent experiments.
+      For MAI, sublimation-driven charge separation is found to be general rather
+      than specific to one matrix, and operates at atmospheric, sub-atmospheric and
+      vacuum conditions alike. These findings have been applied to ion source
+      design, giving ionization schemes that require neither high voltage nor a
+      laser and are compatible with portable instruments. Taken together, the
+      results indicate that ion formation from solid samples is governed primarily
+      by thermodynamics and phase change.
 
   - id: health
     tag: "Health"
-    title_en: "Carbohydrate Mass Spectrometry with AI Classification"
-    title_zh: "醣類質譜結合 AI 分類"
+    title_en: "Carbohydrate Mass Spectrometry with Machine-Learning Classification"
+    title_zh: "醣類質譜與機器學習分類"
     topics: [carbohydrate, quantification, maldi]
-    blurb_en: >
-      Making sugars reliably measurable by mass spectrometry, then turning those
-      spectra into machine-learning models aimed at rapid clinical screening.
     blurb_zh: >
-      先讓質譜測得準醣類，再把光譜接上機器學習模型，
-      目標是可用於臨床快篩的判讀工具。
-    body_en: >
-      Carbohydrates are notoriously hard to measure by mass spectrometry: they
-      ionize poorly and their isomers are nearly indistinguishable. We developed
-      the rapidly freeze-drying droplet method to make MALDI quantification of
-      sugars reliable, and now couple those spectra to machine-learning
-      classifiers aimed at diagnostic and rapid-screening applications.
+      改善醣類質譜的定量重現性，並結合機器學習分類，發展臨床快速篩檢方法。
+    blurb_en: >
+      Improving quantitative reproducibility in carbohydrate mass spectrometry and
+      coupling it to machine-learning classification for clinical screening.
     body_zh: >
-      醣類是質譜出了名難測的分子：游離效率低，異構物又幾乎無法區分。
-      我們發展了快速冷凍乾燥液滴法，讓 MALDI 對醣類的定量變得可靠，
-      並進一步把光譜資料接上機器學習分類模型，目標是診斷與快速篩檢應用。
+      醣類的質譜定量長期受限於游離效率與樣品分布均勻性。
+      本實驗室由樣品製備著手改善重現性，並將質譜資料結合分類模型，
+      朝臨床快速篩檢的應用發展。
+    body_en: >
+      Quantitative carbohydrate analysis by mass spectrometry has long been limited
+      by ionization efficiency and sample inhomogeneity. Work here addresses
+      reproducibility at the sample-preparation stage and couples the resulting
+      spectra to classification models for clinical screening.
     problem_zh: >
-      醣類是質譜出了名難測的分子。游離效率低、鹽類加成物分散訊號、乾燥液滴留下的「咖啡環」
-      讓分析物分布不均，於是同一個樣品在不同位置量到的強度可以差好幾倍，
-      定量重現性差；再加上異構物幾乎同質量，連定性都不容易。
-      臨床端想用血清或尿液做快篩，第一關就卡在這裡。
+      醣類的質譜分析受限於數項因素：游離效率偏低、鹼金屬加成物使訊號分散，
+      以及液滴乾燥時形成的環狀沈積使分析物在樣品點上分布不均。
+      上述因素導致同一樣品於不同位置量得的訊號強度差異顯著，定量重現性不足。
+      此外，醣類異構物的質量相近，僅憑質量資訊不易區分。
+      這些限制構成血清、尿液等臨床檢體應用於快速篩檢的主要障礙。
     problem_en: >
-      Carbohydrates are notoriously difficult by mass spectrometry. They ionize
-      poorly, salt adducts split the signal, and the coffee-ring left by a drying
-      droplet distributes analyte so unevenly that intensity can vary several-fold
-      across a single spot. Quantification is therefore unreliable, and near-isobaric
-      isomers make even identification hard. Any attempt at clinical screening from
-      serum or urine runs into this first.
+      Carbohydrate analysis by mass spectrometry is limited by several factors: low
+      ionization efficiency, signal division among alkali-metal adducts, and the
+      ring-shaped deposit left as a droplet dries, which distributes analyte
+      unevenly across the sample spot. Intensity therefore varies substantially
+      between positions on the same sample, and quantification is not reproducible.
+      Isomers of similar mass further complicate identification. Together these
+      limitations are the principal obstacle to rapid screening from clinical
+      specimens such as serum and urine.
     approach_zh: >
-      我們從樣品製備下手。快速冷凍乾燥液滴法（RFDD）讓基質與分析物在低溫下同時固化，
-      保留均勻分布的預形成鈉加成物，「甜蜜點」現象因此消失。
-      有了可靠的訊號之後，再把整張光譜當成高維特徵，接上機器學習分類器，
-      讓判讀不再依賴單一離子的強度。
+      本實驗室由樣品製備著手，發展快速冷凍乾燥液滴法（RFDD）。
+      該方法使基質與分析物於低溫下同時固化，維持預形成鈉加成物的均勻分布，
+      改善樣品點內訊號的空間一致性。在訊號可靠度提升之後，
+      進一步將完整質譜視為高維特徵，結合機器學習分類模型進行判讀，
+      降低判讀結果對單一離子強度的依賴。
     approach_en: >
-      We start from sample preparation. The rapidly freeze-drying droplet (RFDD)
-      method solidifies matrix and analyte together at low temperature, preserving
-      homogeneously distributed preformed sodium adducts and eliminating the
-      sweet-spot effect. With the signal made reliable, the full spectrum is treated
-      as a high-dimensional feature set and handed to machine-learning classifiers,
-      so a readout no longer rests on the intensity of one ion.
+      The rapidly freeze-drying droplet (RFDD) method was developed at the
+      sample-preparation stage. Matrix and analyte solidify together at low
+      temperature, preserving a homogeneous distribution of preformed sodium
+      adducts and improving the spatial consistency of signal within a spot. With
+      the measurement made reliable, the full spectrum is treated as a
+      high-dimensional feature set and interpreted by machine-learning classifiers,
+      reducing dependence on the intensity of any single ion.
     result_zh: >
-      RFDD 使離子強度提升兩個數量級以上，甜蜜點效應消失，血清中的定量線性達 R² = 0.99。
-      這套流程目前正推向尿液液態切片，目標是癌症的早期偵測與轉移預警。
+      RFDD 使離子強度提升逾兩個數量級，並改善樣品點內訊號的均勻性；
+      於血清基質中的定量校正線性可達 R² = 0.99。
+      現階段正將此流程應用於尿液液態切片，評估其用於癌症早期偵測與轉移監測的可行性。
     result_en: >
-      RFDD raises ion intensity by more than two orders of magnitude, removes the
-      sweet-spot effect, and gives a calibration linearity of R² = 0.99 in serum.
-      The workflow is now being pushed toward urinary liquid biopsy, aimed at early
-      cancer detection and metastasis warning.
-    key_dois:
-      - "10.1039/D3AN02201C"
-      - "10.1016/j.ijms.2025.117516"
-      - "10.3390/molecules25051217"
+      RFDD raises ion intensity by more than two orders of magnitude and improves
+      the uniformity of signal within a sample spot; calibration in a serum matrix
+      reaches a linearity of R² = 0.99. The workflow is currently being applied to
+      urinary liquid biopsy, where its feasibility for early cancer detection and
+      metastasis monitoring is under evaluation.
 
   - id: sustainability
     tag: "Sustainability"
-    title_en: "Smart Plastic Identification for Recycling"
-    title_zh: "塑膠智慧辨識與回收"
+    title_en: "Mass-Spectrometric Identification of Plastics for Recycling"
+    title_zh: "塑膠的質譜辨識與回收分選"
     topics: []
-    blurb_en: >
-      Recycling fails at the sorting step. Mass-spectrometric fingerprints plus
-      classification models let mixed plastic streams be identified automatically.
     blurb_zh: >
-      回收的瓶頸在分選。用質譜指紋加上分類模型，
-      讓混合的塑膠料流能被自動辨識。
-    body_en: >
-      Plastic recycling fails at the sorting step: mixed polymer streams are
-      difficult to identify quickly and cheaply. We are combining mass
-      spectrometric fingerprinting with machine-learning models to classify
-      polymer types automatically, with the goal of making high-quality sorting
-      practical at scale.
+      以質譜指紋結合分類模型辨識混合高分子，改善塑膠回收的分選環節。
+    blurb_en: >
+      Mass-spectrometric fingerprints combined with classification models to
+      identify mixed polymers and improve the sorting stage of plastic recycling.
     body_zh: >
-      塑膠回收的瓶頸在分選：混合的高分子料流難以快速且低成本地辨識。
-      我們結合質譜指紋與機器學習模型，讓高分子種類能被自動分類，
-      目標是讓高品質分選在實際規模下變得可行。
-    grant_ids: ["114-2113-M-005-013-"]
+      塑膠回收的效率限制主要來自分選環節。
+      本研究以質譜作為高分子的指紋辨識工具，結合分類模型自動判別材料種類，
+      並以現場適用性為設計前提。
+    body_en: >
+      The efficiency of plastic recycling is limited chiefly at the sorting stage.
+      Mass spectrometry is used here as a fingerprinting tool for polymers, combined
+      with classification models and designed for use on site.
     problem_zh: >
-      塑膠回收的瓶頸不在化學，而在分選。混合料流若無法快速、低成本地辨識，
-      後端再生料的品質就上不去。現行的近紅外分選對深色塑膠與多層複合材料幾乎失效，
-      而這正是實際回收流裡佔比最高的部分。
+      塑膠回收的效率限制主要來自分選環節。混合高分子料流若無法快速且低成本地辨識，
+      再生料的品質即難以提升。現行以近紅外光譜為主的分選技術，
+      對深色塑膠與多層複合材料的辨識能力有限，而此類材料在實際回收流中佔有相當比例。
     problem_en: >
-      Plastic recycling fails at sorting, not at chemistry. If a mixed stream cannot
-      be identified quickly and cheaply, the quality of the recyclate is capped.
-      Near-infrared sorters, the current standard, are largely blind to dark-coloured
-      plastics and multilayer composites, which is exactly what dominates real
-      waste streams.
+      The efficiency of plastic recycling is limited chiefly at the sorting stage.
+      Unless a mixed polymer stream can be identified quickly and at low cost, the
+      quality of the recyclate cannot be improved. Near-infrared sorting, the
+      current standard, has limited capability for dark-coloured plastics and
+      multilayer composites, which constitute a substantial fraction of real waste
+      streams.
     approach_zh: >
-      把質譜當成指紋工具：不同高分子在熱裂解與游離後會給出各自的碎片組合，
-      再用分類模型自動判別種類。關鍵不在於做出實驗室級的精密分析，
-      而在於讓量測小到可以帶到現場、快到可以跟上輸送帶。
-      實驗室先前發展的可攜式質譜與新型離子源，正是這條線的基礎。
+      本研究以質譜作為高分子的指紋辨識工具。不同高分子經熱裂解與游離後
+      產生具特徵性的碎片組合，可作為分類依據，再以分類模型自動判別材料種類。
+      方法設計以現場適用性為前提，著重量測系統的體積、成本與分析速度，
+      而非實驗室級的分析精度。實驗室先前發展的可攜式質譜儀與新型離子源，
+      為此提供了技術基礎。
     approach_en: >
-      Mass spectrometry is used here as a fingerprinting tool: each polymer gives a
-      characteristic fragment pattern after pyrolysis and ionization, and a
-      classification model assigns the type automatically. The point is not
-      laboratory-grade precision but a measurement small enough to take to the site
-      and fast enough to keep up with a conveyor. The portable instruments and ion
-      sources the group built earlier are what make this plausible.
+      Mass spectrometry serves as a fingerprinting tool for polymers: pyrolysis and
+      ionization yield a characteristic fragment pattern for each material, from
+      which a classification model assigns the polymer type. The method is designed
+      for use on site, with attention to instrument size, cost and analysis speed
+      rather than laboratory-grade precision. The portable instruments and ion
+      sources developed earlier in the group provide the technical basis.
     result_zh: >
-      這條線目前處於方法建立階段，由國科會 114 年度計畫支持，
-      建立在實驗室已發表的可攜式質譜與新型離子源基礎上。
+      本主題目前處於方法建立階段，由國家科學及技術委員會計畫支持，
+      正進行高分子標準品的質譜特徵建置與分類模型的驗證。
     result_en: >
-      The line is at the method-building stage, supported by an NSTC grant and
-      resting on the portable instrumentation and ion sources already published by
-      the group.
-    key_dois:
-      - "10.1016/j.ijms.2022.116798"
-      - "10.1002/rcm.8503"
+      The work is at the method-development stage, supported by an NSTC grant.
+      Reference spectra for polymer standards are being compiled and the
+      classification models validated.
 
   - id: mechanisms
     tag: "Reaction Mechanisms"
-    title_en: "Capturing Reactive Intermediates in Catalysis"
-    title_zh: "捕捉催化反應中間體"
+    title_en: "Detection of Reactive Intermediates in Catalysis"
+    title_zh: "催化反應中間體的直接偵測"
     topics: [catalysis, water-oxidation, electrochemistry, reactive-intermediates]
-    blurb_en: >
-      Catalytic cycles are usually inferred, not seen. Customized inlets let us
-      capture fleeting intermediates straight out of the reacting solution.
     blurb_zh: >
-      催化循環通常只能被推論，而看不見。
-      我們用客製化進樣系統，直接從反應中的溶液抓到一閃即逝的中間體。
-    body_en: >
-      Catalytic cycles are usually inferred, not observed. Using customized mass
-      spectrometry inlet systems, we capture transient species directly from
-      reacting solutions, which lets us pin down kinetics and mechanism in
-      transition-metal catalysis and electrochemical water oxidation. This work
-      is done with synthetic and computational groups: we supply the evidence
-      that distinguishes competing mechanistic proposals.
+      以客製化進樣系統直接偵測催化反應中的瞬態物種，提供機制判別所需的實驗證據。
+    blurb_en: >
+      Customized inlet systems used to detect transient species during catalysis,
+      providing the evidence needed to distinguish between mechanistic proposals.
     body_zh: >
-      催化循環通常是被推論出來的，而不是被看見的。
-      我們以客製化的質譜進樣系統，直接從反應中的溶液捕捉瞬態物種，
-      藉此釐清過渡金屬催化與電化學水氧化的動力學與機構。
-      這條線與合成及計算團隊合作進行，我們提供的是足以區辨競爭機構假說的關鍵證據。
+      催化循環中的關鍵中間體不易直接觀測，其存在多由間接證據推論。
+      本實驗室建置客製化質譜進樣系統，使反應溶液直接導入質譜儀，
+      在反應進行中偵測瞬態物種。
+    body_en: >
+      Key intermediates in catalytic cycles are difficult to observe directly and
+      are usually inferred from indirect evidence. Customized inlet systems allow
+      reacting solutions to enter the mass spectrometer directly, so that transient
+      species can be detected while the reaction proceeds.
     problem_zh: >
-      催化循環通常是被推論出來的，而不是被看見的。中間體壽命短、濃度低，
-      傳統上只能靠動力學數據與計算去回推，而錯誤的機構假設會讓催化劑設計走上冤枉路。
-      要在競爭的機構假說之間做出判斷，需要的是直接證據。
+      催化循環中的關鍵中間體多具短暫壽命與低濃度，不易直接觀測，
+      其存在通常由動力學數據與計算結果間接推論。
+      當數個競爭性的機制假說皆能解釋既有數據時，僅憑間接證據難以判別，
+      催化劑的設計方向亦因此受限。
     problem_en: >
-      Catalytic cycles are usually inferred rather than observed. Intermediates are
-      short-lived and dilute, so mechanism is normally reconstructed from kinetics
-      and computation, and a wrong assumption sends catalyst design down the wrong
-      path. Choosing between competing proposals calls for direct evidence.
+      Key intermediates in catalytic cycles are typically short-lived and dilute,
+      hence difficult to observe directly, and their existence is inferred from
+      kinetics and computation. Where several competing mechanistic proposals
+      account equally well for the available data, indirect evidence cannot
+      discriminate between them, and catalyst design is constrained accordingly.
     approach_zh: >
-      我們以客製化的質譜進樣系統，把反應中的溶液直接送進質譜。
-      低溫噴灑游離（CSI）與可控溫進樣讓瞬態物種在分解之前抵達偵測器，
-      因此能在反應進行的當下觀察它。這條線與合成、電化學及計算團隊合作進行，
-      我們提供的是足以區辨機構假說的關鍵證據。
+      本實驗室建置客製化質譜進樣系統，使反應溶液得以直接導入質譜儀。
+      低溫噴灑游離（CSI）與溫度可控的進樣設計可降低瞬態物種於傳輸過程中的分解，
+      使其在反應進行中被偵測。此項工作與合成化學、電化學及計算化學團隊合作進行，
+      目的在於提供可區辨競爭機制假說的實驗證據。
     approach_en: >
-      Customized inlet systems bring the reacting solution straight into the mass
-      spectrometer. Cold-spray ionization and temperature-controlled inlets let
-      transient species reach the detector before they decompose, so they can be
-      watched while the reaction runs. The work is done with synthetic,
-      electrochemical and computational groups: we supply the evidence that
-      discriminates between mechanistic proposals.
+      Customized inlet systems introduce the reacting solution directly into the
+      mass spectrometer. Cold-spray ionization and temperature-controlled inlets
+      reduce decomposition of transient species during transfer, allowing them to be
+      detected while the reaction proceeds. The work is carried out with synthetic,
+      electrochemical and computational groups, with the aim of supplying evidence
+      that discriminates between competing mechanistic proposals.
     result_zh: >
-      在雙核鈷的水氧化系統中直接觀測到過氧橋聯物種與非無辜配體的自由基態，
-      說明了速率與過電位之間的取捨如何被打破；在鐵的高價氧化學中釐清 O–O 鍵
-      斷裂走均裂或異裂的分歧；在鈀預催化劑中追蹤活性物種的生成過程。
+      於雙核鈷水氧化系統中觀測到過氧橋聯物種，並確認非無辜配體在催化循環中的氧化態變化，
+      據以說明反應速率與過電位之間取捨關係的成因。
+      於高價鐵氧物種的研究中，釐清 O–O 鍵斷裂在均裂與異裂路徑之間的分歧條件。
+      於鈀預催化劑系統中，追蹤活性物種的生成過程。
     result_en: >
-      In dinuclear cobalt water oxidation we observed peroxo-bridged species and the
-      radical state of a non-innocent ligand directly, showing how the trade-off
-      between rate and overpotential can be broken. In high-valent iron chemistry we
-      resolved whether O–O cleavage proceeds homolytically or heterolytically. In
-      palladium precatalysts we followed the formation of the active species itself.
-    key_dois:
-      - "10.1002/chem.202403583"
-      - "10.1021/acs.inorgchem.5c05784"
-      - "10.1021/acsorginorgau.3c00061"
+      In dinuclear cobalt water oxidation, peroxo-bridged species were observed and
+      the change in oxidation state of a non-innocent ligand established, accounting
+      for the trade-off between reaction rate and overpotential. In high-valent iron
+      oxo chemistry, the conditions separating homolytic from heterolytic O–O
+      cleavage were resolved. In palladium precatalyst systems, the formation of the
+      active species was followed directly.
 
 # 早期研究（僅在 Research 頁末尾以一小段帶過）
 earlier_en: >
