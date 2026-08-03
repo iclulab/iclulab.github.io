@@ -154,11 +154,10 @@ T = {
         "eyebrow": "Lu Lab · Department of Chemistry, National Chung Hsing University",
         "claim": "Seeing the world other<br>methods struggle to observe",
         "hero_alt": "Custom-built mass spectrometry inlet on the optical table",
-        "claim_lede": "We begin with a basic question: how are ions actually formed? "
-                      "That understanding becomes measurement capability that reaches "
-                      "real problems, from rapid screening of carbohydrates to smart "
-                      "sorting of plastics and the fleeting intermediates of catalytic "
-                      "cycles.",
+        "claim_lede": "The work begins with the mechanisms of ion formation and "
+                      "applies that understanding to rapid clinical screening of "
+                      "carbohydrates, material identification for plastic recycling, "
+                      "and the direct detection of intermediates in catalysis.",
         "cta_research": "What we work on →",
         "cta_join": "Join the lab →",
         "themes_h": "Research directions",
@@ -192,15 +191,16 @@ T = {
                    "adventure between the abstract and the real.",
         "yt_cta": "Visit the channel →",
         "join": "Join Us",
-        "join_body": "We are looking for students who are curious about how measurements "
-                     "actually work, not just how to run them. Projects span ionization "
-                     "fundamentals, instrument building, and machine-learning classification "
-                     "of spectra, so there is room for people with quite different strengths.",
-        "what": "What you can work on",
+        "join_body": "The group welcomes students with an interest in the principles "
+                     "behind a measurement, not only its operation. Projects range across "
+                     "ionization mechanisms, instrument and method development, and the "
+                     "machine-learning analysis of spectra, so students from different "
+                     "backgrounds can find a suitable entry point.",
+        "what": "Research topics available",
         "touch": "Get in touch",
-        "touch_body": "Email me with a short note about what interests you and, if you have "
-                      "one, a CV. NCHU undergraduates are welcome to drop by my office "
-                      "(Room 508) or come and see the lab (Room 102).",
+        "touch_body": "Please write with a short account of the direction that interests "
+                      "you, together with a CV if available. NCHU undergraduates are also "
+                      "welcome to call at Room 508 or at the laboratory in Room 102.",
         "legend": "<b>*</b> marks the corresponding author. Names in <b>bold</b> indicate "
                   "I-Chung Lu. For the large multi-author community reviews co-authored with "
                   "S. Trimpin the author list is abbreviated; all other papers list every "
@@ -275,9 +275,9 @@ T = {
         "eyebrow": "盧臆中實驗室 · 國立中興大學化學系",
         "claim": "用質譜看見<br>其它方法難以觀察的世界",
         "hero_alt": "光學桌上的客製化質譜進樣系統",
-        "claim_lede": "我們從一個基礎問題出發：離子究竟是怎麼生成的？"
-                      "再把這份理解變成能碰到真實問題的量測能力，"
-                      "包括醣類的快速篩檢、塑膠的智慧分選，以及催化循環中一閃即逝的中間體。",
+        "claim_lede": "研究工作由離子生成機制的探討出發，"
+                      "並將所得認識應用於醣類的臨床快速篩檢、塑膠回收的材料辨識，"
+                      "以及催化反應中間體的直接偵測。",
         "cta_research": "我們在做什麼 →",
         "cta_join": "加入實驗室 →",
         "themes_h": "研究主軸",
@@ -306,14 +306,13 @@ T = {
         "yt_body": "物化不該是天書，而是我們穿梭在抽象與現實間的華麗冒險。",
         "yt_cta": "前往頻道 →",
         "join": "加入我們",
-        "join_body": "我們歡迎對「量測背後的原理」感到好奇的同學，而不只是會操作儀器。"
-                     "研究題目橫跨游離機制、儀器開發、以及光譜的機器學習分類，"
-                     "不同專長的人都能找到位置。",
-        "what": "你可以做的題目",
+        "join_body": "實驗室歡迎對量測原理本身感興趣的同學，而不僅止於儀器操作。"
+                     "研究題目涵蓋游離機制、儀器與方法開發，以及質譜資料的機器學習分析，"
+                     "不同背景與專長的同學都能找到合適的切入點。",
+        "what": "可參與的研究題目",
         "touch": "聯絡方式",
-        "touch_body": "來信簡述你感興趣的方向，有履歷的話一併附上。"
-                      "中興大學部同學也歡迎直接到化學館 508 室找我聊聊，"
-                      "或到 102 實驗室看看我們在做什麼。",
+        "touch_body": "來信請簡述感興趣的研究方向，若有履歷請一併附上。"
+                      "中興大學部同學亦可逕至化學館 508 室或 102 實驗室洽談。",
         "legend": "星號 <b>*</b> 標示通訊作者，<b>粗體</b>為本人。"
                   "與 S. Trimpin 合著的大型社群綜論因作者眾多而省略中間作者，"
                   "其餘論文一律完整列出所有作者。",

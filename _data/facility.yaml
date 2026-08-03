@@ -29,46 +29,47 @@ intro_zh: >
   或極限條件下的分子時，標準化流程往往正好失效。這類實驗通常涉及進樣系統的
   重新設計與游離源的整合，而常設性的貴重儀器中心為維持服務量能與系統穩定，
   難以配合個別研究進行深度改裝。許多團隊有優秀的研究主題，
-  卻苦於缺乏能跨領域協作的質譜支援。
+  但缺乏能跨領域協作的質譜支援。
 
 positioning_en: >
-  We are not only a data provider but a research partner. Drawing on years of
-  experience in mass spectrometry system integration and analytical method
-  development, this platform is built to be both flexible and precise.
+  The platform is set up for research collaboration rather than routine contract
+  testing. Drawing on established experience in mass spectrometry system
+  integration and analytical method development, measurement schemes are planned
+  around the requirements of each project.
 positioning_zh: >
-  我們不只是提供數據的檢測方，更是你的科研夥伴。
-  本團隊憑藉多年累積的質譜系統整合與分析方法開發經驗，
-  致力於建構兼具「彈性」與「精準度」的客製化質譜技術平台。
+  本平台的定位是研究協作，而非單純的檢測委外。
+  以質譜系統整合與分析方法開發的既有經驗為基礎，
+  針對個別研究需求規劃合適的量測方案。
 
 capabilities:
-  - title_en: "Built for difficult samples"
-    title_zh: "專攻特殊需求"
+  - title_en: "Measurement of demanding samples"
+    title_zh: "特殊樣品的量測規劃"
     body_en: >
       For air- and moisture-sensitive products and highly reactive intermediates,
-      we design a workable measurement strategy and deliver direct experimental
-      evidence rather than inference.
+      a workable measurement scheme is designed so that direct experimental
+      evidence replaces indirect inference.
     body_zh: >
-      針對水氧敏感的產物與高反應性中間體，規劃合理可行的質譜探測方案，
-      提供直接的實驗證據，而不是間接推論。
+      針對水氧敏感的產物與高反應性中間體規劃可行的質譜探測方案，
+      以直接的實驗證據取代間接推論。
 
-  - title_en: "Measurement designed around your problem"
-    title_zh: "量身打造方案"
+  - title_en: "Workflows designed around the research question"
+    title_zh: "依研究問題設計流程"
     body_en: >
-      The workflow is built from your sample characteristics and research goal
-      outward, which is what makes it possible to go beyond the limits of
-      standardised instrumentation.
+      Workflows are constructed from the characteristics of the sample and the
+      objective of the study, extending to conditions that standardised
+      instrumentation does not cover.
     body_zh: >
-      依據你的樣品特性與研究目標，設計專屬的質譜流程，
-      突破標準化設備的限制。
+      依樣品特性與研究目標設計量測流程，
+      處理標準化設備難以涵蓋的實驗條件。
 
-  - title_en: "Training, not just service"
-    title_zh: "科研人才賦能"
+  - title_en: "Technical training"
+    title_zh: "技術移轉與教育訓練"
     body_en: >
-      Alongside analysis and consultation, we can arrange training so that your
-      own group builds the capability in-house.
+      In addition to analysis and consultation, training can be arranged so that
+      the collaborating group develops the capability in-house.
     body_zh: >
-      除了專業的質譜檢測方案與諮詢，另可專案協助人員教育訓練，
-      協助貴實驗室建立核心技術與能量。
+      除檢測與諮詢外，可安排人員教育訓練，
+      協助合作團隊建立自有的量測能力。
 
 services:
   - name_en: "Observation of reaction intermediates in solution"
@@ -86,17 +87,17 @@ cases:
     body_en: >
       Working with synthetic and computational groups on metal complexes with
       varied ligands, we used cold-spray ionization mass spectrometry to follow
-      how intermediate concentrations evolve during the reaction. Catching
-      short-lived active species while a fast electrochemical reaction is still
-      running supplies the direct molecular evidence needed to distinguish
-      competing mechanistic proposals, and shows how ligand design balances high
-      activity against low overpotential.
+      how intermediate concentrations evolve during the reaction. Detecting
+      short-lived active species during a fast electrochemical reaction provides
+      the molecular evidence required to distinguish competing mechanistic
+      proposals, and indicates how ligand design balances activity against
+      overpotential.
     body_zh: >
       與合成及計算團隊合作，以不同的金屬錯合物與配體組合出特性相異的催化劑。
       本平台以冷噴霧游離質譜（CSI-MS）監測反應中間體濃度隨時間的變化，
-      在快速的電化學反應進行中捕捉壽命極短的活性中間體，
-      提供釐清複雜電催化機制所需的直接分子證據，
-      並展示如何設計配位基以在高活性與低過電位之間取得平衡。
+      於快速電化學反應進行中偵測壽命極短的活性中間體，
+      提供區辨競爭機制假說所需的分子證據，
+      並說明配位基設計如何影響活性與過電位之間的取捨。
     dois:
       - "10.1002/chem.202403583"
       - "10.1021/acscatal.5c01183"
@@ -105,17 +106,17 @@ cases:
   - title_en: "Development of new palladium precatalysts"
     title_zh: "新型鈀預催化劑的開發與研究"
     body_en: >
-      SIPr-NAPA precatalysts perform well in Kumada–Tamao–Corriu couplings. We
-      used mass spectrometry both to characterise the newly synthesised
-      precatalysts and to establish how they activate and form the active
-      species. The spectra clearly show dissociation of the NHC and phosphinous
-      acid ligands from the precatalyst, corroborating DFT calculations and
-      revealing a mechanistic pathway that had not been described before.
+      SIPr-NAPA precatalysts show good activity in Kumada–Tamao–Corriu couplings.
+      Mass spectrometry was used to characterise the newly synthesised
+      precatalysts and to establish their activation pathway and the formation of
+      the active species. The spectra show dissociation of the NHC and phosphinous
+      acid ligands from the precatalyst, consistent with DFT calculations and
+      indicating an activation route not previously reported.
     body_zh: >
-      新型 SIPr-NAPA 鈀預催化劑在 Kumada–Tamao–Corriu 偶聯反應中表現優異。
-      本平台以質譜鑑定新合成的預催化劑，並驗證其活化機制與活性物種的形成過程。
-      質譜數據清楚觀察到 NHC 與亞膦酸配體從預催化劑解離的形態，
-      與密度泛函理論（DFT）計算相互印證，展示了新型態的催化反應機構。
+      新型 SIPr-NAPA 鈀預催化劑於 Kumada–Tamao–Corriu 偶聯反應中具良好的催化活性。
+      本平台以質譜鑑定新合成的預催化劑，並確認其活化途徑與活性物種的形成過程。
+      質譜數據顯示 NHC 與亞膦酸配體自預催化劑解離，
+      與密度泛函理論（DFT）計算結果一致，指出先前未見報導的活化途徑。
     dois:
       - "10.1002/ajoc.202500332"
       - "10.1002/cctc.202200736"
