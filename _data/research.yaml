@@ -25,68 +25,79 @@ intro_zh: >
 themes:
   - id: foundations
     tag: "Foundations"
-    title_en: "Ionization Mechanisms"
-    title_zh: "游離機制"
+    title_en: "Ionization Mechanisms: MALDI and MAI"
+    title_zh: "游離機制：MALDI 與 MAI"
     topics: [maldi, ionization-mechanism, ambient-ionization]
-    # blurb = 首頁主題卡用的一句話；body = 研究頁用的完整段落
+    # blurb = 首頁主題卡用的一句話；body = 一段式摘要
     blurb_en: >
-      Where do MALDI ions actually come from? We measured ion-to-neutral ratios
-      directly and showed that thermal proton transfer, not exotic photochemistry,
-      sets the yield.
+      How does a solid give up gas-phase ions? We measure absolute ionization
+      efficiency to show that thermodynamics and phase change, not exotic
+      photochemistry, govern both MALDI and matrix-assisted ionization.
     blurb_zh: >
-      MALDI 的離子究竟從哪裡來？我們直接量出離子與中性分子的比例，
-      證明決定產率的是熱質子轉移，而不是特殊的光化學。
+      固體如何交出氣相離子？我們用絕對游離效率的量測指出，
+      主導 MALDI 與 MAI 的是熱力學與相變，而不是特殊的光化學。
     body_en: >
-      How does a laser pulse turn a solid matrix into gas-phase ions? We resolved
-      this by measuring ion-to-neutral ratios directly and showing that thermal
-      proton transfer, not exotic photochemistry, governs MALDI ion yields. The
-      same line of work extends to inlet and vacuum ionization, where
-      evaporation and sublimation alone can generate ions without any applied
-      voltage or laser.
+      Two routes turn a solid matrix into gas-phase ions: MALDI, driven by a laser
+      pulse, and matrix-assisted ionization (MAI), which needs neither laser nor
+      voltage. We study both by measuring absolute ionization efficiency, and find
+      that thermodynamics and phase change, rather than exotic photochemistry,
+      set what comes out.
     body_zh: >
-      一道雷射脈衝如何把固態基質變成氣相離子？我們直接量測離子與中性分子的比例，
-      證明主導 MALDI 離子產率的是熱質子轉移，而非特殊的光化學機制。
-      同一條線延伸到 inlet 與真空游離，在完全不施加電壓或雷射的情況下，
-      單靠蒸發與昇華就能產生離子。
+      把固態基質變成氣相離子有兩條路：由雷射驅動的 MALDI，
+      以及不需雷射也不需電壓的基質輔助游離（MAI）。
+      我們以絕對游離效率的量測研究這兩者，發現決定產物的是熱力學與相變，
+      而非特殊的光化學機制。
     problem_zh: >
-      MALDI 自 1980 年代末成為量測大分子的標準工具，但「離子究竟怎麼產生」始終沒有定論。
-      文獻上並存多種模型：多光子游離、能量匯集、預形成離子、熱游離、激發態質子轉移，
-      各自能解釋一部分現象，卻互相矛盾。這不只是理論爭議：模型不確定，
-      基質的選擇就只能靠試誤，靈敏度也無法事先預測。
+      質譜要量到分子，前提是先讓它帶電。MALDI 用一道雷射打在基質晶體上，
+      MAI 連雷射都不用，只要基質昇華就能產生高電荷態離子。兩者都已廣泛使用，
+      卻有同一個難題：機制始終沒有定論。MALDI 這邊，多光子游離、能量匯集、
+      預形成離子、熱游離等模型並存於文獻，各自能解釋一部分現象卻互相矛盾；
+      MAI 這邊更違反直覺，一個看似單純的相變竟能造成電荷分離，
+      而且電荷態分布接近電噴灑。機制不明的代價很實際：基質只能靠試誤挑選、
+      靈敏度無法事先預測，新的游離方法也缺乏設計依據。
     problem_en: >
-      MALDI has been the workhorse for large molecules since the late 1980s, yet how
-      its ions are actually formed has never been settled. Multiphoton ionization,
-      energy pooling, preformed ions, thermal ionization and excited-state proton
-      transfer all coexist in the literature, each explaining part of the picture
-      while contradicting the others. The cost is practical, not just theoretical:
-      without a settled mechanism, matrix selection stays trial-and-error and
-      sensitivity cannot be predicted in advance.
+      Mass spectrometry can only weigh what it can charge. MALDI does this with a
+      laser pulse on a matrix crystal; matrix-assisted ionization (MAI) needs no
+      laser at all, producing multiply charged ions as the matrix simply sublimes.
+      Both are in wide use, and both share the same difficulty: the mechanism has
+      never been settled. For MALDI, multiphoton ionization, energy pooling,
+      preformed ions and thermal ionization coexist in the literature, each
+      explaining part of the picture while contradicting the others. MAI is stranger
+      still, since an apparently simple phase change separates charge and yields a
+      charge-state distribution close to electrospray. The cost is practical:
+      matrices are chosen by trial and error, sensitivity cannot be predicted, and
+      new ionization methods have little to be designed from.
     approach_zh: >
-      我們不看訊號強度，而是直接量測離子與中性分子的比例，也就是絕對游離效率，
-      再系統性地改變雷射脈寬、能量與基質，逐一比對各模型的預測。
-      由此建立熱致質子轉移（TIPT）的定量模型：不含任何可調參數，
-      只用基質的熱力學性質與雷射誘導的溫度，就能算出離子產率。
+      我們不讀訊號強度，而是直接量測離子與中性分子的比例，也就是絕對游離效率，
+      再系統性地改變雷射脈寬、雷射能量、基質種類與溫度壓力條件，
+      逐一檢驗各模型自己的預測。MALDI 這條線由此收斂到熱致質子轉移（TIPT）：
+      以基質的熱力學性質與雷射誘導溫度推算離子產率。
+      MAI 這條線則把焦點放在昇華過程中的自發電荷分離，
+      追蹤壓力、溫度與基質性質如何決定離子的生成與電荷態。
     approach_en: >
-      Rather than reading signal intensity, we measure the ion-to-neutral ratio
-      directly, that is, the absolute ionization efficiency, and then vary laser
-      pulse width, fluence and matrix systematically to test each model against its
-      own predictions. What emerges is a quantitative thermally induced proton
-      transfer (TIPT) model that contains no adjustable parameters: the ion yield
-      follows from the thermodynamics of the matrix and the laser-induced temperature.
+      Instead of reading signal intensity, we measure the ion-to-neutral ratio
+      directly, that is, the absolute ionization efficiency, then vary laser pulse
+      width, fluence, matrix and the temperature and pressure of the inlet to test
+      each model against its own predictions. For MALDI this converges on thermally
+      induced proton transfer (TIPT), where the ion yield follows from the
+      thermodynamics of the matrix and the laser-induced temperature. For MAI the
+      focus is the spontaneous charge separation that accompanies sublimation, and
+      how pressure, temperature and matrix properties decide whether ions form and
+      how highly they are charged.
     result_zh: >
-      TIPT 在多組獨立實驗中無需擬合參數即可重現觀測值。同一個熱的觀點延伸到常壓與真空下的
-      基質輔助游離：不施加電壓、不用雷射，單靠蒸發或昇華就能產生高電荷態離子，
-      而這件事一度被認為不可能。
+      TIPT 在多組獨立實驗中重現了觀測到的離子產率。MAI 方面，
+      我們確認昇華驅動的電荷分離是普遍現象而非特定基質的特例，
+      並且在常壓、次常壓與真空條件下都能運作；據此發展出不需高壓電、
+      不需雷射的離子源，也讓可攜式質譜的實作變得可行。
+      兩條線指向同一個結論：固體交出離子這件事，主導的是熱力學與相變。
     result_en: >
-      TIPT reproduces observations across independent experiments without fitting.
-      The same thermal picture extends to matrix-assisted ionization at atmospheric
-      and reduced pressure, where evaporation or sublimation alone produces
-      multiply charged ions with no applied voltage and no laser at all, something
-      once thought impossible.
-    key_dois:
-      - "10.1016/j.ijms.2025.117516"
-      - "10.1021/jasms.3c00122"
-      - "10.1002/jms.5018"
+      TIPT reproduces measured ion yields across independent experiments. On the MAI
+      side, sublimation-driven charge separation turns out to be general rather than
+      a quirk of one matrix, and it works at atmospheric, sub-atmospheric and vacuum
+      conditions alike. That understanding produced ion sources requiring neither
+      high voltage nor a laser, and made portable instruments practical. Both lines
+      point the same way: when a solid gives up ions, thermodynamics and phase
+      change are in charge.
 
   - id: health
     tag: "Health"
