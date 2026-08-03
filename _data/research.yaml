@@ -1,5 +1,13 @@
 # ============================================================
 # research.yaml — 研究主軸敘事
+#
+# 每條主軸的欄位：
+#   blurb_*    首頁主題卡的一句話
+#   body_*     一段式摘要（保留，供其他頁面引用）
+#   problem_*  問題在哪：為什麼這件事到現在還沒解決
+#   approach_* 我們的做法：方法與關鍵突破
+#   result_*   目前成果
+#   key_dois   代表著作的 DOI，研究頁會自動帶出標題、期刊與代表圖
 # 來源：RIKEN-NCHU biography + 國科會計畫方向（2026-07-26）
 # 網站 Home 與 Research 頁都讀這個檔
 # ============================================================
@@ -40,6 +48,45 @@ themes:
       證明主導 MALDI 離子產率的是熱質子轉移，而非特殊的光化學機制。
       同一條線延伸到 inlet 與真空游離，在完全不施加電壓或雷射的情況下，
       單靠蒸發與昇華就能產生離子。
+    problem_zh: >
+      MALDI 自 1980 年代末成為量測大分子的標準工具，但「離子究竟怎麼產生」始終沒有定論。
+      文獻上並存多種模型：多光子游離、能量匯集、預形成離子、熱游離、激發態質子轉移，
+      各自能解釋一部分現象，卻互相矛盾。這不只是理論爭議：模型不確定，
+      基質的選擇就只能靠試誤，靈敏度也無法事先預測。
+    problem_en: >
+      MALDI has been the workhorse for large molecules since the late 1980s, yet how
+      its ions are actually formed has never been settled. Multiphoton ionization,
+      energy pooling, preformed ions, thermal ionization and excited-state proton
+      transfer all coexist in the literature, each explaining part of the picture
+      while contradicting the others. The cost is practical, not just theoretical:
+      without a settled mechanism, matrix selection stays trial-and-error and
+      sensitivity cannot be predicted in advance.
+    approach_zh: >
+      我們不看訊號強度，而是直接量測離子與中性分子的比例，也就是絕對游離效率，
+      再系統性地改變雷射脈寬、能量與基質，逐一比對各模型的預測。
+      由此建立熱致質子轉移（TIPT）的定量模型：不含任何可調參數，
+      只用基質的熱力學性質與雷射誘導的溫度，就能算出離子產率。
+    approach_en: >
+      Rather than reading signal intensity, we measure the ion-to-neutral ratio
+      directly, that is, the absolute ionization efficiency, and then vary laser
+      pulse width, fluence and matrix systematically to test each model against its
+      own predictions. What emerges is a quantitative thermally induced proton
+      transfer (TIPT) model that contains no adjustable parameters: the ion yield
+      follows from the thermodynamics of the matrix and the laser-induced temperature.
+    result_zh: >
+      TIPT 在多組獨立實驗中無需擬合參數即可重現觀測值。同一個熱的觀點延伸到常壓與真空下的
+      基質輔助游離：不施加電壓、不用雷射，單靠蒸發或昇華就能產生高電荷態離子，
+      而這件事一度被認為不可能。
+    result_en: >
+      TIPT reproduces observations across independent experiments without fitting.
+      The same thermal picture extends to matrix-assisted ionization at atmospheric
+      and reduced pressure, where evaporation or sublimation alone produces
+      multiply charged ions with no applied voltage and no laser at all, something
+      once thought impossible.
+    key_dois:
+      - "10.1016/j.ijms.2025.117516"
+      - "10.1021/jasms.3c00122"
+      - "10.1002/jms.5018"
 
   - id: health
     tag: "Health"
@@ -62,6 +109,42 @@ themes:
       醣類是質譜出了名難測的分子：游離效率低，異構物又幾乎無法區分。
       我們發展了快速冷凍乾燥液滴法，讓 MALDI 對醣類的定量變得可靠，
       並進一步把光譜資料接上機器學習分類模型，目標是診斷與快速篩檢應用。
+    problem_zh: >
+      醣類是質譜出了名難測的分子。游離效率低、鹽類加成物分散訊號、乾燥液滴留下的「咖啡環」
+      讓分析物分布不均，於是同一個樣品在不同位置量到的強度可以差好幾倍，
+      定量重現性差；再加上異構物幾乎同質量，連定性都不容易。
+      臨床端想用血清或尿液做快篩，第一關就卡在這裡。
+    problem_en: >
+      Carbohydrates are notoriously difficult by mass spectrometry. They ionize
+      poorly, salt adducts split the signal, and the coffee-ring left by a drying
+      droplet distributes analyte so unevenly that intensity can vary several-fold
+      across a single spot. Quantification is therefore unreliable, and near-isobaric
+      isomers make even identification hard. Any attempt at clinical screening from
+      serum or urine runs into this first.
+    approach_zh: >
+      我們從樣品製備下手。快速冷凍乾燥液滴法（RFDD）讓基質與分析物在低溫下同時固化，
+      保留均勻分布的預形成鈉加成物，「甜蜜點」現象因此消失。
+      有了可靠的訊號之後，再把整張光譜當成高維特徵，接上機器學習分類器，
+      讓判讀不再依賴單一離子的強度。
+    approach_en: >
+      We start from sample preparation. The rapidly freeze-drying droplet (RFDD)
+      method solidifies matrix and analyte together at low temperature, preserving
+      homogeneously distributed preformed sodium adducts and eliminating the
+      sweet-spot effect. With the signal made reliable, the full spectrum is treated
+      as a high-dimensional feature set and handed to machine-learning classifiers,
+      so a readout no longer rests on the intensity of one ion.
+    result_zh: >
+      RFDD 使離子強度提升兩個數量級以上，甜蜜點效應消失，血清中的定量線性達 R² = 0.99。
+      這套流程目前正推向尿液液態切片，目標是癌症的早期偵測與轉移預警。
+    result_en: >
+      RFDD raises ion intensity by more than two orders of magnitude, removes the
+      sweet-spot effect, and gives a calibration linearity of R² = 0.99 in serum.
+      The workflow is now being pushed toward urinary liquid biopsy, aimed at early
+      cancer detection and metastasis warning.
+    key_dois:
+      - "10.1039/D3AN02201C"
+      - "10.1016/j.ijms.2025.117516"
+      - "10.3390/molecules25051217"
 
   - id: sustainability
     tag: "Sustainability"
@@ -85,6 +168,38 @@ themes:
       我們結合質譜指紋與機器學習模型，讓高分子種類能被自動分類，
       目標是讓高品質分選在實際規模下變得可行。
     grant_ids: ["114-2113-M-005-013-"]
+    problem_zh: >
+      塑膠回收的瓶頸不在化學，而在分選。混合料流若無法快速、低成本地辨識，
+      後端再生料的品質就上不去。現行的近紅外分選對深色塑膠與多層複合材料幾乎失效，
+      而這正是實際回收流裡佔比最高的部分。
+    problem_en: >
+      Plastic recycling fails at sorting, not at chemistry. If a mixed stream cannot
+      be identified quickly and cheaply, the quality of the recyclate is capped.
+      Near-infrared sorters, the current standard, are largely blind to dark-coloured
+      plastics and multilayer composites, which is exactly what dominates real
+      waste streams.
+    approach_zh: >
+      把質譜當成指紋工具：不同高分子在熱裂解與游離後會給出各自的碎片組合，
+      再用分類模型自動判別種類。關鍵不在於做出實驗室級的精密分析，
+      而在於讓量測小到可以帶到現場、快到可以跟上輸送帶。
+      實驗室先前發展的可攜式質譜與新型離子源，正是這條線的基礎。
+    approach_en: >
+      Mass spectrometry is used here as a fingerprinting tool: each polymer gives a
+      characteristic fragment pattern after pyrolysis and ionization, and a
+      classification model assigns the type automatically. The point is not
+      laboratory-grade precision but a measurement small enough to take to the site
+      and fast enough to keep up with a conveyor. The portable instruments and ion
+      sources the group built earlier are what make this plausible.
+    result_zh: >
+      這條線目前處於方法建立階段，由國科會 114 年度計畫支持，
+      建立在實驗室已發表的可攜式質譜與新型離子源基礎上。
+    result_en: >
+      The line is at the method-building stage, supported by an NSTC grant and
+      resting on the portable instrumentation and ion sources already published by
+      the group.
+    key_dois:
+      - "10.1016/j.ijms.2022.116798"
+      - "10.1002/rcm.8503"
 
   - id: mechanisms
     tag: "Reaction Mechanisms"
@@ -109,6 +224,41 @@ themes:
       我們以客製化的質譜進樣系統，直接從反應中的溶液捕捉瞬態物種，
       藉此釐清過渡金屬催化與電化學水氧化的動力學與機構。
       這條線與合成及計算團隊合作進行，我們提供的是足以區辨競爭機構假說的關鍵證據。
+    problem_zh: >
+      催化循環通常是被推論出來的，而不是被看見的。中間體壽命短、濃度低，
+      傳統上只能靠動力學數據與計算去回推，而錯誤的機構假設會讓催化劑設計走上冤枉路。
+      要在競爭的機構假說之間做出判斷，需要的是直接證據。
+    problem_en: >
+      Catalytic cycles are usually inferred rather than observed. Intermediates are
+      short-lived and dilute, so mechanism is normally reconstructed from kinetics
+      and computation, and a wrong assumption sends catalyst design down the wrong
+      path. Choosing between competing proposals calls for direct evidence.
+    approach_zh: >
+      我們以客製化的質譜進樣系統，把反應中的溶液直接送進質譜。
+      低溫噴灑游離（CSI）與可控溫進樣讓瞬態物種在分解之前抵達偵測器，
+      因此能在反應進行的當下觀察它。這條線與合成、電化學及計算團隊合作進行，
+      我們提供的是足以區辨機構假說的關鍵證據。
+    approach_en: >
+      Customized inlet systems bring the reacting solution straight into the mass
+      spectrometer. Cold-spray ionization and temperature-controlled inlets let
+      transient species reach the detector before they decompose, so they can be
+      watched while the reaction runs. The work is done with synthetic,
+      electrochemical and computational groups: we supply the evidence that
+      discriminates between mechanistic proposals.
+    result_zh: >
+      在雙核鈷的水氧化系統中直接觀測到過氧橋聯物種與非無辜配體的自由基態，
+      說明了速率與過電位之間的取捨如何被打破；在鐵的高價氧化學中釐清 O–O 鍵
+      斷裂走均裂或異裂的分歧；在鈀預催化劑中追蹤活性物種的生成過程。
+    result_en: >
+      In dinuclear cobalt water oxidation we observed peroxo-bridged species and the
+      radical state of a non-innocent ligand directly, showing how the trade-off
+      between rate and overpotential can be broken. In high-valent iron chemistry we
+      resolved whether O–O cleavage proceeds homolytically or heterolytically. In
+      palladium precatalysts we followed the formation of the active species itself.
+    key_dois:
+      - "10.1002/chem.202403583"
+      - "10.1021/acs.inorgchem.5c05784"
+      - "10.1021/acsorginorgau.3c00061"
 
 # 早期研究（僅在 Research 頁末尾以一小段帶過）
 earlier_en: >

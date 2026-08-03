@@ -261,6 +261,27 @@ p { margin: 0 0 14px; }
 }
 .theme p { margin-bottom: 8px; }
 
+/* ---------- 研究頁：每條主軸展開成 問題 → 做法 → 成果 → 代表著作 ---------- */
+.theme-long { padding: 34px 0; border-bottom: 1px solid var(--line); }
+.theme-long:last-of-type { border-bottom: none; }
+.theme-head { margin-bottom: 20px; }
+.theme-head .tag { margin-bottom: 9px; }
+.theme-head h3 { font-size: 1.34rem; margin: 0; }
+.theme-head .zh { font-size: 0.95rem; }
+.step { display: grid; grid-template-columns: 132px 1fr; gap: 22px; margin-bottom: 16px; }
+.step-k {
+  font-size: 0.74rem; letter-spacing: 0.09em; text-transform: uppercase;
+  color: var(--ink-faint); font-weight: 650; padding-top: 4px;
+}
+.step p { margin: 0; text-align: justify; text-justify: inter-ideograph; }
+.theme-refs {
+  display: grid; grid-template-columns: 132px 1fr; gap: 22px; margin-top: 20px;
+}
+.theme-refs ul { list-style: none; margin: 0; padding: 0; }
+.theme-refs li { margin-bottom: 9px; font-size: 0.93rem; line-height: 1.5; }
+.theme-refs li:last-child { margin-bottom: 0; }
+.r-meta { display: block; font-size: 0.83rem; color: var(--ink-faint); margin-top: 1px; }
+
 /* ---------- Publications ---------- */
 .legend {
   font-size: 0.87rem; color: var(--ink-soft); background: var(--bg-soft);
@@ -776,6 +797,12 @@ ul.grants li { padding: 7px 0; }
   .person .ph { width: 76px; height: 76px; }
   .person .nm { font-size: 0.88rem; }
   .person .nm-zh { font-size: 0.8rem; }
+
+  /* 研究頁：手機上標籤改成單欄疊在文字上方 */
+  .step, .theme-refs { grid-template-columns: 1fr; gap: 6px; }
+  .step-k { padding-top: 0; }
+  .theme-head h3 { font-size: 1.16rem; }
+  .theme-long { padding: 26px 0; }
 
   .filters button { font-size: 0.8rem; padding: 4px 11px; }
   .legend { font-size: 0.83rem; padding: 10px 13px; }

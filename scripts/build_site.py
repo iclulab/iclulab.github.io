@@ -162,6 +162,10 @@ T = {
         "cta_research": "What we work on →",
         "cta_join": "Join the lab →",
         "themes_h": "Research directions",
+        "r_problem": "The problem",
+        "r_approach": "Our approach",
+        "r_result": "Where it stands",
+        "r_refs": "Key papers",
         "skip": "Skip to main content",
         "top": "Back to top",
         "pubs_lede": "From crossed molecular-beam reaction dynamics and ionization "
@@ -278,6 +282,10 @@ T = {
         "cta_research": "我們在做什麼 →",
         "cta_join": "加入實驗室 →",
         "themes_h": "研究主軸",
+        "r_problem": "問題在哪",
+        "r_approach": "我們的做法",
+        "r_result": "目前進展",
+        "r_refs": "代表著作",
         "skip": "跳至主要內容",
         "top": "回到頂端",
         "pubs_lede": "從交叉分子束的反應動力學、游離機制，"
@@ -808,16 +816,40 @@ def page_research(lang):
       {'PI' if g['role'] == 'PI' else 'Co-PI'} · {e(g['status'])}</div></li>"""
         for g in GRANTS
     )
-    themes = "".join(
-        f"""<div class="theme" id="{th['id']}">
-  <span class="tag">{e(th['tag'])}</span>
-  <h3>{e(th['title_en'])}<span class="zh"> · {e(th['title_zh'])}</span></h3>
-  <p>{e(tidy(pick(th, 'body', lang)))}</p>
-</div>"""
-        for th in RESEARCH["themes"]
-    )
+    by_doi = {p["doi"]: p for p in PUBS if p.get("doi")}
+
+    def theme_long(th):
+        """一條主軸展開成：問題 → 做法 → 成果 → 代表著作。"""
+        parts = []
+        for key in ("problem", "approach", "result"):
+            txt = tidy(pick(th, key, lang))
+            if txt:
+                parts.append(f'<div class="step"><span class="step-k">{e(t["r_" + key])}</span>'
+                             f'<p>{e(txt)}</p></div>')
+        if not parts:                       # 沒填新欄位就退回原本的一段式
+            parts.append(f'<p>{e(tidy(pick(th, "body", lang)))}</p>')
+        refs = ""
+        keys = [d for d in (th.get("key_dois") or []) if d in by_doi]
+        if keys:
+            items = "".join(
+                f'<li><a href="https://doi.org/{d}">{e(by_doi[d]["title"])}</a>'
+                f'<span class="r-meta"><em>{e(by_doi[d]["journal"])}</em> {by_doi[d]["year"]}</span></li>'
+                for d in keys
+            )
+            refs = (f'<div class="theme-refs"><span class="step-k">{e(t["r_refs"])}</span>'
+                    f'<ul>{items}</ul></div>')
+        return f"""<section class="theme-long" id="{th['id']}">
+  <div class="theme-head">
+    <span class="tag">{e(th['tag'])}</span>
+    <h3>{e(pick(th, 'title', lang))}<span class="zh"> · {e(th['title_en'] if lang == 'zh' else th['title_zh'])}</span></h3>
+  </div>
+  {''.join(parts)}
+  {refs}
+</section>"""
+
+    themes = "".join(theme_long(th) for th in RESEARCH["themes"])
     body = page_hero(t["research"], pick(RESEARCH, "intro", lang)) + f"""<div class="wrap">
-<section style="padding-top:34px"><div class="themes">{themes}</div></section>
+{themes}
 
 <section>
   <h2>{e(t['earlier_h'])}</h2>
