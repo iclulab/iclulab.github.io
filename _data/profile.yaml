@@ -139,6 +139,14 @@ awards:
 # ⚠️ 本倉庫為 Public，經費金額刻意不收錄，避免公開。
 # status: ongoing = 執行中 / completed = 已結案
 grants:
+  - id: "115-2113-M-005-014-"
+    title_zh: "以創新質譜平台實現尿液液態切片於癌症早期偵測與轉移預警之研究"
+    title_en: "Urinary Liquid Biopsy on an Innovative Mass Spectrometry Platform for Early Cancer Detection and Metastasis Warning"
+    agency: "National Science and Technology Council (NSTC)"
+    period: "2026/08–2027/07"
+    role: PI
+    status: ongoing
+
   - id: "114-2113-M-005-013-"
     title_zh: "整合質譜法與機器學習模型應用於塑膠的智慧分類與回收"
     title_en: "Integrating Mass Spectrometry and Machine Learning for Smart Classification and Recycling of Plastics"
