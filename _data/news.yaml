@@ -2,6 +2,7 @@
 # news.yaml — 動態消息
 # 最新的放最上面。日期格式 YYYY-MM-DD
 # category: milestone（個人里程碑）/ award（學生獲獎）/ publication / lab
+# 需要連結或斜體時，改用 html_zh / html_en，內容會原樣當 HTML 輸出
 # ============================================================
 #
 # ⚠️ 舊網站的 News 停在 2024-05-31，但 Photos 已更新到 2026，
@@ -38,6 +39,11 @@
   category: award
   text_zh: "恭喜曾真薏同學榮獲 2026 年分析技術交流研討會論文獎"
   text_en: "Congratulations to Chen-Yi Tseng for the Paper Award at the 2026 Analytical Technology Symposium"
+
+- date: "2025-12-26"
+  category: milestone
+  html_zh: '盧臆中老師獲選 <em>International Journal of Mass Spectrometry</em> 青年科學家專題介紹（<a href="https://doi.org/10.1016/j.ijms.2025.117568">Young Scientist Feature</a>），由期刊主編群撰文介紹研究成果與展望'
+  html_en: 'I-Chung Lu was featured in the <em>IJMS</em> <a href="https://doi.org/10.1016/j.ijms.2025.117568">Young Scientist Feature</a> — a special editorial by the journal''s editors highlighting research accomplishments and future directions'
 
 - date: "2025-07-01"
   category: award

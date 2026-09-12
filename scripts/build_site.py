@@ -385,6 +385,9 @@ def layout(page, lang, title, description, body, jsonld=None):
         '<a href="{}"{}>{}</a>'.format(rel(p, lang), ACTIVE if p == page else "", label)
         for p, label in zip(PAGES, t["nav"])
     )
+    labos = (P.get("links") or {}).get("labos")
+    if labos:
+        nav += f'<a href="{e(labos)}" target="_blank" rel="noopener">LabOS</a>'
     other = "zh" if lang == "en" else "en"
     switch = f'<a href="{"zh/" if other == "zh" else "../"}{page}.html" class="lang">{T[lang]["switch"]}</a>'
     ld = (
@@ -471,6 +474,9 @@ def badges(p, lang):
     out = m[p["role"]]
     if p.get("invited_review"):
         out += f'<span class="badge inv">{t["b_inv"]}</span>'
+    if p.get("feature"):
+        f = p["feature"]
+        out += f'<a class="badge inv" href="{e(f["url"])}">{e(f["label"])}</a>'
     return out
 
 
@@ -506,8 +512,8 @@ def pub_li(p, lang):
     return f"""<li class="{cls}" data-role="{ROLE_KEY[p['role']]}" data-topics="{e(topics)}">
   <div class="pub-body">
     <span class="pub-authors">{format_authors(p['authors'], highlight=True)}</span>
-    <span class="pub-title">{e(p['title'])}</span>
-    <span class="pub-meta"><em>{e(p['journal'])}</em> <b>{p['year']}</b>{vol}</span>
+    <span class="pub-title">{e(p.get(f'title_{lang}') or p['title'])}</span>
+    <span class="pub-meta"><em>{e(p.get(f'journal_{lang}') or p['journal'])}</em> <b>{p['year']}</b>{vol}</span>
     <span class="pub-badges">{badges(p, lang)}{doi}</span>
   </div>{fig}
 </li>"""
@@ -527,7 +533,7 @@ def news_items(lang, limit=None):
     for y, ns in groups:
         rows = "".join(
             f'<li><time datetime="{e(str(n["date"]))}">{e(str(n["date"])[5:])}</time>'
-            f'<span>{e(n.get(key) or n["text_zh"])}</span></li>'
+            f'<span>{n.get(f"html_{lang}") or n.get("html_zh") or e(n.get(key) or n["text_zh"])}</span></li>'
             for n in ns
         )
         out.append(f'<div class="tl-group"><div class="tl-year">{e(y)}</div>'
@@ -934,14 +940,17 @@ document.querySelectorAll('.filters button').forEach(b => b.addEventListener('cl
 
 def page_people(lang):
     t = T[lang]
+    def loc(x, k):
+        return x.get(f"{k}_{lang}") or x[k]
+
     ed = "".join(
-        f'<li><span class="g-title">{e(x["degree"])}</span>'
-        f'<div class="g-id">{e(x["institution"])} · {e(x["years"])}</div></li>'
+        f'<li><span class="g-title">{e(loc(x, "degree"))}</span>'
+        f'<div class="g-id">{e(loc(x, "institution"))} · {e(loc(x, "years"))}</div></li>'
         for x in P["education"]
     )
     ap = "".join(
-        f'<li><span class="g-title">{e(x["position"])}</span>'
-        f'<div class="g-id">{e(x["org"])} · {e(x["years"])}</div></li>'
+        f'<li><span class="g-title">{e(loc(x, "position"))}</span>'
+        f'<div class="g-id">{e(loc(x, "org"))} · {e(loc(x, "years"))}</div></li>'
         for x in P["appointments"]
     )
     aw = "".join(

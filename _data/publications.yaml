@@ -15,6 +15,9 @@
 #   role        corresponding / co-corresponding / first / co-author
 #   topics      主題標籤，供網站篩選用
 #   verified    DOI 與書目資訊是否已對照 Crossref 核實
+#   title_en / journal_en   選填，英文頁改顯示這兩欄（中文論文附英譯用）
+#   invited_review          選填，true 時顯示「邀稿綜論」標記
+#   feature                 選填，{label, url}，顯示成可點的標記（例如 Young Scientist Feature）
 #
 # ------------------------------------------------------------
 
@@ -39,6 +42,9 @@
   role: corresponding
   topics: [maldi, carbohydrate, review]
   invited_review: true
+  feature:
+    label: "Young Scientist Feature"
+    url: "https://doi.org/10.1016/j.ijms.2025.117568"
   verified: false
 
 - year: 2025
@@ -117,6 +123,20 @@
   doi: "10.1021/acs.analchem.4c02775"
   role: co-author
   topics: [instrumentation, proteomics]
+  verified: false
+
+- year: 2023
+  authors: "Wan-Qin Zeng, Yung-Ching Yang, I-Chung Lu*"
+  title: "質譜於有機金屬催化反應研究的發展與挑戰"
+  title_en: "質譜於有機金屬催化反應研究的發展與挑戰 (Developments and Challenges of Mass Spectrometry in Organometallic Catalysis Research)"
+  journal: "化學"
+  journal_en: "Chemistry (The Chinese Chem. Soc., Taipei)"
+  journal_full: "化學 (Chemistry, The Chinese Chemical Society, Taipei)"
+  volume: "81 (1), 43–51"
+  doi: "10.6623/chem.202303_81(1).006"
+  role: corresponding
+  topics: [catalysis, reactive-intermediates, review]
+  invited_review: true
   verified: false
 
 - year: 2022
