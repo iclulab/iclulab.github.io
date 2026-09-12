@@ -38,7 +38,7 @@ from pubfmt import format_authors  # noqa: E402
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 DATA = ROOT / "_data"
-SITE = "https://iclulab.github.io"
+SITE = "https://iclulab.com"
 LANGS = ("en", "zh")
 
 # 主導覽列的頁面

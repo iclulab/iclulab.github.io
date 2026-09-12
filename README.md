@@ -3,7 +3,7 @@
 I-Chung Lu（盧臆中）學術網站原始碼
 Department of Chemistry, National Chung Hsing University
 
-**網站**：https://iclulab.github.io （English） · https://iclulab.github.io/zh/ （中文）
+**網站**：https://iclulab.com （English） · https://iclulab.com/zh/ （中文）
 
 ---
 
