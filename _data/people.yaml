@@ -10,19 +10,15 @@ assistant:
     name_zh: "陳玉蓁"
     photo: "chen-yu-chen.jpg"
     topic: ""
+  - name_en: "Lin, Hsin-Jung"
+    name_zh: "林欣蓉"
+    photo: "lin-hsin-jung.jpg"
+    topic: ""
 
 master_students:
   - name_en: "Chan, Zong-Chi"
     name_zh: "詹宗錡"
     photo: "chan-zong-chi.jpg"
-    topic: ""
-  - name_en: "Lin, Hsin-Jung"
-    name_zh: "林欣蓉"
-    photo: "lin-hsin-jung.jpg"
-    topic: ""
-  - name_en: "Lan, Lyu-Han"
-    name_zh: "藍律涵"
-    photo: "lan-lyu-han.jpg"
     topic: ""
   - name_en: "Wu, Chung-Chieh"
     name_zh: "吳仲杰"
@@ -113,3 +109,4 @@ alumni:
   - { name_en: "Jhang, Jhih-Lin", name_zh: "張芷菱",      photo: "jhang-jhih-lin.jpg" }
   - { name_en: "Liu, Yi-Jun",     name_zh: "劉怡君",      photo: "liu-yi-jun.jpg" }
   - { name_en: "Ho, Shao-Hsun",   name_zh: "何紹熏",      photo: "ho-shao-hsun.jpg" }
+  - { name_en: "Lan, Lyu-Han",    name_zh: "藍律涵",      photo: "lan-lyu-han.jpg" }
