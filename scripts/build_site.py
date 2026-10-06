@@ -139,6 +139,7 @@ T = {
         "awards": "Awards",
         "pi": "Principal Investigator",
         "assistant": "Research Assistant",
+        "phd": "Doctoral Students",
         "master": "Master's Students",
         "undergrad": "Undergraduate Students",
         "alumni": "Lab Alumni",
@@ -262,6 +263,7 @@ T = {
         "awards": "獲獎",
         "pi": "實驗室主持人",
         "assistant": "研究助理",
+        "phd": "博士班學生",
         "master": "碩士班學生",
         "undergrad": "大學部學生",
         "alumni": "歷屆成員",
@@ -974,6 +976,7 @@ def page_people(lang):
 <section><h2>{e(t['appointments'])}</h2><ul class="grants">{ap}</ul></section>
 <section><h2>{e(t['awards'])}</h2><ul class="grants">{aw}</ul></section>
 """ + people_group(t["assistant"], PEOPLE.get("assistant") or [], lang) \
+    + people_group(t["phd"], PEOPLE.get("phd_students") or [], lang) \
     + people_group(t["master"], PEOPLE.get("master_students") or [], lang) \
     + people_group(t["undergrad"], PEOPLE.get("undergraduate_students") or [], lang) \
     + f"""<section>

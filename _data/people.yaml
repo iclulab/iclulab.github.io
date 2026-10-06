@@ -6,13 +6,14 @@
 # ============================================================
 
 assistant:
-  - name_en: "Chen, Yu-Chen"
-    name_zh: "陳玉蓁"
-    photo: "chen-yu-chen.jpg"
-    topic: ""
   - name_en: "Lin, Hsin-Jung"
     name_zh: "林欣蓉"
     photo: "lin-hsin-jung.jpg"
+    topic: ""
+
+phd_students:
+  - name_en: "Shaikh, Sumaiya"
+    photo: "shaikh-sumaiya.jpg"
     topic: ""
 
 master_students:
@@ -110,3 +111,4 @@ alumni:
   - { name_en: "Liu, Yi-Jun",     name_zh: "劉怡君",      photo: "liu-yi-jun.jpg" }
   - { name_en: "Ho, Shao-Hsun",   name_zh: "何紹熏",      photo: "ho-shao-hsun.jpg" }
   - { name_en: "Lan, Lyu-Han",    name_zh: "藍律涵",      photo: "lan-lyu-han.jpg" }
+  - { name_en: "Chen, Yu-Chen",   name_zh: "陳玉蓁",      photo: "chen-yu-chen.jpg" }
