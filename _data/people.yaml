@@ -5,11 +5,8 @@
 # 各組成員依加入實驗室的先後排列，新成員接在該組最後面
 # ============================================================
 
-assistant:
-  - name_en: "Lin, Hsin-Jung"
-    name_zh: "林欣蓉"
-    photo: "lin-hsin-jung.jpg"
-    topic: ""
+# 目前沒有研究助理；這組留空時團隊頁不會出現「研究助理」區塊
+assistant: []
 
 phd_students:
   - name_en: "Sumaiya Shaikh"
@@ -112,3 +109,4 @@ alumni:
   - { name_en: "Ho, Shao-Hsun",   name_zh: "何紹熏",      photo: "ho-shao-hsun.jpg" }
   - { name_en: "Lan, Lyu-Han",    name_zh: "藍律涵",      photo: "lan-lyu-han.jpg" }
   - { name_en: "Chen, Yu-Chen",   name_zh: "陳玉蓁",      photo: "chen-yu-chen.jpg" }
+  - { name_en: "Lin, Hsin-Jung",  name_zh: "林欣蓉",      photo: "lin-hsin-jung.jpg" }
