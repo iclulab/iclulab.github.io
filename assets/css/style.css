@@ -58,6 +58,11 @@ body {
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
+/* 圖片一律等比縮放。HTML 的 width／height 屬性只用來讓瀏覽器預留版面空間
+   （避免載入時跳動），不能讓它決定實際顯示尺寸，否則圖片會以原始像素撐開版面。
+   選擇器只有一個元素名，優先度最低，後面任何設定寬高的類別規則都蓋得過它。 */
+img { max-width: 100%; height: auto; }
+
 .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
 
 /* 鍵盤使用者的跳過導覽連結：平常收在畫面外，聚焦時才出現 */
@@ -775,10 +780,13 @@ ul.grants li { padding: 7px 0; }
   .hero .zh-name { font-size: 1rem; margin-left: 8px; }
   .hero .lede { font-size: 1rem; }
 
-  /* 導覽列：橫向捲動，不再折成兩三行擠壓版面 */
+  /* 導覽列：橫向捲動，不再折成兩三行擠壓版面。
+     flex-wrap 與 width 一定要在這裡覆寫掉前面 760px 區塊設的 wrap／100%，
+     否則導覽列仍會折行，頁首在手機上會變成三層。 */
   .site-header .wrap { flex-wrap: nowrap; gap: 12px; min-height: 52px; }
   nav.main {
     display: flex; align-items: center; gap: 0;
+    flex-wrap: nowrap; width: auto; flex: 1 1 auto; min-width: 0;
     overflow-x: auto; -webkit-overflow-scrolling: touch;
     scrollbar-width: none; margin-right: -18px; padding-right: 18px;
   }
@@ -830,5 +838,45 @@ ul.grants li { padding: 7px 0; }
   table.courses .dept { width: 5.4em; }
   table.courses .yr { width: 3.2em; }
   table.courses .tm { width: 2.6em; }
-  .ctype { font-size: 0.7rem; padding: 1px 6px; }
+  .ctype { font-size: 0.78rem; padding: 1px 6px; }
+  .acard-cap { font-size: 0.8rem; }
+  .acard-year { font-size: 0.76rem; }
+  table.courses th { font-size: 0.74rem; }
+
+  /* 窄螢幕不要兩端對齊：沒有斷字規則時，英文字間會被拉出明顯空隙 */
+  .justify, .home-hero .claim-lede, .step p { text-align: left; }
+  .person .nm-zh { font-size: 0.86rem; }
+}
+
+/* ============================================================
+   2026-11-03 易讀性與視覺一致性
+   ============================================================ */
+
+/* 中文版內文放大一級：同樣 px 下，中文字形的視覺大小比拉丁字母小 */
+html[lang="zh-Hant"] body { font-size: 18px; line-height: 1.75; }
+
+/* 真的需要閱讀的次要文字，原本偏小 */
+.person .nm-zh { font-size: 0.9rem; }
+.person .topic { font-size: 0.86rem; }
+#alumni-grid .nm-zh { font-size: 0.86rem; }
+.pub-authors, .pub-meta { font-size: 0.95rem; }
+.r-meta { font-size: 0.88rem; }
+.acard-year { font-size: 0.78rem; }
+.acard-count { font-size: 0.74rem; }
+.ctype { font-size: 0.8rem; }
+
+/* 成員照片是各自的生活照，色調落差大。統一輕微降飽和，整排看起來才成套；
+   滑鼠移上去恢復原本的顏色 */
+.person .ph {
+  filter: saturate(0.82) contrast(1.03);
+  transition: filter .3s ease, transform .3s ease;
+}
+.person:hover .ph { filter: none; transform: scale(1.04); }
+
+/* 沒有中文名的成員（例如外籍生）保留同樣的行高，整排卡片底部才會對齊 */
+.person .nm-zh:empty::after { content: "\00a0"; }
+
+@media (prefers-reduced-motion: reduce) {
+  .person .ph { transition: none; }
+  .person:hover .ph { transform: none; }
 }

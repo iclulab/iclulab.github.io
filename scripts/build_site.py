@@ -25,10 +25,12 @@ build_site.py — 由 _data/*.yaml 生成整個網站（中英雙語）
 下次執行本腳本會被覆蓋。
 """
 
+import functools
 import html
 import json
 import pathlib
 import re
+import struct
 import sys
 from datetime import date
 
@@ -56,6 +58,35 @@ def asset_hash(rel):
     import hashlib
     f = ROOT / rel
     return hashlib.md5(f.read_bytes()).hexdigest()[:8] if f.exists() else "0"
+
+
+@functools.lru_cache(maxsize=None)
+def img_dim(rel):
+    """讀 JPEG／PNG 檔頭取得原始像素尺寸，輸出成 width／height 屬性。
+    瀏覽器在圖片下載完成前就知道該留多少位置，版面不會跳動。
+    SVG 與讀不到的檔案回空字串（不寫屬性，行為與以前相同）。"""
+    f = ROOT / rel
+    if not f.exists() or f.suffix.lower() == ".svg":
+        return ""
+    data = f.read_bytes()
+    w = h = 0
+    if data[:8] == b"\x89PNG\r\n\x1a\n":
+        w, h = struct.unpack(">II", data[16:24])
+    elif data[:2] == b"\xff\xd8":                      # JPEG：逐段找 SOF 取長寬
+        i = 2
+        while i < len(data) - 9:
+            if data[i] != 0xFF:
+                i += 1
+                continue
+            marker = data[i + 1]
+            if marker == 0xD8 or 0xD0 <= marker <= 0xD9:
+                i += 2
+                continue
+            if 0xC0 <= marker <= 0xCF and marker not in (0xC4, 0xC8, 0xCC):
+                h, w = struct.unpack(">HH", data[i + 5:i + 9])
+                break
+            i += 2 + struct.unpack(">H", data[i + 2:i + 4])[0]
+    return f' width="{w}" height="{h}"' if w and h else ""
 
 
 def load(name):
@@ -499,7 +530,8 @@ def pub_figure(p, lang):
     src = asset(f"assets/img/pubs/{fn}", lang)
     alt = f'Graphical abstract: {p["title"][:80]}'
     return (f'<a class="pub-fig" href="https://doi.org/{p["doi"]}" '
-            f'aria-label="{e(alt)}"><img src="{src}" alt="{e(alt)}" loading="lazy"></a>')
+            f'aria-label="{e(alt)}"><img src="{src}" alt="{e(alt)}"'
+            f'{img_dim(f"assets/img/pubs/{fn}")} loading="lazy"></a>')
 
 
 def pub_li(p, lang):
@@ -652,6 +684,37 @@ def page_hero(title, lede=""):
 </div>"""
 
 
+# 著作頁篩選鈕的中文標籤。data-f 仍用英文 key，只有顯示文字換成中文；
+# 沒列到的主題自動退回英文（把連字號換成空白）。
+TOPIC_ZH = {
+    "ambient-ionization": "常壓游離",
+    "carbohydrate": "醣類",
+    "catalysis": "催化",
+    "coordination-chemistry": "配位化學",
+    "electrochemistry": "電化學",
+    "instrumentation": "儀器開發",
+    "ionic-liquid": "離子液體",
+    "ionization-mechanism": "游離機制",
+    "maldi": "MALDI",
+    "molecular-beam": "分子束",
+    "organic-synthesis": "有機合成",
+    "photodissociation": "光解離",
+    "portable-ms": "可攜式質譜",
+    "proteomics": "蛋白質體",
+    "quantification": "定量分析",
+    "reaction-dynamics": "反應動力學",
+    "reactive-intermediates": "反應中間體",
+    "review": "綜論",
+    "water-oxidation": "水氧化",
+}
+
+
+def topic_label(topic, lang):
+    if lang == "zh":
+        return TOPIC_ZH.get(topic, topic.replace("-", " "))
+    return topic.replace("-", " ")
+
+
 def pub_cards(lang, n=6):
     """首頁的代表圖畫廊：有代表圖的最新幾篇，圖 + 標題 + 期刊年份。"""
     picked = [p for p in main_pubs if pub_figure(p, lang)][:n]
@@ -661,7 +724,7 @@ def pub_cards(lang, n=6):
         src = asset(f"assets/img/pubs/{fn}", lang)
         cards.append(
             f"""<a class="pcard" href="https://doi.org/{p['doi']}">
-  <span class="pcard-fig"><img src="{src}" alt="{e(p['title'][:80])}" loading="lazy"></span>
+  <span class="pcard-fig"><img src="{src}" alt="{e(p['title'][:80])}"{img_dim(f"assets/img/pubs/{fn}")} loading="lazy"></span>
   <span class="pcard-title">{e(p['title'])}</span>
   <span class="pcard-meta"><em>{e(p['journal'])}</em> {p['year']}</span>
 </a>"""
@@ -672,7 +735,8 @@ def pub_cards(lang, n=6):
 def person_card(p, lang, subdir=""):
     base = asset(f"assets/img/people/{subdir}", lang)
     photo = (
-        f'<img class="ph" src="{base}{e(p["photo"])}" alt="{e(p["name_en"])}" loading="lazy">'
+        f'<img class="ph" src="{base}{e(p["photo"])}" alt="{e(p["name_en"])}"'
+        f'{img_dim(f"assets/img/people/{subdir}{p["photo"]}")} loading="lazy">'
         if p.get("photo")
         else f'<div class="ph">{e(p["name_zh"][0]) if p.get("name_zh") else "·"}</div>'
     )
@@ -756,7 +820,7 @@ def page_index(lang):
       </div>
     </div>
     <figure class="hero-shot">
-      <img src="{av('assets/img/hero.jpg', lang)}" alt="{e(t['hero_alt'])}">
+      <img src="{av('assets/img/hero.jpg', lang)}" alt="{e(t['hero_alt'])}"{img_dim('assets/img/hero.jpg')}>
     </figure>
   </div></div>
 </div>
@@ -872,7 +936,7 @@ def page_publications(lang):
         f'<button aria-pressed="true" data-f="all">{e(t["f_all"])}</button>'
         f'<button data-f="lead">{e(t["f_lead"])}</button>'
         + "".join(
-            f'<button data-f="t:{e(x)}">{e(x.replace("-", " "))}</button>' for x in topics
+            f'<button data-f="t:{e(x)}">{e(topic_label(x, lang))}</button>' for x in topics
         )
     )
     script = """
@@ -964,7 +1028,7 @@ def page_people(lang):
     body = page_hero(t["nav"][PAGES.index("people")], t["group_body"]) + f"""<div class="wrap">
 <section style="padding-top:34px"><h2>{e(t['pi'])}</h2>
 <div class="hero-grid">
-  <img class="hero-photo" src="{av('assets/img/lu.jpg', lang)}" alt="I-Chung Lu">
+  <img class="hero-photo" src="{av('assets/img/lu.jpg', lang)}" alt="I-Chung Lu"{img_dim('assets/img/lu.jpg')}>
   <div>
     <h3>I-Chung Lu <span class="zh">盧臆中</span></h3>
     <p class="zh">{e(t['role_title'])}，{e(t['inst'])}</p>
@@ -1024,7 +1088,7 @@ def LIFE_STRIP(lang, n=6):
     base = asset("assets/img/album/", lang)
     return "".join(
         f'<a class="shot" href="{rel("life", lang)}">'
-        f'<img src="{base}{fn}" alt="{e(title)}" loading="lazy"></a>'
+        f'<img src="{base}{fn}" alt="{e(title)}"{img_dim(f"assets/img/album/{fn}")} loading="lazy"></a>'
         for title, fn in out
     )
 
@@ -1048,7 +1112,7 @@ def page_life(lang):
             f"""<button class="acard" data-photos='{e(srcs, quote=True)}'
         data-title="{e(title)}" aria-label="{e(title)}（{len(photos)}）">
   <span class="acard-fig">
-    <img src="{base}{cover}" alt="{e(title)}" loading="lazy">
+    <img src="{base}{cover}" alt="{e(title)}"{img_dim(f"assets/img/album/{cover}")} loading="lazy">
     <span class="acard-count">{len(photos)}</span>
   </span>
   <span class="acard-cap">{e(title)}{yr}</span>
@@ -1195,7 +1259,7 @@ def page_teaching(lang):
   <h2>{e(t['yt_h'])}</h2>
   <div class="yt">
     <a class="yt-logo" href="{P['links']['youtube']}" aria-label="{e(t['yt_name'])}">
-      <img src="{av('assets/img/pchem-logo.png', lang)}" alt="{e(t['yt_name'])}">
+      <img src="{av('assets/img/pchem-logo.png', lang)}" alt="{e(t['yt_name'])}"{img_dim('assets/img/pchem-logo.png')}>
     </a>
     <div>
       <h3>{e(t['yt_name'])}</h3>
