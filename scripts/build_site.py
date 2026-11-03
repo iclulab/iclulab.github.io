@@ -775,10 +775,11 @@ def pub_cards(lang, n=6):
 
 
 def person_card(p, lang, subdir=""):
-    base = asset(f"assets/img/people/{subdir}", lang)
+    # 換照片時檔名通常不變，網址要帶內容雜湊，瀏覽器與 CDN 才不會繼續拿舊圖
+    rel = f"assets/img/people/{subdir}{p['photo']}" if p.get("photo") else ""
     photo = (
-        f'<img class="ph" src="{base}{e(p["photo"])}" alt="{e(p["name_en"])}"'
-        f'{img_dim(f"assets/img/people/{subdir}{p["photo"]}")} loading="lazy">'
+        f'<img class="ph" src="{av(rel, lang)}" alt="{e(p["name_en"])}"'
+        f'{img_dim(rel)} loading="lazy">'
         if p.get("photo")
         else f'<div class="ph">{e(p["name_zh"][0]) if p.get("name_zh") else "·"}</div>'
     )
