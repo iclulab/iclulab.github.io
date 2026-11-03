@@ -95,6 +95,34 @@ def load(name):
     return yaml.safe_load((DATA / f"{name}.yaml").read_text(encoding="utf-8"))
 
 
+def merge_vi(data, trans, match_key=None):
+    """把 _data/vi_content.yaml 的越南文灌回各資料結構，補上 *_vi 欄位。
+
+    越南文翻譯集中放在一個檔案，原本的資料檔不動，日後請母語者校稿時
+    只要給那一個檔案即可。沒翻到的欄位 pick() 會自動退回英文。
+
+    data  dict 或 list；list 時用 match_key（例如 id、date）對應
+    trans dict：{欄位: 越南文} 或 {識別值: {欄位: 越南文}}
+    """
+    if trans is None:
+        return
+    if isinstance(data, list):
+        # 同一個識別值可能出現多次（課程代碼跨學年重複、同一天兩則消息）：
+        # 預設整組套用同一份翻譯，需要分開時在翻譯檔用「值#序號」指定。
+        seen = {}
+        for pos, item in enumerate(data):
+            # 沒有識別欄位的清單（例如技術平台的能力、服務、案例）就用順序對應
+            key = str(item.get(match_key)) if match_key else str(pos)
+            n = seen.get(key, 0)
+            seen[key] = n + 1
+            fields = trans.get(f"{key}#{n}") or trans.get(key)
+            for field, value in (fields or {}).items():
+                item[f"{field}_vi"] = value
+    else:
+        for field, value in trans.items():
+            data[f"{field}_vi"] = value
+
+
 P = load("profile")
 PUBS = load("publications")
 PEOPLE = load("people")
@@ -105,6 +133,24 @@ FACILITY = load("facility")
 ALBUMS = load("albums")["albums"]
 COURSES = load("courses")
 VI = load("vi")
+
+# 越南文內容：集中在 vi_content.yaml，載入後灌回上面各結構的 *_vi 欄位
+_VIC = load("vi_content")
+merge_vi(RESEARCH, _VIC.get("research"))
+merge_vi(RESEARCH["themes"], _VIC.get("research_themes"), "id")
+merge_vi(FACILITY, _VIC.get("facility"))
+merge_vi(P, _VIC.get("profile"))
+merge_vi(SECTIONS, _VIC.get("sections"), "id")
+merge_vi(ALBUMS, _VIC.get("albums"), "id")
+merge_vi(COURSES["courses"], _VIC.get("courses"), "code")
+merge_vi(NEWS, _VIC.get("news"), "date")
+merge_vi(FACILITY["capabilities"], _VIC.get("facility_capabilities"))
+merge_vi(FACILITY["services"], _VIC.get("facility_services"))
+merge_vi(FACILITY["cases"], _VIC.get("facility_cases"))
+merge_vi(P["education"], _VIC.get("profile_education"))
+merge_vi(P["appointments"], _VIC.get("profile_appointments"))
+merge_vi(P["awards"], _VIC.get("profile_awards"))
+merge_vi(P["grants"], _VIC.get("profile_grants"))
 
 
 def pubs_in(section_id):
@@ -263,6 +309,8 @@ T = {
         "s_lead": "First / corresponding",
         "s_grants": "NSTC grants",
         "s_ongoing": "Ongoing",
+        "st_ongoing": "ongoing",
+        "st_completed": "completed",
         "b_corr": "Corresponding author",
         "b_cocorr": "Co-corresponding author",
         "b_first": "First author",
@@ -271,6 +319,7 @@ T = {
                     "early postdoctoral years.",
         "updated": "Last updated",
         "source": "Source",
+        "vi_home": "Vietnamese-speaking students can read this site in Vietnamese.",
         "roles": "Who can join",
         "role_ug_t": "Undergraduate research students",
         "role_ug_b": "Chemistry and related majors are welcome to take up a research "
@@ -397,6 +446,8 @@ T = {
         "s_lead": "第一/通訊作者",
         "s_grants": "國科會計畫",
         "s_ongoing": "執行中",
+        "st_ongoing": "執行中",
+        "st_completed": "已結案",
         "b_corr": "通訊作者",
         "b_cocorr": "共同通訊作者",
         "b_first": "第一作者",
@@ -404,6 +455,7 @@ T = {
         "dyn_note": "博士班與早期博後時期的交叉分子束與光解離動力學研究。",
         "updated": "最後更新",
         "source": "原始碼",
+        "vi_home": "越南籍學生可閱讀越南文版網站。",
         "roles": "歡迎加入的身分",
         "role_ug_t": "專題生（大學部）",
         "role_ug_b": "歡迎化學系與相關科系的大學部同學修習專題研究。從樣品製備、"
@@ -535,6 +587,8 @@ T = {
         "s_lead": "Tác giả chính / liên hệ",
         "s_grants": "Đề tài NSTC",
         "s_ongoing": "Đang thực hiện",
+        "st_ongoing": "đang thực hiện",
+        "st_completed": "đã kết thúc",
         "b_corr": "Tác giả liên hệ",
         "b_cocorr": "Đồng tác giả liên hệ",
         "b_first": "Tác giả thứ nhất",
@@ -543,6 +597,7 @@ T = {
                     "sinh và sau tiến sĩ giai đoạn đầu.",
         "updated": "Cập nhật",
         "source": "Mã nguồn",
+        "vi_home": "",
         "roles": "Chúng tôi nhận những ai",
         "role_ug_t": "Sinh viên đại học làm nghiên cứu",
         "role_ug_b": "Sinh viên ngành hóa và các ngành liên quan có thể tham gia một đề tài "
@@ -1086,6 +1141,7 @@ def page_index(lang):
 <section>
   <h2>{e(t['group'])}</h2>
   <p>{e(t['group_body'])} <a href="{rel('people', lang)}">{e(t['meet'])}</a></p>
+  {vi_hint(lang)}
 </section>
 
 <section>
@@ -1122,7 +1178,7 @@ def page_research(lang):
       <span class="g-id">{e(g['id'])}</span>
     </div>
     <div class="g-id">{e(g['agency'])} · {e(g['period'])} ·
-      {'PI' if g['role'] == 'PI' else 'Co-PI'} · {e(g['status'])}</div></li>"""
+      {'PI' if g['role'] == 'PI' else 'Co-PI'} · {e(t[f"st_{g['status']}"])}</div></li>"""
         for g in GRANTS
     )
     def theme_long(th):
@@ -1534,6 +1590,15 @@ def page_teaching(lang):
         "Giảng dạy Xuất sắc của trường.",
     )
     return layout("teaching", lang, title, desc, body)
+
+
+def vi_hint(lang):
+    """中英文首頁上指向越南文版的一行。越南文版自己不需要。"""
+    if lang == "vi":
+        return ""
+    href = "vi/index.html" if lang == "en" else "../vi/index.html"
+    return (f'<p>{e(T[lang]["vi_home"])} '
+            f'<a href="{href}">Tiếng Việt →</a></p>')
 
 
 def admission_block():

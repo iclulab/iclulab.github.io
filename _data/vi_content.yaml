@@ -1,0 +1,348 @@
+# ============================================================
+# vi_content.yaml — 全站越南文內容（單一檔案，方便請母語者校稿）
+#
+# 其他資料檔（research/news/profile…）不必加 *_vi 欄位，
+# build_site.py 載入後會把這裡的翻譯灌回對應結構。
+# 這裡沒翻到的欄位，網頁會自動顯示英文版內容。
+#
+# 對應方式：
+#   research / facility / profile  直接對欄位名
+#   research_themes                對 themes 的 id
+#   sections / albums              對 id
+#   courses                        對課程代碼 code（同代碼跨學年共用同一譯名）
+#   news                           對日期；同一天有兩則時，第二則寫成「日期#1」
+#
+# 2026-11-03 初版由 Claude 依中英文版翻譯，尚未經母語者校稿。
+# ============================================================
+
+research:
+  earlier: >
+    Trước khi chuyển sang khối phổ, tôi nghiên cứu động học phản ứng chùm phân tử giao nhau và
+    quang phân ly, tìm hiểu cách các liên kết bị phá vỡ và hình thành trong những va chạm đơn lẻ.
+    Nền tảng hóa lý từ giai đoạn đó đến nay vẫn định hình cách nhóm tiếp cận các bài toán phân tích.
+  intro: >
+    Nhóm làm việc ở ranh giới giữa hóa lý cơ bản và phép đo phân tích, với khối phổ là
+    sợi chỉ xuyên suốt. Nghiên cứu bắt đầu từ cơ chế hình thành ion, rồi dùng hiểu biết
+    đó để phát triển những phép đo cho các bài toán mà kỹ thuật hiện có chưa giải quyết tốt.
+
+research_themes:
+  foundations:
+    title: "Cơ chế ion hóa: MALDI và MAI"
+    blurb: >
+      Đo hiệu suất ion hóa tuyệt đối để làm rõ cách chất nền rắn sinh ra ion pha khí
+      trong MALDI và MAI.
+    body: >
+      Có hai con đường biến chất nền rắn thành ion pha khí: MALDI, do xung laser điều
+      khiển, và ion hóa có hỗ trợ chất nền (MAI), chỉ cần quá trình thăng hoa. Cả hai
+      đều được nghiên cứu ở đây thông qua hiệu suất ion hóa tuyệt đối.
+    problem: >
+      MALDI và MAI đều sinh ion pha khí từ một chất nền rắn, loại thứ nhất nhờ xung laser,
+      loại thứ hai chỉ nhờ thăng hoa. Cả hai được dùng rộng rãi cho phân tử sinh học, nhưng
+      cơ chế của cả hai đều chưa ngã ngũ. Với MALDI, các mô hình ion hóa đa photon, tích tụ
+      năng lượng, ion hình thành sẵn và ion hóa nhiệt cùng tồn tại trong tài liệu, và dự đoán
+      của chúng mâu thuẫn nhau trong một số điều kiện. MAI còn một khó khăn nữa: chính quá
+      trình chuyển pha đã tách điện tích, và phân bố trạng thái điện tích thu được lại giống
+      với ion hóa phun điện, điều chưa được giải thích thỏa đáng. Hệ quả là việc chọn chất nền
+      chủ yếu dựa vào kinh nghiệm, độ nhạy không thể ước lượng trước, và việc thiết kế phương
+      pháp ion hóa mới thiếu cơ sở vững chắc.
+    approach: >
+      Đại lượng quan sát chính là hiệu suất ion hóa tuyệt đối, tức tỉ lệ giữa ion và phân tử
+      trung hòa, chứ không chỉ là cường độ tín hiệu. Độ rộng xung và mật độ năng lượng laser,
+      loại chất nền, cùng nhiệt độ và áp suất của cửa nạp được thay đổi một cách hệ thống, để
+      mỗi mô hình cơ chế được kiểm chứng bằng chính dự đoán của nó. Với MALDI, cách làm này
+      cho một mô tả định lượng dựa trên chuyển proton do nhiệt (TIPT), trong đó lượng ion sinh
+      ra được quyết định bởi tính chất nhiệt động của chất nền và nhiệt độ do laser tạo ra. Với
+      MAI, trọng tâm là sự tách điện tích tự phát đi kèm quá trình thăng hoa, và việc áp suất,
+      nhiệt độ cùng tính chất chất nền quyết định ra sao sự hình thành ion và phân bố điện tích.
+    result: >
+      TIPT tái hiện được lượng ion đo trong các thí nghiệm độc lập. Với MAI, sự tách điện tích
+      do thăng hoa được chứng minh là hiện tượng chung chứ không riêng cho một chất nền nào, và
+      xảy ra ở cả áp suất khí quyển, dưới áp suất khí quyển lẫn trong chân không. Những kết quả
+      này đã được dùng để thiết kế nguồn ion, cho ra các phương án ion hóa không cần điện thế
+      cao cũng không cần laser, phù hợp với thiết bị di động. Nhìn chung, kết quả cho thấy việc
+      hình thành ion từ mẫu rắn chủ yếu do nhiệt động lực học và chuyển pha chi phối.
+  health:
+    title: "Khối phổ carbohydrate kết hợp phân loại bằng học máy"
+    blurb: >
+      Cải thiện độ lặp lại trong định lượng carbohydrate bằng khối phổ và kết hợp với mô hình
+      phân loại học máy để sàng lọc lâm sàng.
+    body: >
+      Phân tích định lượng carbohydrate bằng khối phổ từ lâu bị giới hạn bởi hiệu suất ion hóa
+      và sự không đồng nhất của mẫu. Công việc ở đây xử lý độ lặp lại ngay từ khâu chuẩn bị mẫu,
+      rồi đưa phổ thu được vào các mô hình phân loại phục vụ sàng lọc lâm sàng.
+    problem: >
+      Phân tích carbohydrate bằng khối phổ bị giới hạn bởi nhiều yếu tố: hiệu suất ion hóa thấp,
+      tín hiệu bị chia nhỏ giữa các adduct kim loại kiềm, và vệt lắng hình vòng để lại khi giọt
+      dung dịch khô, khiến chất phân tích phân bố không đều trên điểm mẫu. Vì vậy cường độ thay
+      đổi đáng kể giữa các vị trí trên cùng một mẫu, và việc định lượng không lặp lại được. Các
+      đồng phân có khối lượng gần nhau càng làm việc nhận dạng thêm khó. Những hạn chế này cộng
+      lại là trở ngại chính cho việc sàng lọc nhanh từ bệnh phẩm lâm sàng như huyết thanh và nước tiểu.
+    approach: >
+      Phương pháp giọt đông khô nhanh (RFDD) được phát triển ở khâu chuẩn bị mẫu. Chất nền và
+      chất phân tích đông đặc cùng nhau ở nhiệt độ thấp, giữ được phân bố đồng nhất của các adduct
+      natri hình thành sẵn và cải thiện tính đồng đều của tín hiệu trong một điểm mẫu. Khi phép đo
+      đã đáng tin cậy, toàn bộ phổ được xem như một tập đặc trưng nhiều chiều và được diễn giải bằng
+      các mô hình phân loại học máy, nhờ đó bớt phụ thuộc vào cường độ của bất kỳ ion đơn lẻ nào.
+    result: >
+      RFDD nâng cường độ ion lên hơn hai bậc độ lớn và cải thiện tính đồng đều của tín hiệu trong
+      một điểm mẫu; đường chuẩn dựng trong nền huyết thanh đạt độ tuyến tính R² = 0,99. Quy trình
+      hiện đang được áp dụng cho sinh thiết lỏng từ nước tiểu, nhằm đánh giá khả năng phát hiện
+      sớm ung thư và theo dõi di căn.
+  sustainability:
+    title: "Nhận dạng nhựa bằng khối phổ phục vụ tái chế"
+    blurb: >
+      Dấu vân tay khối phổ kết hợp mô hình phân loại để nhận dạng polymer hỗn hợp, cải thiện
+      khâu phân loại trong tái chế nhựa.
+    body: >
+      Hiệu quả tái chế nhựa bị giới hạn chủ yếu ở khâu phân loại. Ở đây khối phổ được dùng như
+      công cụ lấy dấu vân tay cho polymer, kết hợp với mô hình phân loại và thiết kế để dùng
+      ngay tại hiện trường.
+    problem: >
+      Hiệu quả tái chế nhựa bị giới hạn chủ yếu ở khâu phân loại. Nếu không nhận dạng được nhanh
+      và rẻ một dòng polymer hỗn hợp thì chất lượng nhựa tái chế không thể nâng lên. Phân loại
+      bằng hồng ngoại gần, tiêu chuẩn hiện nay, có khả năng hạn chế với nhựa màu sẫm và vật liệu
+      composite nhiều lớp — vốn chiếm phần đáng kể trong dòng rác thải thực tế.
+    approach: >
+      Khối phổ đóng vai trò công cụ lấy dấu vân tay cho polymer: nhiệt phân và ion hóa tạo ra một
+      mẫu mảnh đặc trưng cho từng vật liệu, từ đó mô hình phân loại xác định loại polymer. Phương
+      pháp được thiết kế để dùng tại hiện trường, chú trọng kích thước thiết bị, chi phí và tốc độ
+      phân tích hơn là độ chính xác mức phòng thí nghiệm. Các thiết bị di động và nguồn ion mà nhóm
+      phát triển trước đây là nền tảng kỹ thuật cho hướng này.
+    result: >
+      Công việc đang ở giai đoạn phát triển phương pháp, với kinh phí từ NSTC. Phổ tham chiếu cho
+      các polymer chuẩn đang được xây dựng và các mô hình phân loại đang được kiểm chứng.
+  mechanisms:
+    title: "Phát hiện chất trung gian hoạt động trong xúc tác"
+    blurb: >
+      Hệ thống cửa nạp tùy chỉnh dùng để phát hiện các chất tồn tại ngắn ngủi trong phản ứng xúc
+      tác, cung cấp bằng chứng cần thiết để phân định giữa các giả thuyết cơ chế.
+    body: >
+      Những chất trung gian then chốt trong chu trình xúc tác rất khó quan sát trực tiếp và thường
+      chỉ được suy ra từ bằng chứng gián tiếp. Hệ thống cửa nạp tùy chỉnh cho phép đưa thẳng dung
+      dịch đang phản ứng vào máy khối phổ, nhờ đó phát hiện được các chất tồn tại ngắn ngủi ngay
+      trong lúc phản ứng diễn ra.
+    problem: >
+      Các chất trung gian then chốt trong chu trình xúc tác thường tồn tại rất ngắn và ở nồng độ
+      thấp, do đó khó quan sát trực tiếp, và sự tồn tại của chúng được suy ra từ động học và tính
+      toán. Khi nhiều giả thuyết cơ chế cùng giải thích tốt như nhau dữ liệu hiện có, bằng chứng
+      gián tiếp không thể phân định giữa chúng, và việc thiết kế chất xúc tác vì thế bị hạn chế.
+    approach: >
+      Hệ thống cửa nạp tùy chỉnh đưa dung dịch đang phản ứng thẳng vào máy khối phổ. Ion hóa phun
+      lạnh và cửa nạp kiểm soát nhiệt độ làm giảm sự phân hủy của các chất ngắn hạn trong quá trình
+      chuyển mẫu, nhờ đó phát hiện được chúng khi phản ứng đang diễn ra. Công việc được thực hiện
+      cùng các nhóm tổng hợp, điện hóa và tính toán, nhằm cung cấp bằng chứng phân định giữa những
+      giả thuyết cơ chế đang cạnh tranh.
+    result: >
+      Trong phản ứng oxy hóa nước với phức coban hai nhân, các chất bắc cầu peroxo đã được quan sát
+      và sự thay đổi trạng thái oxy hóa của phối tử không vô can được xác lập, qua đó giải thích sự
+      đánh đổi giữa tốc độ phản ứng và quá thế. Trong hóa học sắt oxo hóa trị cao, các điều kiện
+      phân tách cơ chế cắt liên kết O–O kiểu đồng ly và dị ly đã được làm rõ. Trong hệ tiền xúc tác
+      paladi, quá trình hình thành chất hoạt động được theo dõi trực tiếp.
+
+facility:
+  tagline: "Từ kiểm nghiệm tiêu chuẩn đến phép đo theo yêu cầu"
+  intro: >
+    Khối phổ đã trở thành công cụ không thể thiếu trong mọi lĩnh vực hóa học, nhưng quy trình
+    tiêu chuẩn lại thất bại đúng ở nơi nghiên cứu tiên phong cần nhất: quan sát các chất trung
+    gian không bền, hoặc phân tử ở điều kiện khắc nghiệt. Thu được dữ liệu đó thường đòi hỏi
+    thiết kế lại hệ thống cửa nạp và tích hợp một nguồn ion khác, điều mà các trung tâm thiết bị
+    cố định không thể làm nếu không ảnh hưởng đến công suất và độ ổn định. Nhiều nhóm có câu hỏi
+    khoa học rất tốt nhưng không có đội ngũ khối phổ đủ khả năng làm việc liên ngành cùng họ.
+  positioning: >
+    Nền tảng được lập ra để hợp tác nghiên cứu, không phải để kiểm nghiệm theo hợp đồng thường
+    quy. Dựa trên kinh nghiệm tích hợp hệ thống khối phổ và phát triển phương pháp phân tích,
+    phương án đo được hoạch định theo yêu cầu của từng đề tài.
+
+facility_capabilities:
+  "0":
+    title: "Đo những mẫu khó"
+    body: >
+      Với các sản phẩm nhạy với không khí và hơi ẩm, cũng như những chất trung gian hoạt động
+      mạnh, chúng tôi thiết kế một phương án đo khả thi để bằng chứng thực nghiệm trực tiếp
+      thay cho suy luận gián tiếp.
+  "1":
+    title: "Quy trình thiết kế theo câu hỏi nghiên cứu"
+    body: >
+      Quy trình được dựng từ đặc điểm của mẫu và mục tiêu của nghiên cứu, mở rộng tới những
+      điều kiện mà thiết bị tiêu chuẩn không bao phủ.
+  "2":
+    title: "Đào tạo kỹ thuật"
+    body: >
+      Ngoài phân tích và tư vấn, chúng tôi có thể sắp xếp đào tạo để nhóm hợp tác tự xây dựng
+      được năng lực này.
+
+facility_services:
+  "0": {name: "Quan sát chất trung gian phản ứng trong dung dịch"}
+  "1": {name: "Khối phổ ion hóa phun lạnh (CSI-MS)"}
+  "2": {name: "Phân tích khối phổ thông thường"}
+  "3": {name: "Thiết kế thí nghiệm và tư vấn"}
+
+facility_cases:
+  "0":
+    title: "Cơ chế oxy hóa nước bằng điện hóa"
+    body: >
+      Hợp tác với các nhóm tổng hợp và tính toán trên những phức kim loại với phối tử khác nhau,
+      chúng tôi dùng khối phổ ion hóa phun lạnh để theo dõi nồng độ các chất trung gian biến đổi
+      ra sao trong phản ứng. Phát hiện được chất hoạt động tồn tại ngắn ngủi giữa một phản ứng
+      điện hóa diễn ra nhanh cung cấp bằng chứng ở mức phân tử để phân định giữa các giả thuyết
+      cơ chế, đồng thời cho thấy thiết kế phối tử cân bằng hoạt tính với quá thế như thế nào.
+  "1":
+    title: "Phát triển tiền xúc tác paladi mới"
+    body: >
+      Tiền xúc tác SIPr-NAPA cho hoạt tính tốt trong phản ứng ghép Kumada–Tamao–Corriu. Khối phổ
+      được dùng để đặc trưng hóa các tiền xúc tác mới tổng hợp, xác lập con đường hoạt hóa và sự
+      hình thành chất hoạt động. Phổ cho thấy phối tử NHC và axit phosphinous tách khỏi tiền xúc
+      tác, phù hợp với tính toán DFT và chỉ ra một con đường hoạt hóa chưa từng được công bố.
+
+profile:
+  bio_short: >
+    I-Chung Lu là Phó Giáo sư Khoa Hóa học, Đại học Quốc lập Chung Hsing, Đài Loan. Ông nhận bằng
+    cử nhân và tiến sĩ tại Đại học Quốc lập Thanh Hoa, rồi nghiên cứu sau tiến sĩ tại Viện Khoa học
+    Nguyên tử và Phân tử, Academia Sinica, và tại Đại học Wayne State. Nhóm của ông phát triển các
+    phương pháp khối phổ nối hóa lý cơ bản với phân tích thực tế: nghiên cứu cơ chế ion hóa MALDI,
+    phân tích carbohydrate có hỗ trợ của AI phục vụ sàng lọc lâm sàng nhanh, và hệ thống cửa nạp
+    tùy chỉnh để bắt các chất trung gian hoạt động trong xúc tác kim loại chuyển tiếp.
+  bio_long: >
+    I-Chung Lu là Phó Giáo sư tại Khoa Hóa học, Đại học Quốc lập Chung Hsing (NCHU), Đài Trung,
+    Đài Loan. Ông nhận bằng cử nhân và tiến sĩ hóa học tại Đại học Quốc lập Thanh Hoa, sau đó
+    nghiên cứu sau tiến sĩ tại Viện Khoa học Nguyên tử và Phân tử, Academia Sinica, và tại Đại học
+    Wayne State, Hoa Kỳ. Ông bắt đầu sự nghiệp nghiên cứu độc lập tại Đại học Providence trước khi
+    về NCHU.
+
+    Nghiên cứu của ông nối hóa lý cơ bản với các ứng dụng phân tích, lấy khối phổ làm trọng tâm.
+    Trên nền những nghiên cứu cơ chế ion hóa MALDI, nhóm hiện kết hợp phân tích khối phổ
+    carbohydrate với mô hình phân loại dựa trên AI để phát triển công cụ chẩn đoán và sàng lọc
+    nhanh. Song song, ông dùng hệ thống cửa nạp tùy chỉnh để bắt các chất trung gian hoạt động và
+    những chất tồn tại ngắn ngủi, qua đó làm rõ động học và cơ chế của phản ứng xúc tác kim loại
+    chuyển tiếp và phản ứng oxy hóa nước bằng điện hóa. Công việc của ông cho thấy khoa học phân
+    tích tiên tiến đóng vai trò công nghệ nền, thúc đẩy các khám phá hóa học.
+
+profile_education:
+  "0": {degree: "Tiến sĩ Hóa học", institution: "Đại học Quốc lập Thanh Hoa, Đài Loan"}
+  "1": {degree: "Cử nhân Hóa học", institution: "Đại học Quốc lập Thanh Hoa, Đài Loan"}
+
+profile_appointments:
+  "0":
+    years: "2025 – nay"
+    position: "Phó Giáo sư kiêm nhiệm"
+    org: "Trung tâm Giáo dục Khoa học, Trường Khoa học, Đại học Quốc lập Chung Hsing"
+  "1":
+    years: "2024 – nay"
+    position: "Phó Giáo sư"
+    org: "Khoa Hóa học, Đại học Quốc lập Chung Hsing"
+  "2": {position: "Trợ lý Giáo sư", org: "Khoa Hóa học, Đại học Quốc lập Chung Hsing"}
+  "3": {position: "Trợ lý Giáo sư", org: "Khoa Hóa học Ứng dụng, Đại học Providence"}
+  "4": {position: "Nghiên cứu viên sau tiến sĩ", org: "Khoa Hóa học, Đại học Wayne State, Hoa Kỳ"}
+  "5": {position: "Nghiên cứu viên sau tiến sĩ", org: "Viện Khoa học Nguyên tử và Phân tử, Academia Sinica, Đài Loan"}
+  "6": {position: "Kỹ sư trưởng R&D", org: "Bộ phận Thiết bị Phân tích, CVC Technologies"}
+  "7": {position: "Nghiên cứu viên sau tiến sĩ", org: "Trung tâm Nghiên cứu Hệ gen, Academia Sinica, Đài Loan"}
+
+profile_grants:
+  "0": {title: "Sinh thiết lỏng từ nước tiểu trên nền tảng khối phổ sáng tạo nhằm phát hiện sớm ung thư và cảnh báo di căn"}
+  "1": {title: "Kết hợp khối phổ và học máy để phân loại và tái chế nhựa thông minh"}
+  "2": {title: "Nâng cao hiệu quả phát triển vật liệu transistor hiệu ứng trường hữu cơ bằng tiền xúc tác paladi hiệu năng cao thế hệ mới (2/3)"}
+  "3": {title: "Xây dựng nền tảng khối phổ nghiên cứu cơ chế phản ứng xúc tác cơ kim II (2/2)"}
+  "4": {title: "Nâng cao hiệu quả phát triển vật liệu transistor hiệu ứng trường hữu cơ: thiết kế và ứng dụng tiền xúc tác paladi thế hệ mới (1/3)"}
+  "5": {title: "Nền tảng dịch vụ kỹ thuật và vận hành thiết bị dùng chung tiên tiến của NSTC (1/3)"}
+  "6": {title: "Xây dựng nền tảng khối phổ nghiên cứu cơ chế phản ứng xúc tác cơ kim II (1/2)"}
+  "7": {title: "Xây dựng nền tảng khối phổ nghiên cứu cơ chế phản ứng xúc tác cơ kim"}
+  "8": {title: "Kết hợp bẫy ion kiểu mới với ion hóa mềm để nghiên cứu tương tác không cộng hóa trị của protein"}
+
+profile_awards:
+  "0": {name: "Giáo sư Ưu tú, Đại học Quốc lập Chung Hsing"}
+  "1": {name: "Giải thưởng Cố vấn Xuất sắc, Đại học Quốc lập Chung Hsing"}
+  "2": {name: "Giải thưởng Giảng dạy Xuất sắc, Đại học Quốc lập Chung Hsing"}
+
+sections:
+  independent:
+    years: "2019 – nay"
+    title: "Nghiên cứu độc lập"
+    note: >
+      Thành quả của nhóm tại Đại học Quốc lập Chung Hsing và Đại học Providence:
+      định lượng carbohydrate và phân loại hỗ trợ bởi AI, khối phổ di động, cùng
+      các nghiên cứu cơ chế xúc tác thực hiện với những nhóm tổng hợp và tính toán.
+  ionization-techniques:
+    years: "2009–2018"
+    title: "Kỹ thuật ion hóa trong khối phổ"
+    note: >
+      Nghiên cứu sau tiến sĩ tại Viện Khoa học Nguyên tử và Phân tử, Academia Sinica,
+      và tại Đại học Wayne State. Giai đoạn này xác lập cách hiểu MALDI theo hướng
+      chuyển proton nhiệt và mở rộng sang ion hóa tại cửa nạp và trong chân không,
+      đến nay vẫn là nền tảng cho nghiên cứu của nhóm.
+  reaction-dynamics:
+    years: "2003–2008"
+    title: "Động học phản ứng"
+    note: >
+      Công việc thời nghiên cứu sinh và sau tiến sĩ giai đoạn đầu về động học phản ứng
+      chùm phân tử giao nhau và quang phân ly, nghiên cứu cách các liên kết bị phá vỡ
+      và hình thành trong những va chạm đơn lẻ.
+
+albums:
+  lab-daily: {title: "Thường ngày trong phòng thí nghiệm"}
+  2026-yearend-dinner: {title: "Tiệc tất niên"}
+  2026-museum-trip: {title: "Tham quan Bảo tàng Khoa học"}
+  2025-yearend-dinner: {title: "Tiệc tất niên"}
+  2024-summer-dinner: {title: "Tiệc mùa hè"}
+  2024-dinner: {title: "Tiệc của nhóm"}
+  2024-tsms: {title: "Hội nghị thường niên Hội Khối phổ Đài Loan"}
+  530-new-lab: {title: "Chuyển vào phòng 530"}
+  2023-tsms: {title: "Hội nghị thường niên Hội Khối phổ Đài Loan"}
+  2023-analytical-workshop: {title: "Hội thảo trao đổi kỹ thuật phân tích"}
+  2023-chunghsing-village: {title: "Chuyến đi Làng Chung Hsing"}
+  2023-yearend-dinner: {title: "Tiệc tất niên"}
+  2022-jiufen: {title: "Cửu Phần và núi Ấm Trà"}
+  2022-tsms: {title: "Hội nghị thường niên Hội Khối phổ Đài Loan"}
+  2021-dine-in: {title: "Cuối cùng cũng được ăn tại quán"}
+  2021-endterm-dinner: {title: "Tiệc cuối học kỳ"}
+  2020-houfeng-bikeway: {title: "Đường xe đạp Hậu Phong"}
+  2019-yearend-dinner: {title: "Tiệc cuối năm"}
+  2019-hehuan: {title: "Đỉnh Bắc Hợp Hoan mùa hè"}
+  2018-nsysu-chem: {title: "Hội nghị thường niên Hội Hóa học, Đại học Trung Sơn"}
+
+courses:
+  "2233": {name: "Hóa lý"}
+  "2281": {name: "Hóa lý"}
+  "4133": {name: "Nhiệt động lực học thống kê"}
+  "4120": {name: "Nhiệt động lực học thống kê"}
+  "3283": {name: "Hóa lý (III)"}
+  "4129": {name: "Hóa học lượng tử"}
+  "3270": {name: "Hóa lý (II)"}
+  "1822": {name: "Hóa lý (II)"}
+  "2286": {name: "Hóa lý (I)"}
+  "1171": {name: "Hóa đại cương"}
+  "2248": {name: "Toán cho hóa học"}
+  "6529": {name: "Hóa lý nâng cao"}
+  "4001": {name: "Hóa học công nghiệp"}
+
+news:
+  "2026-08-01": {text: "I-Chung Lu được trao danh hiệu Giáo sư Ưu tú của Đại học Chung Hsing (năm học 115)"}
+  "2026-07-01": {text: "Chúc mừng Chen-Yi Tseng nhận được Đề tài Nghiên cứu Sinh viên của NSTC"}
+  "2026-06-05": {text: "Chúc mừng Chen-Yi Tseng đạt giải Nhì Cuộc thi Báo cáo Khoa học Công nghệ 2026 (Hóa học và Năng lượng Bền vững, bảng Đại học)"}
+  "2026-04-25": {text: "Chúc mừng Chen-Yi Tseng nhận Giải Báo cáo tại Hội thảo Kỹ thuật Phân tích 2026"}
+  "2025-12-26":
+    html: >
+      I-Chung Lu được giới thiệu trong chuyên mục <a href="https://doi.org/10.1016/j.ijms.2025.117568">Young
+      Scientist Feature</a> của <em>IJMS</em> — bài viết của ban biên tập tạp chí giới thiệu
+      thành quả nghiên cứu và định hướng sắp tới
+  "2025-07-01": {text: "Chúc mừng Shao-Hsun Ho nhận được Đề tài Nghiên cứu Sinh viên của NSTC"}
+  "2025-06-06": {text: "Chúc mừng Shao-Hsun Ho đạt giải Nhì Cuộc thi Báo cáo Khoa học Công nghệ 2025 (Hóa học và Năng lượng Bền vững, bảng Đại học)"}
+  "2025-05-03": {text: "Chúc mừng Lyu-Han Lan nhận Giải Poster Xuất sắc của Chi hội ACS Đài Loan"}
+  "2024-08-01": {text: "I-Chung Lu được thăng chức Phó Giáo sư"}
+  "2024-05-31": {text: "Chúc mừng Yi-Chun Liu đạt giải Nhất Cuộc thi Báo cáo Khoa học Công nghệ 2024 (Hóa học và Năng lượng Bền vững, bảng Đại học)"}
+  "2023-06-27": {text: "Chúc mừng Pin-Rui Tseng nhận Giải thưởng Sáng tạo Nghiên cứu Sinh viên của NSTC"}
+  "2023-06-20": {text: "Chúc mừng Ding-Chien He nhận được Đề tài Nghiên cứu Sinh viên của NSTC"}
+  "2023-06-09": {text: "Chúc mừng Ding-Chien He đạt giải Nhất Cuộc thi Báo cáo Khoa học Công nghệ 2023 (bảng Đại học)"}
+  "2023-06-09#1": {text: "Chúc mừng Wan-Qin Zeng nhận Giải Khuyến khích Cuộc thi Báo cáo Khoa học Công nghệ 2023 (bảng Sau đại học)"}
+  "2023-05-13": {text: "Chúc mừng Xin-Wen Zhang nhận Giải Báo cáo miệng Xuất sắc tại Hội thảo Kỹ thuật Phân tích lần thứ 28"}
+  "2022-08-18": {text: "Chúc mừng Xin-Wen Zhang nhận Giải Poster Xuất sắc tại Hội nghị thường niên TSMS lần thứ 18"}
+  "2022-06-30": {text: "Chúc mừng Chia-Yun Wang và Pin-Rui Tseng đạt giải Ba Cuộc thi Báo cáo của Đại học Chung Hsing"}
+  "2022-06-25": {text: "Chúc mừng Pin-Rui Tseng nhận được Đề tài Nghiên cứu Sinh viên của MOST"}
+  "2021-12-16": {text: "Chúc mừng Chia-Yun Wang nhận Học bổng Rotary năm 2021"}
+  "2021-11-15": {text: "I-Chung Lu nhận Giải thưởng Giảng dạy Xuất sắc của Đại học Chung Hsing"}
+  "2020-11-20": {text: "Chúc mừng Wan-Ching Lee nhận Giải Khuyến khích Cuộc thi Báo cáo của Trường Khoa học, Đại học Chung Hsing"}
+  "2020-09-03": {text: "Chúc mừng Yi-Hsin Chen nhận Giải Khuyến khích tại Hội nghị thường niên TSMS lần thứ 17"}
+  "2020-06-30": {text: "Chúc mừng Chih-Hao Lin đạt giải Nhì Cuộc thi Báo cáo của Trường Khoa học, Đại học Chung Hsing"}
+  "2020-06-30#1": {text: "Chúc mừng Yao-Yu Yang nhận Giải Khuyến khích Cuộc thi Báo cáo của Trường Khoa học, Đại học Chung Hsing"}
+  "2020-01-07": {text: "Chúc mừng Yi-Hsin Chen nhận Giải Bài báo Xuất sắc tại Hội nghị Khối phổ châu Á lần thứ 8 (AOMSC)"}
+  "2019-06-24": {text: "Chúc mừng Yi-Hsin Chen đạt giải Nhì Cuộc thi Báo cáo của Trường Khoa học, Đại học Chung Hsing"}
+  "2019-01-21": {text: "Phòng thí nghiệm 102 chính thức đi vào hoạt động"}

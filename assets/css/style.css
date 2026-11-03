@@ -94,10 +94,19 @@ img { max-width: 100%; height: auto; }
   background: var(--bg);
   position: sticky; top: 0; z-index: 50;
 }
+/* 導覽列一律維持單行；放不下就讓導覽列自己橫向捲動，語言切換鈕固定在右邊。
+   越南文的項目字較長，在中等寬度視窗若允許折行，切換鈕會被擠到第二排。 */
 .site-header .wrap {
   display: flex; align-items: center; justify-content: space-between;
-  gap: 20px; min-height: 62px; flex-wrap: wrap;
+  gap: 20px; min-height: 62px; flex-wrap: nowrap;
 }
+nav.main {
+  display: flex; align-items: center; flex-wrap: nowrap;
+  min-width: 0; overflow-x: auto; -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+nav.main::-webkit-scrollbar { display: none; }
+nav.main a { white-space: nowrap; }
 .brand { font-weight: 650; letter-spacing: -0.01em; color: var(--ink); font-size: 1.02rem; }
 .brand span { color: var(--ink-faint); font-weight: 400; margin-left: 8px; font-size: 0.9rem; }
 .brand:hover { text-decoration: none; }
@@ -550,7 +559,7 @@ footer.site-footer a { color: var(--ink-soft); }
   section[id] { scroll-margin-top: 104px; }
   .to-top { right: 14px; bottom: 14px; width: 38px; height: 38px; }
   .site-header .wrap { min-height: auto; padding-top: 12px; padding-bottom: 12px; }
-  nav.main { width: 100%; display: flex; flex-wrap: wrap; gap: 0 4px; }
+  nav.main { gap: 0 4px; }
   nav.main a { margin-left: 0; margin-right: 16px; }
   ol.pubs li { padding-left: 34px; }
   ol.pubs li::before { width: 24px; }
