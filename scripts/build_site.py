@@ -42,7 +42,9 @@ from pubfmt import format_authors  # noqa: E402
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 DATA = ROOT / "_data"
 SITE = "https://iclulab.com"
-LANGS = ("en", "zh")
+LANGS = ("en", "zh", "vi")
+HTML_LANG = {"en": "en", "zh": "zh-Hant", "vi": "vi"}
+OG_LOCALE = {"en": "en_US", "zh": "zh_TW", "vi": "vi_VN"}
 
 # 主導覽列的頁面
 PAGES = ["index", "research", "facility", "publications", "people", "life", "teaching", "join"]
@@ -132,6 +134,11 @@ def paras(text, cls=""):
         f"<p{c}>{e(tidy(blk))}</p>"
         for blk in (text or "").split("\n") if blk.strip()
     )
+
+
+def tri(lang, en, zh, vi):
+    """頁面標題與描述這類三語各寫一份的字串。"""
+    return {"en": en, "zh": zh, "vi": vi}[lang]
 
 
 def pick(obj, key, lang):
@@ -415,12 +422,157 @@ T = {
         "home_link": "回到首頁 →",
         "see_dyn": "查看反應動力學時期的著作 →",
     },
+    # 越南文介面。內容欄位若 _data 裡沒有 *_vi，pick() 會自動退回英文。
+    # 2026-11-03 由 Claude 依中英文版翻譯，建議請越南籍學生校稿。
+    "vi": {
+        "nav": ["Trang chủ", "Nghiên cứu", "Thiết bị", "Công bố", "Thành viên",
+                "Đời sống", "Giảng dạy", "Tham gia"],
+        "addr": "145 Xingda Rd., South Dist., Taichung City 40227, Taiwan",
+        "footer_org": "Khoa Hóa học, Đại học Quốc lập Chung Hsing",
+        "inst": "Đại học Quốc lập Chung Hsing",
+        "lab": "Phòng thí nghiệm: Phòng 102, Tòa nhà Hóa học",
+        "office": "Văn phòng: Phòng 508, Tòa nhà Hóa học",
+        "role_title": "Phó Giáo sư · Khoa Hóa học",
+        "research": "Nghiên cứu",
+        "selected": "Công bố tiêu biểu",
+        "all_pubs": "Toàn bộ công bố →",
+        "read_more": "Tìm hiểu thêm về nghiên cứu →",
+        "news": "Tin tức",
+        "group": "Nhóm nghiên cứu",
+        "group_body": "Công việc của nhóm trải từ cơ chế ion hóa, phát triển phương pháp "
+                      "phân tích, đến động học phản ứng, nên thành viên với sở trường và "
+                      "hứng thú khác nhau đều tìm được đề tài phù hợp.",
+        "meet": "Xem thành viên →",
+        "publications": "Công bố",
+        "earlier": "Giai đoạn đầu — động học phản ứng (2003–2008)",
+        "earlier_h": "Giai đoạn đầu",
+        "grants": "Đề tài nghiên cứu",
+        "education": "Học vấn",
+        "appointments": "Quá trình công tác",
+        "awards": "Giải thưởng",
+        "pi": "Trưởng nhóm",
+        "assistant": "Trợ lý nghiên cứu",
+        "phd": "Nghiên cứu sinh",
+        "master": "Học viên thạc sĩ",
+        "undergrad": "Sinh viên đại học",
+        "alumni": "Cựu thành viên",
+        "alumni_lede": "Những người từng học tập trong phòng thí nghiệm, nay đã tiếp tục "
+                       "học lên, làm việc trong ngành hoặc nghiên cứu ở nơi khác.",
+        "alumni_link": "Xem toàn bộ cựu thành viên →",
+        "back_group": "← Quay lại trang thành viên",
+        "life": "Đời sống phòng thí nghiệm",
+        "life_lede": "Hội nghị, leo núi, chuyển thiết bị vào phòng, và rất nhiều bữa ăn. "
+                     "Một nhóm nghiên cứu cũng chính là những con người trong đó.",
+        "life_home": "Hội nghị, các chuyến đi và công việc thường ngày của phòng thí nghiệm.",
+        "life_more": "Xem đời sống phòng thí nghiệm →",
+        "eyebrow": "Phòng thí nghiệm Lu · Khoa Hóa học, Đại học Quốc lập Chung Hsing",
+        "claim": "Nhìn thấy thế giới mà các<br>phương pháp khác khó quan sát",
+        "hero_alt": "Hệ thống đưa mẫu khối phổ tự chế trên bàn quang học",
+        "claim_lede": "Nghiên cứu bắt đầu từ cơ chế hình thành ion, rồi áp dụng hiểu biết đó "
+                      "vào sàng lọc lâm sàng nhanh cho carbohydrate, nhận dạng vật liệu phục "
+                      "vụ tái chế nhựa, và phát hiện trực tiếp các chất trung gian trong xúc tác.",
+        "cta_research": "Chúng tôi làm gì →",
+        "cta_join": "Tham gia nhóm →",
+        "themes_h": "Hướng nghiên cứu",
+        "r_problem": "Bối cảnh",
+        "r_approach": "Phương pháp",
+        "r_result": "Tiến triển",
+        "skip": "Đến nội dung chính",
+        "top": "Lên đầu trang",
+        "pubs_lede": "Từ động học phản ứng chùm phân tử giao nhau và cơ chế ion hóa, đến "
+                     "những ứng dụng phân tích mà nhóm tự phát triển hiện nay.",
+        "teaching": "Giảng dạy",
+        "teaching_body": "Tôi giảng dạy hóa lý cho cả bậc đại học và sau đại học tại "
+                         "Đại học Quốc lập Chung Hsing.",
+        "t_awards": "Giải thưởng giảng dạy",
+        "courses": "Các môn đã dạy",
+        "c_year": "Năm học",
+        "c_term": "Học kỳ",
+        "c_code": "Mã môn",
+        "c_dept": "Dành cho",
+        "c_name": "Tên môn",
+        "c_type": "Loại",
+        "c_req": "Bắt buộc",
+        "c_ele": "Tự chọn",
+        "courses_note": "Năm học ghi theo lịch Dân Quốc mà các trường đại học Đài Loan sử "
+                        "dụng; năm 114 tương ứng với 2025–26. Các môn thí nghiệm và nghiên "
+                        "cứu độc lập không được liệt kê.",
+        "yt_h": "Hóa lý trên YouTube",
+        "yt_name": "狐獴老師的物化課 (Lớp hóa lý của thầy Chồn đất)",
+        "yt_body": "Hóa lý không nên đọc như kinh sách. Đó là một cuộc phiêu lưu thú vị "
+                   "giữa cái trừu tượng và cái có thật.",
+        "yt_cta": "Xem kênh →",
+        "join": "Tham gia nhóm",
+        "join_body": "Nhóm chào đón những bạn quan tâm đến nguyên lý đằng sau phép đo, không "
+                     "chỉ đến thao tác thiết bị. Đề tài trải từ cơ chế ion hóa, phát triển "
+                     "thiết bị và phương pháp, đến phân tích phổ bằng học máy, nên sinh viên "
+                     "từ nhiều nền tảng khác nhau đều tìm được điểm bắt đầu phù hợp.",
+        "what": "Các hướng đề tài có thể tham gia",
+        "touch": "Liên hệ",
+        "touch_body": "Thư xin ghi ngắn gọn hướng nghiên cứu bạn quan tâm, kèm sơ yếu lý lịch "
+                      "nếu có. Sinh viên Đại học Chung Hsing cũng có thể đến trực tiếp phòng "
+                      "508 hoặc phòng thí nghiệm 102.",
+        "legend": "<b>*</b> là tác giả liên hệ. Tên in <b>đậm</b> là I-Chung Lu. Với các bài "
+                  "tổng quan cộng đồng nhiều tác giả viết chung cùng S. Trimpin, danh sách "
+                  "tác giả được rút gọn; các bài còn lại liệt kê đầy đủ mọi tác giả.",
+        "facility": "Nền tảng khối phổ tùy chỉnh",
+        "fac_short": "Thiết bị",
+        "fac_why": "Vì sao cần tùy chỉnh",
+        "fac_cap": "Chúng tôi làm được gì",
+        "fac_svc": "Dịch vụ",
+        "fac_case": "Các hợp tác đã thực hiện",
+        "fac_apply": "Đăng ký dịch vụ kỹ thuật →",
+        "fac_note": "Vận hành như một hạng mục thuộc chương trình thiết bị dùng chung "
+                    "A-Core Plus của Hội đồng Khoa học và Công nghệ Quốc gia (NSTC).",
+        "fac_home": "Chúng tôi vận hành một nền tảng khối phổ tùy chỉnh mở cho các nhóm "
+                    "nghiên cứu khác, phục vụ những phép đo mà trung tâm thiết bị thông "
+                    "thường không thực hiện được.",
+        "fac_more": "Tìm hiểu nền tảng →",
+        "refs": "Công bố liên quan",
+        "f_all": "Tất cả",
+        "f_lead": "Tác giả chính / liên hệ",
+        "s_pubs": "Công bố",
+        "s_lead": "Tác giả chính / liên hệ",
+        "s_grants": "Đề tài NSTC",
+        "s_ongoing": "Đang thực hiện",
+        "b_corr": "Tác giả liên hệ",
+        "b_cocorr": "Đồng tác giả liên hệ",
+        "b_first": "Tác giả thứ nhất",
+        "b_inv": "Bài tổng quan được mời",
+        "dyn_note": "Động học chùm phân tử giao nhau và quang phân ly, từ thời kỳ nghiên cứu "
+                    "sinh và sau tiến sĩ giai đoạn đầu.",
+        "updated": "Cập nhật",
+        "source": "Mã nguồn",
+        "roles": "Chúng tôi nhận những ai",
+        "role_ug_t": "Sinh viên đại học làm nghiên cứu",
+        "role_ug_b": "Sinh viên ngành hóa và các ngành liên quan có thể tham gia một đề tài "
+                     "nghiên cứu trong nhóm. Bạn bắt đầu từ chuẩn bị mẫu, vận hành thiết bị "
+                     "và xử lý dữ liệu, rồi nhận một câu hỏi của riêng mình; nhiều sinh viên "
+                     "của nhóm đã giành được đề tài nghiên cứu sinh viên của NSTC và giải "
+                     "trong các cuộc thi báo cáo khoa học.",
+        "role_ms_t": "Học viên thạc sĩ",
+        "role_ms_b": "Học viên thạc sĩ đảm nhiệm phần lớn công việc nghiên cứu hằng ngày của "
+                     "nhóm, từ cơ chế ion hóa và phát triển phương pháp đến phát hiện chất "
+                     "trung gian hoạt động trong phản ứng xúc tác. Đề tài được chọn cùng nhau, "
+                     "phù hợp với nền tảng và điều bạn muốn học.",
+        "role_phd_t": "Nghiên cứu sinh",
+        "role_phd_b": "Phù hợp với người muốn theo đuổi một câu hỏi đủ lâu để công bố, và làm "
+                      "việc cùng các hợp tác của nhóm về tính toán lý thuyết, điện hóa và "
+                      "tổng hợp hữu cơ.",
+        "role_intl_t": "Sinh viên quốc tế",
+        "role_intl_b": "Hồ sơ nộp qua hệ thống tuyển sinh quốc tế của Đại học Chung Hsing, "
+                       "không nộp trực tiếp cho phòng thí nghiệm. Lịch nộp hồ sơ, học bổng "
+                       "và các liên kết chính thức nằm ở phần dưới trang này.",
+        "notfound": "Không tìm thấy trang này.",
+        "home_link": "Về trang chủ →",
+        "see_dyn": "Xem các công bố thời kỳ động học phản ứng →",
+    },
 }
 
 
 # ------------------------------------------------------------------
 def url(page, lang):
-    return f"{page}.html" if lang == "en" else f"zh/{page}.html"
+    return f"{page}.html" if lang == "en" else f"{lang}/{page}.html"
 
 
 def rel(page, lang):
@@ -455,12 +607,12 @@ LANG_NAMES = {"en": "English", "zh": "中文", "vi": "Tiếng Việt"}
 
 
 def lang_switcher(page, cur):
-    """cur 為 en／zh／vi。越南文只有單頁，任何頁面都指向 /vi/index.html。"""
-    up = "../" if cur in ("zh", "vi") else ""
+    """三種語言都有完整頁面，切換時停在同一頁。"""
+    up = "../" if cur != "en" else ""
     targets = {
-        "zh": f'{"" if cur == "zh" else up + "zh/"}{page}.html' if cur != "vi" else "../zh/index.html",
-        "en": f"{up}{page}.html" if cur != "vi" else "../index.html",
-        "vi": f"{up}vi/index.html" if cur != "vi" else "",
+        "zh": f"{page}.html" if cur == "zh" else f"{up}zh/{page}.html",
+        "en": f"{up}{page}.html",
+        "vi": f"{page}.html" if cur == "vi" else f"{up}vi/{page}.html",
     }
     items = ""
     for code in ("zh", "en", "vi"):
@@ -492,7 +644,7 @@ def layout(page, lang, title, description, body, jsonld=None):
         else ""
     )
     return f"""<!DOCTYPE html>
-<html lang="{'en' if lang == 'en' else 'zh-Hant'}">
+<html lang="{HTML_LANG[lang]}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -501,13 +653,14 @@ def layout(page, lang, title, description, body, jsonld=None):
 <link rel="canonical" href="{SITE}/{url(page, lang)}">
 <link rel="alternate" hreflang="en" href="{SITE}/{url(page, 'en')}">
 <link rel="alternate" hreflang="zh-Hant" href="{SITE}/{url(page, 'zh')}">
+<link rel="alternate" hreflang="vi" href="{SITE}/{url(page, 'vi')}">
 <link rel="alternate" hreflang="x-default" href="{SITE}/{url(page, 'en')}">
 <meta property="og:type" content="website">
 <meta property="og:title" content="{e(title)}">
 <meta property="og:description" content="{e(description)}">
 <meta property="og:url" content="{SITE}/{url(page, lang)}">
 <meta property="og:image" content="{SITE}/assets/img/lu.jpg?v={asset_hash('assets/img/lu.jpg')}">
-<meta property="og:locale" content="{'en_US' if lang == 'en' else 'zh_TW'}">
+<meta property="og:locale" content="{OG_LOCALE[lang]}">
 <meta name="twitter:card" content="summary">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -631,18 +784,23 @@ def pub_li(p, lang):
 def news_items(lang, limit=None):
     """消息依年份分組成時間軸，年份標在左欄，事件排右欄。"""
     items = NEWS[:limit] if limit else NEWS
-    key = "text_zh" if lang == "zh" else "text_en"
+    key = f"text_{lang}"
     groups = []
     for n in items:
         y = str(n["date"])[:4]
         if not groups or groups[-1][0] != y:
             groups.append((y, []))
         groups[-1][1].append(n)
+    def text_of(n):
+        """該語言沒有就退回英文，再退回中文；html_* 欄位可帶連結，原樣輸出。"""
+        html = n.get(f"html_{lang}") or n.get("html_en") or n.get("html_zh")
+        return html or e(n.get(key) or n.get("text_en") or n["text_zh"])
+
     out = []
     for y, ns in groups:
         rows = "".join(
             f'<li><time datetime="{e(str(n["date"]))}">{e(str(n["date"])[5:])}</time>'
-            f'<span>{n.get(f"html_{lang}") or n.get("html_zh") or e(n.get(key) or n["text_zh"])}</span></li>'
+            f'<span>{text_of(n)}</span></li>'
             for n in ns
         )
         out.append(f'<div class="tl-group"><div class="tl-year">{e(y)}</div>'
@@ -815,8 +973,10 @@ def person_card(p, lang, subdir=""):
         if p.get("photo")
         else f'<div class="ph">{e(p["name_zh"][0]) if p.get("name_zh") else "·"}</div>'
     )
-    primary = p["name_zh"] if lang == "zh" and p.get("name_zh") else p["name_en"]
-    secondary = p["name_en"] if lang == "zh" and p.get("name_zh") else p.get("name_zh", "")
+    # 中文版以中文姓名為主、英文為輔；英文與越南文版相反
+    zh_first = lang == "zh" and p.get("name_zh")
+    primary = p["name_zh"] if zh_first else p["name_en"]
+    secondary = p["name_en"] if zh_first else p.get("name_zh", "")
     extra = pick(p, "note", lang) or p.get("degree", "") or p.get("topic", "")
     topic = f'<div class="topic">{e(extra)}</div>' if extra else ""
     return (
@@ -934,18 +1094,22 @@ def page_index(lang):
   <div class="shots strip">{LIFE_STRIP(lang)}</div>
 </section>
 </div>"""
-    title = (
-        "I-Chung Lu | Mass Spectrometry & Physical Chemistry | NCHU"
-        if lang == "en"
-        else "盧臆中 I-Chung Lu ｜ 質譜與物理化學 ｜ 國立中興大學化學系"
+    title = tri(
+        lang,
+        "I-Chung Lu | Mass Spectrometry & Physical Chemistry | NCHU",
+        "盧臆中 I-Chung Lu ｜ 質譜與物理化學 ｜ 國立中興大學化學系",
+        "I-Chung Lu | Khối phổ và Hóa lý | Đại học Chung Hsing",
     )
-    desc = (
+    desc = tri(
+        lang,
         "I-Chung Lu, Associate Professor of Chemistry at National Chung Hsing University. "
         "Research on MALDI ionization mechanisms, carbohydrate mass spectrometry with AI "
-        "classification, smart plastic identification, and reactive intermediates in catalysis."
-        if lang == "en"
-        else "盧臆中，國立中興大學化學系副教授。研究領域涵蓋 MALDI 游離機制、"
-        "醣類質譜結合 AI 分類、塑膠智慧辨識與回收，以及催化反應中間體的捕捉。"
+        "classification, smart plastic identification, and reactive intermediates in catalysis.",
+        "盧臆中，國立中興大學化學系副教授。研究領域涵蓋 MALDI 游離機制、"
+        "醣類質譜結合 AI 分類、塑膠智慧辨識與回收，以及催化反應中間體的捕捉。",
+        "I-Chung Lu, Phó Giáo sư Khoa Hóa học, Đại học Quốc lập Chung Hsing. Nghiên cứu về "
+        "cơ chế ion hóa MALDI, khối phổ carbohydrate kết hợp phân loại bằng AI, nhận dạng "
+        "nhựa và các chất trung gian hoạt động trong xúc tác.",
     )
     return layout("index", lang, title, desc, body, jsonld)
 
@@ -974,7 +1138,7 @@ def page_research(lang):
         return f"""<section class="theme-long" id="{th['id']}">
   <div class="theme-head">
     <span class="tag">{e(th['tag'])}</span>
-    <h3>{e(pick(th, 'title', lang))}<span class="zh"> · {e(th['title_en'] if lang == 'zh' else th['title_zh'])}</span></h3>
+    <h3>{e(pick(th, 'title', lang))}<span class="zh"> · {e(th['title_zh'] if lang != 'zh' else th['title_en'])}</span></h3>
   </div>
   {''.join(parts)}
 </section>"""
@@ -994,12 +1158,15 @@ def page_research(lang):
   <ul class="grants">{grants}</ul>
 </section>
 </div>"""
-    title = "Research | I-Chung Lu | NCHU" if lang == "en" else "研究 ｜ 盧臆中 ｜ 中興大學化學系"
-    desc = (
+    title = tri(lang, "Research | I-Chung Lu | NCHU", "研究 ｜ 盧臆中 ｜ 中興大學化學系",
+                "Nghiên cứu | I-Chung Lu | NCHU")
+    desc = tri(
+        lang,
         "Ionization mechanisms, carbohydrate mass spectrometry with AI classification, "
-        "smart plastic identification, and reactive intermediates in catalysis."
-        if lang == "en"
-        else "游離機制、醣類質譜結合 AI 分類、塑膠智慧辨識與回收、催化反應中間體捕捉。"
+        "smart plastic identification, and reactive intermediates in catalysis.",
+        "游離機制、醣類質譜結合 AI 分類、塑膠智慧辨識與回收、催化反應中間體捕捉。",
+        "Cơ chế ion hóa, khối phổ carbohydrate kết hợp phân loại bằng AI, nhận dạng nhựa "
+        "và chất trung gian hoạt động trong xúc tác.",
     )
     return layout("research", lang, title, desc, body)
 
@@ -1070,12 +1237,15 @@ document.querySelectorAll('.filters button').forEach(b => b.addEventListener('cl
 <div class="wrap">
 {''.join(blocks)}
 </div>{script}"""
-    title = "Publications | I-Chung Lu | NCHU" if lang == "en" else "著作 ｜ 盧臆中 ｜ 中興大學化學系"
-    desc = (
+    title = tri(lang, "Publications | I-Chung Lu | NCHU", "著作 ｜ 盧臆中 ｜ 中興大學化學系",
+                "Công bố | I-Chung Lu | NCHU")
+    desc = tri(
+        lang,
         f"{len(PUBS)} peer-reviewed publications by I-Chung Lu in mass spectrometry, "
-        "ionization mechanisms, catalysis, and reaction dynamics."
-        if lang == "en"
-        else f"盧臆中的 {len(PUBS)} 篇學術著作，涵蓋質譜、游離機制、催化與反應動力學。"
+        "ionization mechanisms, catalysis, and reaction dynamics.",
+        f"盧臆中的 {len(PUBS)} 篇學術著作，涵蓋質譜、游離機制、催化與反應動力學。",
+        f"{len(PUBS)} công bố khoa học của I-Chung Lu về khối phổ, cơ chế ion hóa, "
+        "xúc tác và động học phản ứng.",
     )
     return layout("publications", lang, title, desc, body)
 
@@ -1125,11 +1295,13 @@ def page_people(lang):
   <p style="margin-top:18px"><a href="{rel('alumni', lang)}">{e(t['alumni_link'])}</a></p>
 </section>""" \
     + "</div>"
-    title = "Group | I-Chung Lu | NCHU" if lang == "en" else "團隊 ｜ 盧臆中 ｜ 中興大學化學系"
-    desc = (
-        "Members of the Lu group at the Department of Chemistry, National Chung Hsing University."
-        if lang == "en"
-        else "國立中興大學化學系盧臆中實驗室成員。"
+    title = tri(lang, "Group | I-Chung Lu | NCHU", "團隊 ｜ 盧臆中 ｜ 中興大學化學系",
+                "Thành viên | I-Chung Lu | NCHU")
+    desc = tri(
+        lang,
+        "Members of the Lu group at the Department of Chemistry, National Chung Hsing University.",
+        "國立中興大學化學系盧臆中實驗室成員。",
+        "Thành viên nhóm nghiên cứu Lu, Khoa Hóa học, Đại học Quốc lập Chung Hsing.",
     )
     return layout("people", lang, title, desc, body)
 
@@ -1260,12 +1432,15 @@ def page_life(lang):
     body = page_hero(t["life"], t["life_lede"]) + f"""<div class="wrap">
 {''.join(blocks)}
 </div>{script}"""
-    title = ("Lab Life | I-Chung Lu | NCHU" if lang == "en"
-             else "實驗室生活 ｜ 盧臆中 ｜ 中興大學化學系")
-    desc = ("Photos from conferences, group outings, and everyday work in the Lu group "
-            "at National Chung Hsing University."
-            if lang == "en"
-            else "盧臆中實驗室的研討會、出遊與日常照片。")
+    title = tri(lang, "Lab Life | I-Chung Lu | NCHU", "實驗室生活 ｜ 盧臆中 ｜ 中興大學化學系",
+                "Đời sống phòng thí nghiệm | I-Chung Lu | NCHU")
+    desc = tri(
+        lang,
+        "Photos from conferences, group outings, and everyday work in the Lu group "
+        "at National Chung Hsing University.",
+        "盧臆中實驗室的研討會、出遊與日常照片。",
+        "Hình ảnh hội nghị, các chuyến đi và công việc thường ngày của nhóm nghiên cứu Lu.",
+    )
     return layout("life", lang, title, desc, body)
 
 
@@ -1278,12 +1453,16 @@ def page_alumni(lang):
   <p style="margin-top:26px"><a href="{rel('people', lang)}">{e(t['back_group'])}</a></p>
 </section>
 </div>"""
-    title = ("Lab Alumni | I-Chung Lu | NCHU" if lang == "en"
-             else "歷屆成員 ｜ 盧臆中 ｜ 中興大學化學系")
-    desc = (f"{len(ALUMNI)} former members of the Lu group, Department of Chemistry, "
-            "National Chung Hsing University."
-            if lang == "en"
-            else f"國立中興大學化學系盧臆中實驗室的 {len(ALUMNI)} 位歷屆成員。")
+    title = tri(lang, "Lab Alumni | I-Chung Lu | NCHU", "歷屆成員 ｜ 盧臆中 ｜ 中興大學化學系",
+                "Cựu thành viên | I-Chung Lu | NCHU")
+    desc = tri(
+        lang,
+        f"{len(ALUMNI)} former members of the Lu group, Department of Chemistry, "
+        "National Chung Hsing University.",
+        f"國立中興大學化學系盧臆中實驗室的 {len(ALUMNI)} 位歷屆成員。",
+        f"{len(ALUMNI)} cựu thành viên của nhóm nghiên cứu Lu, Khoa Hóa học, "
+        "Đại học Quốc lập Chung Hsing.",
+    )
     return layout("alumni", lang, title, desc, body)
 
 
@@ -1344,14 +1523,46 @@ def page_teaching(lang):
   </div>
 </section>
 </div>"""
-    title = "Teaching | I-Chung Lu | NCHU" if lang == "en" else "教學 ｜ 盧臆中 ｜ 中興大學化學系"
-    desc = (
+    title = tri(lang, "Teaching | I-Chung Lu | NCHU", "教學 ｜ 盧臆中 ｜ 中興大學化學系",
+                "Giảng dạy | I-Chung Lu | NCHU")
+    desc = tri(
+        lang,
         "Physical chemistry teaching at NCHU by I-Chung Lu, recipient of the "
-        "NCHU Distinguished Teaching Award."
-        if lang == "en"
-        else "盧臆中於中興大學講授物理化學，曾獲中興大學教學特優獎與特優導師。"
+        "NCHU Distinguished Teaching Award.",
+        "盧臆中於中興大學講授物理化學，曾獲中興大學教學特優獎與特優導師。",
+        "I-Chung Lu giảng dạy hóa lý tại Đại học Chung Hsing, từng nhận giải thưởng "
+        "Giảng dạy Xuất sắc của trường.",
     )
     return layout("teaching", lang, title, desc, body)
+
+
+def admission_block():
+    """越南文版「加入我們」頁下半部：國際學生的申請期程、獎學金與官方連結。
+    期程與獎學金取自中興大學國際事務處公告，內容在 _data/vi.yaml。"""
+    v = VI
+    intakes = "".join(
+        f'<li><span class="g-title">{e(i["term"])}</span>'
+        f'<div class="g-id">{e(i["apply"])} · {e(i["result"])}<br>{e(i["note"])}</div></li>'
+        for i in v["admission"]["intakes"]
+    )
+    links = "".join(
+        f'<li><span class="g-title"><a href="{e(it["url"])}">{e(it["text"])}</a></span></li>'
+        for it in v["links"]["items"]
+    )
+    return f"""<section>
+  <h2>{e(v['admission']['heading'])}</h2>
+  <p class="justify">{e(v['admission']['lede'])}</p>
+  <ul class="grants">{intakes}</ul>
+  <p class="justify">{e(v['admission']['caveat'])}</p>
+</section>
+<section>
+  <h2>{e(v['scholarship']['heading'])}</h2>
+  <p class="justify">{e(v['scholarship']['body'])}</p>
+</section>
+<section>
+  <h2>{e(v['links']['heading'])}</h2>
+  <ul class="grants">{links}</ul>
+</section>"""
 
 
 def page_join(lang):
@@ -1361,28 +1572,33 @@ def page_join(lang):
         f'<div class="g-id">{e(t[f"role_{k}_b"])}</div></li>'
         for k in ("ug", "ms", "phd")
     )
-    vi_href = "vi/index.html" if lang == "en" else "../vi/index.html"
-    roles += (
-        f'<li><span class="g-title">{e(t["role_intl_t"])}</span>'
-        f'<div class="g-id">{e(t["role_intl_b"])} '
-        f'<a href="{vi_href}">Tiếng Việt →</a></div></li>'
-    )
+    intl = f'<div class="g-id">{e(t["role_intl_b"])}'
+    if lang != "vi":                                   # 越南文版本頁下方就是申請資訊
+        vi_href = "vi/join.html" if lang == "en" else "../vi/join.html"
+        intl += f' <a href="{vi_href}">Tiếng Việt →</a>'
+    roles += f'<li><span class="g-title">{e(t["role_intl_t"])}</span>{intl}</div></li>'
+
     body = page_hero(t["join"], t["join_body"]) + f"""<div class="wrap">
 <section style="padding-top:34px"><h2>{e(t['roles'])}</h2><ul class="grants">{roles}</ul></section>
 <section><h2>{e(t['what'])}</h2>{theme_blocks(lang)}</section>
+{admission_block() if lang == "vi" else ""}
 <section>
   <h2>{e(t['touch'])}</h2>
   <p>{e(t['touch_body'])}</p>
   <p><a class="cta" href="mailto:{P['contact']['email']}">{P['contact']['email']}</a></p>
 </section>
 </div>"""
-    title = "Join Us | I-Chung Lu | NCHU" if lang == "en" else "加入我們 ｜ 盧臆中 ｜ 中興大學化學系"
-    desc = (
-        "Openings for graduate and undergraduate students in the Lu group, NCHU."
-        if lang == "en"
-        else "盧臆中實驗室歡迎碩士班與大學部同學加入，研究題目涵蓋質譜、儀器開發與機器學習。"
-    )
-    return layout("join", lang, title, desc, body)
+    titles = {
+        "en": "Join Us | I-Chung Lu | NCHU",
+        "zh": "加入我們 ｜ 盧臆中 ｜ 中興大學化學系",
+        "vi": "Tham gia nhóm | I-Chung Lu | NCHU",
+    }
+    descs = {
+        "en": "Openings for graduate and undergraduate students in the Lu group, NCHU.",
+        "zh": "盧臆中實驗室歡迎碩士班與大學部同學加入，研究題目涵蓋質譜、儀器開發與機器學習。",
+        "vi": VI["subtitle"],
+    }
+    return layout("join", lang, titles[lang], descs[lang], body)
 
 
 def page_facility(lang):
@@ -1443,13 +1659,18 @@ def page_facility(lang):
   {''.join(cases)}
 </section>
 </div>"""
-    title = ("Customized Mass Spectrometry Platform | I-Chung Lu | NCHU" if lang == "en"
-             else "客製化質譜探測服務平台 ｜ 盧臆中 ｜ 中興大學化學系")
-    desc = ("A customized mass spectrometry service platform for reaction intermediates, "
-            "cold-spray ionization, and bespoke measurement design. NSTC A-Core Plus."
-            if lang == "en" else
-            "客製化質譜探測服務平台：液相反應中間體觀測、低溫噴灑游離質譜、"
-            "客製化量測設計。國科會 A-Core Plus 尖端核心設施。")
+    title = tri(lang, "Customized Mass Spectrometry Platform | I-Chung Lu | NCHU",
+                "客製化質譜探測服務平台 ｜ 盧臆中 ｜ 中興大學化學系",
+                "Nền tảng khối phổ tùy chỉnh | I-Chung Lu | NCHU")
+    desc = tri(
+        lang,
+        "A customized mass spectrometry service platform for reaction intermediates, "
+        "cold-spray ionization, and bespoke measurement design. NSTC A-Core Plus.",
+        "客製化質譜探測服務平台：液相反應中間體觀測、低溫噴灑游離質譜、"
+        "客製化量測設計。國科會 A-Core Plus 尖端核心設施。",
+        "Nền tảng dịch vụ khối phổ tùy chỉnh: quan sát chất trung gian trong phản ứng "
+        "pha lỏng, ion hóa phun lạnh và thiết kế phép đo theo yêu cầu. NSTC A-Core Plus.",
+    )
     return layout("facility", lang, title, desc, body)
 
 
@@ -1467,110 +1688,14 @@ BUILDERS = {
 
 
 # ------------------------------------------------------------------
-def page_vi():
-    """越南文單頁：實驗室簡介＋國際學生申請資訊。
-    不是全站越南文版，所以不走 layout()／LANGS，內容在 _data/vi.yaml。"""
-    v = VI
-    a = lambda p: f"../{p}"                                    # noqa: E731
-    secs = "".join(
-        f'<section{" style=\'padding-top:34px\'" if i == 0 else ""}>'
-        f'<h2>{e(s["heading"])}</h2><p class="justify">{e(s["body"])}</p></section>'
-        for i, s in enumerate(v["sections"])
-    )
-    intakes = "".join(
-        f'<li><span class="g-title">{e(i["term"])}</span>'
-        f'<div class="g-id">{e(i["apply"])} · {e(i["result"])}<br>{e(i["note"])}</div></li>'
-        for i in v["admission"]["intakes"]
-    )
-    links = "".join(
-        f'<li><span class="g-title"><a href="{e(it["url"])}">{e(it["text"])}</a></span></li>'
-        for it in v["links"]["items"]
-    )
-    return f"""<!DOCTYPE html>
-<html lang="vi">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{e(v['title'])}</title>
-<meta name="description" content="{e(v['subtitle'])}">
-<link rel="canonical" href="{SITE}/vi/index.html">
-<meta property="og:type" content="website">
-<meta property="og:title" content="{e(v['title'])}">
-<meta property="og:description" content="{e(v['subtitle'])}">
-<meta property="og:url" content="{SITE}/vi/index.html">
-<meta property="og:image" content="{SITE}/assets/img/lu.jpg?v={asset_hash('assets/img/lu.jpg')}">
-<meta name="twitter:card" content="summary">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
-<link rel="stylesheet" href="{a('assets/css/style.css')}?v={CSS_V}">
-<link rel="icon" href="{a('assets/img/favicon-32.png')}" sizes="32x32">
-<link rel="icon" href="{a('assets/img/logo-mark.svg')}" type="image/svg+xml">
-<link rel="apple-touch-icon" href="{a('assets/img/favicon-180.png')}">
-</head>
-<body>
-<a class="skip" href="#main">Đến nội dung chính</a>
-<header class="site-header"><div class="wrap">
-  <a class="brand" href="{a('index.html')}">
-    <img src="{a('assets/img/logo.svg')}?v={asset_hash('assets/img/logo.svg')}"
-         alt="Lu Lab — I-Chung Lu 盧臆中" class="logo">
-  </a>
-  <nav class="main">
-    <a href="{a('index.html')}">{e(v['back']['en'])}</a>
-    <a href="{a('zh/index.html')}">{e(v['back']['zh'])}</a>
-  </nav>
-  {lang_switcher('index', 'vi')}
-</div></header>
-<main id="main">
-{page_hero(v['title'], v['intro'])}
-<div class="wrap">
-{secs}
-<section>
-  <h2>{e(v['admission']['heading'])}</h2>
-  <p class="justify">{e(v['admission']['lede'])}</p>
-  <ul class="grants">{intakes}</ul>
-  <p class="justify">{e(v['admission']['caveat'])}</p>
-</section>
-<section>
-  <h2>{e(v['scholarship']['heading'])}</h2>
-  <p class="justify">{e(v['scholarship']['body'])}</p>
-</section>
-<section>
-  <h2>{e(v['links']['heading'])}</h2>
-  <ul class="grants">{links}</ul>
-</section>
-<section>
-  <h2>{e(v['contact']['heading'])}</h2>
-  <p class="justify">{e(v['contact']['body'])}</p>
-  <p>{e(v['contact']['office'])}</p>
-  <p><a class="cta" href="mailto:{P['contact']['email']}">{P['contact']['email']}</a></p>
-</section>
-</div>
-</main>
-<footer class="site-footer"><div class="wrap">
-  <p>Department of Chemistry, National Chung Hsing University<br>
-     145 Xingda Rd., South Dist., Taichung City 402, Taiwan</p>
-  <p><a href="mailto:{P['contact']['email']}">{P['contact']['email']}</a> ·
-     Tel {e(P['contact']['phone'])}</p>
-  <p>Cập nhật {date.today().isoformat()}</p>
-</div></footer>{ANALYTICS}
-</body>
-</html>
-"""
-
-
 def main():
-    (ROOT / "zh").mkdir(exist_ok=True)
-    (ROOT / "vi").mkdir(exist_ok=True)
     written = []
     for lang in LANGS:
-        outdir = ROOT if lang == "en" else ROOT / "zh"
+        outdir = ROOT if lang == "en" else ROOT / lang
+        outdir.mkdir(exist_ok=True)
         for page in ALL_PAGES:
             (outdir / f"{page}.html").write_text(BUILDERS[page](lang), encoding="utf-8")
             written.append(url(page, lang))
-
-    (ROOT / "vi" / "index.html").write_text(page_vi(), encoding="utf-8")
-    written.append("vi/index.html")
 
     today = date.today().isoformat()
     urls = "".join(
