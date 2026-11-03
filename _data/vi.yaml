@@ -1,0 +1,90 @@
+# ============================================================
+# vi.yaml — 越南文單頁（/vi/index.html）
+# 給越南籍學生看的實驗室簡介與申請資訊，不是全站越南文版。
+# 招生期程與獎學金取自中興大學國際事務處官方頁面（見 sources），
+# 每年可能調整，頁面上已註明以官方公告為準。
+# 建議請越南籍學生校稿後再調整字句。
+# ============================================================
+
+title: "Phòng thí nghiệm Lu — Khoa Hóa học, Đại học Quốc lập Chung Hsing"
+subtitle: "Thông tin dành cho sinh viên quốc tế muốn học thạc sĩ hoặc tiến sĩ"
+
+intro: >
+  Chúng tôi dùng khối phổ (mass spectrometry) để quan sát những hiện tượng mà các
+  phương pháp khác khó nhìn thấy. Nghiên cứu bắt đầu từ cơ chế hình thành ion, rồi
+  mở rộng sang sàng lọc lâm sàng nhanh cho carbohydrate, nhận dạng vật liệu phục vụ
+  tái chế nhựa, và phát hiện trực tiếp các chất trung gian trong phản ứng xúc tác.
+
+sections:
+  - heading: "Bạn sẽ học được gì"
+    body: >
+      Bạn sẽ hiểu nguyên lý của thiết bị khối phổ chứ không chỉ thao tác máy, bao gồm
+      cả hệ thống đưa mẫu do chính phòng thí nghiệm cải tiến. Ngoài thực nghiệm, bạn
+      cũng sẽ làm việc với phân tích dữ liệu và mô hình phân loại bằng học máy. Đề tài
+      có thể điều chỉnh theo nền tảng và hứng thú của bạn.
+
+  - heading: "Chúng tôi tìm ai"
+    body: >
+      Người thích tự tay làm thí nghiệm và theo đuổi một câu hỏi đến cùng. Bạn không
+      cần biết trước về khối phổ; quan trọng là sẵn sàng học. Công việc hằng ngày trong
+      nhóm dùng cả tiếng Trung và tiếng Anh, nên tiếng Anh đủ để đọc tài liệu và thảo
+      luận là được.
+
+# 招生期程：取自國際事務處「Application Procedure」頁（每年同一期程）
+admission:
+  heading: "Cách nộp hồ sơ"
+  lede: >
+    Sinh viên quốc tế nộp hồ sơ qua hệ thống tuyển sinh của Đại học Quốc lập Chung Hsing
+    (NCHU), không nộp trực tiếp cho phòng thí nghiệm. Mỗi hồ sơ được chọn tối đa hai khoa;
+    hãy chọn Khoa Hóa học (Department of Chemistry).
+  intakes:
+    - term: "Kỳ mùa thu — nhập học tháng 9"
+      apply: "Nhận hồ sơ: 15/01 – 20/03"
+      result: "Công bố kết quả: 31/05"
+      note: "Mở cho cả bậc thạc sĩ và tiến sĩ."
+    - term: "Kỳ mùa xuân — nhập học tháng 2"
+      apply: "Nhận hồ sơ: 15/08 – 30/09"
+      result: "Công bố kết quả: 30/11"
+      note: "Chỉ dành cho bậc thạc sĩ và tiến sĩ."
+  caveat: >
+    Thời hạn trên là lịch thường niên của nhà trường (giờ Đài Loan, GMT+8). Quy định và
+    ngày tháng của từng năm học có thể thay đổi, vui lòng lấy thông tin chính thức trên
+    trang của Văn phòng Quan hệ Quốc tế (OIA) trước khi chuẩn bị hồ sơ.
+
+scholarship:
+  heading: "Học bổng"
+  body: >
+    Sinh viên quốc tế mới có thể xin học bổng của trường ngay trong hệ thống nộp hồ sơ.
+    Học bổng NCHU gồm miễn giảm học phí (một phần hoặc toàn phần); một số ít trường hợp
+    được thêm trợ cấp hằng tháng 6.000 hoặc 8.000 Đài tệ. Ngoài ra, học viên thạc sĩ và
+    nghiên cứu sinh có thể xin học bổng trợ giảng (TA) của OIA, 5.000 Đài tệ mỗi tháng,
+    tổng 20.000 Đài tệ một học kỳ. Điều kiện và số suất do nhà trường quyết định, không
+    do phòng thí nghiệm.
+
+contact:
+  heading: "Liên hệ"
+  body: >
+    Trước khi nộp hồ sơ, bạn nên viết thư cho giáo sư Lu để trao đổi về hướng nghiên cứu.
+    Thư nên kèm sơ yếu lý lịch (CV), bảng điểm và một đoạn ngắn nói rõ bạn muốn làm gì.
+    Thư viết bằng tiếng Anh là được.
+  office: "Phòng 508, Tòa nhà Hóa học · Phòng thí nghiệm: Phòng 102"
+
+links:
+  heading: "Liên kết chính thức"
+  items:
+    - text: "Hệ thống tuyển sinh NCHU (nộp hồ sơ trực tuyến)"
+      url: "https://admission.oia.nchu.edu.tw/"
+    - text: "Quy trình nộp hồ sơ cho sinh viên quốc tế"
+      url: "https://www.oia.nchu.edu.tw/index.php/3-apply-to-nchu-en/3-1-degree-programs-en/3-1-2-international-students-en/3-1-2-2-application-procedure-en"
+    - text: "Điều kiện quốc tịch và tư cách dự tuyển"
+      url: "https://www.oia.nchu.edu.tw/index.php/3-apply-to-nchu-en/3-1-degree-programs-en/3-1-2-international-students-en/3-1-2-1-nationality-qualification-en"
+    - text: "Hồ sơ cần chuẩn bị"
+      url: "https://www.oia.nchu.edu.tw/index.php/3-apply-to-nchu-en/3-1-degree-programs-en/3-1-2-international-students-en/3-1-2-6-required-documents-en"
+    - text: "Học bổng của trường"
+      url: "https://oia.nchu.edu.tw/index.php/1-1-about-en-2/2-8-scholarships-en/2-8-1-nchu-scholarships-en"
+    - text: "Văn phòng Quan hệ Quốc tế (OIA): oia@nchu.edu.tw · +886-4-22840206"
+      url: "https://oia.nchu.edu.tw/"
+
+back:
+  en: "English version of this site"
+  zh: "中文版網站"

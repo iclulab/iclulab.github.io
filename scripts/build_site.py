@@ -102,6 +102,7 @@ SECTIONS = load("sections")
 FACILITY = load("facility")
 ALBUMS = load("albums")["albums"]
 COURSES = load("courses")
+VI = load("vi")
 
 
 def pubs_in(section_id):
@@ -264,6 +265,30 @@ T = {
                     "early postdoctoral years.",
         "updated": "Last updated",
         "source": "Source",
+        "vi_note": "information for Vietnamese applicants",
+        "roles": "Who can join",
+        "role_ug_t": "Undergraduate research students",
+        "role_ug_b": "Chemistry and related majors are welcome to take up a research "
+                     "project in the group. You start with sample preparation, "
+                     "instrument operation and data handling, then take on a question "
+                     "of your own; several of our undergraduates have gone on to win "
+                     "NSTC undergraduate research grants and paper competitions.",
+        "role_ms_t": "Master's students",
+        "role_ms_b": "Master's students carry most of the group's day-to-day research, "
+                     "from ionization mechanisms and method development to the "
+                     "detection of reactive intermediates in catalysis. A topic is "
+                     "chosen together, matching your background and what you want to "
+                     "learn.",
+        "role_phd_t": "Doctoral students",
+        "role_phd_b": "Suited to those who want to stay with one question long enough "
+                      "to publish on it, and to work across the group's collaborations "
+                      "in theoretical calculation, electrochemistry and organic "
+                      "synthesis.",
+        "role_intl_t": "International students",
+        "role_intl_b": "Applications are made through NCHU's international admission "
+                       "system rather than to the laboratory directly. A page in "
+                       "Vietnamese sets out the schedule, scholarships and official "
+                       "links:",
         "notfound": "That page does not exist.",
         "home_link": "Back to the homepage →",
         "see_dyn": "See the reaction dynamics publications →",
@@ -375,6 +400,21 @@ T = {
         "dyn_note": "博士班與早期博後時期的交叉分子束與光解離動力學研究。",
         "updated": "最後更新",
         "source": "原始碼",
+        "vi_note": "給越南籍申請者的說明",
+        "roles": "歡迎加入的身分",
+        "role_ug_t": "專題生（大學部）",
+        "role_ug_b": "歡迎化學系與相關科系的大學部同學修習專題研究。從樣品製備、"
+                     "儀器操作與資料處理入門，再逐步接手自己的題目；"
+                     "實驗室已有多位專題生以此獲得國科會大專生計畫補助與論文競賽獎項。",
+        "role_ms_t": "碩士班學生",
+        "role_ms_b": "碩士生是實驗室研究的主力，題目涵蓋游離機制、分析方法與儀器開發，"
+                     "以及催化反應中間體的偵測。題目會依你的背景與想學的東西一起討論決定。",
+        "role_phd_t": "博士班學生",
+        "role_phd_b": "適合想在同一個問題上深入到能發表成果的同學，"
+                      "也能參與實驗室與理論計算、電化學、有機合成等團隊的跨領域合作。",
+        "role_intl_t": "國際學生",
+        "role_intl_b": "國際學生循中興大學國際學生招生管道申請，不直接向實驗室報名。"
+                       "另有越南文頁面整理了申請期程、獎學金與官方連結：",
         "notfound": "找不到這個頁面。",
         "home_link": "回到首頁 →",
         "see_dyn": "查看反應動力學時期的著作 →",
@@ -486,6 +526,8 @@ def layout(page, lang, title, description, body, jsonld=None):
   <p>{e(t['office'])} · {e(t['lab'])}</p>
   <p><a href="mailto:{P['contact']['email']}">{P['contact']['email']}</a> ·
      Tel {e(P['contact']['phone'])}</p>
+  <p><a href="{'vi/index.html' if lang == 'en' else '../vi/index.html'}">Tiếng Việt</a> ·
+     {e(t['vi_note'])}</p>
   <p>{e(t['updated'])} {date.today().isoformat()} ·
      <a href="https://github.com/iclulab/iclulab.github.io">{e(t['source'])}</a></p>
 </div></footer>{ANALYTICS}
@@ -1281,8 +1323,20 @@ def page_teaching(lang):
 
 def page_join(lang):
     t = T[lang]
+    roles = "".join(
+        f'<li><span class="g-title">{e(t[f"role_{k}_t"])}</span>'
+        f'<div class="g-id">{e(t[f"role_{k}_b"])}</div></li>'
+        for k in ("ug", "ms", "phd")
+    )
+    vi_href = "vi/index.html" if lang == "en" else "../vi/index.html"
+    roles += (
+        f'<li><span class="g-title">{e(t["role_intl_t"])}</span>'
+        f'<div class="g-id">{e(t["role_intl_b"])} '
+        f'<a href="{vi_href}">Tiếng Việt →</a></div></li>'
+    )
     body = page_hero(t["join"], t["join_body"]) + f"""<div class="wrap">
-<section style="padding-top:34px"><h2>{e(t['what'])}</h2>{theme_blocks(lang)}</section>
+<section style="padding-top:34px"><h2>{e(t['roles'])}</h2><ul class="grants">{roles}</ul></section>
+<section><h2>{e(t['what'])}</h2>{theme_blocks(lang)}</section>
 <section>
   <h2>{e(t['touch'])}</h2>
   <p>{e(t['touch_body'])}</p>
@@ -1380,14 +1434,109 @@ BUILDERS = {
 
 
 # ------------------------------------------------------------------
+def page_vi():
+    """越南文單頁：實驗室簡介＋國際學生申請資訊。
+    不是全站越南文版，所以不走 layout()／LANGS，內容在 _data/vi.yaml。"""
+    v = VI
+    a = lambda p: f"../{p}"                                    # noqa: E731
+    secs = "".join(
+        f'<section{" style=\'padding-top:34px\'" if i == 0 else ""}>'
+        f'<h2>{e(s["heading"])}</h2><p class="justify">{e(s["body"])}</p></section>'
+        for i, s in enumerate(v["sections"])
+    )
+    intakes = "".join(
+        f'<li><span class="g-title">{e(i["term"])}</span>'
+        f'<div class="g-id">{e(i["apply"])} · {e(i["result"])}<br>{e(i["note"])}</div></li>'
+        for i in v["admission"]["intakes"]
+    )
+    links = "".join(
+        f'<li><span class="g-title"><a href="{e(it["url"])}">{e(it["text"])}</a></span></li>'
+        for it in v["links"]["items"]
+    )
+    return f"""<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{e(v['title'])}</title>
+<meta name="description" content="{e(v['subtitle'])}">
+<link rel="canonical" href="{SITE}/vi/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{e(v['title'])}">
+<meta property="og:description" content="{e(v['subtitle'])}">
+<meta property="og:url" content="{SITE}/vi/index.html">
+<meta property="og:image" content="{SITE}/assets/img/lu.jpg?v={asset_hash('assets/img/lu.jpg')}">
+<meta name="twitter:card" content="summary">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+<link rel="stylesheet" href="{a('assets/css/style.css')}?v={CSS_V}">
+<link rel="icon" href="{a('assets/img/favicon-32.png')}" sizes="32x32">
+<link rel="icon" href="{a('assets/img/logo-mark.svg')}" type="image/svg+xml">
+<link rel="apple-touch-icon" href="{a('assets/img/favicon-180.png')}">
+</head>
+<body>
+<a class="skip" href="#main">Đến nội dung chính</a>
+<header class="site-header"><div class="wrap">
+  <a class="brand" href="{a('index.html')}">
+    <img src="{a('assets/img/logo.svg')}?v={asset_hash('assets/img/logo.svg')}"
+         alt="Lu Lab — I-Chung Lu 盧臆中" class="logo">
+  </a>
+  <nav class="main">
+    <a href="{a('index.html')}">{e(v['back']['en'])}</a>
+    <a href="{a('zh/index.html')}">{e(v['back']['zh'])}</a>
+  </nav>
+</div></header>
+<main id="main">
+{page_hero(v['title'], v['intro'])}
+<div class="wrap">
+{secs}
+<section>
+  <h2>{e(v['admission']['heading'])}</h2>
+  <p class="justify">{e(v['admission']['lede'])}</p>
+  <ul class="grants">{intakes}</ul>
+  <p class="justify">{e(v['admission']['caveat'])}</p>
+</section>
+<section>
+  <h2>{e(v['scholarship']['heading'])}</h2>
+  <p class="justify">{e(v['scholarship']['body'])}</p>
+</section>
+<section>
+  <h2>{e(v['links']['heading'])}</h2>
+  <ul class="grants">{links}</ul>
+</section>
+<section>
+  <h2>{e(v['contact']['heading'])}</h2>
+  <p class="justify">{e(v['contact']['body'])}</p>
+  <p>{e(v['contact']['office'])}</p>
+  <p><a class="cta" href="mailto:{P['contact']['email']}">{P['contact']['email']}</a></p>
+</section>
+</div>
+</main>
+<footer class="site-footer"><div class="wrap">
+  <p>Department of Chemistry, National Chung Hsing University<br>
+     145 Xingda Rd., South Dist., Taichung City 402, Taiwan</p>
+  <p><a href="mailto:{P['contact']['email']}">{P['contact']['email']}</a> ·
+     Tel {e(P['contact']['phone'])}</p>
+  <p>Cập nhật {date.today().isoformat()}</p>
+</div></footer>{ANALYTICS}
+</body>
+</html>
+"""
+
+
 def main():
     (ROOT / "zh").mkdir(exist_ok=True)
+    (ROOT / "vi").mkdir(exist_ok=True)
     written = []
     for lang in LANGS:
         outdir = ROOT if lang == "en" else ROOT / "zh"
         for page in ALL_PAGES:
             (outdir / f"{page}.html").write_text(BUILDERS[page](lang), encoding="utf-8")
             written.append(url(page, lang))
+
+    (ROOT / "vi" / "index.html").write_text(page_vi(), encoding="utf-8")
+    written.append("vi/index.html")
 
     today = date.today().isoformat()
     urls = "".join(
