@@ -3,10 +3,11 @@
 build_site.py — 由 _data/*.yaml 生成整個網站（中英雙語）
 
 用法：
-    python3 scripts/build_site.py
+    .venv/bin/python scripts/build_site.py
 
 需求：
-    pip3 install pyyaml
+    ~/.local/bin/uv venv --python 3.12 .venv
+    ~/.local/bin/uv pip install --python .venv/bin/python -r requirements.txt
 
 輸出：
     英文版 → /index.html, /research.html, ...

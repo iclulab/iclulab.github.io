@@ -39,11 +39,17 @@ build 腳本會自動掃描資料夾，不必逐張列出檔名。
 ### 更新流程
 
 ```bash
-pip3 install pyyaml            # 只需執行一次
-python3 scripts/build_site.py  # 重新生成全站
+# 只需執行一次：建立專案自己的 Python 3.12 環境
+~/.local/bin/uv venv --python 3.12 .venv
+~/.local/bin/uv pip install --python .venv/bin/python -r requirements.txt
+
+# 每次更新內容後：重新生成全站
+.venv/bin/python scripts/build_site.py
 ```
 
-然後打開 GitHub Desktop → Commit → Push。約兩分鐘後網站自動更新。
+一律用 `.venv/bin/python`，不要叫系統的 `python3`（系統只有舊版 3.9）。
+
+生成完 commit 並 push，約兩分鐘後網站自動更新。
 
 ### 範例：新增一篇論文
 
@@ -99,4 +105,6 @@ python3 scripts/build_site.py  # 重新生成全站
 - 學生個資
 - 計畫經費金額（已刻意從 `profile.yaml` 移除）
 
-專案資料夾請放在本機（`~/Documents/`），**不要放進 iCloud** — 雲端卸載機制會與 Git 衝突。
+本專案放在 `~/Developer/iclulab.github.io`（2026-11-03 從 `~/Documents/GitHub/` 搬出）。
+**不要放進 iCloud、Google Drive、Synology Drive 等任何同步資料夾** — 雲端卸載機制會與 Git 衝突，
+iCloud 的「最佳化儲存空間」會把久未使用的檔案收回雲端，導致 git 與建置腳本出錯。
