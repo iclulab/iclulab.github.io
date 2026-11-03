@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
-<link rel="stylesheet" href="../assets/css/style.css?v=d8868df2">
+<link rel="stylesheet" href="../assets/css/style.css?v=565abfee">
 <link rel="icon" href="../assets/img/favicon-32.png" sizes="32x32">
 <link rel="icon" href="../assets/img/logo-mark.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="../assets/img/favicon-180.png">
@@ -30,7 +30,8 @@
   <a class="brand" href="index.html">
     <img src="../assets/img/logo.svg?v=5728b8b0" alt="Lu Lab — I-Chung Lu 盧臆中" class="logo">
   </a>
-  <nav class="main"><a href="index.html">首頁</a><a href="research.html" class="active">研究</a><a href="facility.html">技術平台</a><a href="publications.html">著作</a><a href="people.html">團隊</a><a href="life.html">生活</a><a href="teaching.html">教學</a><a href="join.html">加入我們</a><a href="https://labos.iclulab.com" target="_blank" rel="noopener">LabOS</a><a href="../research.html" class="lang">EN</a></nav>
+  <nav class="main"><a href="index.html">首頁</a><a href="research.html" class="active">研究</a><a href="facility.html">技術平台</a><a href="publications.html">著作</a><a href="people.html">團隊</a><a href="life.html">生活</a><a href="teaching.html">教學</a><a href="join.html">加入我們</a><a href="https://labos.iclulab.com" target="_blank" rel="noopener">LabOS</a></nav>
+  <details class="langsw"><summary aria-label="Language">中文</summary><div class="lang-menu"><span aria-current="true">中文</span><a href="../research.html">English</a><a href="../vi/index.html">Tiếng Việt</a></div></details>
 </div></header>
 <main id="main">
 <div class="hero page-hero">
@@ -132,14 +133,23 @@
   b.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
   show();
 })();
+// 語言選單：點選單以外的地方或按 Esc 就收起來（沒有這段也能用，只是要再點一次按鈕）
+(function () {
+  var d = document.querySelector('.langsw');
+  if (!d) return;
+  document.addEventListener('click', function (ev) {
+    if (d.open && !d.contains(ev.target)) d.open = false;
+  });
+  document.addEventListener('keydown', function (ev) {
+    if (ev.key === 'Escape' && d.open) { d.open = false; d.querySelector('summary').focus(); }
+  });
+})();
 </script>
 <footer class="site-footer"><div class="wrap">
   <p>國立中興大學 化學系<br>402 台中市南區興大路 145 號</p>
   <p>辦公室：化學館 508 室 · 實驗室：化學館 102 室</p>
   <p><a href="mailto:iclu@nchu.edu.tw">iclu@nchu.edu.tw</a> ·
      Tel +886-4-2284-0411 ext. 508</p>
-  <p><a href="../vi/index.html">Tiếng Việt</a> ·
-     給越南籍申請者的說明</p>
   <p>最後更新 2026-11-03 ·
      <a href="https://github.com/iclulab/iclulab.github.io">原始碼</a></p>
 </div></footer>

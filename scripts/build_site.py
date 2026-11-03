@@ -146,7 +146,6 @@ T = {
     "en": {
         "nav": ["Home", "Research", "Facility", "Publications", "Group", "Life",
                 "Teaching", "Join Us"],
-        "switch": "中文",
         "role_title": f"{P['title_en']} · {P['department_en']}",
         "inst": P["institution_en"],
         "addr": P["contact"]["address_en"],
@@ -265,7 +264,6 @@ T = {
                     "early postdoctoral years.",
         "updated": "Last updated",
         "source": "Source",
-        "vi_note": "information for Vietnamese applicants",
         "roles": "Who can join",
         "role_ug_t": "Undergraduate research students",
         "role_ug_b": "Chemistry and related majors are welcome to take up a research "
@@ -295,7 +293,6 @@ T = {
     },
     "zh": {
         "nav": ["首頁", "研究", "技術平台", "著作", "團隊", "生活", "教學", "加入我們"],
-        "switch": "EN",
         "role_title": f"{P['title_zh']} · {P['department_zh']}",
         "inst": P["institution_zh"],
         "addr": P["contact"]["address_zh"],
@@ -400,7 +397,6 @@ T = {
         "dyn_note": "博士班與早期博後時期的交叉分子束與光解離動力學研究。",
         "updated": "最後更新",
         "source": "原始碼",
-        "vi_note": "給越南籍申請者的說明",
         "roles": "歡迎加入的身分",
         "role_ug_t": "專題生（大學部）",
         "role_ug_b": "歡迎化學系與相關科系的大學部同學修習專題研究。從樣品製備、"
@@ -452,6 +448,33 @@ ANALYTICS = (
 ) if _GC else ""
 
 
+# 語言切換選單。三種語言放在同一顆按鈕底下，按鈕上顯示目前所在的語言。
+# 用 <details>／<summary>，沒有 JavaScript 也能展開；位置放在 nav 外面，
+# 否則手機版導覽列的橫向捲動會把展開的選單裁掉。
+LANG_NAMES = {"en": "English", "zh": "中文", "vi": "Tiếng Việt"}
+
+
+def lang_switcher(page, cur):
+    """cur 為 en／zh／vi。越南文只有單頁，任何頁面都指向 /vi/index.html。"""
+    up = "../" if cur in ("zh", "vi") else ""
+    targets = {
+        "zh": f'{"" if cur == "zh" else up + "zh/"}{page}.html' if cur != "vi" else "../zh/index.html",
+        "en": f"{up}{page}.html" if cur != "vi" else "../index.html",
+        "vi": f"{up}vi/index.html" if cur != "vi" else "",
+    }
+    items = ""
+    for code in ("zh", "en", "vi"):
+        label = e(LANG_NAMES[code])
+        if code == cur:
+            items += f'<span aria-current="true">{label}</span>'
+        else:
+            items += f'<a href="{targets[code]}">{label}</a>'
+    return (
+        f'<details class="langsw"><summary aria-label="Language">{e(LANG_NAMES[cur])}</summary>'
+        f'<div class="lang-menu">{items}</div></details>'
+    )
+
+
 def layout(page, lang, title, description, body, jsonld=None):
     t = T[lang]
     ACTIVE = ' class="active"'
@@ -462,8 +485,7 @@ def layout(page, lang, title, description, body, jsonld=None):
     labos = (P.get("links") or {}).get("labos")
     if labos:
         nav += f'<a href="{e(labos)}" target="_blank" rel="noopener">LabOS</a>'
-    other = "zh" if lang == "en" else "en"
-    switch = f'<a href="{"zh/" if other == "zh" else "../"}{page}.html" class="lang">{T[lang]["switch"]}</a>'
+    switch = lang_switcher(page, lang)
     ld = (
         f'\n<script type="application/ld+json">{json.dumps(jsonld, ensure_ascii=False)}</script>'
         if jsonld
@@ -501,7 +523,8 @@ def layout(page, lang, title, description, body, jsonld=None):
   <a class="brand" href="{rel('index', lang)}">
     <img src="{av('assets/img/logo.svg', lang)}" alt="Lu Lab — I-Chung Lu 盧臆中" class="logo">
   </a>
-  <nav class="main">{nav}{switch}</nav>
+  <nav class="main">{nav}</nav>
+  {switch}
 </div></header>
 <main id="main">
 {body}
@@ -520,14 +543,23 @@ def layout(page, lang, title, description, body, jsonld=None):
   b.addEventListener('click', function () {{ window.scrollTo({{ top: 0, behavior: 'smooth' }}); }});
   show();
 }})();
+// 語言選單：點選單以外的地方或按 Esc 就收起來（沒有這段也能用，只是要再點一次按鈕）
+(function () {{
+  var d = document.querySelector('.langsw');
+  if (!d) return;
+  document.addEventListener('click', function (ev) {{
+    if (d.open && !d.contains(ev.target)) d.open = false;
+  }});
+  document.addEventListener('keydown', function (ev) {{
+    if (ev.key === 'Escape' && d.open) {{ d.open = false; d.querySelector('summary').focus(); }}
+  }});
+}})();
 </script>
 <footer class="site-footer"><div class="wrap">
   <p>{e(t['footer_org'])}<br>{e(t['addr'])}</p>
   <p>{e(t['office'])} · {e(t['lab'])}</p>
   <p><a href="mailto:{P['contact']['email']}">{P['contact']['email']}</a> ·
      Tel {e(P['contact']['phone'])}</p>
-  <p><a href="{'vi/index.html' if lang == 'en' else '../vi/index.html'}">Tiếng Việt</a> ·
-     {e(t['vi_note'])}</p>
   <p>{e(t['updated'])} {date.today().isoformat()} ·
      <a href="https://github.com/iclulab/iclulab.github.io">{e(t['source'])}</a></p>
 </div></footer>{ANALYTICS}
@@ -1487,6 +1519,7 @@ def page_vi():
     <a href="{a('index.html')}">{e(v['back']['en'])}</a>
     <a href="{a('zh/index.html')}">{e(v['back']['zh'])}</a>
   </nav>
+  {lang_switcher('index', 'vi')}
 </div></header>
 <main id="main">
 {page_hero(v['title'], v['intro'])}

@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
-<link rel="stylesheet" href="assets/css/style.css?v=d8868df2">
+<link rel="stylesheet" href="assets/css/style.css?v=565abfee">
 <link rel="icon" href="assets/img/favicon-32.png" sizes="32x32">
 <link rel="icon" href="assets/img/logo-mark.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/img/favicon-180.png">
@@ -30,7 +30,8 @@
   <a class="brand" href="index.html">
     <img src="assets/img/logo.svg?v=5728b8b0" alt="Lu Lab — I-Chung Lu 盧臆中" class="logo">
   </a>
-  <nav class="main"><a href="index.html">Home</a><a href="research.html" class="active">Research</a><a href="facility.html">Facility</a><a href="publications.html">Publications</a><a href="people.html">Group</a><a href="life.html">Life</a><a href="teaching.html">Teaching</a><a href="join.html">Join Us</a><a href="https://labos.iclulab.com" target="_blank" rel="noopener">LabOS</a><a href="zh/research.html" class="lang">中文</a></nav>
+  <nav class="main"><a href="index.html">Home</a><a href="research.html" class="active">Research</a><a href="facility.html">Facility</a><a href="publications.html">Publications</a><a href="people.html">Group</a><a href="life.html">Life</a><a href="teaching.html">Teaching</a><a href="join.html">Join Us</a><a href="https://labos.iclulab.com" target="_blank" rel="noopener">LabOS</a></nav>
+  <details class="langsw"><summary aria-label="Language">English</summary><div class="lang-menu"><a href="zh/research.html">中文</a><span aria-current="true">English</span><a href="vi/index.html">Tiếng Việt</a></div></details>
 </div></header>
 <main id="main">
 <div class="hero page-hero">
@@ -132,14 +133,23 @@
   b.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
   show();
 })();
+// 語言選單：點選單以外的地方或按 Esc 就收起來（沒有這段也能用，只是要再點一次按鈕）
+(function () {
+  var d = document.querySelector('.langsw');
+  if (!d) return;
+  document.addEventListener('click', function (ev) {
+    if (d.open && !d.contains(ev.target)) d.open = false;
+  });
+  document.addEventListener('keydown', function (ev) {
+    if (ev.key === 'Escape' && d.open) { d.open = false; d.querySelector('summary').focus(); }
+  });
+})();
 </script>
 <footer class="site-footer"><div class="wrap">
   <p>Department of Chemistry, National Chung Hsing University<br>145 Xingda Rd., South Dist., Taichung City 40227, Taiwan</p>
   <p>Office: Room 508, Chemistry Building · Laboratory: Room 102, Chemistry Building</p>
   <p><a href="mailto:iclu@nchu.edu.tw">iclu@nchu.edu.tw</a> ·
      Tel +886-4-2284-0411 ext. 508</p>
-  <p><a href="vi/index.html">Tiếng Việt</a> ·
-     information for Vietnamese applicants</p>
   <p>Last updated 2026-11-03 ·
      <a href="https://github.com/iclulab/iclulab.github.io">Source</a></p>
 </div></footer>
