@@ -174,13 +174,21 @@ grants:
     role: PI
     status: ongoing
 
+  - id: "115-2113-M-126-001-"
+    title_zh: "利用新型高效鈀金屬預催化劑提升有機場效電晶體材料開發效率－新世代鈀金屬預催化劑的設計與應用 (3/3)"
+    title_en: "Enhancing Development Efficiency of Organic Field-Effect Transistor Materials Using Novel High-Performance Palladium Precatalysts: Design and Application of Next-Generation Palladium Precatalysts (3/3)"
+    agency: "National Science and Technology Council (NSTC)"
+    period: "2026/08–2027/07"
+    role: co-PI
+    status: ongoing
+
   - id: "114-2113-M-005-013-"
     title_zh: "整合質譜法與機器學習模型應用於塑膠的智慧分類與回收"
     title_en: "Integrating Mass Spectrometry and Machine Learning for Smart Classification and Recycling of Plastics"
     agency: "National Science and Technology Council (NSTC)"
     period: "2025/08–2026/07"
     role: PI
-    status: ongoing
+    status: completed
 
   - id: "114-2113-M-126-002-"
     title_zh: "利用新型高效鈀金屬預催化劑提升有機場效電晶體材料開發效率 (2/3)"
@@ -188,7 +196,7 @@ grants:
     agency: "National Science and Technology Council (NSTC)"
     period: "2025/08–2026/07"
     role: co-PI
-    status: ongoing
+    status: completed
 
   - id: "113-2113-M-005-010-"
     title_zh: "建構以研究有機金屬催化反應機構為目的質譜平台 (二) (2/2)"
@@ -196,7 +204,7 @@ grants:
     agency: "National Science and Technology Council (NSTC)"
     period: "2024/08–2025/07"
     role: PI
-    status: ongoing
+    status: completed
 
   - id: "113-2113-M-126-003-"
     title_zh: "利用新型高效鈀金屬預催化劑提升有機場效電晶體材料開發效率－新世代鈀金屬預催化劑的設計與應用 (1/3)"
@@ -204,7 +212,7 @@ grants:
     agency: "National Science and Technology Council (NSTC)"
     period: "2024/08–2025/07"
     role: co-PI
-    status: ongoing
+    status: completed
 
   - id: "113-2740-M-002-010-"
     title_zh: "國科會尖端核心設施技術服務維運平台 (1/3)"

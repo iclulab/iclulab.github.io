@@ -150,7 +150,7 @@ merge_vi(FACILITY["cases"], _VIC.get("facility_cases"))
 merge_vi(P["education"], _VIC.get("profile_education"))
 merge_vi(P["appointments"], _VIC.get("profile_appointments"))
 merge_vi(P["awards"], _VIC.get("profile_awards"))
-merge_vi(P["grants"], _VIC.get("profile_grants"))
+merge_vi(P["grants"], _VIC.get("profile_grants"), "id")
 
 
 def pubs_in(section_id):

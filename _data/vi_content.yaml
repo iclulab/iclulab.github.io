@@ -237,16 +237,18 @@ profile_appointments:
   "6": {position: "Kỹ sư trưởng R&D", org: "Bộ phận Thiết bị Phân tích, CVC Technologies"}
   "7": {position: "Nghiên cứu viên sau tiến sĩ", org: "Trung tâm Nghiên cứu Hệ gen, Academia Sinica, Đài Loan"}
 
+# 用計畫編號對應，新增或調整順序都不會錯位
 profile_grants:
-  "0": {title: "Sinh thiết lỏng từ nước tiểu trên nền tảng khối phổ sáng tạo nhằm phát hiện sớm ung thư và cảnh báo di căn"}
-  "1": {title: "Kết hợp khối phổ và học máy để phân loại và tái chế nhựa thông minh"}
-  "2": {title: "Nâng cao hiệu quả phát triển vật liệu transistor hiệu ứng trường hữu cơ bằng tiền xúc tác paladi hiệu năng cao thế hệ mới (2/3)"}
-  "3": {title: "Xây dựng nền tảng khối phổ nghiên cứu cơ chế phản ứng xúc tác cơ kim II (2/2)"}
-  "4": {title: "Nâng cao hiệu quả phát triển vật liệu transistor hiệu ứng trường hữu cơ: thiết kế và ứng dụng tiền xúc tác paladi thế hệ mới (1/3)"}
-  "5": {title: "Nền tảng dịch vụ kỹ thuật và vận hành thiết bị dùng chung tiên tiến của NSTC (1/3)"}
-  "6": {title: "Xây dựng nền tảng khối phổ nghiên cứu cơ chế phản ứng xúc tác cơ kim II (1/2)"}
-  "7": {title: "Xây dựng nền tảng khối phổ nghiên cứu cơ chế phản ứng xúc tác cơ kim"}
-  "8": {title: "Kết hợp bẫy ion kiểu mới với ion hóa mềm để nghiên cứu tương tác không cộng hóa trị của protein"}
+  "115-2113-M-005-014-": {title: "Sinh thiết lỏng từ nước tiểu trên nền tảng khối phổ sáng tạo nhằm phát hiện sớm ung thư và cảnh báo di căn"}
+  "115-2113-M-126-001-": {title: "Nâng cao hiệu quả phát triển vật liệu transistor hiệu ứng trường hữu cơ: thiết kế và ứng dụng tiền xúc tác paladi thế hệ mới (3/3)"}
+  "114-2113-M-005-013-": {title: "Kết hợp khối phổ và học máy để phân loại và tái chế nhựa thông minh"}
+  "114-2113-M-126-002-": {title: "Nâng cao hiệu quả phát triển vật liệu transistor hiệu ứng trường hữu cơ bằng tiền xúc tác paladi hiệu năng cao thế hệ mới (2/3)"}
+  "113-2113-M-005-010-": {title: "Xây dựng nền tảng khối phổ nghiên cứu cơ chế phản ứng xúc tác cơ kim II (2/2)"}
+  "113-2113-M-126-003-": {title: "Nâng cao hiệu quả phát triển vật liệu transistor hiệu ứng trường hữu cơ: thiết kế và ứng dụng tiền xúc tác paladi thế hệ mới (1/3)"}
+  "113-2740-M-002-010-": {title: "Nền tảng dịch vụ kỹ thuật và vận hành thiết bị dùng chung tiên tiến của NSTC (1/3)"}
+  "112-2113-M-005-018-": {title: "Xây dựng nền tảng khối phổ nghiên cứu cơ chế phản ứng xúc tác cơ kim II (1/2)"}
+  "111-2113-M-005-017-": {title: "Xây dựng nền tảng khối phổ nghiên cứu cơ chế phản ứng xúc tác cơ kim"}
+  "110-2113-M-005-004-": {title: "Kết hợp bẫy ion kiểu mới với ion hóa mềm để nghiên cứu tương tác không cộng hóa trị của protein"}
 
 profile_awards:
   "0": {name: "Giáo sư Ưu tú, Đại học Quốc lập Chung Hsing"}
