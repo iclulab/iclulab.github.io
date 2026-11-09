@@ -220,7 +220,7 @@ grants:
     agency: "National Science and Technology Council (NSTC)"
     period: "2024/06–2026/05"
     role: co-PI
-    status: ongoing
+    status: completed
     # 平台維運類計畫不對外顯示（設 false 即從網頁隱藏，資料仍保留供 CV 使用）
     public: false
 
