@@ -22,6 +22,17 @@
 # ------------------------------------------------------------
 
 - year: 2026
+  authors: "Po-Sen Huang, Kuheli Das, Wei-Chen Fu, Yu-Hong Chen, Yu-Chun Hung, Ting-Yi Chu, Pei-Lin Chen, I-Chung Lu, Hsueh-Ju Liu*"
+  title: "Reactivity of tethered bis-cyclopentadienyl-supported diruthenium polyhydride complexes"
+  journal: "Dalton Trans."
+  journal_full: "Dalton Transactions"
+  volume: "55 (32), 12013–12022"
+  doi: "10.1039/D6DT01340F"
+  role: co-author
+  topics: [coordination-chemistry, reactive-intermediates]
+  verified: true
+
+- year: 2026
   authors: "Chang-Quan Wu, Po-Chun Yang, Tzu-Hsien Tseng, Wan-Qin Zeng, Hui-Ling Cheng, Tao-Hsien Liu, Chung-Wei Li, I-Chung Lu*, Peter Ping-Yu Chen*"
   title: "para-Donor Effects in PyNO Push Ligands Control O–O Bond Cleavage of TPAFe(III)-Acylperoxo to High-Valent Fe(IV)=O or Fe(IV)=O Radical Cation Species"
   journal: "Inorg. Chem."
