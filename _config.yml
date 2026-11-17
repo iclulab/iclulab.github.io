@@ -1,0 +1,34 @@
+# ============================================================
+# _config.yml — 只為了「不要把原始碼送上網」而存在
+#
+# 背景（2026-11-17）：
+#   原本 repo 根目錄有 .nojekyll，GitHub Pages 會把 repo 裡
+#   每一個檔案原封不動對外提供。因此以下網址都真的開得起來：
+#     https://iclulab.com/_data/people.yaml
+#     https://iclulab.com/scripts/build_site.py
+#     https://iclulab.com/README.md
+#   刪掉 .nojekyll、改用這個設定檔之後，Jekyll 只會輸出
+#   網站本身需要的檔案，上述網址一律 404。
+#
+# 為什麼不會動到網頁內容：
+#   Jekyll 只會「處理」開頭有 YAML front matter（---）的檔案。
+#   本站的 HTML 全部由 scripts/build_site.py 生成、沒有 front matter，
+#   也沒有用到 {{ }} 或 {% %}，所以 Jekyll 只是原樣複製。
+#
+# data_dir 故意指向一個不存在的資料夾：
+#   Jekyll 預設會去讀 _data/ 裡的 YAML。那些檔案不需要給 Jekyll 讀，
+#   讀了反而多一個 build 失敗的機會，所以直接讓它找不到。
+# ============================================================
+
+data_dir: _unused_by_jekyll
+
+# 底線（_）與點（.）開頭的檔案與資料夾，Jekyll 預設就不會輸出，
+# 所以 _data/ 與 .claude/ 不必在這裡列。
+exclude:
+  - scripts
+  - README.md
+  - requirements.txt
+  - .python-version
+
+# 本站不使用 Jekyll 的任何功能，關掉多餘的輸出
+plugins: []

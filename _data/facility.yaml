@@ -41,6 +41,18 @@ positioning_zh: >
   以質譜系統整合與分析方法開發的既有經驗為基礎，
   針對個別研究需求規劃合適的量測方案。
 
+# 2026-11-17 新增：對外說明「為什麼找我們」。
+# 13 篇由 publications.yaml 統計而得（2021 年起，topics 含 catalysis /
+# water-oxidation / electrochemistry / organic-synthesis / coordination-chemistry
+# 的論文）。日後新增這類論文時記得同步更新數字。
+network_en: >
+  Since 2021 the group has supported electrochemical, computational, organic and
+  inorganic synthesis groups with mass spectrometry, giving thirteen joint
+  publications. What the platform offers is that same capability.
+network_zh: >
+  2021 年以來，本實驗室以質譜支援電化學、理論計算、有機合成與無機合成等團隊的研究，
+  共同發表論文 13 篇。平台對外提供的，就是同一套能力。
+
 capabilities:
   - title_en: "Measurement of demanding samples"
     title_zh: "特殊樣品的量測規劃"

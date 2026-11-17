@@ -13,17 +13,33 @@
 # 網站 Home 與 Research 頁都讀這個檔
 # ============================================================
 
+# 全站敘事主軸（2026-11-17 改寫）：以「溫度與相變」為軸線。
+# 依據是被引用紀錄——引用數最高的四篇全部集中在熱質子轉移與離子／中性比，
+# 2025 年 IJMS 邀稿綜論的標題也正是 "A thermal perspective on MALDI ionization"。
+# 加熱造離子（TIPT、昇華游離、免雷射離子源、塑膠熱裂解）、
+# 降溫留物種（RFDD 冷凍乾燥、CSI 低溫噴灑）是同一變數的兩種用法。
 intro_en: >
-  The group works at the boundary between fundamental physical chemistry and
-  analytical measurement, with mass spectrometry as the common thread. The work
-  begins with the mechanisms of ion formation and applies that understanding to
-  the development of measurements for problems that existing techniques do not
-  address well.
+  Mass spectrometry is the group's principal tool, and temperature is the variable
+  that runs through its projects. Heating or subliming a solid sample drives proton
+  transfer and charge separation, and ions are formed; this picture comes from more
+  than a decade of mechanistic work on MALDI and matrix-assisted ionization (MAI).
+  Used in reverse, low temperature retains species that would otherwise be lost
+  before measurement: freeze-dried samples give carbohydrate signals stable enough
+  to quantify, and cold-spray ionization brings the short-lived intermediates of a
+  catalytic cycle within reach. The group continues to ask where ions come from,
+  and applies that understanding to the rapid screening of clinical specimens,
+  material identification for plastic recycling, and direct evidence for catalytic
+  mechanisms.
 
 intro_zh: >
-  本實驗室的研究橫跨基礎物理化學與分析量測，主軸為質譜。
-  研究工作由離子生成機制的探討出發，並將所得認識用於發展新的量測方法，
-  以處理既有技術難以觸及的分析問題。
+  本實驗室以質譜為主要工具，而貫穿各個研究題目的變數是溫度。
+  固態樣品受熱或昇華時發生質子轉移與電荷分離，離子由此生成；
+  這一認識來自本團隊十餘年來對 MALDI 與基質輔助游離（MAI）的機制研究。
+  反向運用同一原理，降低溫度則可留住原本來不及觀測的物種：
+  冷凍乾燥的樣品使醣類訊號穩定而足以定量，
+  低溫噴灑游離使催化循環中壽命極短的中間體得以被偵測。
+  本實驗室一方面繼續追問離子的來源，一方面將對熱與相變的理解，
+  應用於臨床檢體的快速篩檢、塑膠回收的材料辨識，以及催化反應機制的直接證據。
 
 themes:
   - id: foundations
@@ -100,6 +116,74 @@ themes:
       results indicate that ion formation from solid samples is governed primarily
       by thermodynamics and phase change.
 
+  - id: instruments
+    tag: "Instrumentation"
+    title_en: "Ion Sources and Portable Mass Spectrometry"
+    title_zh: "離子源與可攜式質譜的開發"
+    topics: [instrumentation, portable-ms, ambient-ionization]
+    blurb_zh: >
+      把游離機制的認識落實為硬體：不需高電壓與雷射的離子源，
+      以及可離開實驗室使用的質譜儀。
+    blurb_en: >
+      Mechanistic understanding turned into hardware: ion sources that require
+      neither high voltage nor a laser, and instruments that can leave the
+      laboratory.
+    body_zh: >
+      質譜儀的靈敏度與適用範圍大半取決於離子源。
+      本實驗室由游離機制出發設計硬體，
+      發展結構簡化的離子源、可攜式質譜的進樣裝置與頻率掃描式離子阱。
+    body_en: >
+      The sensitivity and scope of a mass spectrometer depend largely on its ion
+      source. Hardware is designed here from the mechanism outwards, giving
+      simplified ion sources, inlets for portable instruments, and
+      frequency-scanning ion traps.
+    problem_zh: >
+      質譜儀的靈敏度與適用範圍，很大一部分取決於離子源。
+      既有的游離方式多需要高電壓、雷射或精密對位，
+      使儀器的體積、成本與維護需求居高不下，
+      難以在生產線、回收場或診間等現場使用。
+      另一方面，大分子與非共價複合物在離子傳輸與質量分析過程中的損失，
+      也限制了實際可偵測的質量範圍。
+    problem_en: >
+      The sensitivity and scope of a mass spectrometer depend largely on its ion
+      source. Most established ionization methods require high voltage, a laser or
+      precise alignment, which keeps instrument size, cost and maintenance high and
+      makes measurement impractical on a production line, at a recycling plant or
+      in a clinic. Losses of large molecules and non-covalent complexes during ion
+      transfer and mass analysis further restrict the mass range that can be
+      reached in practice.
+    approach_zh: >
+      本實驗室由游離機制出發設計硬體。
+      既然固態樣品的離子可經昇華與熱質子轉移產生，
+      離子源便可省去高電壓與雷射，僅以溫度與壓力差將樣品帶入質譜儀。
+      據此發展 inlet 游離與真空 MAI 的進樣裝置，並移植至可攜式質譜儀。
+      質量分析端則結合頻率掃描式線性離子阱的開發，
+      以延伸大質量離子與完整蛋白質的偵測範圍。
+    approach_en: >
+      Hardware is designed here from the mechanism outwards. Since ions can be
+      produced from a solid sample by sublimation and thermal proton transfer, an
+      ion source may dispense with both high voltage and the laser, using
+      temperature and a pressure difference alone to carry the sample into the
+      instrument. Inlets for inlet ionization and vacuum MAI were developed on this
+      basis and transferred to portable mass spectrometers. On the mass-analysis
+      side the work is combined with the development of frequency-scanning linear
+      ion traps, extending the range over which large ions and intact proteins can
+      be detected.
+    result_zh: >
+      已發展數種結構簡化的離子源，其中 inlet 游離源的靈敏度足以直接分析生物樣品，
+      真空 MAI 則已在可攜式質譜儀上實作並驗證。
+      頻率掃描離子阱方面建立了大型生物分子離子的偵測方法，
+      並進一步用於完整蛋白質的高解析分析。
+      此一硬體基礎同時支撐塑膠辨識與現場量測等後續題目。
+    result_en: >
+      Several structurally simplified ion sources have been built; the inlet
+      ionization source is sensitive enough for the direct analysis of biological
+      samples, and vacuum MAI has been implemented and verified on a portable
+      instrument. Frequency-scanning ion traps provided a route to the detection of
+      large biomolecular ions and were applied subsequently to high-resolution
+      analysis of intact proteins. This hardware base also supports the group's
+      later work on plastic identification and on-site measurement.
+
   - id: health
     tag: "Health"
     title_en: "Carbohydrate Mass Spectrometry with Machine-Learning Classification"
@@ -158,6 +242,16 @@ themes:
       reaches a linearity of R² = 0.99. The workflow is currently being applied to
       urinary liquid biopsy, where its feasibility for early cancer detection and
       metastasis monitoring is under evaluation.
+    next_zh: >
+      115 年度國科會計畫（2026/08–2027/07）將此流程移至尿液檢體。
+      尿液可非侵入式重複取樣，適合追蹤病程變化；
+      計畫目標在評估尿液醣類圖譜能否作為癌症早期偵測與轉移預警的指標。
+    next_en: >
+      Under an NSTC grant running from August 2026 to July 2027 the workflow is
+      being moved to urine. Urine can be sampled repeatedly and non-invasively,
+      which suits the monitoring of disease progression; the aim is to assess
+      whether the urinary carbohydrate profile can serve as an indicator for early
+      cancer detection and for warning of metastasis.
 
   - id: sustainability
     tag: "Sustainability"
@@ -201,13 +295,16 @@ themes:
       for use on site, with attention to instrument size, cost and analysis speed
       rather than laboratory-grade precision. The portable instruments and ion
       sources developed earlier in the group provide the technical basis.
+    # 2026-11-17：114-2113-M-005-013 已於 2026/07 結案，本段改以完成式敘述。
     result_zh: >
-      本主題目前處於方法建立階段，由國家科學及技術委員會計畫支持，
-      正進行高分子標準品的質譜特徵建置與分類模型的驗證。
+      本主題的方法建立工作於 114 年度國科會計畫（2025/08–2026/07）期間進行，
+      內容為高分子標準品的質譜特徵建置與分類模型的驗證。
+      該計畫已於 2026 年 7 月結案，後續發展待新計畫支持。
     result_en: >
-      The work is at the method-development stage, supported by an NSTC grant.
-      Reference spectra for polymer standards are being compiled and the
-      classification models validated.
+      The method-development work was carried out under an NSTC grant that ran from
+      August 2025 to July 2026, covering the compilation of reference spectra for
+      polymer standards and the validation of the classification models. That grant
+      closed in July 2026 and further development awaits new support.
 
   - id: mechanisms
     tag: "Reaction Mechanisms"
@@ -263,6 +360,16 @@ themes:
       oxo chemistry, the conditions separating homolytic from heterolytic O–O
       cleavage were resolved. In palladium precatalyst systems, the formation of the
       active species was followed directly.
+    next_zh: >
+      115 年度國科會計畫（共同主持，2026/08–2027/07）為鈀預催化劑系列的第三年，
+      以質譜追蹤預催化劑的活化步驟與活性物種的生成，
+      目標在縮短有機場效電晶體材料的開發流程。
+    next_en: >
+      An NSTC grant held as co-investigator, running from August 2026 to July 2027,
+      is the third year of work on palladium precatalysts. Activation steps and the
+      formation of active species are followed by mass spectrometry, with the aim
+      of shortening the development cycle for organic field-effect transistor
+      materials.
 
 # 早期研究（僅在 Research 頁末尾以一小段帶過）
 earlier_en: >

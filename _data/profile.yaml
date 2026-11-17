@@ -36,7 +36,7 @@ analytics:
 links:
   google_scholar: "https://scholar.google.com/citations?user=og6_O_oAAAAJ"
   orcid: "https://orcid.org/0000-0002-3125-6397"
-  github: "https://github.com/iclulab"
+  # 2026-11-17 移除 github：網站不對外提供通往原始碼的連結
   youtube: "https://www.youtube.com/@PChem"
   labos: "https://labos.iclulab.com"
 
@@ -85,6 +85,8 @@ research_interests:
   - "Analytical Chemistry"
   - "Ambient Ionization"
   - "Organometallic Chemistry"
+  - "Machine Learning for Spectral Analysis"
+  - "Portable Mass Spectrometry"
 
 # ------------------------------------------------------------
 # 中文版讀 *_zh 欄位，沒填就退回英文

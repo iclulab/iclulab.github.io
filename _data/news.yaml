@@ -5,18 +5,8 @@
 # 需要連結或斜體時，改用 html_zh / html_en，內容會原樣當 HTML 輸出
 # ============================================================
 #
-# ⚠️ 舊網站的 News 停在 2024-05-31，但 Photos 已更新到 2026，
-#    造成「這實驗室兩年沒動靜」的錯誤印象。
-#    以下 2024-06 之後的項目為待補清單，請 I-Chung 補上日期與細節。
-#
-# 待補建議項目：
-#   - 2024 升等副教授
-#   - 2025 IJMS 邀稿綜論發表
-#   - 2026 Inorganic Chemistry 論文發表
-#   - 2026 RIKEN-NCHU Joint Symposium 受邀演講
-#   - 近年國科會計畫獲補助
-#   - 專利獲證
-#   - 2025、2026 學生獲獎
+# 2026-11-17 盤點：升等、IJMS 邀稿綜論、Inorg. Chem.、Dalton Trans. 與學生獲獎均已收錄。
+# 尚未收錄：2026 RIKEN-NCHU Joint Symposium 受邀演講、專利獲證。
 #
 # ------------------------------------------------------------
 
@@ -24,6 +14,11 @@
   category: milestone
   text_zh: "恭喜實驗室主持人盧臆中老師榮獲中興大學 115 學年度優聘教師"
   text_en: "I-Chung Lu received the NCHU Distinguished Professorship (AY 115)"
+
+- date: "2026-07-28"
+  category: publication
+  html_zh: '與合作團隊共同發表的論文於 <em>Dalton Transactions</em> 線上刊出：<a href="https://doi.org/10.1039/D6DT01340F">雙釕多氫錯合物的反應性研究</a>'
+  html_en: 'A collaborative paper appeared online in <em>Dalton Transactions</em>: <a href="https://doi.org/10.1039/D6DT01340F">reactivity of tethered bis-cyclopentadienyl-supported diruthenium polyhydride complexes</a>'
 
 - date: "2026-07-01"
   category: award
@@ -40,10 +35,20 @@
   text_zh: "恭喜曾真薏同學榮獲 2026 年分析技術交流研討會論文獎"
   text_en: "Congratulations to Chen-Yi Tseng for the Paper Award at the 2026 Analytical Technology Symposium"
 
+- date: "2026-02-28"
+  category: publication
+  html_zh: '本實驗室與合作團隊的論文於 <em>Inorganic Chemistry</em> 刊出：<a href="https://doi.org/10.1021/acs.inorgchem.5c05784">PyNO 配體的推電子效應如何決定高價鐵氧物種的 O–O 鍵斷裂路徑</a>'
+  html_en: 'Published in <em>Inorganic Chemistry</em>: <a href="https://doi.org/10.1021/acs.inorgchem.5c05784">how para-donor effects in PyNO push ligands control O–O bond cleavage in high-valent iron oxo species</a>'
+
 - date: "2025-12-26"
   category: milestone
   html_zh: '盧臆中老師獲選 <em>International Journal of Mass Spectrometry</em> 青年科學家專題介紹（<a href="https://doi.org/10.1016/j.ijms.2025.117568">Young Scientist Feature</a>），由期刊主編群撰文介紹研究成果與展望'
   html_en: 'I-Chung Lu was featured in the <em>IJMS</em> <a href="https://doi.org/10.1016/j.ijms.2025.117568">Young Scientist Feature</a> — a special editorial by the journal''s editors highlighting research accomplishments and future directions'
+
+- date: "2025-08-30"
+  category: publication
+  html_zh: '盧臆中老師受邀於 <em>International Journal of Mass Spectrometry</em> 發表綜論：<a href="https://doi.org/10.1016/j.ijms.2025.117516">以熱力學觀點回顧 MALDI 游離機制，並提出醣類分析的實務解法</a>'
+  html_en: 'An invited review in <em>International Journal of Mass Spectrometry</em>: <a href="https://doi.org/10.1016/j.ijms.2025.117516">a thermal perspective on MALDI ionization, from fundamental mechanisms to a practical solution for carbohydrate analysis</a>'
 
 - date: "2025-07-01"
   category: award

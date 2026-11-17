@@ -211,9 +211,11 @@ T = {
         "read_more": "Read more about the research →",
         "news": "News",
         "group": "The group",
-        "group_body": "The group's work spans ionization mechanisms, analytical method "
-                      "development, and reaction dynamics, so members with quite different "
-                      "interests and strengths can each find a project that suits them.",
+        "group_body": "The group's projects span ionization mechanisms, analytical "
+                      "method and instrument development, and the detection of reactive "
+                      "intermediates in catalysis \u2014 from rebuilding an inlet by hand "
+                      "to analysing spectra with machine learning, so members with quite "
+                      "different interests and strengths can each find a place.",
         "meet": "Meet the group →",
         "publications": "Publications",
         "earlier": "Earlier work — reaction dynamics (2003–2008)",
@@ -238,26 +240,34 @@ T = {
         "life_home": "Conferences, outings, and the everyday work of the lab.",
         "life_more": "See lab life →",
         "eyebrow": "Lu Lab · Department of Chemistry, National Chung Hsing University",
-        "claim": "Seeing the world other<br>methods struggle to observe",
+        "claim": "Where ions come from,<br>and what they let us see",
         "hero_alt": "Custom-built mass spectrometry inlet on the optical table",
-        "claim_lede": "The work begins with the mechanisms of ion formation and "
-                      "applies that understanding to rapid clinical screening of "
-                      "carbohydrates, material identification for plastic recycling, "
-                      "and the direct detection of intermediates in catalysis.",
+        "claim_lede": "Ion formation is governed by thermodynamics \u2014 the "
+                      "conclusion of the group's work on MALDI mechanisms. "
+                      "Measurements are designed from it: freeze-drying for "
+                      "reproducible carbohydrate quantification, cold-spray "
+                      "ionization for intermediates in catalysis, pyrolysis "
+                      "fingerprints for mixed plastics, and instruments small "
+                      "enough to leave the laboratory.",
         "cta_research": "What we work on →",
         "cta_join": "Join the lab →",
         "themes_h": "Research directions",
         "r_problem": "Background",
         "r_approach": "Approach",
         "r_result": "Progress",
+        "r_next": "In progress",
         "skip": "Skip to main content",
         "top": "Back to top",
         "pubs_lede": "From crossed molecular-beam reaction dynamics and ionization "
                      "mechanisms, to the analytical applications the group develops "
                      "independently today.",
         "teaching": "Teaching",
-        "teaching_body": "I teach physical chemistry at both undergraduate and graduate "
-                         "level at National Chung Hsing University.",
+        "teaching_body": "I teach physical chemistry, quantum chemistry and statistical "
+                         "thermodynamics at National Chung Hsing University, and have held "
+                         "a joint appointment in the Center for Science Education since "
+                         "2025. The emphasis in class is to return each formula to a "
+                         "measurable quantity: first how it would be measured, then why it "
+                         "takes the form it does.",
         "t_awards": "Teaching awards",
         "courses": "Courses taught",
         "c_year": "Year",
@@ -283,6 +293,26 @@ T = {
                      "machine-learning analysis of spectra, so students from different "
                      "backgrounds can find a suitable entry point.",
         "what": "Research topics available",
+        "learn_h": "What you will learn here",
+        "learn": [
+            ("Instruments", "Assembling, modifying and maintaining the inlet, ion source "
+                            "and vacuum system of a mass spectrometer."),
+            ("Methods", "Building a reproducible measurement, from sample preparation "
+                        "through to reading the data."),
+            ("Data", "Handling mass spectra in Python and building classification "
+                     "models."),
+            ("Collaboration", "Taking part in projects run jointly with "
+                              "electrochemistry, computational, organic and inorganic "
+                              "synthesis groups."),
+            ("Publishing", "Training in writing papers and presenting at international "
+                           "conferences."),
+        ],
+        "join_record": "Four undergraduates in the group have received NSTC Undergraduate "
+                       "Research Grants since 2022; the group has taken a prize in the "
+                       "chemistry and sustainable-energy division of the national Science "
+                       "and Technology Paper Competition in four consecutive years, twice "
+                       "first place, alongside paper and poster awards at the Taiwan and "
+                       "Asia-Oceania mass spectrometry conferences.",
         "touch": "Get in touch",
         "touch_body": "Please write with a short account of the direction that interests "
                       "you, together with a CV if available. NCHU undergraduates are also "
@@ -318,15 +348,13 @@ T = {
         "dyn_note": "Crossed molecular-beam and photodissociation dynamics from the PhD and "
                     "early postdoctoral years.",
         "updated": "Last updated",
-        "source": "Source",
         "vi_home": "Vietnamese-speaking students can read this site in Vietnamese.",
         "roles": "Who can join",
         "role_ug_t": "Undergraduate research students",
         "role_ug_b": "Chemistry and related majors are welcome to take up a research "
                      "project in the group. You start with sample preparation, "
-                     "instrument operation and data handling, then take on a question "
-                     "of your own; several of our undergraduates have gone on to win "
-                     "NSTC undergraduate research grants and paper competitions.",
+                     "instrument operation and data handling, and then take on a "
+                     "question of your own.",
         "role_ms_t": "Master's students",
         "role_ms_b": "Master's students carry most of the group's day-to-day research, "
                      "from ionization mechanisms and method development to the "
@@ -361,8 +389,9 @@ T = {
         "read_more": "閱讀完整研究介紹 →",
         "news": "消息",
         "group": "實驗室",
-        "group_body": "實驗室的研究橫跨游離機制、分析方法開發與反應動力學研究，"
-                      "不同興趣與專長的成員都能找到適合自己的研究主題。",
+        "group_body": "實驗室的題目橫跨游離機制、分析方法與儀器開發，以及催化反應中間體的偵測；"
+                      "從親手改裝進樣系統，到以機器學習處理質譜資料，"
+                      "不同興趣與專長的成員都能找到適合自己的位置。",
         "meet": "認識團隊成員 →",
         "publications": "著作",
         "earlier": "早期研究 — 反應動力學（2003–2008）",
@@ -385,23 +414,28 @@ T = {
         "life_home": "研討會、出遊，以及實驗室的日常。",
         "life_more": "看看實驗室生活 →",
         "eyebrow": "盧臆中實驗室 · 國立中興大學化學系",
-        "claim": "用質譜看見<br>其它方法難以觀察的世界",
+        "claim": "離子從何而來，<br>又讓我們看見什麼",
         "hero_alt": "光學桌上的客製化質譜進樣系統",
-        "claim_lede": "研究工作由離子生成機制的探討出發，"
-                      "並將所得認識應用於醣類的臨床快速篩檢、塑膠回收的材料辨識，"
-                      "以及催化反應中間體的直接偵測。",
+        "claim_lede": "離子的生成由熱力學決定——這是本實驗室從 MALDI 機制研究得到的結論。"
+                      "我們據此設計量測：以冷凍乾燥穩定醣類定量、"
+                      "以低溫噴灑游離捕捉催化反應中間體、以熱裂解指紋辨識混合塑膠，"
+                      "並把質譜縮小到能帶離實驗室使用。",
         "cta_research": "我們在做什麼 →",
         "cta_join": "加入實驗室 →",
         "themes_h": "研究主軸",
         "r_problem": "研究背景",
         "r_approach": "研究方法",
         "r_result": "研究進展",
+        "r_next": "進行中",
         "skip": "跳至主要內容",
         "top": "回到頂端",
         "pubs_lede": "從交叉分子束的反應動力學、游離機制，"
                      "到實驗室獨立發展的分析應用。",
         "teaching": "教學",
-        "teaching_body": "於國立中興大學講授大學部與研究所的物理化學課程。",
+        "teaching_body": "於國立中興大學講授物理化學、量子化學與統計熱力學，"
+                         "並自 2025 年起合聘於理學院科學教育中心。"
+                         "授課的重點在於把公式還原成可量測的量："
+                         "先問這個量要怎麼量得到，再問它為什麼是這個形式。",
         "t_awards": "教學獲獎",
         "courses": "近五年開課",
         "c_year": "學年",
@@ -422,6 +456,17 @@ T = {
                      "研究題目涵蓋游離機制、儀器與方法開發，以及質譜資料的機器學習分析，"
                      "不同背景與專長的同學都能找到合適的切入點。",
         "what": "可參與的研究題目",
+        "learn_h": "在實驗室會學到什麼",
+        "learn": [
+            ("儀器", "質譜儀的進樣、游離源與真空系統的組裝、改裝與維護。"),
+            ("方法", "從樣品製備到數據判讀，建立一條可重現的量測流程。"),
+            ("資料", "以 Python 處理質譜資料、建立分類模型。"),
+            ("合作", "參與與電化學、理論計算、有機與無機合成團隊共同進行的題目。"),
+            ("發表", "論文撰寫與國際會議報告的訓練。"),
+        ],
+        "join_record": "111 至 115 學年度間，實驗室有四位專題生獲國科會大專生研究計畫補助；"
+                       "科技論文競賽化學與永續能源科技組連續四年獲獎，其中兩次第一名，"
+                       "另有台灣質譜學年會與亞洲質譜學年會的論文獎項。",
         "touch": "聯絡方式",
         "touch_body": "來信請簡述感興趣的研究方向，若有履歷請一併附上。"
                       "中興大學部同學亦可逕至化學館 508 室或 102 實驗室洽談。",
@@ -454,13 +499,11 @@ T = {
         "b_inv": "邀稿綜論",
         "dyn_note": "博士班與早期博後時期的交叉分子束與光解離動力學研究。",
         "updated": "最後更新",
-        "source": "原始碼",
         "vi_home": "越南籍學生可閱讀越南文版網站。",
         "roles": "歡迎加入的身分",
         "role_ug_t": "專題生（大學部）",
-        "role_ug_b": "歡迎化學系與相關科系的大學部同學修習專題研究。從樣品製備、"
-                     "儀器操作與資料處理入門，再逐步接手自己的題目；"
-                     "實驗室已有多位專題生以此獲得國科會大專生計畫補助與論文競賽獎項。",
+        "role_ug_b": "歡迎化學系與相關科系的大學部同學修習專題研究。"
+                     "從樣品製備、儀器操作與資料處理入門，再逐步接手自己的題目。",
         "role_ms_t": "碩士班學生",
         "role_ms_b": "碩士生是實驗室研究的主力，題目涵蓋游離機制、分析方法與儀器開發，"
                      "以及催化反應中間體的偵測。題目會依你的背景與想學的東西一起討論決定。",
@@ -491,9 +534,11 @@ T = {
         "read_more": "Tìm hiểu thêm về nghiên cứu →",
         "news": "Tin tức",
         "group": "Nhóm nghiên cứu",
-        "group_body": "Công việc của nhóm trải từ cơ chế ion hóa, phát triển phương pháp "
-                      "phân tích, đến động học phản ứng, nên thành viên với sở trường và "
-                      "hứng thú khác nhau đều tìm được đề tài phù hợp.",
+        "group_body": "Đề tài của nhóm trải từ cơ chế ion hóa, phát triển phương pháp và "
+                      "thiết bị phân tích, đến việc phát hiện chất trung gian hoạt động "
+                      "trong xúc tác — từ tự tay cải tạo hệ đưa mẫu cho đến xử lý phổ bằng "
+                      "học máy, nên thành viên với sở trường và hứng thú khác nhau đều tìm "
+                      "được vị trí phù hợp.",
         "meet": "Xem thành viên →",
         "publications": "Công bố",
         "earlier": "Giai đoạn đầu — động học phản ứng (2003–2008)",
@@ -518,24 +563,31 @@ T = {
         "life_home": "Hội nghị, các chuyến đi và công việc thường ngày của phòng thí nghiệm.",
         "life_more": "Xem đời sống phòng thí nghiệm →",
         "eyebrow": "Phòng thí nghiệm Lu · Khoa Hóa học, Đại học Quốc lập Chung Hsing",
-        "claim": "Nhìn thấy thế giới mà các<br>phương pháp khác khó quan sát",
+        "claim": "Ion sinh ra từ đâu,<br>và cho ta thấy điều gì",
         "hero_alt": "Hệ thống đưa mẫu khối phổ tự chế trên bàn quang học",
-        "claim_lede": "Nghiên cứu bắt đầu từ cơ chế hình thành ion, rồi áp dụng hiểu biết đó "
-                      "vào sàng lọc lâm sàng nhanh cho carbohydrate, nhận dạng vật liệu phục "
-                      "vụ tái chế nhựa, và phát hiện trực tiếp các chất trung gian trong xúc tác.",
+        "claim_lede": "Sự hình thành ion được quyết định bởi nhiệt động lực học — đó là kết "
+                      "luận từ nghiên cứu cơ chế MALDI của nhóm. Các phép đo được thiết kế "
+                      "từ nguyên lý đó: sấy đông khô để định lượng carbohydrate ổn định, "
+                      "ion hóa phun lạnh để bắt chất trung gian trong xúc tác, dấu vân "
+                      "nhiệt phân để nhận dạng nhựa trộn, và thiết bị nhỏ đủ để mang ra "
+                      "khỏi phòng thí nghiệm.",
         "cta_research": "Chúng tôi làm gì →",
         "cta_join": "Tham gia nhóm →",
         "themes_h": "Hướng nghiên cứu",
         "r_problem": "Bối cảnh",
         "r_approach": "Phương pháp",
         "r_result": "Tiến triển",
+        "r_next": "Đang thực hiện",
         "skip": "Đến nội dung chính",
         "top": "Lên đầu trang",
         "pubs_lede": "Từ động học phản ứng chùm phân tử giao nhau và cơ chế ion hóa, đến "
                      "những ứng dụng phân tích mà nhóm tự phát triển hiện nay.",
         "teaching": "Giảng dạy",
-        "teaching_body": "Tôi giảng dạy hóa lý cho cả bậc đại học và sau đại học tại "
-                         "Đại học Quốc lập Chung Hsing.",
+        "teaching_body": "Tôi giảng dạy hóa lý, hóa học lượng tử và nhiệt động lực học "
+                         "thống kê tại Đại học Quốc lập Chung Hsing, và từ năm 2025 kiêm "
+                         "nhiệm tại Trung tâm Giáo dục Khoa học của trường. Trọng tâm trong "
+                         "lớp là đưa mỗi công thức trở về một đại lượng đo được: trước hết "
+                         "là đo bằng cách nào, sau đó mới hỏi vì sao nó có dạng như vậy.",
         "t_awards": "Giải thưởng giảng dạy",
         "courses": "Các môn đã dạy",
         "c_year": "Năm học",
@@ -560,6 +612,23 @@ T = {
                      "thiết bị và phương pháp, đến phân tích phổ bằng học máy, nên sinh viên "
                      "từ nhiều nền tảng khác nhau đều tìm được điểm bắt đầu phù hợp.",
         "what": "Các hướng đề tài có thể tham gia",
+        "learn_h": "Bạn sẽ học được gì ở đây",
+        "learn": [
+            ("Thiết bị", "Lắp đặt, cải tạo và bảo trì hệ đưa mẫu, nguồn ion và hệ chân "
+                         "không của máy khối phổ."),
+            ("Phương pháp", "Xây dựng một quy trình đo có thể tái lập, từ chuẩn bị mẫu "
+                            "đến đọc dữ liệu."),
+            ("Dữ liệu", "Xử lý phổ khối bằng Python và xây dựng mô hình phân loại."),
+            ("Hợp tác", "Tham gia các đề tài thực hiện cùng các nhóm điện hóa, tính toán "
+                        "lý thuyết, tổng hợp hữu cơ và vô cơ."),
+            ("Công bố", "Rèn luyện viết bài báo và trình bày tại hội nghị quốc tế."),
+        ],
+        "join_record": "Từ năm 2022 đến nay, bốn sinh viên đại học của nhóm đã nhận học "
+                       "bổng đề tài nghiên cứu sinh viên của NSTC; nhóm cũng đạt giải bốn "
+                       "năm liên tiếp tại Cuộc thi Luận văn Khoa học và Công nghệ (ngành "
+                       "hóa học và năng lượng bền vững), trong đó hai lần giải nhất, cùng "
+                       "các giải báo cáo và poster tại hội nghị khối phổ Đài Loan và "
+                       "châu Á – Đại Dương.",
         "touch": "Liên hệ",
         "touch_body": "Thư xin ghi ngắn gọn hướng nghiên cứu bạn quan tâm, kèm sơ yếu lý lịch "
                       "nếu có. Sinh viên Đại học Chung Hsing cũng có thể đến trực tiếp phòng "
@@ -596,15 +665,12 @@ T = {
         "dyn_note": "Động học chùm phân tử giao nhau và quang phân ly, từ thời kỳ nghiên cứu "
                     "sinh và sau tiến sĩ giai đoạn đầu.",
         "updated": "Cập nhật",
-        "source": "Mã nguồn",
         "vi_home": "",
         "roles": "Chúng tôi nhận những ai",
         "role_ug_t": "Sinh viên đại học làm nghiên cứu",
         "role_ug_b": "Sinh viên ngành hóa và các ngành liên quan có thể tham gia một đề tài "
                      "nghiên cứu trong nhóm. Bạn bắt đầu từ chuẩn bị mẫu, vận hành thiết bị "
-                     "và xử lý dữ liệu, rồi nhận một câu hỏi của riêng mình; nhiều sinh viên "
-                     "của nhóm đã giành được đề tài nghiên cứu sinh viên của NSTC và giải "
-                     "trong các cuộc thi báo cáo khoa học.",
+                     "và xử lý dữ liệu, rồi nhận một câu hỏi của riêng mình.",
         "role_ms_t": "Học viên thạc sĩ",
         "role_ms_b": "Học viên thạc sĩ đảm nhiệm phần lớn công việc nghiên cứu hằng ngày của "
                      "nhóm, từ cơ chế ion hóa và phát triển phương pháp đến phát hiện chất "
@@ -768,8 +834,7 @@ def layout(page, lang, title, description, body, jsonld=None):
   <p>{e(t['office'])} · {e(t['lab'])}</p>
   <p><a href="mailto:{P['contact']['email']}">{P['contact']['email']}</a> ·
      Tel {e(P['contact']['phone'])}</p>
-  <p>{e(t['updated'])} {date.today().isoformat()} ·
-     <a href="https://github.com/iclulab/iclulab.github.io">{e(t['source'])}</a></p>
+  <p>{e(t['updated'])} {date.today().isoformat()}</p>
 </div></footer>{ANALYTICS}
 </body>
 </html>
@@ -925,6 +990,11 @@ ICONS = {
         '<path d="M12 3v6"/><path d="M9 6l3 3 3-3"/><path d="M3 15h18"/>'
         '<circle cx="7" cy="19" r="1.6"/><circle cx="12" cy="20.4" r="1.6"/>'
         '<circle cx="17" cy="19" r="1.6"/>',
+    "instruments":
+        '<path d="M9 7V5.6A2.6 2.6 0 0 1 15 5.6V7"/>'
+        '<rect x="3.6" y="7" width="16.8" height="12.4" rx="2"/>'
+        '<path d="M7.4 13.2h3.2"/><path d="M10.6 11.2l2.6 2-2.6 2z"/>'
+        '<path d="M15.2 13.2h2"/>',
     "health":
         '<path d="M8 4.2l3.2 1.9v3.7L8 11.7 4.8 9.8V6.1z"/>'
         '<path d="M11.2 6.1L14.4 4.2"/>'
@@ -941,7 +1011,7 @@ ICONS = {
 
 
 def theme_cards(lang):
-    """首頁用：四張主題卡，一句話講完一條研究主軸。"""
+    """首頁用：每條研究主軸一張卡，一句話講完。"""
     out = []
     for th in RESEARCH["themes"]:
         blurb = tidy(pick(th, "blurb", lang)) or tidy(pick(th, "body", lang))
@@ -1084,7 +1154,8 @@ def page_index(lang):
         "url": SITE,
         "image": f"{SITE}/assets/img/lu.jpg",
         "identifier": P["links"]["orcid"],
-        "sameAs": [P["links"]["orcid"], P["links"]["google_scholar"], P["links"]["github"]],
+        # sameAs 不列 GitHub：網站不對外指向原始碼（2026-11-17）
+        "sameAs": [P["links"]["orcid"], P["links"]["google_scholar"]],
         "affiliation": {
             "@type": "CollegeOrUniversity",
             "name": P["institution_en"],
@@ -1184,7 +1255,7 @@ def page_research(lang):
     def theme_long(th):
         """一條主軸展開成：研究背景 → 研究方法 → 研究進展。"""
         parts = []
-        for key in ("problem", "approach", "result"):
+        for key in ("problem", "approach", "result", "next"):
             txt = tidy(pick(th, key, lang))
             if txt:
                 parts.append(f'<div class="step"><span class="step-k">{e(t["r_" + key])}</span>'
@@ -1561,7 +1632,10 @@ def page_teaching(lang):
         if "Teach" in x["name_en"] or "Mentor" in x["name_en"]
     )
     body = page_hero(t["teaching"], t["teaching_body"]) + f"""<div class="wrap">
-<section style="padding-top:34px"><h2>{e(t['courses'])}</h2>
+<section style="padding-top:34px"><h2>{e(t['t_awards'])}</h2>
+  <ul class="grants">{aw}</ul>
+</section>
+<section><h2>{e(t['courses'])}</h2>
   {course_table(lang)}
   <p class="sec-note" style="margin-top:14px">{e(t['courses_note'])}</p>
 </section>
@@ -1643,8 +1717,18 @@ def page_join(lang):
         intl += f' <a href="{vi_href}">Tiếng Việt →</a>'
     roles += f'<li><span class="g-title">{e(t["role_intl_t"])}</span>{intl}</div></li>'
 
+    learn = "".join(
+        f'<div class="theme"><h3>{e(k)}</h3><p>{e(v)}</p></div>'
+        for k, v in t["learn"]
+    )
+
     body = page_hero(t["join"], t["join_body"]) + f"""<div class="wrap">
 <section style="padding-top:34px"><h2>{e(t['roles'])}</h2><ul class="grants">{roles}</ul></section>
+<section>
+  <h2>{e(t['learn_h'])}</h2>
+  <div class="themes">{learn}</div>
+  <p class="sec-note" style="margin-top:20px">{e(t['join_record'])}</p>
+</section>
 <section><h2>{e(t['what'])}</h2>{theme_blocks(lang)}</section>
 {admission_block() if lang == "vi" else ""}
 <section>
@@ -1700,6 +1784,7 @@ def page_facility(lang):
     body = page_hero(t["facility"], pick(FACILITY, "tagline", lang)) + f"""<div class="wrap">
 <section style="padding-top:34px">
   <p>{e(tidy(pick(FACILITY, 'positioning', lang)))}</p>
+  <p>{e(tidy(pick(FACILITY, 'network', lang)))}</p>
   <p><a class="cta" href="{FACILITY['apply_url']}">{e(t['fac_apply'])}</a></p>
   <p class="sec-note">{e(t['fac_note'])}</p>
 </section>
@@ -1786,7 +1871,11 @@ def main():
         ),
         encoding="utf-8",
     )
-    (ROOT / ".nojekyll").write_text("", encoding="utf-8")
+    # 不再產生 .nojekyll（2026-11-17）。
+    # 有 .nojekyll 時 GitHub Pages 會把 repo 裡每個檔案原樣對外提供，
+    # 包含 _data/*.yaml 與本腳本自己。改由 _config.yml 的 exclude 控制，
+    # 這裡順手清掉舊的殘留檔，避免哪次 build 之後又被送上線。
+    (ROOT / ".nojekyll").unlink(missing_ok=True)
 
     print(f"✓ {len(written)} pages ({len(ALL_PAGES)} × {len(LANGS)} languages)")
     print(f"  en → /            zh → /zh/")
@@ -1797,7 +1886,7 @@ def main():
             yrs = [p["year"] for p in items]
             print(f"    · {s['title_en']:<42} {len(items):>2} ({min(yrs)}–{max(yrs)})")
     print(f"  grants: {len(GRANTS)}   news: {len(NEWS)}")
-    print("  + sitemap.xml, robots.txt, 404.html, .nojekyll")
+    print("  + sitemap.xml, robots.txt, 404.html")
 
 
 if __name__ == "__main__":

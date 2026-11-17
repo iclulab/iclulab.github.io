@@ -186,6 +186,8 @@ nav.main a.active { color: var(--ink); border-bottom-color: var(--accent); }
 
 /* 首頁研究主題卡 */
 .tcards { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+/* 主題卡為奇數張時，最後一張橫跨兩欄，右側不留空位 */
+.tcards > .tcard:last-child:nth-child(odd) { grid-column: 1 / -1; }
 .tcard {
   display: block; color: inherit; border: 1px solid var(--line);
   border-radius: var(--radius); padding: 18px 22px 18px;

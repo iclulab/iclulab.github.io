@@ -21,9 +21,15 @@ research:
     quang phân ly, tìm hiểu cách các liên kết bị phá vỡ và hình thành trong những va chạm đơn lẻ.
     Nền tảng hóa lý từ giai đoạn đó đến nay vẫn định hình cách nhóm tiếp cận các bài toán phân tích.
   intro: >
-    Nhóm làm việc ở ranh giới giữa hóa lý cơ bản và phép đo phân tích, với khối phổ là
-    sợi chỉ xuyên suốt. Nghiên cứu bắt đầu từ cơ chế hình thành ion, rồi dùng hiểu biết
-    đó để phát triển những phép đo cho các bài toán mà kỹ thuật hiện có chưa giải quyết tốt.
+    Khối phổ là công cụ chính của nhóm, và nhiệt độ là biến số xuyên suốt mọi đề tài. Khi một
+    mẫu rắn được đốt nóng hoặc thăng hoa, chuyển proton và tách điện tích xảy ra, và ion hình
+    thành từ đó; hiểu biết này đến từ hơn một thập niên nghiên cứu cơ chế MALDI và ion hóa có
+    hỗ trợ chất nền (MAI). Dùng ngược lại nguyên lý ấy, nhiệt độ thấp giữ lại những chất lẽ ra
+    đã biến mất trước khi đo được: mẫu sấy đông khô cho tín hiệu carbohydrate đủ ổn định để
+    định lượng, còn ion hóa phun lạnh đưa các chất trung gian tồn tại rất ngắn trong chu trình
+    xúc tác vào tầm quan sát. Nhóm một mặt tiếp tục truy vấn nguồn gốc của ion, mặt khác đem
+    hiểu biết về nhiệt và chuyển pha áp dụng vào sàng lọc nhanh bệnh phẩm lâm sàng, nhận dạng
+    vật liệu phục vụ tái chế nhựa, và bằng chứng trực tiếp cho cơ chế xúc tác.
 
 research_themes:
   foundations:
@@ -61,6 +67,35 @@ research_themes:
       này đã được dùng để thiết kế nguồn ion, cho ra các phương án ion hóa không cần điện thế
       cao cũng không cần laser, phù hợp với thiết bị di động. Nhìn chung, kết quả cho thấy việc
       hình thành ion từ mẫu rắn chủ yếu do nhiệt động lực học và chuyển pha chi phối.
+  instruments:
+    title: "Phát triển nguồn ion và khối phổ di động"
+    blurb: >
+      Biến hiểu biết về cơ chế ion hóa thành thiết bị: nguồn ion không cần điện thế cao cũng
+      không cần laser, và máy khối phổ có thể mang ra khỏi phòng thí nghiệm.
+    body: >
+      Độ nhạy và phạm vi áp dụng của một máy khối phổ phần lớn do nguồn ion quyết định. Thiết
+      bị ở đây được thiết kế đi từ cơ chế, cho ra các nguồn ion đơn giản hóa về cấu trúc, hệ
+      đưa mẫu cho máy di động, và bẫy ion quét tần số.
+    problem: >
+      Độ nhạy và phạm vi áp dụng của một máy khối phổ phần lớn do nguồn ion quyết định. Phần
+      lớn các phương pháp ion hóa hiện có đòi hỏi điện thế cao, laser hoặc căn chỉnh chính xác,
+      khiến kích thước, chi phí và nhu cầu bảo trì của thiết bị luôn ở mức cao, khó dùng ngay
+      tại dây chuyền sản xuất, bãi tái chế hay phòng khám. Mặt khác, sự mất mát của phân tử lớn
+      và phức không cộng hóa trị trong quá trình truyền ion và phân tích khối cũng giới hạn
+      khoảng khối lượng thực tế đo được.
+    approach: >
+      Nhóm thiết kế thiết bị đi từ cơ chế ion hóa. Vì ion từ mẫu rắn có thể sinh ra qua thăng
+      hoa và chuyển proton do nhiệt, nguồn ion có thể bỏ cả điện thế cao và laser, chỉ dùng
+      nhiệt độ và chênh áp để đưa mẫu vào máy. Trên cơ sở đó, các hệ đưa mẫu cho ion hóa tại
+      cửa nạp và MAI chân không đã được phát triển rồi chuyển sang máy khối phổ di động. Ở phía
+      phân tích khối, công việc kết hợp với việc phát triển bẫy ion tuyến tính quét tần số, nhằm
+      mở rộng khoảng phát hiện cho ion khối lượng lớn và protein nguyên vẹn.
+    result: >
+      Nhiều nguồn ion đơn giản hóa về cấu trúc đã được chế tạo; nguồn ion hóa tại cửa nạp đủ
+      nhạy để phân tích trực tiếp mẫu sinh học, còn MAI chân không đã được triển khai và kiểm
+      chứng trên máy di động. Với bẫy ion quét tần số, nhóm đã thiết lập cách phát hiện ion
+      phân tử sinh học lớn và sau đó dùng cho phân tích phân giải cao protein nguyên vẹn. Nền
+      tảng thiết bị này cũng chống đỡ cho các đề tài sau về nhận dạng nhựa và đo tại hiện trường.
   health:
     title: "Khối phổ carbohydrate kết hợp phân loại bằng học máy"
     blurb: >
@@ -88,6 +123,11 @@ research_themes:
       một điểm mẫu; đường chuẩn dựng trong nền huyết thanh đạt độ tuyến tính R² = 0,99. Quy trình
       hiện đang được áp dụng cho sinh thiết lỏng từ nước tiểu, nhằm đánh giá khả năng phát hiện
       sớm ung thư và theo dõi di căn.
+    next: >
+      Trong đề tài NSTC từ tháng 8 năm 2026 đến tháng 7 năm 2027, quy trình được chuyển sang
+      mẫu nước tiểu. Nước tiểu có thể lấy lặp lại và không xâm lấn, phù hợp để theo dõi diễn
+      tiến bệnh; mục tiêu là đánh giá xem phổ carbohydrate trong nước tiểu có thể làm chỉ dấu
+      cho phát hiện sớm ung thư và cảnh báo di căn hay không.
   sustainability:
     title: "Nhận dạng nhựa bằng khối phổ phục vụ tái chế"
     blurb: >
@@ -109,8 +149,10 @@ research_themes:
       phân tích hơn là độ chính xác mức phòng thí nghiệm. Các thiết bị di động và nguồn ion mà nhóm
       phát triển trước đây là nền tảng kỹ thuật cho hướng này.
     result: >
-      Công việc đang ở giai đoạn phát triển phương pháp, với kinh phí từ NSTC. Phổ tham chiếu cho
-      các polymer chuẩn đang được xây dựng và các mô hình phân loại đang được kiểm chứng.
+      Phần phát triển phương pháp được thực hiện trong đề tài NSTC từ tháng 8 năm 2025 đến tháng
+      7 năm 2026, gồm việc xây dựng phổ tham chiếu cho các polymer chuẩn và kiểm chứng các mô
+      hình phân loại. Đề tài đã kết thúc vào tháng 7 năm 2026; những bước tiếp theo chờ nguồn
+      kinh phí mới.
   mechanisms:
     title: "Phát hiện chất trung gian hoạt động trong xúc tác"
     blurb: >
@@ -138,6 +180,11 @@ research_themes:
       đánh đổi giữa tốc độ phản ứng và quá thế. Trong hóa học sắt oxo hóa trị cao, các điều kiện
       phân tách cơ chế cắt liên kết O–O kiểu đồng ly và dị ly đã được làm rõ. Trong hệ tiền xúc tác
       paladi, quá trình hình thành chất hoạt động được theo dõi trực tiếp.
+    next: >
+      Một đề tài NSTC với vai trò đồng chủ nhiệm, từ tháng 8 năm 2026 đến tháng 7 năm 2027, là
+      năm thứ ba của hướng tiền xúc tác paladi. Các bước hoạt hóa và sự hình thành chất hoạt
+      động được theo dõi bằng khối phổ, nhằm rút ngắn quy trình phát triển vật liệu cho
+      transistor hiệu ứng trường hữu cơ.
 
 facility:
   tagline: "Từ kiểm nghiệm tiêu chuẩn đến phép đo theo yêu cầu"
@@ -152,6 +199,10 @@ facility:
     Nền tảng được lập ra để hợp tác nghiên cứu, không phải để kiểm nghiệm theo hợp đồng thường
     quy. Dựa trên kinh nghiệm tích hợp hệ thống khối phổ và phát triển phương pháp phân tích,
     phương án đo được hoạch định theo yêu cầu của từng đề tài.
+  network: >
+    Từ năm 2021, nhóm đã dùng khối phổ hỗ trợ nghiên cứu của các nhóm điện hóa, tính toán lý
+    thuyết, tổng hợp hữu cơ và vô cơ, với 13 bài báo công bố chung. Đó chính là năng lực mà
+    nền tảng này mở ra cho bên ngoài.
 
 facility_capabilities:
   "0":
@@ -318,14 +369,30 @@ courses:
 
 news:
   "2026-08-01": {text: "I-Chung Lu được trao danh hiệu Giáo sư Ưu tú của Đại học Chung Hsing (năm học 115)"}
+  "2026-07-28":
+    html: >
+      Một bài báo hợp tác được công bố trực tuyến trên <em>Dalton Transactions</em>:
+      <a href="https://doi.org/10.1039/D6DT01340F">khả năng phản ứng của phức diruthenium
+      polyhydride trên khung bis-cyclopentadienyl</a>
   "2026-07-01": {text: "Chúc mừng Chen-Yi Tseng nhận được Đề tài Nghiên cứu Sinh viên của NSTC"}
   "2026-06-05": {text: "Chúc mừng Chen-Yi Tseng đạt giải Nhì Cuộc thi Báo cáo Khoa học Công nghệ 2026 (Hóa học và Năng lượng Bền vững, bảng Đại học)"}
   "2026-04-25": {text: "Chúc mừng Chen-Yi Tseng nhận Giải Báo cáo tại Hội thảo Kỹ thuật Phân tích 2026"}
+  "2026-02-28":
+    html: >
+      Bài báo của nhóm cùng các cộng sự được công bố trên <em>Inorganic Chemistry</em>:
+      <a href="https://doi.org/10.1021/acs.inorgchem.5c05784">hiệu ứng đẩy electron của phối tử
+      PyNO quyết định cách cắt liên kết O–O ở các chất sắt oxo hóa trị cao</a>
   "2025-12-26":
     html: >
       I-Chung Lu được giới thiệu trong chuyên mục <a href="https://doi.org/10.1016/j.ijms.2025.117568">Young
       Scientist Feature</a> của <em>IJMS</em> — bài viết của ban biên tập tạp chí giới thiệu
       thành quả nghiên cứu và định hướng sắp tới
+  "2025-08-30":
+    html: >
+      I-Chung Lu được mời viết bài tổng quan trên <em>International Journal of Mass
+      Spectrometry</em>: <a href="https://doi.org/10.1016/j.ijms.2025.117516">cách nhìn nhiệt
+      động lực học về cơ chế ion hóa MALDI, và một giải pháp thực tiễn cho phân tích
+      carbohydrate</a>
   "2025-07-01": {text: "Chúc mừng Shao-Hsun Ho nhận được Đề tài Nghiên cứu Sinh viên của NSTC"}
   "2025-06-06": {text: "Chúc mừng Shao-Hsun Ho đạt giải Nhì Cuộc thi Báo cáo Khoa học Công nghệ 2025 (Hóa học và Năng lượng Bền vững, bảng Đại học)"}
   "2025-05-03": {text: "Chúc mừng Lyu-Han Lan nhận Giải Poster Xuất sắc của Chi hội ACS Đài Loan"}
