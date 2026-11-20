@@ -368,6 +368,12 @@ courses:
   "4001": {name: "Hóa học công nghiệp"}
 
 news:
+  "2026-11-19":
+    html: >
+      Bài báo của nhóm được công bố trực tuyến trên <em>Journal of the Chinese
+      Chemical Society</em>: <a href="https://doi.org/10.1002/jccs.70299">thí nghiệm
+      trao đổi hydro–deuteri làm sáng tỏ cách ion pha khí hình thành trong ion hóa
+      hỗ trợ bởi chất nền (MAI)</a>
   "2026-08-01": {text: "I-Chung Lu được trao danh hiệu Giáo sư Ưu tú của Đại học Chung Hsing (năm học 115)"}
   "2026-07-28":
     html: >

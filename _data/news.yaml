@@ -10,6 +10,11 @@
 #
 # ------------------------------------------------------------
 
+- date: "2026-11-19"
+  category: publication
+  html_zh: '本實驗室的論文於 <em>Journal of the Chinese Chemical Society</em> 線上刊出：<a href="https://doi.org/10.1002/jccs.70299">以氫氘交換實驗釐清基質輔助游離（MAI）中氣相離子的生成途徑</a>'
+  html_en: 'Published online in <em>Journal of the Chinese Chemical Society</em>: <a href="https://doi.org/10.1002/jccs.70299">hydrogen–deuterium exchange reveals how gas-phase ions are formed in matrix-assisted ionization</a>'
+
 - date: "2026-08-01"
   category: milestone
   text_zh: "恭喜實驗室主持人盧臆中老師榮獲中興大學 115 學年度優聘教師"

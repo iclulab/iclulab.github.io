@@ -21,6 +21,20 @@
 #
 # ------------------------------------------------------------
 
+# 2026-11-19 線上刊出（Early View）。Crossref 當日尚未建檔，
+# 卷期頁碼待期刊編入正式期數後補，屆時把 volume 改掉並將 verified 設為 true。
+# Chao 與 Chen 為共同第一作者（期刊註記），本檔無此欄位故未標示。
+- year: 2026
+  authors: "Jeffrey Yungchuan Chao, Yi-Hsin Chen, Chen-Yi Tseng, Chia-Yun Wang, Yen-Hsien Li*, I-Chung Lu*"
+  title: "Hydrogen–Deuterium Exchange Reveals Gas-Phase Ion Formation in Matrix-Assisted Ionization"
+  journal: "J. Chin. Chem. Soc."
+  journal_full: "Journal of the Chinese Chemical Society"
+  volume: "Early View"
+  doi: "10.1002/jccs.70299"
+  role: co-corresponding
+  topics: [ambient-ionization, ionization-mechanism]
+  verified: false
+
 - year: 2026
   authors: "Po-Sen Huang, Kuheli Das, Wei-Chen Fu, Yu-Hong Chen, Yu-Chun Hung, Ting-Yi Chu, Pei-Lin Chen, I-Chung Lu, Hsueh-Ju Liu*"
   title: "Reactivity of tethered bis-cyclopentadienyl-supported diruthenium polyhydride complexes"
